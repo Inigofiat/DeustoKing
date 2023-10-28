@@ -40,7 +40,7 @@ public class VentanaOtros extends JFrame {
         pTitulo = new JPanel();
         pTitulo.setLayout(new FlowLayout(FlowLayout.CENTER));
         
-        lblTitulo = new JLabel("POSTRES");
+        lblTitulo = new JLabel("OTROS PRODUCTOS");
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulo.setVerticalAlignment(SwingConstants.TOP);
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
