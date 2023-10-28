@@ -60,8 +60,8 @@ public class VentanaCargando extends JFrame {
 					JOptionPane.showMessageDialog(null, "Error al cargar la ventana", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();
-				//VentanaPrincipal vp = new VentanaPrincipal();
-				//vp.setVisible(true);
+				VentanaPrincipal vp = new VentanaPrincipal();
+				vp.setVisible(true);
 			}
 		});hilo.start();
 	}
