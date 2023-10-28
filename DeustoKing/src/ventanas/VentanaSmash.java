@@ -27,7 +27,7 @@ public class VentanaSmash extends JFrame {
 	private JLabel lblTitulo;
 	
 	public VentanaSmash() {
-		setTitle("SMASH BURGERS");
+		setTitle("Smash Burger");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
