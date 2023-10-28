@@ -27,7 +27,7 @@ public class VentanaBebidas extends JFrame {
 	private JLabel lblTitulo;
 	
 	public VentanaBebidas() {
-		setTitle("Postres");
+		setTitle("BEBIDAS");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -40,7 +40,7 @@ public class VentanaBebidas extends JFrame {
         pTitulo = new JPanel();
         pTitulo.setLayout(new FlowLayout(FlowLayout.CENTER));
         
-        lblTitulo = new JLabel("POSTRES");
+        lblTitulo = new JLabel("BEBIDAS");
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulo.setVerticalAlignment(SwingConstants.TOP);
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
