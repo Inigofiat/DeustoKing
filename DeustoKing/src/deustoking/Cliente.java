@@ -124,13 +124,13 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [contador=" + contador + ", nombreC=" + nombreC + ", apellidosC=" + apellidosC
-				+ ", nombreUsuario=" + nombreUsuario + ", telefonoC=" + telefonoC + ", correoC=" + correoC
-				+ ", direccionC=" + direccionC + ", contrasenia=" + contrasenia + ", idCliente=" + idCliente
-				+ ", puntosAcumulados=" + puntosAcumulados + "]";
+		return "Cliente [contador=" + contador + ", nombreC=" + nombreC + ", apellidosC=" + apellidosC + ", telefonoC="
+				+ telefonoC + ", correoC=" + correoC + ", direccionC=" + direccionC + ", nombreUsuario=" + nombreUsuario
+				+ ", contrasenia=" + contrasenia + ", idCliente=" + idCliente + ", puntosAcumulados=" + puntosAcumulados
+				+ "]";
 	}
 
-	
+
 	
 	
 }
