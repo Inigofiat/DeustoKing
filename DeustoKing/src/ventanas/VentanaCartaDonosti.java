@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaCarta extends JFrame {
+public class VentanaCartaDonosti extends JFrame {
 	
 	private JPanel pBotones, pProductos, pPrincipal, pVolver, pContenedor;
 	private JButton btnEntrantesNorte, btnEnsaladaNorte, 
@@ -29,7 +29,8 @@ public class VentanaCarta extends JFrame {
 	private JScrollPane barra;
 	private JFrame vActual, vAnterior;
 	
-	public VentanaCarta(JFrame va) {
+	public VentanaCartaDonosti(JFrame va) {
+		super();
 		vActual=this;
 		vAnterior=va;
 		setTitle("Carta");
@@ -77,7 +78,7 @@ public class VentanaCarta extends JFrame {
 		btnHamburguesasNorte.setBorderPainted(false);
 		pBotones.add(btnHamburguesasNorte);
 		btnHamburguesasNorte.addActionListener((e)->{
-			VentanaHamburguesas v = new VentanaHamburguesas();
+			VentanaHamburguesasDonosti v = new VentanaHamburguesasDonosti();
 			v.setVisible(true);
 		});
 		
@@ -225,7 +226,7 @@ public class VentanaCarta extends JFrame {
 		btnHamburguesasCentro.setMargin(margenBotones);
 		pProductos.add(btnHamburguesasCentro);
 		btnHamburguesasCentro.addActionListener((e)->{
-			VentanaHamburguesas v = new VentanaHamburguesas();
+			VentanaHamburguesasDonosti v = new VentanaHamburguesasDonosti();
 			v.setVisible(true);
 		});
 		

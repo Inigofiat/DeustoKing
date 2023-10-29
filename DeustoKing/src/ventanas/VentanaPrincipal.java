@@ -41,6 +41,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	public VentanaPrincipal() {
+		super();
 		vActual=this;
 		
 		setTitle("DeustoKing");
