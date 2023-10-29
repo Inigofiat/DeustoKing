@@ -66,7 +66,7 @@ public class VentanaOtros extends JFrame {
 		
 		btnBurrito = new JButton();
 		ImageIcon imAros = new ImageIcon("src\\imagenes\\burrito.jpg");
-		lblBurrito = new JLabel("BUUURRING");
+		lblBurrito = new JLabel("BURRIKING");
 		btnBurrito.setIcon(imAros);
 		btnBurrito.setLayout(new BorderLayout());
 		btnBurrito.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
