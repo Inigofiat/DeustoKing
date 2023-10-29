@@ -164,8 +164,9 @@ public class VentanaRegistro extends JFrame{
 	scroll = new JScrollPane();
 	
 	btnAtras.addActionListener((e) -> {
-		VentanaPrincipal vpl = new VentanaPrincipal();
-		vpl.setVisible(true);
+		new VentanaPrincipal(vActual);
+		vActual.setVisible(false);
+		vActual.dispose();
 	});
 	
 	btnInicioSesion.addActionListener((e) -> {

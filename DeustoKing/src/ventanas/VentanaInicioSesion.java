@@ -135,8 +135,9 @@ public class VentanaInicioSesion extends JFrame {
 		});
 
 		btnRegistro.addActionListener((e) -> {
+			new VentanaRegistro(vActual);
+			vActual.setVisible(false);
 			vActual.dispose();
-			vAnterior.setVisible(true);
 		});
 
 		btnInicioSesion.addActionListener((e)-> {
@@ -148,8 +149,8 @@ public class VentanaInicioSesion extends JFrame {
 			}else {
 					if(cliente.getContrasenia().equals(contrasenia)) {
 						JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
-						new VentanaPrincipal();
-						vActual.setVisible(false);
+						vAnterior.setVisible(true);
+						vActual.dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
 					}
