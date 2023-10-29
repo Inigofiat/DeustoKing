@@ -152,7 +152,7 @@ public class VentanaCartaGasteiz extends JFrame {
 		btnMenuNorte.setBorderPainted(false);
 		pBotones.add(btnMenuNorte);
 		btnMenuNorte.addActionListener((e)->{
-			VentanaMenu v = new VentanaMenu();
+			VentanaMenuGasteiz v = new VentanaMenuGasteiz();
 			v.setVisible(true);
 		});
 		
@@ -341,7 +341,7 @@ public class VentanaCartaGasteiz extends JFrame {
 		btnMenuCentro.setMargin(margenBotones);
 		pProductos.add(btnMenuCentro);
 		btnMenuCentro.addActionListener((e)->{
-			VentanaMenu v = new VentanaMenu();
+			VentanaMenuGasteiz v = new VentanaMenuGasteiz();
 			v.setVisible(true);
 		});
 		
