@@ -35,9 +35,7 @@ public class VentanaRegistro extends JFrame{
 	private JFrame vActual, vAnterior;
 	private static List<Cliente> clientes = new ArrayList<Cliente>();
 
-
-
-
+	
 	public VentanaRegistro(JFrame va) {
 
 	super();
@@ -175,8 +173,12 @@ public class VentanaRegistro extends JFrame{
 		vAnterior.setVisible(true);
 	});
 	
+	btnRegistro.addActionListener((e) -> {
+		
+	});
 	setVisible(true);
 
+	
 	}
 	
 	public static void guardarClientes(String nomfichClientes) {
