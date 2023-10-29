@@ -41,6 +41,8 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	public VentanaPrincipal() {
+		vActual=this;
+		
 		setTitle("DeustoKing");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -76,7 +78,7 @@ public class VentanaPrincipal extends JFrame {
 		btnInicSesion.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		btnInicSesion.setMargin(new Insets(10, 10, 10, 10));
 		panBotones.add(btnInicSesion);
-		/*btnInicSesion.addActionListener(new ActionListener() {
+		btnInicSesion.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +86,7 @@ public class VentanaPrincipal extends JFrame {
 				vis.setVisible(true);
 				
 			}
-		});*/
+		});
 		
 		panCiudades = new JPanel();
 		panCiudades.setLayout(new FlowLayout());
@@ -107,7 +109,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		gr1 = new GradientPaint(0, 0, Color.RED, 0, btnBilbao.getHeight(), Color.WHITE);
 
-	        // Crea una clase anónima para personalizar el aspecto del botón
+	        // Se crea una clase para personalizar el aspecto del botón
 	        btnBilbao.setUI(new BasicButtonUI() {
 	            @Override
 	            public void paint(Graphics g, JComponent c) {
@@ -119,17 +121,17 @@ public class VentanaPrincipal extends JFrame {
 	        });
 	        
 		
-		/*btnBilbao.addActionListener((e)->{
-			VentanaCarta vcb = new VentanaCarta();
+		btnBilbao.addActionListener((e)->{
+			VentanaCarta vcb = new VentanaCarta(vActual);
 			vcb.setVisible(true);
-		});*/
+		});
 		panCiudades.add(btnBilbao);
 		
-		////
+		
 		JPanel panelCentro = new JPanel();
-		//panelCentro.setLayout(new GridLayout(1, 3));
+		
 		panelCentro.add(panCiudades);
-		////
+		
 	
 		btnDonostia = new JButton("DONOSTIA");
 		btnDonostia.setBackground(new Color(171,249,236));
@@ -153,7 +155,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panCiudades.add(btnDonostia);
 		btnDonostia.addActionListener((e)->{
-			VentanaCarta vcb = new VentanaCarta();
+			VentanaCarta vcb = new VentanaCarta(vActual);
 			vcb.setVisible(true);
 		});
 		
@@ -165,7 +167,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		 gr3= new GradientPaint(0, 0, Color.GREEN, 0, btnGasteiz.getHeight(), Color.WHITE);
 
-	        // Crea una clase anónima para personalizar el aspecto del botón
+	        // SE crea una clase para personalizar el aspecto del botón
 	        btnGasteiz.setUI(new BasicButtonUI() {
 	            @Override
 	            public void paint(Graphics g, JComponent c) {
@@ -177,7 +179,7 @@ public class VentanaPrincipal extends JFrame {
 	        });
 		panCiudades.add(btnGasteiz);
 		btnGasteiz.addActionListener((e)->{
-			VentanaCarta vcb = new VentanaCarta();
+			VentanaCarta vcb = new VentanaCarta(vActual);
 			vcb.setVisible(true);
 		});
 		
@@ -205,11 +207,11 @@ public class VentanaPrincipal extends JFrame {
 	    panInformación.setBorder(new EmptyBorder(espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3 ));
 	     
 	    FlowLayout ciudadesLayout = new FlowLayout();
-	    ciudadesLayout.setHgap(50); // Ajusta el valor según tus necesidades
+	    ciudadesLayout.setHgap(50); 
 	    panCiudades.setLayout(ciudadesLayout);
 	    
 	    FlowLayout botonesLayout = new FlowLayout(FlowLayout.RIGHT);
-	    botonesLayout.setHgap(25); // Ajusta el valor según tus necesidades
+	    botonesLayout.setHgap(25); 
 	    panBotones.setLayout(botonesLayout);
 	    
 	    menu = new JMenuBar();
@@ -221,7 +223,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaCarta vb = new VentanaCarta();
+				VentanaCarta vb = new VentanaCarta(vActual);
 				vb.setVisible(true);
 				
 			}
@@ -253,12 +255,4 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(true);
 		
 	}
-	
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipal();
-            }
-        });
-    }
 }
