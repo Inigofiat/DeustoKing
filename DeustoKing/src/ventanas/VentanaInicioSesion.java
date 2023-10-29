@@ -32,14 +32,17 @@ public class VentanaInicioSesion extends JFrame {
 	private JButton btnRegistro, btnAtras, btnInicioSesion;
 	private JScrollPane scroll;
 	private static final String nomfichClientes = "Clientes.csv";
-	private JFrame ventanaActual;
+	private JFrame vActual, vAnterior;
 	
 
-	public VentanaInicioSesion() {
-
+	public VentanaInicioSesion(JFrame va) {
+		
 		super();
+		vActual = this;
+		vAnterior = va;
+
 		setBounds(-10, 0, 1600, 823);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		JPanel panelContenedor = new JPanel();
 		panelContenedor.setLayout(new BorderLayout());
@@ -74,8 +77,6 @@ public class VentanaInicioSesion extends JFrame {
 		txtNombreUsuario.setColumns(40);
 		txtContraseña.setColumns(40);
 		    
-		    
-		   
 		pEste = new JPanel();
 		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
 		lblRegistro = new JLabel("¿No tienes cuenta? Registrate aqui");
@@ -86,7 +87,6 @@ public class VentanaInicioSesion extends JFrame {
 		pEste.add(lblRegistro);
 		pEste.add(btnRegistro);
 		pEste.add(Box.createVerticalStrut(30));
-		
 		
 		
 		pSur = new JPanel();
@@ -127,19 +127,16 @@ public class VentanaInicioSesion extends JFrame {
 		pPrincipal.add(panelContenedor, BorderLayout.CENTER);
 		getContentPane().add(pPrincipal);
 
+		
 		btnAtras.addActionListener((e)-> {
-		//VentanaInicioSesion vis = new VentanaInicioSesion();
-		VentanaPrincipal vpl = new VentanaPrincipal();
-		//vis.dispose();
-		vpl.setVisible(true);
+			vActual.dispose();
+			vAnterior.setVisible(true);
 
 		});
 
 		btnRegistro.addActionListener((e) -> {
-		//VentanaInicioSesion vis = new VentanaInicioSesion();
-		VentanaRegistro vr = new VentanaRegistro();
-		//vis.dispose();
-		vr.setVisible(true);
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 
 		btnInicioSesion.addActionListener((e)-> {
@@ -152,7 +149,7 @@ public class VentanaInicioSesion extends JFrame {
 					if(cliente.getContrasenia().equals(contrasenia)) {
 						JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 						new VentanaPrincipal();
-						ventanaActual.setVisible(false);
+						vActual.setVisible(false);
 					}else {
 						JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
 					}
@@ -182,14 +179,6 @@ public class VentanaInicioSesion extends JFrame {
 			return null;
 		}	
 	}
-
-	public static void main(String[] args) {
-	        SwingUtilities.invokeLater(new Runnable() {
-	            public void run() {
-	                new VentanaInicioSesion();                              
-	            }                                                                       
-	        });                  
-	    }
-	
-	
 }
+	
+	
