@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -175,6 +176,21 @@ public class VentanaRegistro extends JFrame{
 	});
 	
 	btnRegistro.addActionListener((e) -> {
+		String nom = txtNombre.getText();
+		String apell = txtApellido.getText();
+		String textotelf = txtTlf.getText();
+		int telf = Integer.parseInt(textotelf);
+		String dire = txtDireccion.getText();
+		String mail = txtEmail.getText();
+		String usuario = txtNombreUsuario.getText();
+		String con = txtContraseña.getText();
+		String repCon = txtRepetirContraseña.getText();
+		
+		if(!con.equals(repCon)) {
+			JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+		}else {
+			JOptionPane.showMessageDialog(null, "Se ha registrado correctamente!");
+		}
 		
 	});
 	setVisible(true);
