@@ -3,6 +3,10 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,25 +20,31 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Cliente;
+
 public class VentanaRegistro extends JFrame{
 	
 
-private JPanel pSur, pPrincipal, pEste, pOeste;
-private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContraseña, lblRepetirContraseña, lblRegistro, lblInicioSesion;
-private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario;
-private JPasswordField txtContraseña, txtRepetirContraseña;
-private JButton btnRegistro, btnAtras, btnInicioSesion;
-private JScrollPane scroll;
-private static final String nomfichClientes = "Clientes.csv";
+	private JPanel pSur, pPrincipal, pEste, pOeste;
+	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContraseña, lblRepetirContraseña, lblRegistro, lblInicioSesion;
+	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario;
+	private JPasswordField txtContraseña, txtRepetirContraseña;
+	private JButton btnRegistro, btnAtras, btnInicioSesion;
+	private JScrollPane scroll;
+	private static final String nomfichClientes = "Clientes.csv";
+	private JFrame vActual, vAnterior;
+	private static List<Cliente> clientes = new ArrayList<Cliente>();
 
 
 
-	public VentanaRegistro() {
+
+	public VentanaRegistro(JFrame va) {
 
 	super();
-	setVisible(true);
+	vActual = this;
+	vAnterior = va;
 	setBounds(-10, 0, 1600, 823);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 	pPrincipal = new JPanel();
 	pPrincipal.setLayout(new BorderLayout());
@@ -127,7 +137,7 @@ private static final String nomfichClientes = "Clientes.csv";
 	lblInicioSesion = new JLabel("¿Ya tienes cuenta? Inicia sesion aqui");
 	lblInicioSesion.setBorder(new EmptyBorder(0, 0, 10, 20));
 	lblInicioSesion.setFont(new Font("Tw", Font.BOLD, 14));
-	btnInicioSesion = new JButton("                    INCIA SESION                    ");
+	btnInicioSesion = new JButton("                    INICIA SESION                    ");
 
 	pEste.add(lblInicioSesion);
 	pEste.add(btnInicioSesion);
@@ -161,18 +171,27 @@ private static final String nomfichClientes = "Clientes.csv";
 	});
 	
 	btnInicioSesion.addActionListener((e) -> {
-		VentanaInicioSesion vis = new VentanaInicioSesion();
-		vis.setVisible(true);
+		vActual.dispose();
+		vAnterior.setVisible(true);
 	});
+	
+	setVisible(true);
 
 	}
 	
-
-	public static void main(String[] args) {
-	        SwingUtilities.invokeLater(new Runnable() {
-	            public void run() {
-	                new VentanaRegistro();
-	            }
-	        });
-	    }
+	public static void guardarClientes(String nomfichClientes) {
+		try {
+			PrintWriter pw = new PrintWriter(nomfichClientes);
+			for(Cliente c: clientes) {
+				pw.println(c.getNombreC()+";"+c.getApellidosC()+";"+c.getTelefonoC()+";"+c.getDireccionC()+";"+c.getCorreoC()+";"+
+						c.getNombreUsuario()+";"+c.getContrasenia());
+			}
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
