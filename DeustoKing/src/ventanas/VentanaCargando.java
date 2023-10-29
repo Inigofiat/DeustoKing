@@ -21,6 +21,7 @@ public class VentanaCargando extends JFrame {
 
 	
 	public VentanaCargando() {
+		super();
 		vActual=this;
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

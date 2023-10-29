@@ -30,6 +30,7 @@ public class VentanaCarta extends JFrame {
 	private JFrame vActual, vAnterior;
 	
 	public VentanaCarta(JFrame va) {
+		super();
 		vActual=this;
 		vAnterior=va;
 		setTitle("Carta");
