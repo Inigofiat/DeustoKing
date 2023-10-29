@@ -73,6 +73,16 @@ public class VentanaPrincipal extends JFrame {
 		btnCupon.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		btnCupon.setMargin(new Insets(10, 10, 10, 10));
 		panBotones.add(btnCupon);
+		btnCupon.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaCupones();
+				vActual.setVisible(false);
+				vActual.dispose();
+				
+			}
+		});
 		
 		btnInicSesion = new JButton("INICIO SESIÓN");
 		btnInicSesion.setBackground(new Color(189,206,243));
