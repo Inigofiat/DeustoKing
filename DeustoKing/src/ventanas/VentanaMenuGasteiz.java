@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaMenu extends JFrame {
+public class VentanaMenuGasteiz extends JFrame {
 	
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
 	private JButton btnM1, btnM2, btnM3, btnM4, btnVolver;
@@ -27,7 +27,7 @@ public class VentanaMenu extends JFrame {
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
 	
-	public VentanaMenu() {
+	public VentanaMenuGasteiz() {
 		setTitle("MENÚ");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -43,7 +43,7 @@ public class VentanaMenu extends JFrame {
         pTitulo = new JPanel();
         pTitulo.setLayout(new FlowLayout(FlowLayout.CENTER));
         
-        lblTitulo = new JLabel("MENÚ");
+        lblTitulo = new JLabel("MENÚ GASTEIZ");
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulo.setVerticalAlignment(SwingConstants.TOP);
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
@@ -54,8 +54,8 @@ public class VentanaMenu extends JFrame {
 		
 		
 		btnM1 = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\pulledpork.jpg");
-		lblM1 = new JLabel("HAMBURGUESA A ELEGIR");
+		ImageIcon imNachos = new ImageIcon("src\\imagenes\\gasteiz.png");
+		lblM1 = new JLabel("GASTEIZ BURGER");
 		btnM1.setIcon(imNachos);
 		btnM1.setLayout(new BorderLayout());
 		btnM1.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
@@ -66,10 +66,8 @@ public class VentanaMenu extends JFrame {
 		lblM1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnM1.add(lblM1, BorderLayout.CENTER);
 		btnM1.setMargin(margenBotones);
-		btnM1.addActionListener((e)->{
-			VentanaHamburguesas ve = new VentanaHamburguesas();
-			ve.setVisible(true);
-		});
+		
+		
 		pProductos.add(btnM1);
 		
 		btnM2 = new JButton();
@@ -163,7 +161,7 @@ public class VentanaMenu extends JFrame {
 	public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new VentanaMenu();
+                new VentanaMenuGasteiz();
             }
         });
     }
