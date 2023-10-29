@@ -35,14 +35,15 @@ public class VentanaPrincipal extends JFrame {
 	private JMenuBar menu;
 	private JMenu menuDesplegable;
 	private JMenuItem itHorarios, itCarta, itSalir;
-	private JFrame vActual;
+	private JFrame vActual, vAnterior;
 	private GradientPaint gr1, gr2, gr3;
 	
 	
 	
-	public VentanaPrincipal() {
+	public VentanaPrincipal(JFrame va) {
 		super();
 		vActual=this;
+		vAnterior=va;
 		
 		setTitle("DeustoKing");
 		setBounds(-10, 0, 1800, 900);
@@ -83,8 +84,9 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaInicioSesion vis = new VentanaInicioSesion();
-				vis.setVisible(true);
+				new VentanaInicioSesion(vActual);
+				vActual.setVisible(false);
+				vActual.dispose();
 				
 			}
 		});
@@ -123,7 +125,7 @@ public class VentanaPrincipal extends JFrame {
 	        
 		
 		btnBilbao.addActionListener((e)->{
-			VentanaCarta vcb = new VentanaCarta(vActual);
+			VentanaCartaBilbo vcb = new VentanaCartaBilbo(vActual);
 			vcb.setVisible(true);
 		});
 		panCiudades.add(btnBilbao);
@@ -156,7 +158,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panCiudades.add(btnDonostia);
 		btnDonostia.addActionListener((e)->{
-			VentanaCarta vcb = new VentanaCarta(vActual);
+			VentanaCartaDonosti vcb = new VentanaCartaDonosti(vActual);
 			vcb.setVisible(true);
 		});
 		
@@ -180,7 +182,7 @@ public class VentanaPrincipal extends JFrame {
 	        });
 		panCiudades.add(btnGasteiz);
 		btnGasteiz.addActionListener((e)->{
-			VentanaCarta vcb = new VentanaCarta(vActual);
+			VentanaCartaGasteiz vcb = new VentanaCartaGasteiz(vActual);
 			vcb.setVisible(true);
 		});
 		
@@ -224,7 +226,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaCarta vb = new VentanaCarta(vActual);
+				VentanaCartaBilbo vb = new VentanaCartaBilbo(vActual);
 				vb.setVisible(true);
 				
 			}
