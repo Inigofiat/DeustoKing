@@ -11,19 +11,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
-import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
 public class VentanaCargando extends JFrame {
 	
 	private JProgressBar bProgreso;
 	private JLabel lbImgPri;
+	private JFrame vActual;
 
 	
 	public VentanaCargando() {
+		vActual=this;
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
 		setTitle("Cargando");
 		
 		lbImgPri = new JLabel(new ImageIcon("src\\imagenes\\DEUSTOKING.png"));
@@ -60,17 +60,10 @@ public class VentanaCargando extends JFrame {
 					JOptionPane.showMessageDialog(null, "Error al cargar la ventana", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();
-				VentanaPrincipal vp = new VentanaPrincipal();
-				vp.setVisible(true);
+				new VentanaPrincipal();
+				vActual.setVisible(false);
 			}
 		});hilo.start();
+		setVisible(true);
 	}
-	
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaCargando();
-            }
-        });
-    }
 }
