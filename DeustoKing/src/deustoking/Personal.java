@@ -7,12 +7,13 @@ public class Personal {
 	private String telefonoP;
 	private String correoP;
 	private String direccionP;
+	private String puesto;
 	private int idPersonal;
 	private float horasTrabajadas;
 	private float sueldo;
 	private int mesasAtendidas;
 	
-	public Personal(String nombreP, String apellidosP, String telefonoP, String correoP, String direccionP,
+	public Personal(String nombreP, String apellidosP, String telefonoP, String correoP, String direccionP, String puesto,
 			int idPersonal, float horasTrabajadas, float sueldo, int mesasAtendidas) {
 		super();
 		this.nombreP = nombreP;
@@ -20,6 +21,7 @@ public class Personal {
 		this.telefonoP = telefonoP;
 		this.correoP = correoP;
 		this.direccionP = direccionP;
+		this.puesto = puesto;
 		this.idPersonal = contador;
 		contador++;
 		this.horasTrabajadas = horasTrabajadas;
@@ -34,6 +36,7 @@ public class Personal {
 		this.telefonoP = "";
 		this.correoP = "";
 		this.direccionP = "";
+		this.puesto = "";
 		this.idPersonal = contador;
 		contador++;
 		this.horasTrabajadas = 0;
@@ -88,6 +91,14 @@ public class Personal {
 	public void setDireccionP(String direccionP) {
 		this.direccionP = direccionP;
 	}
+	
+	public String getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(String puesto) {
+		this.puesto = puesto;
+	}
 
 	public int getIdPersonal() {
 		return idPersonal;
@@ -124,7 +135,9 @@ public class Personal {
 	@Override
 	public String toString() {
 		return "Personal [nombreP=" + nombreP + ", apellidosP=" + apellidosP + ", telefonoP=" + telefonoP + ", correoP="
-				+ correoP + ", direccionP=" + direccionP + ", idPersonal=" + idPersonal + ", horasTrabajadas="
+				+ correoP + ", direccionP=" + direccionP + ", puesto=" + puesto + ", idPersonal=" + idPersonal + ", horasTrabajadas="
 				+ horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas=" + mesasAtendidas + "]";
 	}
+
+
 }
