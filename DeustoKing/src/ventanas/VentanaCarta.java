@@ -8,9 +8,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Paint;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 public class VentanaCarta extends JFrame {
@@ -30,9 +26,12 @@ public class VentanaCarta extends JFrame {
 	btnSmashCentro, btnMenuCentro, btnAlergenosCentro, btnVolver;
 	private JLabel lblEntrantesCentro, lblEnsaladaCentro, lblHamburguesasCentro, lblPostresCentro, lblBebidasCentro, lblInfantilCentro, 
 	lblOtrosCentro, lblSmashCentro, lblMenuCentro, lblAlergenosCentro;
-	private JScrollPane barra; 
+	private JScrollPane barra;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaCarta() {
+	public VentanaCarta(JFrame va) {
+		vActual=this;
+		vAnterior=va;
 		setTitle("Carta");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -335,7 +334,7 @@ public class VentanaCarta extends JFrame {
 		btnMenuCentro.setPreferredSize(new Dimension(150,400));
 		lblMenuCentro.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMenuCentro.setVerticalAlignment(SwingConstants.TOP);
-		lblMenuCentro.setForeground(Color.WHITE); // Color del texto
+		lblMenuCentro.setForeground(Color.WHITE); 
 		lblMenuCentro.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 30));
 		btnMenuCentro.add(lblMenuCentro, BorderLayout.CENTER);
 		btnMenuCentro.setMargin(margenBotones);
@@ -354,7 +353,7 @@ public class VentanaCarta extends JFrame {
 		btnAlergenosCentro.setPreferredSize(new Dimension(150,400));
 		lblAlergenosCentro.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAlergenosCentro.setVerticalAlignment(SwingConstants.TOP);
-		lblAlergenosCentro.setForeground(Color.WHITE); // Color del texto
+		lblAlergenosCentro.setForeground(Color.WHITE); 
 		lblAlergenosCentro.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 30));
 		btnAlergenosCentro.add(lblAlergenosCentro, BorderLayout.CENTER);
 		btnAlergenosCentro.setMargin(margenBotones);
@@ -369,6 +368,10 @@ public class VentanaCarta extends JFrame {
 		btnVolver.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
+		btnVolver.addActionListener((e)->{
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
 		pVolver.add(btnVolver);
 		
 		
@@ -406,13 +409,5 @@ public class VentanaCarta extends JFrame {
 	    
 		
 	}
-	
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaCarta();
-            }
-        });
-    }
 
 }
