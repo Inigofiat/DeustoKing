@@ -20,9 +20,11 @@ public class VentanaCliente extends JFrame{
 	private JSlider sliderPts;
 	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4;
 	private Cliente cliente;
+	private int puntosCliente;
 	
 	public VentanaCliente() {
 		this.cliente = cliente;
+		this.puntosCliente = 0;
 	
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
 		setBounds(200, 100, 1100, 700);
@@ -63,6 +65,7 @@ public class VentanaCliente extends JFrame{
 		
 		public JLabelMouseListener(String informacion) {
             this.info = info;
+            
         }
 
 		
@@ -73,13 +76,13 @@ public class VentanaCliente extends JFrame{
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
@@ -91,11 +94,18 @@ public class VentanaCliente extends JFrame{
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
+			
 			
 		}
+		// Método para comprar un producto y actualizar los puntos del cliente
+	    private void comprarProducto(int puntosGanados) {
+	        puntosCliente += puntosGanados;
+	        sliderPts.setValue(puntosCliente);
+	    }
+	    
 		
 	}
+
 	
 
 }

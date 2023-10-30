@@ -7,14 +7,14 @@ public class Personal {
 	private String telefonoP;
 	private String correoP;
 	private String direccionP;
-	private String puesto;
+	private PuestoTrabajo puesto;
 	private int idPersonal;
 	private float horasTrabajadas;
 	private float sueldo;
 	private int mesasAtendidas;
 	
-	public Personal(String nombreP, String apellidosP, String telefonoP, String correoP, String direccionP, String puesto,
-			int idPersonal, float horasTrabajadas, float sueldo, int mesasAtendidas) {
+	public Personal(String nombreP, String apellidosP, String telefonoP, String correoP, String direccionP,
+			PuestoTrabajo puesto, int idPersonal, float horasTrabajadas, float sueldo, int mesasAtendidas) {
 		super();
 		this.nombreP = nombreP;
 		this.apellidosP = apellidosP;
@@ -22,26 +22,15 @@ public class Personal {
 		this.correoP = correoP;
 		this.direccionP = direccionP;
 		this.puesto = puesto;
-		this.idPersonal = contador;
-		contador++;
+		this.idPersonal = idPersonal;
 		this.horasTrabajadas = horasTrabajadas;
 		this.sueldo = sueldo;
 		this.mesasAtendidas = mesasAtendidas;
 	}
-	
+
 	public Personal() {
 		super();
-		this.nombreP = "";
-		this.apellidosP = "";
-		this.telefonoP = "";
-		this.correoP = "";
-		this.direccionP = "";
-		this.puesto = "";
-		this.idPersonal = contador;
-		contador++;
-		this.horasTrabajadas = 0;
-		this.sueldo = 0;
-		this.mesasAtendidas = 0;
+		
 	}
 
 	public static int getContador() {
@@ -91,12 +80,12 @@ public class Personal {
 	public void setDireccionP(String direccionP) {
 		this.direccionP = direccionP;
 	}
-	
-	public String getPuesto() {
+
+	public PuestoTrabajo getPuesto() {
 		return puesto;
 	}
 
-	public void setPuesto(String puesto) {
+	public void setPuesto(PuestoTrabajo puesto) {
 		this.puesto = puesto;
 	}
 
@@ -135,9 +124,15 @@ public class Personal {
 	@Override
 	public String toString() {
 		return "Personal [nombreP=" + nombreP + ", apellidosP=" + apellidosP + ", telefonoP=" + telefonoP + ", correoP="
-				+ correoP + ", direccionP=" + direccionP + ", puesto=" + puesto + ", idPersonal=" + idPersonal + ", horasTrabajadas="
-				+ horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas=" + mesasAtendidas + "]";
+				+ correoP + ", direccionP=" + direccionP + ", puesto=" + puesto + ", idPersonal=" + idPersonal
+				+ ", horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas=" + mesasAtendidas
+				+ "]";
 	}
-
-
+	
+	
+	
+	
+	
+	
+	
 }

@@ -36,6 +36,8 @@ public class VentanaCupones extends JFrame {
         
         pPrincipal = new JPanel();
         pPrincipal.setLayout(new BorderLayout());
+        Color panelBackgroundColor = pPrincipal.getBackground();
+        Color buttonBackgroundColor = new Color(panelBackgroundColor.getRGB());
         
         pTitulo = new JPanel();
         pTitulo.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -50,14 +52,16 @@ public class VentanaCupones extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnC1 = new JButton();
-		ImageIcon cupon = new ImageIcon("src\\imagenes\\CUPON.png");
-		lblC1 = new JLabel("CUPÓN 1: 2 x 1 en menús smash");
-		btnC1.setIcon(cupon);
+		ImageIcon cupon1 = new ImageIcon("src\\imagenes\\CUPON.png");
+		lblC1 = new JLabel("CUPÓN 1: 2 x 1 en menú DeustoKing");
+		btnC1.setIcon(cupon1);
 		btnC1.setLayout(new BorderLayout());
-		btnC1.setPreferredSize(new Dimension(cupon.getIconWidth(), cupon.getIconHeight()));	
+		btnC1.setPreferredSize(new Dimension(cupon1.getIconWidth(), cupon1.getIconHeight()));	
 		btnC1.setPreferredSize(new Dimension(150,350));
 		lblC1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblC1.setVerticalAlignment(SwingConstants.TOP);
+		btnC1.setBackground(buttonBackgroundColor);
+		btnC1.setBorderPainted(false);
 		lblC1.setForeground(Color.WHITE); 
 		lblC1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnC1.add(lblC1, BorderLayout.CENTER);
@@ -73,6 +77,8 @@ public class VentanaCupones extends JFrame {
 		btnC2.setPreferredSize(new Dimension(150,350));
 		lblC2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblC2.setVerticalAlignment(SwingConstants.TOP);
+		btnC2.setBackground(buttonBackgroundColor);
+		btnC2.setBorderPainted(false);
 		lblC2.setForeground(Color.WHITE); 
 		lblC2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnC2.add(lblC2, BorderLayout.CENTER);
@@ -88,6 +94,8 @@ public class VentanaCupones extends JFrame {
 		btnC3.setPreferredSize(new Dimension(150,350));
 		lblC3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblC3.setVerticalAlignment(SwingConstants.TOP);
+		btnC3.setBackground(buttonBackgroundColor);
+		btnC3.setBorderPainted(false);
 		lblC3.setForeground(Color.WHITE); 
 		lblC3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnC3.add(lblC3, BorderLayout.CENTER);
@@ -97,12 +105,14 @@ public class VentanaCupones extends JFrame {
 		btnC4 = new JButton();
 		ImageIcon cupon4 = new ImageIcon("src\\imagenes\\CUPON.png");
 		lblC4 = new JLabel("CUPÓN 4: 15,99€ Sanwing + Porking");
-		btnC4.setIcon(cupon);
+		btnC4.setIcon(cupon1);
 		btnC4.setLayout(new BorderLayout());
 		btnC4.setPreferredSize(new Dimension(cupon4.getIconWidth(), cupon4.getIconHeight()));	
 		btnC4.setPreferredSize(new Dimension(150,350));
 		lblC4.setHorizontalAlignment(SwingConstants.LEFT);
 		lblC4.setVerticalAlignment(SwingConstants.TOP);
+		btnC4.setBackground(buttonBackgroundColor);
+		btnC4.setBorderPainted(false);
 		lblC4.setForeground(Color.WHITE); 
 		lblC4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnC4.add(lblC4, BorderLayout.CENTER);
@@ -133,7 +143,6 @@ public class VentanaCupones extends JFrame {
 	    
 	    int espacioEntrePaneles1 = 130; 
 	    pProductos.setBorder(new EmptyBorder(espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1 ));
-        
         pContenedor.add(lblTitulo, BorderLayout.NORTH);
 	    pContenedor.add(pProductos, BorderLayout.CENTER);
 	    pContenedor.add(pVolver, BorderLayout.SOUTH);
