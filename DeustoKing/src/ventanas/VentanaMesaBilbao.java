@@ -95,7 +95,7 @@ public class VentanaMesaBilbao extends JFrame {
 		FlowLayout btLayout = new FlowLayout();   
 		btLayout.setHgap(40);
 		pCentroDerecha.setLayout(btLayout);
-		pCentroIzquierda.setLayout(btLayout);
+		pCentroIzquierda.setLayout(btLayout); 
 		
 		
 		btnAtras.addActionListener((e)->{
