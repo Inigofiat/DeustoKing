@@ -172,8 +172,8 @@ public class VentanaRegistro extends JFrame{
 		});
 		
 		btnInicioSesion.addActionListener((e) -> {
-			vActual.dispose();
-			vAnterior.setVisible(true);
+//			vActual.dispose();
+//			vAnterior.setVisible(true);
 		});
 	
 		btnRegistro.addActionListener((e) -> {
@@ -185,15 +185,20 @@ public class VentanaRegistro extends JFrame{
 			String nombreUsuario = txtNombreUsuario.getText();
 			String contrasenia = new String(txtContrasenia.getPassword());
 			
-			
-			
-
+			if(verificarContrasenia(contrasenia)||verificarNombreUsuario(nombreUsuario)||verificarTelefono(telefono)) {
+				Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,1, correo, direccion, 0 , nombreUsuario, contrasenia);
+				clientes.add(nuevoCliente);
+				guardarClientes(nomfichClientes);
+				JOptionPane.showMessageDialog(vActual, "Registro realizado","REGISTRO",JOptionPane.INFORMATION_MESSAGE);
+				
+				vActual.dispose();
+				vAnterior.setVisible(true);
+			} 
 			
 		});
 
 		setVisible(true);
 
-	
 	}
 	
 	public static void guardarClientes(String nomfichClientes) {
@@ -211,8 +216,8 @@ public class VentanaRegistro extends JFrame{
 	}
 	
 	public static boolean verificarContrasenia(String contrasenia) {
-		if(contrasenia.length() < 6 || contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
-			JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+		if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
+			JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		return true;
@@ -227,7 +232,7 @@ public class VentanaRegistro extends JFrame{
 	}
 	
 	public static boolean verificarTelefono(String telefono) {
-		if(!telefono.matches(".*[0-9].*")&& telefono.length()!=9) {
+		if(!telefono.matches(".*[0-9].*")&& telefono.length()!=9&&telefono.matches(".*[a-zA-Z].*")) {
 			JOptionPane.showMessageDialog(null, "El numero de teléfono es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
