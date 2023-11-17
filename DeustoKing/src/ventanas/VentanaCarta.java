@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaCartaBilbo extends JFrame {
+public class VentanaCarta extends JFrame {
 	
 	private JPanel pBotones, pProductos, pPrincipal, pVolver, pContenedor;
 	private JButton btnEntrantesNorte, btnEnsaladaNorte, 
@@ -29,11 +29,11 @@ public class VentanaCartaBilbo extends JFrame {
 	private JScrollPane barra;
 	private JFrame vActual, vAnterior;
 	
-	public VentanaCartaBilbo(JFrame va) {
+	public VentanaCarta(JFrame va, String nombre) {
 		super();
 		vActual=this;
 		vAnterior=va;
-		setTitle("Carta");
+		setTitle(nombre);
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -54,8 +54,9 @@ public class VentanaCartaBilbo extends JFrame {
         btnEntrantesNorte.setBorderPainted(false);
 		pBotones.add(btnEntrantesNorte);
 		btnEntrantesNorte.addActionListener((e)->{
-			VentanaEntrantes v = new VentanaEntrantes();
-			v.setVisible(true);
+			new VentanaEnsaladas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnEnsaladaNorte = new JButton("ENSALADAS");
@@ -66,8 +67,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnEnsaladaNorte.setBorderPainted(false);
 		pBotones.add(btnEnsaladaNorte);
 		btnEnsaladaNorte.addActionListener((e)->{
-			VentanaEnsaladas v = new VentanaEnsaladas();
-			v.setVisible(true);
+			new VentanaEnsaladas(vActual);
+			vActual.dispose();
+			vActual.setVisible(false);
 		});
 		
 		btnHamburguesasNorte = new JButton("HAMBURGUESAS");
@@ -78,8 +80,20 @@ public class VentanaCartaBilbo extends JFrame {
 		btnHamburguesasNorte.setBorderPainted(false);
 		pBotones.add(btnHamburguesasNorte);
 		btnHamburguesasNorte.addActionListener((e)->{
-			VentanaHamburguesasBilbo v = new VentanaHamburguesasBilbo();
-			v.setVisible(true);
+			if(nombre.equals("BILBO")) {
+				new VentanaHamburguesas(vActual, "BilboBurger", "src\\imagenes\\bilboburger.jpg");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else if(nombre.equals("DONOSTI")) {
+				new VentanaHamburguesas(vActual, "DonostiBurger", "src\\imagenes\\donosti.jpg");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else {
+				new VentanaHamburguesas(vActual, "GasteizBurger", "src\\imagenes\\gasteiz.png");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}
+			
 		});
 		
 		btnPostresNorte = new JButton("POSTRES");
@@ -90,8 +104,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnPostresNorte.setBorderPainted(false);
 		pBotones.add(btnPostresNorte);
 		btnPostresNorte.addActionListener((e)->{
-			VentanaPostres v = new VentanaPostres();
-			v.setVisible(true);
+			new VentanaPostres(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnBebidasNorte = new JButton("BEBIDAS");
@@ -102,8 +117,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnBebidasNorte.setBorderPainted(false);
 		pBotones.add(btnBebidasNorte);
 		btnBebidasNorte.addActionListener((e)->{
-			VentanaBebidas v = new VentanaBebidas();
-			v.setVisible(true);
+			new VentanaBebidas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnInfantilNorte = new JButton("INFANTIL");
@@ -114,8 +130,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnInfantilNorte.setBorderPainted(false);
 		pBotones.add(btnInfantilNorte);
 		btnInfantilNorte.addActionListener((e)->{
-			VentanaInfantil v = new VentanaInfantil();
-			v.setVisible(true);
+			new VentanaInfantil(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		
@@ -127,8 +144,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnOtrosNorte.setBorderPainted(false);
 		pBotones.add(btnOtrosNorte);
 		btnOtrosNorte.addActionListener((e)->{
-			VentanaOtros v = new VentanaOtros();
-			v.setVisible(true);
+			new VentanaOtros(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		
@@ -140,8 +158,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnSmashNorte.setBorderPainted(false);
 		pBotones.add(btnSmashNorte);
 		btnSmashNorte.addActionListener((e)->{
-			VentanaSmash v = new VentanaSmash();
-			v.setVisible(true);
+			new VentanaSmash(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnMenuNorte = new JButton("MENÚ DEUSTOKING");
@@ -152,8 +171,19 @@ public class VentanaCartaBilbo extends JFrame {
 		btnMenuNorte.setBorderPainted(false);
 		pBotones.add(btnMenuNorte);
 		btnMenuNorte.addActionListener((e)->{
-			VentanaMenuBilbo v = new VentanaMenuBilbo();
-			v.setVisible(true);
+			if(nombre.equals("BILBO")) {
+				new VentanaMenu(vActual, "MENU BILBO",  "src\\imagenes\\bilboburger.jpg", "BILBO BURGER");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else if(nombre.equals("DONOSTI")) {
+				new VentanaMenu(vActual, "MENU DONOSTI", "src\\imagenes\\donosti.jpg", "DONOSTI BURGER");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else {
+				new VentanaMenu(vActual, "MENU GASTEIZ", "src\\imagenes\\gasteiz.png", "GASTEIZ BURGER");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}
 		});
 		
 		btnAlergenosNorte = new JButton("ALÉRGENOS");
@@ -185,8 +215,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnEntrantesCentro.setMargin(margenBotones);
 		pProductos.add(btnEntrantesCentro);
 		btnEntrantesCentro.addActionListener((e)->{
-			VentanaEntrantes v = new VentanaEntrantes();
-			v.setVisible(true);
+			new VentanaEntrantes(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		
@@ -206,8 +237,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnEnsaladaCentro.setMargin(margenBotones);
 		pProductos.add(btnEnsaladaCentro);
 		btnEnsaladaCentro.addActionListener((e)->{
-			VentanaEnsaladas v = new VentanaEnsaladas();
-			v.setVisible(true);
+			new VentanaEnsaladas(vActual);
+			vActual.dispose();
+			vActual.setVisible(false);
 		});
 		
 		
@@ -226,8 +258,19 @@ public class VentanaCartaBilbo extends JFrame {
 		btnHamburguesasCentro.setMargin(margenBotones);
 		pProductos.add(btnHamburguesasCentro);
 		btnHamburguesasCentro.addActionListener((e)->{
-			VentanaHamburguesasBilbo v = new VentanaHamburguesasBilbo();
-			v.setVisible(true);
+			if(nombre.equals("BILBO")) {
+				new VentanaHamburguesas(vActual, "BILBO BURGER", "src\\imagenes\\bilboburger.jpg");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else if(nombre.equals("DONOSTI")) {
+				new VentanaHamburguesas(vActual, "DONOSTI BURGER", "src\\imagenes\\donosti.jpg");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else {
+				new VentanaHamburguesas(vActual, "GASTEIZ BURGER", "src\\imagenes\\gasteiz.png");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}
 		});
 		
 		
@@ -246,8 +289,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnPostresCentro.setMargin(margenBotones);
 		pProductos.add(btnPostresCentro);
 		btnPostresCentro.addActionListener((e)->{
-			VentanaPostres v = new VentanaPostres();
-			v.setVisible(true);
+			new VentanaPostres(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnBebidasCentro = new JButton();
@@ -265,8 +309,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnBebidasCentro.setMargin(margenBotones);
 		pProductos.add(btnBebidasCentro);
 		btnBebidasCentro.addActionListener((e)->{
-			VentanaBebidas v = new VentanaBebidas();
-			v.setVisible(true);
+			new VentanaBebidas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnInfantilCentro = new JButton();
@@ -284,8 +329,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnInfantilCentro.setMargin(margenBotones);
 		pProductos.add(btnInfantilCentro);
 		btnInfantilCentro.addActionListener((e)->{
-			VentanaInfantil v = new VentanaInfantil();
-			v.setVisible(true);
+			new VentanaInfantil(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnOtrosCentro = new JButton();
@@ -303,8 +349,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnEntrantesCentro.setMargin(margenBotones);
 		pProductos.add(btnOtrosCentro);
 		btnOtrosCentro.addActionListener((e)->{
-			VentanaOtros v = new VentanaOtros();
-			v.setVisible(true);
+			new VentanaOtros(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnSmashCentro = new JButton();
@@ -322,8 +369,9 @@ public class VentanaCartaBilbo extends JFrame {
 		btnSmashCentro.setMargin(margenBotones);
 		pProductos.add(btnSmashCentro);
 		btnSmashCentro.addActionListener((e)->{
-			VentanaSmash v = new VentanaSmash();
-			v.setVisible(true);
+			new VentanaSmash(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnMenuCentro = new JButton();
@@ -341,8 +389,19 @@ public class VentanaCartaBilbo extends JFrame {
 		btnMenuCentro.setMargin(margenBotones);
 		pProductos.add(btnMenuCentro);
 		btnMenuCentro.addActionListener((e)->{
-			VentanaMenuBilbo v = new VentanaMenuBilbo();
-			v.setVisible(true);
+			if(nombre.equals("BILBO")) {
+				new VentanaMenu(vActual, "MENU BILBO",  "src\\imagenes\\bilboburger.jpg", "BILBO BURGER");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else if(nombre.equals("DONOSTI")) {
+				new VentanaMenu(vActual, "MENU DONOSTI", "src\\imagenes\\donosti.jpg", "DONOSTI BURGER");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}else {
+				new VentanaMenu(vActual, "MENU GASTEIZ", "src\\imagenes\\gasteiz.png", "GASTEIZ BURGER");
+				vActual.setVisible(false);
+				vActual.dispose();
+			}
 		});
 		
 		btnAlergenosCentro = new JButton();
