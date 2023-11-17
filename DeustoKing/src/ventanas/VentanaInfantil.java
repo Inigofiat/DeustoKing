@@ -25,8 +25,12 @@ public class VentanaInfantil extends JFrame {
 	private JLabel lblCarne, lblPollo;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaInfantil() {
+	public VentanaInfantil(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		setTitle("Infantil");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -119,11 +123,4 @@ public class VentanaInfantil extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaInfantil();
-            }
-        });
-    }
 }

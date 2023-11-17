@@ -25,8 +25,12 @@ public class VentanaBebidas extends JFrame {
 	private JLabel lblCocacola, lblAgua, lblVino, lblFanta;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaBebidas() {
+	public VentanaBebidas(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		setTitle("BEBIDAS");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -148,11 +152,5 @@ public class VentanaBebidas extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaBebidas();
-            }
-        });
-    }
+	
 }

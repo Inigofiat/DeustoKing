@@ -27,10 +27,10 @@ public class VentanaEntrantes extends JFrame {
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;
 	
-	public VentanaEntrantes() {
+	public VentanaEntrantes(JFrame va) {
 		super();
 		vActual=this;
-		
+		vAnterior=va;
 		setTitle("Entrantes");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -122,6 +122,11 @@ public class VentanaEntrantes extends JFrame {
 		btnVolver.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
+		btnVolver.addActionListener((e)->{
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
+		pVolver.add(btnVolver);
 		pVolver.add(btnVolver);
 		
 		GridLayout productosLayout = new GridLayout(0,2,0,30);
@@ -152,11 +157,5 @@ public class VentanaEntrantes extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaEntrantes();
-            }
-        });
-    }
+	
 }

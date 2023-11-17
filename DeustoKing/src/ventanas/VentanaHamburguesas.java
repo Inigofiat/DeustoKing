@@ -122,6 +122,10 @@ public class VentanaHamburguesas extends JFrame {
 		btnVolver.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
+		btnVolver.addActionListener((e)->{
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
 		pVolver.add(btnVolver);
 		
 		GridLayout productosLayout = new GridLayout(0,2,0,30);

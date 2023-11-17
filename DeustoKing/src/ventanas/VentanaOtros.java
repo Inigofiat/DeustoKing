@@ -25,8 +25,12 @@ public class VentanaOtros extends JFrame {
 	private JLabel lblCostillas, lblBurrito, lblSandwich, lblBocata;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaOtros() {
+	public VentanaOtros(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		setTitle("OTROS");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -148,11 +152,5 @@ public class VentanaOtros extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaOtros();
-            }
-        });
-    }
+	
 }

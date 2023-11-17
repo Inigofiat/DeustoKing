@@ -25,8 +25,12 @@ public class VentanaPostres extends JFrame {
 	private JLabel lblTartaQueso, lblTataLotus, lblHelado, lblBatido;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaPostres() {
+	public VentanaPostres(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		setTitle("Postres");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -118,6 +122,10 @@ public class VentanaPostres extends JFrame {
 		btnVolver.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
+		btnVolver.addActionListener((e)->{
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
 		pVolver.add(btnVolver);
 		
 		GridLayout productosLayout = new GridLayout(0,2,0,30);
@@ -148,11 +156,4 @@ public class VentanaPostres extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPostres();
-            }
-        });
-    }
 }
