@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Factura {
 	private Cliente cliente;
-	private Personal personal;
+	private Trabajador personal;
     private List<Producto> productos;
     private double precio;
 
@@ -26,7 +26,7 @@ public class Factura {
         return cliente;
     }
 
-    public Personal getPersonal() {
+    public Trabajador getPersonal() {
 		return personal;
 	}
 
@@ -42,11 +42,11 @@ public class Factura {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Atendido por: ");
-        sb.append(personal.getNombreP()).append(" ").append(personal.getApellidosP()).append("\n");
+        sb.append(personal.getNombre()).append(" ").append(personal.getApellidos()).append("\n");
         sb.append("Factura para: ");
-        sb.append(cliente.getNombreC()).append("\n");
-        sb.append("Dirección: ").append(cliente.getDireccionC()).append("\n");
-        sb.append("Teléfono: ").append(cliente.getTelefonoC()).append("\n");
+        sb.append(cliente.getNombre()).append("\n");
+        sb.append("Dirección: ").append(cliente.getDireccion()).append("\n");
+        sb.append("Teléfono: ").append(cliente.getTelefono()).append("\n");
         sb.append("Productos:\n");
         for (Producto producto : productos) {
             sb.append(" - ").append(producto.getNombre()).append(":").append(producto.getPrecio()).append("\n");

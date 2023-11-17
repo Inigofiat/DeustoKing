@@ -37,7 +37,7 @@ public class VentanaCliente extends JFrame{
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
 
-		lblSaludo = new JLabel("Hola, " + cliente.getIdCliente()+ cliente.getNombreC() + cliente.getApellidosC());
+		lblSaludo = new JLabel("Hola, " + cliente.getId()+ cliente.getNombre() + cliente.getApellidos());
 		sliderPts = new JSlider(0, 1000, 0);
 		lblCupon1 = new JLabel("CUPÓN 1");
 		lblCupon2 = new JLabel("CUPÓN 2");

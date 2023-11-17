@@ -186,7 +186,7 @@ public class VentanaRegistro extends JFrame{
 			String contrasenia = new String(txtContrasenia.getPassword());
 			
 			if(verificarContrasenia(contrasenia)||verificarNombreUsuario(nombreUsuario)||verificarTelefono(telefono)) {
-				Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,1, correo, direccion, 0 , nombreUsuario, contrasenia);
+				Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 0 , nombreUsuario, contrasenia);
 				clientes.add(nuevoCliente);
 				guardarClientes(nomfichClientes);
 				JOptionPane.showMessageDialog(vActual, "Registro realizado","REGISTRO",JOptionPane.INFORMATION_MESSAGE);
@@ -205,7 +205,7 @@ public class VentanaRegistro extends JFrame{
 		try {
 			PrintWriter pw = new PrintWriter(nomfichClientes);
 			for(Cliente c: clientes) {
-				pw.println(c.getNombreC()+";"+c.getApellidosC()+";"+c.getTelefonoC()+";"+c.getDireccionC()+";"+c.getCorreoC()+";"+
+				pw.println(c.getNombre()+";"+c.getApellidos()+";"+c.getTelefono()+";"+c.getDireccion()+";"+c.getCorreo()+";"+
 						c.getNombreUsuario()+";"+c.getContrasenia());
 			}
 			pw.flush();
