@@ -18,15 +18,19 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaHamburguesasDonosti extends JFrame {
+public class VentanaHamburguesas extends JFrame {
 	
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
 	private JButton btnH1, btnH2, btnH3, btnH4, btnVolver;
 	private JLabel lblH1, lblH2, lblH3, lblH4;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaHamburguesasDonosti() {
+	public VentanaHamburguesas(JFrame va, String nombre, String imagen) {
+		super();
+		vActual=this;
+		vAnterior = va;
 		setTitle("Hamburguesas");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -95,8 +99,8 @@ public class VentanaHamburguesasDonosti extends JFrame {
 		pProductos.add(btnH3);
 		
 		btnH4 = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\donosti.jpg");
-		lblH4 = new JLabel("DONOSTI BURGER");
+		ImageIcon imAlitas = new ImageIcon(imagen);
+		lblH4 = new JLabel(nombre);
 		btnH4.setIcon(imAlitas);
 		btnH4.setLayout(new BorderLayout());
 		btnH4.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
@@ -148,11 +152,5 @@ public class VentanaHamburguesasDonosti extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaHamburguesasDonosti();
-            }
-        });
-    }
+	
 }
