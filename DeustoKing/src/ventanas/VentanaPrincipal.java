@@ -135,8 +135,7 @@ public class VentanaPrincipal extends JFrame {
 	        
 		
 		btnBilbao.addActionListener((e)->{
-			VentanaCartaBilbo vcb = new VentanaCartaBilbo(vActual);
-			vcb.setVisible(true);
+			new VentanaCarta(vActual, "BILBO");
 		});
 		panCiudades.add(btnBilbao);
 		
@@ -168,8 +167,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panCiudades.add(btnDonostia);
 		btnDonostia.addActionListener((e)->{
-			VentanaCartaDonosti vcb = new VentanaCartaDonosti(vActual);
-			vcb.setVisible(true);
+			new VentanaCarta(vActual, "DONOSTI");
 		});
 		
 		btnGasteiz = new JButton("GASTEIZ");
@@ -192,8 +190,7 @@ public class VentanaPrincipal extends JFrame {
 	        });
 		panCiudades.add(btnGasteiz);
 		btnGasteiz.addActionListener((e)->{
-			VentanaCartaGasteiz vcb = new VentanaCartaGasteiz(vActual);
-			vcb.setVisible(true);
+			new VentanaCarta(vActual, "GASTEIZ");
 		});
 		
 		lbV1 = new JLabel("");
@@ -213,9 +210,9 @@ public class VentanaPrincipal extends JFrame {
 		panInformación.add(lbCup);
 		
 		int espacioEntrePaneles1 = 200; 
-	    panCiudades.setBorder(new EmptyBorder(espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1 ));
+	    panCiudades.setBorder(new EmptyBorder(espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1));
 	    int espacioEntrePaneles2 = 10; 
-	    panBotones.setBorder(new EmptyBorder(espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2 ));
+	    panBotones.setBorder(new EmptyBorder(espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2));
 	    int espacioEntrePaneles3 = 100;
 	    panInformación.setBorder(new EmptyBorder(espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3 ));
 	     
@@ -236,8 +233,9 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaCartaBilbo vb = new VentanaCartaBilbo(vActual);
-				vb.setVisible(true);
+				new VentanaCarta(vActual, "BILBO");
+				vActual.setVisible(false);
+				vActual.dispose();
 				
 			}
 		});
