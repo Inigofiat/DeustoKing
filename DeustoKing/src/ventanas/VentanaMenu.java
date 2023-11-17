@@ -19,15 +19,19 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaMenuGasteiz extends JFrame {
+public class VentanaMenu extends JFrame {
 	
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
 	private JButton btnM1, btnM2, btnM3, btnM4, btnVolver;
 	private JLabel lblM1, lblM2, lblM3, lblM4;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaMenuGasteiz() {
+	public VentanaMenu(JFrame va, String lbNombre, String imagen, String nombre) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		setTitle("MENÚ");
 		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -43,7 +47,7 @@ public class VentanaMenuGasteiz extends JFrame {
         pTitulo = new JPanel();
         pTitulo.setLayout(new FlowLayout(FlowLayout.CENTER));
         
-        lblTitulo = new JLabel("MENÚ GASTEIZ");
+        lblTitulo = new JLabel(lbNombre);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulo.setVerticalAlignment(SwingConstants.TOP);
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
@@ -54,8 +58,8 @@ public class VentanaMenuGasteiz extends JFrame {
 		
 		
 		btnM1 = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\gasteiz.png");
-		lblM1 = new JLabel("GASTEIZ BURGER");
+		ImageIcon imNachos = new ImageIcon(imagen);
+		lblM1 = new JLabel(nombre);
 		btnM1.setIcon(imNachos);
 		btnM1.setLayout(new BorderLayout());
 		btnM1.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
@@ -66,7 +70,6 @@ public class VentanaMenuGasteiz extends JFrame {
 		lblM1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnM1.add(lblM1, BorderLayout.CENTER);
 		btnM1.setMargin(margenBotones);
-		
 		
 		pProductos.add(btnM1);
 		
@@ -99,8 +102,9 @@ public class VentanaMenuGasteiz extends JFrame {
 		btnM3.add(lblM3, BorderLayout.CENTER);
 		btnM3.setMargin(margenBotones);
 		btnM3.addActionListener((e)->{
-			VentanaBebidas ve = new VentanaBebidas();
-			ve.setVisible(true);
+			new VentanaBebidas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		pProductos.add(btnM3);
 		
@@ -158,11 +162,5 @@ public class VentanaMenuGasteiz extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaMenuGasteiz();
-            }
-        });
-    }
+	
 }
