@@ -1,100 +1,31 @@
 package deustoking;
 
-public class Personal {
-	static int contador = 1;	
-	private String nombreP;
-	private String apellidosP;
-	private String telefonoP;
-	private String correoP;
-	private String direccionP;
-	private PuestoTrabajo puesto;
-	private int idPersonal;
+public class Trabajador extends Persona{
+	
 	private float horasTrabajadas;
 	private float sueldo;
 	private int mesasAtendidas;
+	private String nombreTrabajador;
+	private String contraseniaTrabajador;
 	
-	public Personal(String nombreP, String apellidosP, String telefonoP, String correoP, String direccionP,
-			PuestoTrabajo puesto, int idPersonal, float horasTrabajadas, float sueldo, int mesasAtendidas) {
-		super();
-		this.nombreP = nombreP;
-		this.apellidosP = apellidosP;
-		this.telefonoP = telefonoP;
-		this.correoP = correoP;
-		this.direccionP = direccionP;
-		this.puesto = puesto;
-		this.idPersonal = idPersonal;
+	public Trabajador(String nombre, String apellidos, String telefono, String correo, String direccion, int id,
+			float horasTrabajadas, float sueldo, int mesasAtendidas, String nombreTrabajador,
+			String contraseniaTrabajador) {
+		super(nombre, apellidos, telefono, correo, direccion, id);
 		this.horasTrabajadas = horasTrabajadas;
 		this.sueldo = sueldo;
 		this.mesasAtendidas = mesasAtendidas;
+		this.nombreTrabajador = nombreTrabajador;
+		this.contraseniaTrabajador = contraseniaTrabajador;
 	}
-
-	public Personal() {
+	
+	public Trabajador() {
 		super();
-		
-	}
-
-	public static int getContador() {
-		return contador;
-	}
-
-	public static void setContador(int contador) {
-		Personal.contador = contador;
-	}
-
-	public String getNombreP() {
-		return nombreP;
-	}
-
-	public void setNombreP(String nombreP) {
-		this.nombreP = nombreP;
-	}
-
-	public String getApellidosP() {
-		return apellidosP;
-	}
-
-	public void setApellidosP(String apellidosP) {
-		this.apellidosP = apellidosP;
-	}
-
-	public String getTelefonoP() {
-		return telefonoP;
-	}
-
-	public void setTelefonoP(String telefonoP) {
-		this.telefonoP = telefonoP;
-	}
-
-	public String getCorreoP() {
-		return correoP;
-	}
-
-	public void setCorreoP(String correoP) {
-		this.correoP = correoP;
-	}
-
-	public String getDireccionP() {
-		return direccionP;
-	}
-
-	public void setDireccionP(String direccionP) {
-		this.direccionP = direccionP;
-	}
-
-	public PuestoTrabajo getPuesto() {
-		return puesto;
-	}
-
-	public void setPuesto(PuestoTrabajo puesto) {
-		this.puesto = puesto;
-	}
-
-	public int getIdPersonal() {
-		return idPersonal;
-	}
-
-	public void setIdPersonal(int idPersonal) {
-		this.idPersonal = idPersonal;
+		this.horasTrabajadas = 0;
+		this.sueldo = 0;
+		this.mesasAtendidas = 0;
+		this.nombreTrabajador = null;
+		this.contraseniaTrabajador = null;
 	}
 
 	public float getHorasTrabajadas() {
@@ -121,18 +52,29 @@ public class Personal {
 		this.mesasAtendidas = mesasAtendidas;
 	}
 
+	public String getNombreTrabajador() {
+		return nombreTrabajador;
+	}
+
+	public void setNombreTrabajador(String nombreTrabajador) {
+		this.nombreTrabajador = nombreTrabajador;
+	}
+
+	public String getContraseniaTrabajador() {
+		return contraseniaTrabajador;
+	}
+
+	public void setContraseniaTrabajador(String contraseniaTrabajador) {
+		this.contraseniaTrabajador = contraseniaTrabajador;
+	}
+
 	@Override
 	public String toString() {
-		return "Personal [nombreP=" + nombreP + ", apellidosP=" + apellidosP + ", telefonoP=" + telefonoP + ", correoP="
-				+ correoP + ", direccionP=" + direccionP + ", puesto=" + puesto + ", idPersonal=" + idPersonal
-				+ ", horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas=" + mesasAtendidas
-				+ "]";
+		return "Personal [horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas="
+				+ mesasAtendidas + ", nombreTrabajador=" + nombreTrabajador + ", contraseniaTrabajador="
+				+ contraseniaTrabajador + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono
+				+ ", correo=" + correo + ", direccion=" + direccion + ", id=" + id + "]";
 	}
-	
-	
-	
-	
-	
 	
 	
 }
