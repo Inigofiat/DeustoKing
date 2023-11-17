@@ -2,6 +2,7 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -11,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import deustoking.Personal;
+import deustoking.Trabajador;
 
 public class VentanaPersonal extends JFrame{
 	private JPanel pCentro, pNorte, pMesas;
@@ -20,15 +21,21 @@ public class VentanaPersonal extends JFrame{
 	private JTable tablaMesas;
 	private JScrollPane scrollTablaMesas;
 	private FlowLayout layoutTblMesas;
-	private Personal personal; 
 	
 	
 	
-	public VentanaPersonal (Personal personal) {
-		this.personal = personal;
+	
+	public VentanaPersonal ( ) {
+		
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
-		setBounds(200, 100, 1100, 700);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		
 		pCentro = new JPanel();
 		pCentro.setLayout(new GridLayout(2, 1)); 
@@ -37,10 +44,10 @@ public class VentanaPersonal extends JFrame{
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
-		lblSaludo = new JLabel("Hola, " + personal.getIdPersonal() + personal.getNombreP() + personal.getApellidosP());
-      	lblHoras = new JLabel("HORAS TOTALES" + personal.getHorasTrabajadas());
-		lblSueldo = new JLabel("SUELDO" + personal.getSueldo());
-		lblPuesto = new JLabel("PUESTO" + personal.getPuesto());
+		lblSaludo = new JLabel("Hola, " );//+ personal.getIdPersonal() + personal.getNombreP() + personal.getApellidosP());
+      	lblHoras = new JLabel("HORAS TOTALES" );//+ personal.getHorasTrabajadas());
+		lblSueldo = new JLabel("SUELDO");// + personal.getSueldo());
+		lblPuesto = new JLabel("PUESTO");// + personal.getPuesto());
 		
 		pNorte.add(lblSaludo);
       	
@@ -68,6 +75,8 @@ public class VentanaPersonal extends JFrame{
 		
 		
 	}
+	
+	
 	
 	
 }

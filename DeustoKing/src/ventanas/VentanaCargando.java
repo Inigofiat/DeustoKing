@@ -4,6 +4,7 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GraphicsEnvironment;
 import java.awt.Paint;
 
 import javax.swing.ImageIcon;
@@ -23,9 +24,15 @@ public class VentanaCargando extends JFrame {
 	public VentanaCargando() {
 		super();
 		vActual=this;
-		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Cargando");
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		
 		lbImgPri = new JLabel(new ImageIcon("src\\imagenes\\DEUSTOKING.png"));
 		lbImgPri.setLayout(new BorderLayout());

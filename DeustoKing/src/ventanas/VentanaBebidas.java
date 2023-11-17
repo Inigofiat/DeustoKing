@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
@@ -32,8 +33,14 @@ public class VentanaBebidas extends JFrame {
 		vActual=this;
 		vAnterior=va;
 		setTitle("BEBIDAS");
-		setBounds(-10, 0, 1800, 900);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		
 		pContenedor = new JPanel();
 		pContenedor.setLayout(new BorderLayout());

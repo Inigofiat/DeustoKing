@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,13 @@ public class VentanaInicioSesion extends JFrame {
 		vActual = this;
 		vAnterior = va;
 
-		setBounds(-10, 0, 1600, 823);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		JPanel panelContenedor = new JPanel();

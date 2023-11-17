@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
@@ -28,7 +29,13 @@ public class VentanaCupones extends JFrame {
 	
 	public VentanaCupones() {
 		setTitle("Cupones");
-		setBounds(-10, 0, 1800, 900);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		pContenedor = new JPanel();

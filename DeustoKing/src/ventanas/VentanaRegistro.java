@@ -3,6 +3,7 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -43,7 +44,13 @@ public class VentanaRegistro extends JFrame{
 	
 		vActual = this;
 		vAnterior = va;
-		setBounds(-10, 0, 1600, 823);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		pPrincipal = new JPanel();

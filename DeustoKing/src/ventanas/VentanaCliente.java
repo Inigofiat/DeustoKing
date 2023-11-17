@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -27,7 +28,13 @@ public class VentanaCliente extends JFrame{
 		this.puntosCliente = 0;
 	
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
-		setBounds(200, 100, 1100, 700);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		
 		pNorte = new JPanel();
 		pCentro = new JPanel();

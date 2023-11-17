@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
 import java.awt.Paint;
 import java.awt.event.ActionEvent;
@@ -46,7 +47,13 @@ public class VentanaPrincipal extends JFrame {
 		vAnterior=va;
 		
 		setTitle("DeustoKing");
-		setBounds(-10, 0, 1800, 900);
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		JPanel panelContenedor = new JPanel();
