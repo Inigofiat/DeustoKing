@@ -13,6 +13,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -35,7 +36,7 @@ public class VentanaReserva extends JFrame{
 	private JComboBox<String> horas;
 	private JComboBox<Integer> nComensales;
 	private JLabel lbDate, lbReserva;
-	private JButton btnReservar;
+	private JButton btnReservar, btnVolver;
 	private JPanel pPrincipal, pCentro, pContenedor, pSur, pNorte;
     private static final String nomfichReservas = "reservas.csv";
     
@@ -80,7 +81,13 @@ public class VentanaReserva extends JFrame{
         btnReservar = new JButton("Reservar");
         btnReservar.setPreferredSize(new Dimension(650, btnReservar.getPreferredSize().height));
         btnReservar.setFont(new Font("Arial", Font.BOLD, 17));
+        btnReservar.setBackground(new Color(102,202,107));
+        btnVolver = new JButton("Volver");
+        btnVolver.setPreferredSize(new Dimension(650, btnVolver.getPreferredSize().height));
+        btnVolver.setFont(new Font("Arial", Font.BOLD, 17));
+        btnVolver.setBackground(new Color(102,202,107));
         pSur.add(btnReservar);
+        pSur.add(btnVolver);
 
         
         for (int i = 2; i < 11; i++) {
@@ -177,19 +184,13 @@ public class VentanaReserva extends JFrame{
 	
 	private void reservar() {
 	    GregorianCalendar calendar = (GregorianCalendar) datePicker.getModel().getValue();
-
-	    // Convierte GregorianCalendar a LocalDate
 	    LocalDate fechaLocal = calendar.toZonedDateTime().toLocalDate();
-
 	    String hora = (String) horas.getSelectedItem();
 	    int comensales = (int) nComensales.getSelectedItem();
-	    
-
 	    Reserva reserva = new Reserva(fechaLocal, hora, comensales, cliente.getCorreo());
-
-	    // Utiliza tu método para guardar la reserva en el fichero
 	    restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
-
     }
+	
+
 
 }
