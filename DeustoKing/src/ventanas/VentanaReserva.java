@@ -126,7 +126,7 @@ public class VentanaReserva extends JFrame{
                 if (calendar != null) {
                     ZonedDateTime zonedDateTime = calendar.toZonedDateTime();
                     LocalDate fechaLocal = zonedDateTime.toLocalDate();
-                    if (fechaLocal.isBefore(LocalDate.now()) || fechaLocal.isAfter(LocalDate.now().plusWeeks(1))) {
+                    if (fechaLocal.isBefore(LocalDate.now()) || fechaLocal.isAfter(LocalDate.now().plusWeeks(10))) {
                         return false;
                     } else {
                         return true;
