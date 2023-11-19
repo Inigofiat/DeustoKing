@@ -12,7 +12,9 @@ import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+
 
 import deustoking.Cliente;
 import deustoking.Persona;
@@ -68,6 +71,7 @@ public class VentanaTablaReserva extends JFrame{
         modeloTablaReservas = new ModeloReserva(null);
         tablaReserva = new JTable(modeloTablaReservas);
 	    scrollTablaReserva = new JScrollPane(tablaReserva);
+	    tablaReserva.setDefaultRenderer(Object.class, new RendererReserva());
 	    pCentro.add(scrollTablaReserva, BorderLayout.NORTH);
 	    
 	    modeloTablaReservasClientes = new ModeloCliente(null);
@@ -109,14 +113,20 @@ public class VentanaTablaReserva extends JFrame{
 	}
 	
 	private void cargarFechasEnComboBox(List<Reserva> reservas) {
-		
+	    Set<String> fechasAgregadas = new HashSet<>(); 
 
 	    for (Reserva reserva : reservas) {
 	        LocalDate fecha = reserva.getFecha();
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	        cbFecha.addItem(fecha.format(formatter));
+	        String fechaFormateada = fecha.format(formatter);
+
+	        
+	        if (!fechasAgregadas.contains(fechaFormateada)) {
+	            cbFecha.addItem(fechaFormateada);
+	            fechasAgregadas.add(fechaFormateada); 
+	        }
 	    }
-    }
+	}
 	
 
 
