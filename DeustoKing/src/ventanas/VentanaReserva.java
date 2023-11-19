@@ -187,7 +187,7 @@ public class VentanaReserva extends JFrame{
 	    LocalDate fechaLocal = calendar.toZonedDateTime().toLocalDate();
 	    String hora = (String) horas.getSelectedItem();
 	    int comensales = (int) nComensales.getSelectedItem();
-	    Reserva reserva = new Reserva(fechaLocal, hora, comensales, cliente.getCorreo());
+	    Reserva reserva = new Reserva(fechaLocal, hora, comensales);
 	    restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
     }
 	
