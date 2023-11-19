@@ -1,20 +1,21 @@
 package deustoking;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class Reserva {
+public class Reserva implements Comparable<Reserva>{
 	
 	private LocalDate fecha;
 	private String hora;
 	private int nComensales;
-	private String cliente;
 	
-	public Reserva(LocalDate fecha, String hora, int nComensales, String cliente) {
+	
+	public Reserva(LocalDate fecha, String hora, int nComensales) {
 		super();
 		this.fecha = fecha;
 		this.hora = hora;
 		this.nComensales = nComensales;
-		this.cliente=cliente;
+		
 	}
 	
 	public Reserva() {
@@ -22,12 +23,17 @@ public class Reserva {
 		this.fecha = null;
 		this.hora = null;
 		this.nComensales = 0;
-		this.cliente=null;
+		
 	}
 
 	public LocalDate getFecha() {
 		return fecha;
 	}
+	
+	public String getFormattedFecha() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return fecha.format(formatter);
+    }
 
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
@@ -51,18 +57,18 @@ public class Reserva {
 	
 	
 
-	public String getCliente() {
-		return cliente;
-	}
 
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
-	}
 
 	@Override
 	public String toString() {
-		return "Reserva [fecha=" + fecha + ", hora=" + hora + ", nComensales=" + nComensales + ", cliente=" + cliente
+		return "Reserva [fecha=" + getFormattedFecha() + ", hora=" + hora + ", nComensales=" + nComensales 
 				+ "]";
+	}
+
+	@Override
+	public int compareTo(Reserva o) {
+		
+		return this.getHora().compareTo(o.getHora());
 	}
 
 	
