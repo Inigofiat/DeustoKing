@@ -143,10 +143,11 @@ public class VentanaCupones extends JFrame {
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
 		
-		btnVolver.addActionListener((e)->{
+		/*btnVolver.addActionListener((e)->{
 			vActual.dispose();
 			vAnterior.setVisible(true);
-		});
+		});*/
+		
 		pVolver.add(btnVolver);
 		
 		
