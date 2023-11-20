@@ -26,8 +26,12 @@ public class VentanaCupones extends JFrame {
 	private JLabel lblC1, lblC2, lblC3, lblC4;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaCupones() {
+	public VentanaCupones(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		setTitle("Cupones");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -135,7 +139,13 @@ public class VentanaCupones extends JFrame {
 		btnVolver.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
+		
+		btnVolver.addActionListener((e)->{
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
 		pVolver.add(btnVolver);
+		
 		
 		GridLayout productosLayout = new GridLayout(0,2,0,30);
 		productosLayout.setHgap(30); 
@@ -164,11 +174,5 @@ public class VentanaCupones extends JFrame {
 	    
 	    setVisible(true);
 	}
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaCupones();
-            }
-        });
-    }
+	
 }
