@@ -37,7 +37,14 @@ public class Restaurante {
 		listaReservas = new ArrayList<>();
 	}
 	
-	
+	public static void miIcono(JFrame ventana, String rutaIcono) {
+		try {
+			Image icon = new ImageIcon(Restaurante.class.getResource(rutaIcono)).getImage();
+			ventana.setIconImage(icon);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void guardarReservasEnFichero(Reserva reserva, String nombrefich) {
 		
