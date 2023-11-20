@@ -1,5 +1,6 @@
 package deustoking;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +17,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+
 public class Restaurante {
 	
 	private static Map<String, List<Reserva>> reservasPorCliente;
@@ -30,6 +35,15 @@ public class Restaurante {
 		cliente = new Cliente();
 		mapaPersonaPorCorreo = new TreeMap<>();
 		listaReservas = new ArrayList<>();
+	}
+	
+	public static void miIcono(JFrame ventana, String rutaIcono) {
+		try {
+			Image icon = new ImageIcon(Restaurante.class.getResource(rutaIcono)).getImage();
+			ventana.setIconImage(icon);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void guardarReservasEnFichero(Reserva reserva, String nombrefich) {

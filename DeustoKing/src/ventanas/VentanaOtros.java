@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Restaurante;
+
 public class VentanaOtros extends JFrame {
 	
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
@@ -157,6 +159,7 @@ public class VentanaOtros extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
+	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
 	    setVisible(true);
 	}
 	

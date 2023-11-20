@@ -24,6 +24,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import deustoking.Cliente;
+import deustoking.Restaurante;
 
 public class VentanaInicioSesion extends JFrame {
 	private JPanel pSur, pEste, pOeste, pFoto, pPrincipal;
@@ -164,6 +165,7 @@ public class VentanaInicioSesion extends JFrame {
 			}
 		});
 		
+		Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 
 	}
