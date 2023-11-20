@@ -94,7 +94,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaCupones();
+				new VentanaCupones(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
 				
