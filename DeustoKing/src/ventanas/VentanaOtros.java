@@ -160,6 +160,7 @@ public class VentanaOtros extends JFrame {
 	    getContentPane().add(barra);
 	    
 	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    
 	    setVisible(true);
 	}
 	

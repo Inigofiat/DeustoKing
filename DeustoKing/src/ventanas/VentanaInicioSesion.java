@@ -166,6 +166,7 @@ public class VentanaInicioSesion extends JFrame {
 		});
 		
 		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		
 		setVisible(true);
 
 	}

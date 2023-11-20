@@ -282,7 +282,9 @@ public class VentanaPrincipal extends JFrame {
 		
 		panPrincipal.add(panelContenedor, BorderLayout.CENTER);
 		getContentPane().add(panPrincipal);
+		
 		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		
 		setVisible(true);
 		
 	}

@@ -110,6 +110,7 @@ public class VentanaTablaReserva extends JFrame{
 	    getContentPane().add(pPrincipal);
 	    
 	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    
 		setVisible(true);
 	}
 	
