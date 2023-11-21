@@ -40,7 +40,7 @@ public class VentanaReserva extends JFrame{
 	private JPanel pPrincipal, pCentro, pContenedor, pSur, pNorte;
     private static final String nomfichReservas = "reservas.csv";
     
-    Restaurante restaurante;
+    
     Cliente cliente;
 
 	public VentanaReserva() {
@@ -52,7 +52,7 @@ public class VentanaReserva extends JFrame{
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
         
-        restaurante = new Restaurante();
+       
         cliente = new Cliente();
         
         pContenedor = new JPanel();
@@ -188,7 +188,7 @@ public class VentanaReserva extends JFrame{
 	    String hora = (String) horas.getSelectedItem();
 	    int comensales = (int) nComensales.getSelectedItem();
 	    Reserva reserva = new Reserva(fechaLocal, hora, comensales);
-	    restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
+	    Restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
     }
 	
 
