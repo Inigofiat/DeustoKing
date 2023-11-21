@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Restaurante;
+
 public class VentanaCupones extends JFrame {
 	
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
@@ -41,6 +43,7 @@ public class VentanaCupones extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		
 		pContenedor = new JPanel();
 		pContenedor.setLayout(new BorderLayout());
@@ -140,10 +143,12 @@ public class VentanaCupones extends JFrame {
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
 		
+		
 		btnVolver.addActionListener((e)->{
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
+		
 		pVolver.add(btnVolver);
 		
 		
@@ -171,6 +176,8 @@ public class VentanaCupones extends JFrame {
 	    barra.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
+	    
+	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
 	    
 	    setVisible(true);
 	}

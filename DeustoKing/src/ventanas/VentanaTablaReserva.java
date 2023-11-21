@@ -39,12 +39,12 @@ public class VentanaTablaReserva extends JFrame{
 	private JScrollPane scrollTablaCliente;
 	private JTable tablaCliente;
 	
-	Restaurante restaurante;
+	
 	
 	public VentanaTablaReserva() {
 		super();
-		restaurante = new Restaurante();
-		restaurante.cargarReservasEnLista("reservas.csv");
+		
+		Restaurante.cargarReservasEnLista("reservas.csv");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -67,7 +67,7 @@ public class VentanaTablaReserva extends JFrame{
     
         
        
-	    cargarFechasEnComboBox(restaurante.getListaReservas());
+	    cargarFechasEnComboBox(Restaurante.getListaReservas());
         modeloTablaReservas = new ModeloReserva(null);
         tablaReserva = new JTable(modeloTablaReservas);
 	    scrollTablaReserva = new JScrollPane(tablaReserva);
@@ -86,7 +86,7 @@ public class VentanaTablaReserva extends JFrame{
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 				String fechaString = (String) cbFecha.getSelectedItem();       
 		        LocalDate fecha = LocalDate.parse(fechaString, formatter);
-		        List<Reserva> listaReservas = restaurante.obtenerReservasPorFecha(fecha);
+		        List<Reserva> listaReservas = Restaurante.obtenerReservasPorFecha(fecha);
 		        tablaReserva.setModel(new ModeloReserva(listaReservas));		        
 			}
 		});
@@ -97,7 +97,7 @@ public class VentanaTablaReserva extends JFrame{
 				Point p = e.getPoint();
 				int fila = tablaReserva.rowAtPoint(p);
 				String fecha = tablaReserva.getModel().getValueAt(fila, 1).toString();
-				List<Cliente> lp = restaurante.getPersonasHanCompradoElProducto(fecha);
+				List<Cliente> lp = Restaurante.getPersonasHanCompradoElProducto(fecha);
 				tablaCliente.setModel(new ModeloCliente(lp));
 				
 			}
@@ -108,7 +108,9 @@ public class VentanaTablaReserva extends JFrame{
 	    pPrincipal.add(pContenedor,BorderLayout.CENTER);
 	    
 	    getContentPane().add(pPrincipal);
-
+	    
+	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    
 		setVisible(true);
 	}
 	

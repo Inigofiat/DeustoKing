@@ -25,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import deustoking.Restaurante;
+
 
 
 public class VentanaPrincipal extends JFrame {
@@ -280,6 +282,9 @@ public class VentanaPrincipal extends JFrame {
 		
 		panPrincipal.add(panelContenedor, BorderLayout.CENTER);
 		getContentPane().add(panPrincipal);
+		
+		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		
 		setVisible(true);
 		
 	}
