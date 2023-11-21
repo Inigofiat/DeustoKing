@@ -25,8 +25,8 @@ public class Restaurante {
 	
 	private static Map<String, List<Reserva>> reservasPorCliente;
 	private static Set<Reserva> setReservas;
-	private List<Reserva> listaReservas;
-	private Map<String, Cliente> mapaPersonaPorCorreo;
+	private static List<Reserva> listaReservas;
+	private static Map<String, Cliente> mapaPersonaPorCorreo;
 	Cliente cliente;
 	
 	public Restaurante() {
@@ -46,7 +46,8 @@ public class Restaurante {
 		}
 	}
 	
-	public void guardarReservasEnFichero(Reserva reserva, String nombrefich) {
+	
+	public static void guardarReservasEnFichero(Reserva reserva, String nombrefich) {
 		
 			try {
 				PrintWriter pw = new PrintWriter(new FileWriter(nombrefich, true));
@@ -62,7 +63,7 @@ public class Restaurante {
 		
 	}
 	
-	public void cargarReservasEnLista (String nombfich) {
+	public static void cargarReservasEnLista (String nombfich) {
        
         
         try {
@@ -84,12 +85,12 @@ public class Restaurante {
 		}       
         			
 	}
-	public List<Reserva> getListaReservas(){
+	public static List<Reserva> getListaReservas(){
 		return listaReservas;
 		
 	}
 	
-	public List<Reserva> obtenerReservasPorFecha(LocalDate fecha) {
+	public static List<Reserva> obtenerReservasPorFecha(LocalDate fecha) {
 	    List<Reserva> reservasPorFecha = new ArrayList<>();
 	        for (Reserva reserva : listaReservas) {
 	        	System.out.println(reserva.getFecha());
@@ -104,7 +105,7 @@ public class Restaurante {
 	}
 	
 	
-	public List<Cliente> getPersonasHanCompradoElProducto(String hora){
+	public static List<Cliente> getPersonasHanCompradoElProducto(String hora){
 		List<Cliente> lp = new ArrayList<>();
 		
 		for(String correo: reservasPorCliente.keySet()) {
