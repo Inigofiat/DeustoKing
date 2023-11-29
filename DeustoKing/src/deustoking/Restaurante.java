@@ -224,6 +224,7 @@ public class Restaurante {
 	}
 	
 	
+	
 	public static void cargarClientesEnLista(String nombfich) {
 		try {
 			Scanner sc = new Scanner(new File(nombfich));
