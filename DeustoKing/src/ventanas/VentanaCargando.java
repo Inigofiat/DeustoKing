@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
 public class VentanaCargando extends JFrame {
@@ -61,8 +62,15 @@ public class VentanaCargando extends JFrame {
 			public void run() {
 				try {
 					for (int i = 0; i < 101; i++) {
-						Thread.sleep(60); 
-						bProgreso.setValue(i);
+						final int progressValue = i;
+						Thread.sleep(35); 
+						
+						SwingUtilities.invokeLater(new Runnable() {
+		                    @Override
+		                    public void run() {
+		                        bProgreso.setValue(progressValue);
+		                    }
+		                });
 					}
 				}catch(InterruptedException ie) {
 					JOptionPane.showMessageDialog(null, "Error al cargar la ventana", "Error", JOptionPane.ERROR_MESSAGE);

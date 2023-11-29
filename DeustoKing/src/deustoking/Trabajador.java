@@ -7,16 +7,18 @@ public class Trabajador extends Persona{
 	private int mesasAtendidas;
 	private String nombreTrabajador;
 	private String contraseniaTrabajador;
+	private String dni;
 	
 	public Trabajador(String nombre, String apellidos, String telefono, String correo, String direccion, int id,
 			float horasTrabajadas, float sueldo, int mesasAtendidas, String nombreTrabajador,
-			String contraseniaTrabajador) {
+			String contraseniaTrabajador, String dni) {
 		super(nombre, apellidos, telefono, correo, direccion, id);
 		this.horasTrabajadas = horasTrabajadas;
 		this.sueldo = sueldo;
 		this.mesasAtendidas = mesasAtendidas;
 		this.nombreTrabajador = nombreTrabajador;
 		this.contraseniaTrabajador = contraseniaTrabajador;
+		this.dni = dni;
 	}
 	
 	public Trabajador() {
@@ -26,6 +28,7 @@ public class Trabajador extends Persona{
 		this.mesasAtendidas = 0;
 		this.nombreTrabajador = null;
 		this.contraseniaTrabajador = null;
+		this.dni = null;
 	}
 
 	public float getHorasTrabajadas() {
@@ -68,13 +71,25 @@ public class Trabajador extends Persona{
 		this.contraseniaTrabajador = contraseniaTrabajador;
 	}
 
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
 	@Override
 	public String toString() {
-		return "Personal [horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas="
+		return "Trabajador [horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas="
 				+ mesasAtendidas + ", nombreTrabajador=" + nombreTrabajador + ", contraseniaTrabajador="
-				+ contraseniaTrabajador + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono
-				+ ", correo=" + correo + ", direccion=" + direccion + ", id=" + id + "]";
+				+ contraseniaTrabajador + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", id=" + id + "]";
 	}
+	
+	
+
+
 	
 	
 }
