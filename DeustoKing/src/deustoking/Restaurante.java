@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,23 +19,28 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
-
+//ordenar fecha
 public class Restaurante {
 	
-	private static Map<String, List<Reserva>> reservasPorCliente;
-	private static Set<Reserva> setReservas;
-	private static List<Reserva> listaReservas;
-	private static Map<String, Cliente> mapaPersonaPorCorreo;
-	Cliente cliente;
+	private  static Map<String, List<Reserva>> reservasPorCliente;
+	private  static Set<Reserva> setReservas;
+	private  static  List<Reserva> listaReservas;
+	private  static Map<String, Cliente> mapaPersonaPorCorreo;
+	private static List<Cliente> clientes;
+	private static Cliente cliente;
+	private static Map<LocalDate, List<Reserva>> mapaHorasPorFecha;
 	
-	public Restaurante() {
+	static {
 		reservasPorCliente = new TreeMap<>();
 		setReservas = new TreeSet<>();
 		cliente = new Cliente();
 		mapaPersonaPorCorreo = new TreeMap<>();
 		listaReservas = new ArrayList<>();
+		clientes = new ArrayList<>();
+		mapaHorasPorFecha = new TreeMap<>();
 	}
 	
 	public static void miIcono(JFrame ventana, String rutaIcono) {
@@ -47,23 +53,9 @@ public class Restaurante {
 	}
 	
 	
-	public static void guardarReservasEnFichero(Reserva reserva, String nombrefich) {
-		
-			try {
-				PrintWriter pw = new PrintWriter(new FileWriter(nombrefich, true));
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	            String fechaFormateada = reserva.getFecha().format(formatter);
-	          
-				pw.println(fechaFormateada+";"+reserva.getHora()+";"+reserva.getnComensales());
-				pw.close();
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
-		
-	}
+
 	
-	public static void cargarReservasEnLista (String nombfich) {
+	public  void cargarReservasEnLista (String nombfich) {
        
         
         try {
@@ -72,11 +64,11 @@ public class Restaurante {
 				String linea = sc.nextLine();
 				String[] partes = linea.split(";");
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				int id = Integer.parseInt(partes[0]);
                 LocalDate fecha = LocalDate.parse(partes[0], formatter);
                 String hora = partes[1];
                 int comensales = Integer.parseInt(partes[2]);
-               
-                Reserva reserva = new Reserva(fecha, hora, comensales);
+                Reserva reserva = new Reserva(id,fecha, hora, comensales);
                 System.out.println(reserva);
                 listaReservas.add(reserva);
 			}
@@ -126,5 +118,62 @@ public class Restaurante {
 		}
 		return lp;
 	}
+	
+	public static Cliente buscarUsuario(String inicio) {
+	    boolean enc = false;
+	    int pos = 0;
+	    Cliente c = null;
+
+	    while (!enc && pos < clientes.size()) {
+	        c = clientes.get(pos);
+	        if (( c.getCorreo().equals(inicio)) ||
+	            ( c.getNombreUsuario().equals(inicio)) ||
+	            ( c.getTelefono().equals(inicio))) {
+	            enc = true;
+	        } else {
+	            pos++;
+	        }
+	    }
+
+	    if (enc) {
+	        return c;
+	    } else {
+	        return null;
+	    }
+	}
+	
+	public static void cargarFechasEnComboBox(List<Reserva> reservas, JComboBox<String> cbFecha) {
+	    Set<String> fechasAgregadas = new HashSet<>(); 
+
+	    for (Reserva reserva : reservas) {
+	        LocalDate fecha = reserva.getFecha();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	        String fechaFormateada = fecha.format(formatter);
+
+	        
+	        if (!fechasAgregadas.contains(fechaFormateada)) {
+	            cbFecha.addItem(fechaFormateada);
+	            fechasAgregadas.add(fechaFormateada); 
+	        }
+	    }
+	}
+	
+	public static void guardarReservasEnFichero(Reserva reserva, String nombrefich) {
+		
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter(nombrefich, true));
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String fechaFormateada = reserva.getFecha().format(formatter);
+          
+			pw.println(Reserva.getContador()+";"+ fechaFormateada+";"+reserva.getHora()+";"+reserva.getnComensales());
+			pw.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
 	
 }
