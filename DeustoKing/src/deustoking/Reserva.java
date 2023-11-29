@@ -4,14 +4,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Reserva implements Comparable<Reserva>{
-	
+	static int contador = 1;
+	private int id;
 	private LocalDate fecha;
 	private String hora;
 	private int nComensales;
 	
 	
-	public Reserva(LocalDate fecha, String hora, int nComensales) {
+	public Reserva(int id, LocalDate fecha, String hora, int nComensales) {
 		super();
+		this.id = contador;
+		contador++;
 		this.fecha = fecha;
 		this.hora = hora;
 		this.nComensales = nComensales;
@@ -20,10 +23,28 @@ public class Reserva implements Comparable<Reserva>{
 	
 	public Reserva() {
 		super();
+		this.id = contador;
+		contador++;
 		this.fecha = null;
 		this.hora = null;
 		this.nComensales = 0;
 		
+	}
+	
+	public static int getContador() {
+		return contador;
+	}
+
+	public static void setContador(int contador) {
+		Persona.contador = contador;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public LocalDate getFecha() {
