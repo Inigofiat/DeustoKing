@@ -58,7 +58,7 @@ public class Restaurante {
 	
 
 	
-	public  void cargarReservasEnLista (String nombfich) {
+	public static  void cargarReservasEnLista (String nombfich) {
        
         
         try {
