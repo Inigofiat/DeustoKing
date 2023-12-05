@@ -13,6 +13,8 @@ import java.awt.Insets;
 import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -79,7 +81,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaReserva();
+				new VentanaReserva(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
 				
