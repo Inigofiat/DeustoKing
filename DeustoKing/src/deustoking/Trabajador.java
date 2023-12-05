@@ -1,49 +1,49 @@
 package deustoking;
 
-public class Trabajador extends Persona{
+	public class Trabajador extends Persona{
+		
+		private double horasTrabajadas;
+		private double sueldo;
+		private int mesasAtendidas;
+		private String nombreTrabajador;
+		private String contraseniaTrabajador;
+		private String dni;
+		
+		public Trabajador(String nombre, String apellidos, String telefono, String correo, String direccion, int id,
+				double horasTrabajadas, double sueldo, int mesasAtendidas, String nombreTrabajador,
+				String contraseniaTrabajador, String dni) {
+			super(nombre, apellidos, telefono, correo, direccion, id);
+			this.horasTrabajadas = horasTrabajadas;
+			this.sueldo = sueldo;
+			this.mesasAtendidas = mesasAtendidas;
+			this.nombreTrabajador = nombreTrabajador;
+			this.contraseniaTrabajador = contraseniaTrabajador;
+			this.dni = dni;
+		}
+		
+		public Trabajador() {
+			super();
+			this.horasTrabajadas = 0;
+			this.sueldo = 0;
+			this.mesasAtendidas = 0;
+			this.nombreTrabajador = null;
+			this.contraseniaTrabajador = null;
+			this.dni = null;
+		}
 	
-	private float horasTrabajadas;
-	private float sueldo;
-	private int mesasAtendidas;
-	private String nombreTrabajador;
-	private String contraseniaTrabajador;
-	private String dni;
+		public double getHorasTrabajadas() {
+			return horasTrabajadas;
+		}
 	
-	public Trabajador(String nombre, String apellidos, String telefono, String correo, String direccion, int id,
-			float horasTrabajadas, float sueldo, int mesasAtendidas, String nombreTrabajador,
-			String contraseniaTrabajador, String dni) {
-		super(nombre, apellidos, telefono, correo, direccion, id);
-		this.horasTrabajadas = horasTrabajadas;
-		this.sueldo = sueldo;
-		this.mesasAtendidas = mesasAtendidas;
-		this.nombreTrabajador = nombreTrabajador;
-		this.contraseniaTrabajador = contraseniaTrabajador;
-		this.dni = dni;
-	}
-	
-	public Trabajador() {
-		super();
-		this.horasTrabajadas = 0;
-		this.sueldo = 0;
-		this.mesasAtendidas = 0;
-		this.nombreTrabajador = null;
-		this.contraseniaTrabajador = null;
-		this.dni = null;
-	}
+		public void setHorasTrabajadas(double horasTrabajadas) {
+			this.horasTrabajadas = horasTrabajadas;
+		}
 
-	public float getHorasTrabajadas() {
-		return horasTrabajadas;
-	}
-
-	public void setHorasTrabajadas(float horasTrabajadas) {
-		this.horasTrabajadas = horasTrabajadas;
-	}
-
-	public float getSueldo() {
+	public double getSueldo() {
 		return sueldo;
 	}
 
-	public void setSueldo(float sueldo) {
+	public void setSueldo(double sueldo) {
 		this.sueldo = sueldo;
 	}
 
