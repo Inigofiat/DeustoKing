@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -38,12 +39,13 @@ public class VentanaReserva extends JFrame{
 	private JLabel lbDate, lbReserva;
 	private JButton btnReservar, btnVolver;
 	private JPanel pPrincipal, pCentro, pContenedor, pSur, pNorte;
+	private JFrame vActual, vAnterior;
     private static final String nomfichReservas = "reservas.csv";
     
     
     Cliente cliente;
 
-	public VentanaReserva() {
+	public VentanaReserva(JFrame va) {
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -51,7 +53,8 @@ public class VentanaReserva extends JFrame{
         setSize(anchoP, altoP);
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
-        
+        vActual=this;
+		vAnterior=va;
        
         cliente = new Cliente();
         
@@ -81,15 +84,23 @@ public class VentanaReserva extends JFrame{
         btnReservar = new JButton("Reservar");
         btnReservar.setPreferredSize(new Dimension(650, btnReservar.getPreferredSize().height));
         btnReservar.setFont(new Font("Arial", Font.BOLD, 17));
-        btnReservar.setBackground(new Color(102,202,107));
+       // btnReservar.setBackground(new Color(102,202,107));
         btnVolver = new JButton("Volver");
         btnVolver.setPreferredSize(new Dimension(650, btnVolver.getPreferredSize().height));
         btnVolver.setFont(new Font("Arial", Font.BOLD, 17));
-        btnVolver.setBackground(new Color(102,202,107));
+       // btnVolver.setBackground(new Color(102,202,107));
         pSur.add(btnReservar);
         pSur.add(btnVolver);
 
-        
+        btnVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vActual.dispose();
+				vAnterior.setVisible(true);
+				
+			}
+		});
         for (int i = 2; i < 11; i++) {
             nComensales.addItem(i);
         }
@@ -187,10 +198,20 @@ public class VentanaReserva extends JFrame{
 	    LocalDate fechaLocal = calendar.toZonedDateTime().toLocalDate();
 	    String hora = (String) horas.getSelectedItem();
 	    int comensales = (int) nComensales.getSelectedItem();
-	    Reserva reserva = new Reserva(fechaLocal, hora, comensales);
-	    Restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
+	    Reserva reserva = new Reserva(Reserva.getContador(),fechaLocal, hora, comensales);
+	    int opcion = JOptionPane.showConfirmDialog(null, "¿Desea guardar la reserva?", "Confirmar reserva", JOptionPane.YES_NO_OPTION);
+	    if (opcion == JOptionPane.YES_OPTION) {
+	        Restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
+	        JOptionPane.showMessageDialog(null, "Reserva guardada exitosamente");
+	    } else {
+	        int opcion2 = JOptionPane.showConfirmDialog(null, "¿Desea continuar en la ventana de reserva?", "Continua reserva",JOptionPane.YES_NO_OPTION);
+	        if(opcion2==JOptionPane.YES_OPTION) {
+	        	vActual.setVisible(true);
+	        }else {
+	        	vActual.dispose();
+				vAnterior.setVisible(true);
+	        }
+	    }
     }
-	
-
 
 }
