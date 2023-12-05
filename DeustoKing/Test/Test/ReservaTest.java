@@ -16,7 +16,8 @@ public class ReservaTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		reserva = new Reserva(LocalDate.of(2023, 12, 25),"12:30",5);
+		reserva = new Reserva(1,LocalDate.of(2023, 12, 25),"12:30",5);
+		Reserva.reiniciarContador();
 	}
 
 	@After
@@ -39,7 +40,7 @@ public class ReservaTest {
 
 	@Test
 	public void testGetFormattedFecha() {
-        Reserva reserva = new Reserva(LocalDate.of(2022, 12, 12), "12:30", 2);
+        Reserva reserva = new Reserva(1,LocalDate.of(2022, 12, 12), "12:30", 2);
         assertEquals("12-12-2022", reserva.getFormattedFecha());
 	}
 
@@ -86,12 +87,35 @@ public class ReservaTest {
 
 	@Test
 	public void testCompareTo() {
-		Reserva reserva1 = new Reserva(LocalDate.of(2023, 12, 10), "14:30", 8);
-        Reserva reserva2 = new Reserva(LocalDate.of(2023, 12, 10), "15:30", 6);
+		Reserva reserva1 = new Reserva(1,LocalDate.of(2023, 12, 10), "14:30", 8);
+        Reserva reserva2 = new Reserva(2,LocalDate.of(2023, 12, 10), "15:30", 6);
         assertEquals(-1, reserva1.compareTo(reserva2)); 
         assertEquals(1, reserva2.compareTo(reserva1)); 
         assertEquals(0, reserva1.compareTo(reserva1)); 
     }
 	
+	@Test
+    public void testGetContador() {
+		
+        assertEquals(1, Reserva.getContador()); 
+    }
+	
+    @Test
+    public void testSetContador() {
+        // Prueba el método setContador
+        Reserva.setContador(5);
+        int resultado = Reserva.getContador();
+        assertEquals(5, resultado); // Asegúrate de que el contador se establece correctamente
+    }
+   @Test
+   public void testGetId() {
+       assertNotNull(reserva.getId()); 
+   }
+
+   @Test
+   public void testSetId() {
+       reserva.setId(10);
+       assertEquals(10, reserva.getId()); 
+   }
 
 }
