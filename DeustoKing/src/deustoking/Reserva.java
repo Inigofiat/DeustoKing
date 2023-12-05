@@ -31,12 +31,16 @@ public class Reserva implements Comparable<Reserva>{
 		
 	}
 	
+	public static void reiniciarContador() {
+	    contador = 1;
+	}
+	
 	public static int getContador() {
 		return contador;
 	}
 
 	public static void setContador(int contador) {
-		Persona.contador = contador;
+		Reserva.contador = contador;
 	}
 	
 	public int getId() {
