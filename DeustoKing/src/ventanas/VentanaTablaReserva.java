@@ -39,12 +39,12 @@ public class VentanaTablaReserva extends JFrame{
 	private JScrollPane scrollTablaCliente;
 	private JTable tablaCliente;
 	
-	
+	Restaurante r;
 	
 	public VentanaTablaReserva() {
 		super();
-		
-		Restaurante.cargarReservasEnLista("reservas.csv");
+		r= new Restaurante();
+		r.cargarReservasEnLista("reservas.csv");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -128,12 +128,7 @@ public class VentanaTablaReserva extends JFrame{
 	            fechasAgregadas.add(fechaFormateada); 
 	        }
 	    }
-	}
-	
-
-
-	
-	
+	}	
 	public static void main(String[] args) {
 		VentanaTablaReserva v = new VentanaTablaReserva();
 	}
