@@ -15,6 +15,8 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
+import deustoking.Restaurante;
+
 public class VentanaCargando extends JFrame {
 	
 	private JProgressBar bProgreso;
@@ -80,6 +82,8 @@ public class VentanaCargando extends JFrame {
 				vActual.setVisible(false);
 			}
 		});hilo.start();
+		
+		Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 	}
 }

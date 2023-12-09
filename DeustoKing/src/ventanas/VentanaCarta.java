@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Restaurante;
+
 public class VentanaCarta extends JFrame {
 	
 	private JPanel pBotones, pProductos, pPrincipal, pVolver, pContenedor;
@@ -472,6 +474,7 @@ public class VentanaCarta extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
+	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
 	    setVisible(true);
 	    
 		

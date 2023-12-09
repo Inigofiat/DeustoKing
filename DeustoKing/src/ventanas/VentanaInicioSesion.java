@@ -151,7 +151,7 @@ public class VentanaInicioSesion extends JFrame {
 		btnInicioSesion.addActionListener((e)-> {
 		String nombreUsuario = txtNombreUsuario.getText();
 		String contrasenia = txtContraseña.getText();
-		Cliente cliente = buscarCliente(nombreUsuario);
+		Cliente cliente = Restaurante.buscarUsuario(nombreUsuario);
 		if(cliente == null) {
 			JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
@@ -171,25 +171,7 @@ public class VentanaInicioSesion extends JFrame {
 
 	}
 
-	public static Cliente buscarCliente(String nombreUsuario) {
-		boolean encontrado = false;
-		int posicion = 0;
-		List<Cliente> clientes = new ArrayList<>();
-		Cliente cliente = null;
-			while(!encontrado && posicion<clientes.size()) {
-				cliente = clientes.get(posicion);
-				if(cliente.getNombreUsuario().equals(nombreUsuario)) {
-					encontrado = true;
-				}else {
-					posicion++;
-				}
-		}
-		if(encontrado) {
-			return cliente;
-		}else {
-			return null;
-		}	
-	}
+	
 }
 	
 	

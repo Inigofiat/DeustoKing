@@ -23,6 +23,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import deustoking.Cliente;
+import deustoking.Persona;
+import deustoking.Restaurante;
 
 public class VentanaRegistro extends JFrame{
 	
@@ -35,7 +37,6 @@ public class VentanaRegistro extends JFrame{
 	private JScrollPane scroll;
 	private static final String nomfichClientes = "Clientes.csv";
 	private JFrame vActual, vAnterior;
-	private static List<Cliente> clientes = new ArrayList<Cliente>();
 
 	
 	public VentanaRegistro(JFrame va) {
@@ -141,10 +142,10 @@ public class VentanaRegistro extends JFrame{
 	
 		pEste = new JPanel();
 		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
-		lblInicioSesion = new JLabel("¿Ya tienes cuenta? Inicia sesion aqui");
+		lblInicioSesion = new JLabel("¿Ya tienes cuenta? Inicia sesión aquí");
 		lblInicioSesion.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblInicioSesion.setFont(new Font("Tw", Font.BOLD, 14));
-		btnInicioSesion = new JButton("                    INICIA SESION                    ");
+		btnInicioSesion = new JButton("                    INICIA SESIÓN                    ");
 	
 		pEste.add(lblInicioSesion);
 		pEste.add(btnInicioSesion);
@@ -171,7 +172,7 @@ public class VentanaRegistro extends JFrame{
 		
 		getContentPane().add(pPrincipal);
 		scroll = new JScrollPane();
-	
+ 	
 		btnAtras.addActionListener((e) -> {
 			new VentanaPrincipal(vActual);
 			vActual.setVisible(false);
@@ -192,63 +193,19 @@ public class VentanaRegistro extends JFrame{
 			String nombreUsuario = txtNombreUsuario.getText();
 			String contrasenia = new String(txtContrasenia.getPassword());
 			
-			if(verificarContrasenia(contrasenia)||verificarNombreUsuario(nombreUsuario)||verificarTelefono(telefono)) {
-				Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 0 , nombreUsuario, contrasenia);
-				clientes.add(nuevoCliente);
-				guardarClientes(nomfichClientes);
-				JOptionPane.showMessageDialog(vActual, "Registro realizado","REGISTRO",JOptionPane.INFORMATION_MESSAGE);
-				
-				vActual.dispose();
-				vAnterior.setVisible(true);
-			} 
-			
-		});
+			//Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 0, nombreUsuario, contrasenia);
+			if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 0, nombreUsuario, contrasenia)
+) {
+				JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+			} else {
 
+			}
+		});
+		
+		Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 
 	}
 	
-	public static void guardarClientes(String nomfichClientes) {
-		try {
-			PrintWriter pw = new PrintWriter(nomfichClientes);
-			for(Cliente c: clientes) {
-				pw.println(c.getNombre()+";"+c.getApellidos()+";"+c.getTelefono()+";"+c.getDireccion()+";"+c.getCorreo()+";"+
-						c.getNombreUsuario()+";"+c.getContrasenia());
-			}
-			pw.flush();
-			pw.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static boolean verificarContrasenia(String contrasenia) {
-		if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
-			JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		return true;
-	}
-	
-	public static boolean verificarNombreUsuario(String nombreUsuario) {
-		if(!nombreUsuario.matches(".*[a-zA-Z].*")&& nombreUsuario.length()<4) {
-			JOptionPane.showMessageDialog(null, "El nombre de usuario es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		return true;
-	}
-	
-	public static boolean verificarTelefono(String telefono) {
-		if(!telefono.matches(".*[0-9].*")&& telefono.length()!=9&&telefono.matches(".*[a-zA-Z].*")) {
-			JOptionPane.showMessageDialog(null, "El numero de teléfono es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		return true;
-	}
-	
-	
-	public static void aniadirCliente(Cliente c) {
-		clientes.add(c);
-	}
 	
 }

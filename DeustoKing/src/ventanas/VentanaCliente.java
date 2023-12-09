@@ -15,6 +15,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 
 import deustoking.Cliente;
+import deustoking.Restaurante;
 
 public class VentanaCliente extends JFrame{
 	private JPanel pNorte, pCentro;
@@ -63,7 +64,7 @@ public class VentanaCliente extends JFrame{
         lblCupon3.addMouseListener(new JLabelMouseListener("Información del Cupón 3"));
         lblCupon4.addMouseListener(new JLabelMouseListener("Información del Cupón 4"));
 
-		
+        Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 	}
 	

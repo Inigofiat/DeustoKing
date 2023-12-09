@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import deustoking.Restaurante;
 import deustoking.Trabajador;
 
 public class VentanaPersonal extends JFrame{
@@ -70,7 +71,7 @@ public class VentanaPersonal extends JFrame{
         pCentro.add(lblSueldo);
         pCentro.add(lblPuesto);
 		
-	
+        Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 		
 		
