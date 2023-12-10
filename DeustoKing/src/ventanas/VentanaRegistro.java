@@ -37,7 +37,7 @@ public class VentanaRegistro extends JFrame{
 	private JPasswordField txtContrasenia, txtRepetirContrasenia;
 	private JButton btnRegistro, btnAtras, btnInicioSesion;
 	private JScrollPane scroll;
-	private static final String nomfichClientes = "Clientes.csv";
+	private static final String nomfichClientes = "ficheros/Clientes.csv";
 	private JFrame vActual, vAnterior;
 	static Logger logger = Logger.getLogger(Main.class.getName());
 

@@ -42,7 +42,7 @@ public class VentanaReserva extends JFrame{
 	private JButton btnReservar, btnVolver;
 	private JPanel pPrincipal, pCentro, pContenedor, pSur, pNorte;
 	private JFrame vActual, vAnterior;
-    private static final String nomfichReservas = "reservas.csv";
+    private static final String nomfichReservas = "ficheros/reservas.csv";
     static Logger logger = Logger.getLogger(Main.class.getName());
     
     

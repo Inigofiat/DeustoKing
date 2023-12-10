@@ -47,7 +47,7 @@ public class VentanaPrincipal extends JFrame {
 	private JMenuItem itTrabajador;
 	private JFrame vActual, vAnterior;
 	private GradientPaint gr1, gr2, gr3;
-	private static final String nomfichClientes = "Trabajadores.csv";
+	private static final String nomfichClientes = "ficheros/Trabajadores.csv";
 	private static Trabajador trabajador;
 	private static  JComboBox<PuestoTrabajo> cargoComboBox;
 	static Logger logger = Logger.getLogger(Main.class.getName());
