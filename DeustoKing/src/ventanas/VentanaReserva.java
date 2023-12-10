@@ -151,8 +151,7 @@ public class VentanaReserva extends JFrame{
         btnReservar.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-//				reservar();
+			public void actionPerformed(ActionEvent e) {		
 				Restaurante.reservar(datePicker, horas, nComensales, nomfichReservas, vActual, vAnterior);
 				
 			}
