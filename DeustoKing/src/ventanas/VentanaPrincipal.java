@@ -14,6 +14,7 @@ import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -49,6 +50,7 @@ public class VentanaPrincipal extends JFrame {
 	private static final String nomfichClientes = "Trabajadores.csv";
 	private static Trabajador trabajador;
 	private static  JComboBox<PuestoTrabajo> cargoComboBox;
+	static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	
 	public VentanaPrincipal(JFrame va) {
@@ -88,6 +90,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE ESTA ABRIENDO LA VENTANA DE RESERVAS");
 				new VentanaReserva(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -105,6 +108,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA DE CUPONES");
 				new VentanaCupones(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -122,6 +126,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA DE INICIO DE SESION");
 				new VentanaInicioSesion(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -163,6 +168,7 @@ public class VentanaPrincipal extends JFrame {
 	        
 		
 		btnBilbao.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CARTA");
 			new VentanaCarta(vActual, "BILBO");
 		});
 		panCiudades.add(btnBilbao);
@@ -195,6 +201,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panCiudades.add(btnDonostia);
 		btnDonostia.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA CARTA DE DONSOTIA");
 			new VentanaCarta(vActual, "DONOSTI");
 		});
 		
@@ -218,6 +225,7 @@ public class VentanaPrincipal extends JFrame {
 	        });
 		panCiudades.add(btnGasteiz);
 		btnGasteiz.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA CARTA DE GASTEIZ");
 			new VentanaCarta(vActual, "GASTEIZ");
 		});
 		
