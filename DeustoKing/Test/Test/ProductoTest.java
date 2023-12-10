@@ -13,12 +13,24 @@ public class ProductoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		producto = new Producto("Producto", 1, 2.5);
+		producto = new Producto(1,"Producto", "Desc", 2.5);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		producto=null;
+	}
+
+	@Test
+	public void testGetIdP() {
+		assertEquals(1, producto.getIdP());
+	}
+
+	@Test
+	public void testSetIdP() {
+		int id = 2;
+		producto.setIdP(id);
+		assertEquals(id, producto.getIdP());
 	}
 
 	@Test
@@ -28,21 +40,21 @@ public class ProductoTest {
 
 	@Test
 	public void testSetNombre() {
-		String nombre = "Camiseta";
+		String nombre = "Carne";
 		producto.setNombre(nombre);
 		assertEquals(nombre, producto.getNombre());
 	}
 
 	@Test
-	public void testGetCantidad() {
-		assertEquals(1, producto.getCantidad());
+	public void testGetDescripcion() {
+		assertEquals("Desc", producto.getDescripcion());
 	}
 
 	@Test
-	public void testSetCantidad() {
-		int cantidad = 3;
-		producto.setCantidad(cantidad);
-		assertEquals(cantidad, producto.getCantidad());
+	public void testSetDescripcion() {
+		String descr = "Dos de carne";
+		producto.setDescripcion(descr);
+		assertEquals(descr, producto.getDescripcion());
 	}
 
 	@Test
@@ -56,13 +68,11 @@ public class ProductoTest {
 		producto.setPrecio(precio);
 		assertEquals(precio, producto.getPrecio(), 0.001);
 	}
-	
-    @Test
-    public void testToString() {
-        
-        String expectedToString = "Nombre: Producto, Cantidad: 1, Precio: $2.5";
-        String actualToString = producto.toString();
-        assertEquals(expectedToString, actualToString);
-    }
+
+	@Test
+	public void testToString() {
+		 String expectedToString = "Producto [idP=1, nombre=Producto, descripcion=Desc, precio=2.5]";
+		 assertEquals(expectedToString, producto.toString());
+	}
 
 }
