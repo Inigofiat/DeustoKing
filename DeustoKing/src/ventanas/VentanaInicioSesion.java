@@ -8,6 +8,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -35,6 +37,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JScrollPane scroll;
 	private static final String nomfichClientes = "Clientes.csv";
 	private JFrame vActual, vAnterior;
+	static Logger logger = Logger.getLogger(Main.class.getName());
 	
 
 	public VentanaInicioSesion(JFrame va) {
@@ -137,12 +140,14 @@ public class VentanaInicioSesion extends JFrame {
 
 		
 		btnAtras.addActionListener((e)-> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 
 		});
 
 		btnRegistro.addActionListener((e) -> {
+			logger.log(Level.INFO, "SE ESTA ABRIENDO LA VENTANA DE REGISTRO");
 			new VentanaRegistro(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -154,12 +159,14 @@ public class VentanaInicioSesion extends JFrame {
 		Cliente cliente = Restaurante.buscarUsuario(nombreUsuario);
 		if(cliente == null) {
 			JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
+			logger.log(Level.WARNING, "NO SE HA PODIDO REGISTRAR");
 			}else {
 					if(cliente.getContrasenia().equals(contrasenia)) {
 						JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 						vAnterior.setVisible(true);
 						vActual.dispose();
 					}else {
+						logger.log(Level.WARNING, "LA CONTRASEÑA ES INCORRECTA");
 						JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
 					}
 			}
