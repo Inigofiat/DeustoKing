@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.jdatepicker.DatePicker;
+
+import basesDeDatos.BD;
 
 //ordenar fecha
 public class Restaurante {
@@ -348,6 +351,50 @@ public class Restaurante {
 	    }
     }
 	
-
+	public static void volcarCSVPersonasABD(Connection con, String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String []partes = linea.split(";");
+				String nombre = partes[0];
+				String apellidos = partes[1];
+				String telefono = partes[2];
+				String correo = partes[3];
+				String direccion = partes[4];
+				String nombreUsuario = partes[5];
+				String contrasenia = partes[6];
+				Cliente c = new Cliente(nombre, apellidos, telefono, correo, direccion, Persona.getContador(), 0, nombreUsuario, contrasenia);
+				BD.insertarCliente(con, c);
+			
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void volcarCSVReservasABD(Connection con, String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String []partes = linea.split(";");
+				int id = Integer.parseInt(partes[0]);
+				String fecha = partes[1];
+				String hora = partes[2];
+				int nComensales = Integer.parseInt(partes[3]);
+				Reserva r = new Reserva(id, fecha, hora, nComensales);
+				
+				BD.insertarReserva(con, r);
+			
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
