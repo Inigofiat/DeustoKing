@@ -8,10 +8,11 @@ package deustoking;
 		private String nombreTrabajador;
 		private String contraseniaTrabajador;
 		private String dni;
+		private PuestoTrabajo puesto;
 		
 		public Trabajador(String nombre, String apellidos, String telefono, String correo, String direccion, int id,
 				double horasTrabajadas, double sueldo, int mesasAtendidas, String nombreTrabajador,
-				String contraseniaTrabajador, String dni) {
+				String contraseniaTrabajador, String dni, PuestoTrabajo puesto) {
 			super(nombre, apellidos, telefono, correo, direccion, id);
 			this.horasTrabajadas = horasTrabajadas;
 			this.sueldo = sueldo;
@@ -19,6 +20,15 @@ package deustoking;
 			this.nombreTrabajador = nombreTrabajador;
 			this.contraseniaTrabajador = contraseniaTrabajador;
 			this.dni = dni;
+			this.puesto=puesto;
+		}
+		
+		public Trabajador(String nombre, String apellidos, String telefono, PuestoTrabajo puesto, String dni) {
+			this.nombre=nombre;
+			this.apellidos=apellidos;
+			this.telefono=telefono;
+			this.puesto=puesto;
+			this.dni=dni;
 		}
 		
 		public Trabajador() {
@@ -45,6 +55,14 @@ package deustoking;
 
 	public void setSueldo(double sueldo) {
 		this.sueldo = sueldo;
+	}
+	
+	public PuestoTrabajo getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(PuestoTrabajo puesto) {
+		this.puesto = puesto;
 	}
 
 	public int getMesasAtendidas() {
@@ -83,9 +101,13 @@ package deustoking;
 	public String toString() {
 		return "Trabajador [horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", mesasAtendidas="
 				+ mesasAtendidas + ", nombreTrabajador=" + nombreTrabajador + ", contraseniaTrabajador="
-				+ contraseniaTrabajador + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", id=" + id + "]";
+				+ contraseniaTrabajador + ", dni=" + dni + ", puesto=" + puesto + ", nombre=" + nombre + ", apellidos="
+				+ apellidos + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", id="
+				+ id + "]";
 	}
+
+	
+	
 	
 	
 
