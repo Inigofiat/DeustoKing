@@ -9,6 +9,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Paint;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,6 +34,7 @@ public class VentanaCarta extends JFrame {
 	lblOtrosCentro, lblSmashCentro, lblMenuCentro, lblAlergenosCentro;
 	private JScrollPane barra;
 	private JFrame vActual, vAnterior;
+	static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaCarta(JFrame va, String nombre) {
 		super();
@@ -63,6 +67,7 @@ public class VentanaCarta extends JFrame {
         btnEntrantesNorte.setBorderPainted(false);
 		pBotones.add(btnEntrantesNorte);
 		btnEntrantesNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA ENTARNTES");
 			new VentanaEntrantes(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -76,6 +81,7 @@ public class VentanaCarta extends JFrame {
 		btnEnsaladaNorte.setBorderPainted(false);
 		pBotones.add(btnEnsaladaNorte);
 		btnEnsaladaNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA ENSALADAS");
 			new VentanaEnsaladas(vActual);
 			vActual.dispose();
 			vActual.setVisible(false);
@@ -90,14 +96,17 @@ public class VentanaCarta extends JFrame {
 		pBotones.add(btnHamburguesasNorte);
 		btnHamburguesasNorte.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS BILBAO");
 				new VentanaHamburguesas(vActual, "BilboBurger", "src\\imagenes\\bilboburger.jpg");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS DONOSTI");
 				new VentanaHamburguesas(vActual, "DonostiBurger", "src\\imagenes\\donosti.jpg");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS GASTEIZ");
 				new VentanaHamburguesas(vActual, "GasteizBurger", "src\\imagenes\\gasteiz.png");
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -113,6 +122,7 @@ public class VentanaCarta extends JFrame {
 		btnPostresNorte.setBorderPainted(false);
 		pBotones.add(btnPostresNorte);
 		btnPostresNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA POSTRES");
 			new VentanaPostres(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -126,6 +136,7 @@ public class VentanaCarta extends JFrame {
 		btnBebidasNorte.setBorderPainted(false);
 		pBotones.add(btnBebidasNorte);
 		btnBebidasNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA BEBIDAS");
 			new VentanaBebidas(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -139,6 +150,7 @@ public class VentanaCarta extends JFrame {
 		btnInfantilNorte.setBorderPainted(false);
 		pBotones.add(btnInfantilNorte);
 		btnInfantilNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA INFANTIL");
 			new VentanaInfantil(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -153,6 +165,7 @@ public class VentanaCarta extends JFrame {
 		btnOtrosNorte.setBorderPainted(false);
 		pBotones.add(btnOtrosNorte);
 		btnOtrosNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA OTROS");
 			new VentanaOtros(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -167,6 +180,7 @@ public class VentanaCarta extends JFrame {
 		btnSmashNorte.setBorderPainted(false);
 		pBotones.add(btnSmashNorte);
 		btnSmashNorte.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA SMASH");
 			new VentanaSmash(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -181,14 +195,17 @@ public class VentanaCarta extends JFrame {
 		pBotones.add(btnMenuNorte);
 		btnMenuNorte.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU BILBAO");
 				new VentanaMenu(vActual, "MENU BILBO",  "src\\imagenes\\bilboburger.jpg", "BILBO BURGER");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU DONOSTI");
 				new VentanaMenu(vActual, "MENU DONOSTI", "src\\imagenes\\donosti.jpg", "DONOSTI BURGER");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU GASTEIZ");
 				new VentanaMenu(vActual, "MENU GASTEIZ", "src\\imagenes\\gasteiz.png", "GASTEIZ BURGER");
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -224,6 +241,7 @@ public class VentanaCarta extends JFrame {
 		btnEntrantesCentro.setMargin(margenBotones);
 		pProductos.add(btnEntrantesCentro);
 		btnEntrantesCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA ENTRANTES");
 			new VentanaEntrantes(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -246,6 +264,7 @@ public class VentanaCarta extends JFrame {
 		btnEnsaladaCentro.setMargin(margenBotones);
 		pProductos.add(btnEnsaladaCentro);
 		btnEnsaladaCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA ENSALADAS");
 			new VentanaEnsaladas(vActual);
 			vActual.dispose();
 			vActual.setVisible(false);
@@ -268,14 +287,17 @@ public class VentanaCarta extends JFrame {
 		pProductos.add(btnHamburguesasCentro);
 		btnHamburguesasCentro.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS BILBAO");
 				new VentanaHamburguesas(vActual, "BILBO BURGER", "src\\imagenes\\bilboburger.jpg");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS DONOSTI");
 				new VentanaHamburguesas(vActual, "DONOSTI BURGER", "src\\imagenes\\donosti.jpg");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS GASTEIZ");
 				new VentanaHamburguesas(vActual, "GASTEIZ BURGER", "src\\imagenes\\gasteiz.png");
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -298,6 +320,7 @@ public class VentanaCarta extends JFrame {
 		btnPostresCentro.setMargin(margenBotones);
 		pProductos.add(btnPostresCentro);
 		btnPostresCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA POSTRES");
 			new VentanaPostres(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -318,6 +341,8 @@ public class VentanaCarta extends JFrame {
 		btnBebidasCentro.setMargin(margenBotones);
 		pProductos.add(btnBebidasCentro);
 		btnBebidasCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA BEBIDAS");
+
 			new VentanaBebidas(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -338,6 +363,8 @@ public class VentanaCarta extends JFrame {
 		btnInfantilCentro.setMargin(margenBotones);
 		pProductos.add(btnInfantilCentro);
 		btnInfantilCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA INFANTIL");
+
 			new VentanaInfantil(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -358,6 +385,8 @@ public class VentanaCarta extends JFrame {
 		btnEntrantesCentro.setMargin(margenBotones);
 		pProductos.add(btnOtrosCentro);
 		btnOtrosCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA OTROS");
+
 			new VentanaOtros(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -378,6 +407,8 @@ public class VentanaCarta extends JFrame {
 		btnSmashCentro.setMargin(margenBotones);
 		pProductos.add(btnSmashCentro);
 		btnSmashCentro.addActionListener((e)->{
+			logger.log(Level.INFO, "ABRIENDO LA VENTANA SMASH");
+
 			new VentanaSmash(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -399,14 +430,17 @@ public class VentanaCarta extends JFrame {
 		pProductos.add(btnMenuCentro);
 		btnMenuCentro.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU BILBAO");
 				new VentanaMenu(vActual, "MENU BILBO",  "src\\imagenes\\bilboburger.jpg", "BILBO BURGER");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU DONSOTI");
 				new VentanaMenu(vActual, "MENU DONOSTI", "src\\imagenes\\donosti.jpg", "DONOSTI BURGER");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
+				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU GASTEIZ");
 				new VentanaMenu(vActual, "MENU GASTEIZ", "src\\imagenes\\gasteiz.png", "GASTEIZ BURGER");
 				vActual.setVisible(false);
 				vActual.dispose();
