@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -37,6 +39,7 @@ public class VentanaRegistro extends JFrame{
 	private JScrollPane scroll;
 	private static final String nomfichClientes = "Clientes.csv";
 	private JFrame vActual, vAnterior;
+	static Logger logger = Logger.getLogger(Main.class.getName());
 
 	
 	public VentanaRegistro(JFrame va) {
@@ -174,6 +177,7 @@ public class VentanaRegistro extends JFrame{
 		scroll = new JScrollPane();
  	
 		btnAtras.addActionListener((e) -> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			new VentanaPrincipal(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -197,6 +201,7 @@ public class VentanaRegistro extends JFrame{
 			if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 0, nombreUsuario, contrasenia)
 ) {
 				JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+				logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
 			} else {
 
 			}
