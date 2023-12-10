@@ -16,18 +16,22 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import deustoking.PuestoTrabajo;
 import deustoking.Restaurante;
+import deustoking.Trabajador;
 
 
 
@@ -39,10 +43,12 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel panCiudades, panBotones, panPrincipal, panInformación;
 	private JMenuBar menu;
 	private JMenu menuDesplegable;
-	private JMenuItem itHorarios, itCarta, itSalir;
+	private JMenuItem itTrabajador;
 	private JFrame vActual, vAnterior;
 	private GradientPaint gr1, gr2, gr3;
-	
+	private static final String nomfichClientes = "Trabajadores.csv";
+	private static Trabajador trabajador;
+	private static  JComboBox<PuestoTrabajo> cargoComboBox;
 	
 	
 	public VentanaPrincipal(JFrame va) {
@@ -59,7 +65,8 @@ public class VentanaPrincipal extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+		Restaurante.cargarTrabajadoresEnLista(nomfichClientes);
+		cargoComboBox=new JComboBox<>(PuestoTrabajo.values());
 		JPanel panelContenedor = new JPanel();
         panelContenedor.setLayout(new BorderLayout());
         
@@ -246,36 +253,81 @@ public class VentanaPrincipal extends JFrame {
 	    panBotones.setLayout(botonesLayout);
 	    
 	    menu = new JMenuBar();
-	    menuDesplegable = new JMenu("Info");
-	    menuDesplegable.setFont(new Font("Tw", Font.BOLD, 15));
-	    itCarta= new JMenuItem("Carta");
-	    itCarta.setFont(new Font("Tw", Font.PLAIN, 15));
-	    itCarta.addActionListener(new ActionListener() {
+	    menuDesplegable = new JMenu("¿Eres trabajador?");
+	    menuDesplegable.setFont(new Font("Tw", Font.BOLD, 12));
+	    menuDesplegable.setForeground(new Color(0,0,0));
+	    itTrabajador= new JMenuItem("Trabajador");
+	    itTrabajador.setFont(new Font("Tw", Font.PLAIN, 12));
+	    itTrabajador.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new VentanaCarta(vActual, "BILBO");
-				vActual.setVisible(false);
-				vActual.dispose();
-				
-			}
+	    	 @Override
+			    public void actionPerformed(ActionEvent e) {
+
+			        String dni = "";
+			        Trabajador t = null;
+
+			        while (t == null) {
+			            dni = JOptionPane.showInputDialog("Ingrese su DNI:");
+
+			            if (dni == null) {
+			                break;
+			            }
+
+			            if (dni.isEmpty()) {
+			                JOptionPane.showMessageDialog(null, "Inserte el DNI", "ERROR", JOptionPane.ERROR_MESSAGE);
+			            } else {
+			                t = Restaurante.buscarTrabajador(dni);
+
+			                if (t == null) {
+			                    JOptionPane.showMessageDialog(null, "Trabajador no encontrado", "ERROR", JOptionPane.WARNING_MESSAGE);
+			                }
+			            }
+			        }
+			       
+			        if (t != null) {
+			            PuestoTrabajo selectedCargo = null;
+			            while (selectedCargo == null) {
+			                cargoComboBox.setSelectedItem(t.getPuesto());
+			                Object[] mensaje = {
+			                        "Nombre y Apellidos:", t.getNombre() + " " + t.getApellidos(),
+			                        "Teléfono:", t.getTelefono(),
+			                        "DNI:", dni,
+			                        "Seleccione el cargo:", cargoComboBox
+			                };
+
+			                int result = JOptionPane.showConfirmDialog(null, mensaje, "Ingrese su información",
+			                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+			                if (result == JOptionPane.OK_OPTION) {
+			                    selectedCargo = (PuestoTrabajo) cargoComboBox.getSelectedItem();
+
+			                    if (!dni.equals(t.getDni()) || !selectedCargo.equals(t.getPuesto())) {
+			                        JOptionPane.showMessageDialog(null, "Cargo incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
+
+			                        selectedCargo = null;
+			                    } else {
+			                        JOptionPane.showMessageDialog(null, "¡Bienvenido!", "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+			                        trabajador = t;
+			                        new VentanaReserva(vActual);
+			                        vActual.setVisible(false);
+			                    }
+			                } else {
+			                   
+			                    break;
+			                }
+			            }
+			        }
+			    }
 		});
-	    itHorarios = new JMenuItem("Horarios");
-	    itHorarios.setFont(new Font("Tw", Font.PLAIN, 15));
 	    
-	    itSalir = new JMenuItem("Salir");
-	    itSalir.setFont(new Font("Tw", Font.PLAIN, 15));
-	    itSalir.addActionListener((e)->{
-			dispose();
-		});
 	    
-	    menuDesplegable.add(itCarta);
-	    menuDesplegable.add(itHorarios);
-	    menuDesplegable.add(itSalir);
+	    menuDesplegable.add(itTrabajador);
+	    
 	    menu.add(menuDesplegable);
 	    
 	    
 	    setJMenuBar(menu);
+	 
 	     
 	    panelContenedor.add(panCiudades, BorderLayout.CENTER);
 	    panelContenedor.add(panBotones, BorderLayout.NORTH);
