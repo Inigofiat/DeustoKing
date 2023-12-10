@@ -14,6 +14,8 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -41,6 +43,7 @@ public class VentanaReserva extends JFrame{
 	private JPanel pPrincipal, pCentro, pContenedor, pSur, pNorte;
 	private JFrame vActual, vAnterior;
     private static final String nomfichReservas = "reservas.csv";
+    static Logger logger = Logger.getLogger(Main.class.getName());
     
     
     Cliente cliente;
@@ -96,6 +99,7 @@ public class VentanaReserva extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 				vActual.dispose();
 				vAnterior.setVisible(true);
 				
