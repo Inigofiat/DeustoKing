@@ -1,4 +1,6 @@
-package baseDeDatos;
+package basesDeDatos;
+
+
 
 import java.sql.Connection;
 import java.sql.Date;
