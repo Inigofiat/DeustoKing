@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,6 +32,8 @@ public class VentanaMenu extends JFrame {
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;
+	static Logger logger = Logger.getLogger(Main.class.getName());
+
 	
 	public VentanaMenu(JFrame va, String lbNombre, String imagen, String nombre) {
 		super();
@@ -111,6 +115,7 @@ public class VentanaMenu extends JFrame {
 		btnM3.add(lblM3, BorderLayout.CENTER);
 		btnM3.setMargin(margenBotones);
 		btnM3.addActionListener((e)->{
+			logger.log(Level.INFO, "ABREINDO LA VENTANA DE BEBIDAS");
 			new VentanaBebidas(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -142,6 +147,7 @@ public class VentanaMenu extends JFrame {
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
 		btnVolver.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
