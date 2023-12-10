@@ -98,6 +98,13 @@ public class Reserva implements Comparable<Reserva>{
 		return this.getHora().compareTo(o.getHora());
 	}
 
+	@Override
+	public String toString() {
+		return "Reserva [id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", nComensales=" + nComensales + "]";
+	}
+	
+	
+
 
 
 
