@@ -63,7 +63,7 @@ public class VentanaCarta extends JFrame {
         btnEntrantesNorte.setBorderPainted(false);
 		pBotones.add(btnEntrantesNorte);
 		btnEntrantesNorte.addActionListener((e)->{
-			new VentanaEnsaladas(vActual);
+			new VentanaEntrantes(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
