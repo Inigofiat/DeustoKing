@@ -43,8 +43,7 @@ public class ModeloReserva extends DefaultTableModel{
 	public Object getValueAt(int row, int column) {
 		Reserva r = listaReservas.get(row);
 		switch(column) {
-		case 0: DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return r.getFecha().format(formatter);
+		case 0:return r.getFechaStr();
 		case 1:return r.getHora();
 		case 2:return r.getnComensales();
 		default: return null;
