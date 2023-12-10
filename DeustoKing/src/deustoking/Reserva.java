@@ -100,7 +100,7 @@ public class Reserva implements Comparable<Reserva>{
 
 	@Override
 	public String toString() {
-		return "Reserva [id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", nComensales=" + nComensales + "]";
+		return "Reserva [id=" + id + ", fecha=" + Utilidades.dateToString(fecha) + ", hora=" + hora + ", nComensales=" + nComensales + "]";
 	}
 	
 	
