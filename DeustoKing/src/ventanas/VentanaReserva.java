@@ -84,11 +84,11 @@ public class VentanaReserva extends JFrame{
         btnReservar = new JButton("Reservar");
         btnReservar.setPreferredSize(new Dimension(650, btnReservar.getPreferredSize().height));
         btnReservar.setFont(new Font("Arial", Font.BOLD, 17));
-       // btnReservar.setBackground(new Color(102,202,107));
+        btnReservar.setBackground(new Color(102,202,107));
         btnVolver = new JButton("Volver");
         btnVolver.setPreferredSize(new Dimension(650, btnVolver.getPreferredSize().height));
         btnVolver.setFont(new Font("Arial", Font.BOLD, 17));
-       // btnVolver.setBackground(new Color(102,202,107));
+        btnVolver.setBackground(new Color(102,202,107));
         pSur.add(btnReservar);
         pSur.add(btnVolver);
 
@@ -152,7 +152,8 @@ public class VentanaReserva extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				reservar();
+//				reservar();
+				Restaurante.reservar(datePicker, horas, nComensales, nomfichReservas, vActual, vAnterior);
 				
 			}
 		});
@@ -193,25 +194,6 @@ public class VentanaReserva extends JFrame{
 
 	}
 	
-	private void reservar() {
-	    GregorianCalendar calendar = (GregorianCalendar) datePicker.getModel().getValue();
-	    LocalDate fechaLocal = calendar.toZonedDateTime().toLocalDate();
-	    String hora = (String) horas.getSelectedItem();
-	    int comensales = (int) nComensales.getSelectedItem();
-	    Reserva reserva = new Reserva(Reserva.getContador(),fechaLocal, hora, comensales);
-	    int opcion = JOptionPane.showConfirmDialog(null, "¿Desea guardar la reserva?", "Confirmar reserva", JOptionPane.YES_NO_OPTION);
-	    if (opcion == JOptionPane.YES_OPTION) {
-	        Restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
-	        JOptionPane.showMessageDialog(null, "Reserva guardada exitosamente");
-	    } else {
-	        int opcion2 = JOptionPane.showConfirmDialog(null, "¿Desea continuar en la ventana de reserva?", "Continua reserva",JOptionPane.YES_NO_OPTION);
-	        if(opcion2==JOptionPane.YES_OPTION) {
-	        	vActual.setVisible(true);
-	        }else {
-	        	vActual.dispose();
-				vAnterior.setVisible(true);
-	        }
-	    }
-    }
+
 
 }
