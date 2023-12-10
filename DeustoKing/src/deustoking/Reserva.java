@@ -1,21 +1,32 @@
 package deustoking;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import java.util.Date;
 
 public class Reserva implements Comparable<Reserva>{
 	static int contador = 1;
 	private int id;
-	private LocalDate fecha;
+	private Date fecha;
 	private String hora;
 	private int nComensales;
 	
 	
-	public Reserva(int id, LocalDate fecha, String hora, int nComensales) {
+	public Reserva(int id, Date fecha, String hora, int nComensales) {
 		super();
 		this.id = contador;
 		contador++;
 		this.fecha = fecha;
+		this.hora = hora;
+		this.nComensales = nComensales;
+		
+	}
+	
+	public Reserva(int id, String fecha, String hora, int nComensales) {
+		super();
+		this.id = contador;
+		contador++;
+		
+		this.fecha = Utilidades.stringToDate(fecha);
 		this.hora = hora;
 		this.nComensales = nComensales;
 		
@@ -43,6 +54,10 @@ public class Reserva implements Comparable<Reserva>{
 		Reserva.contador = contador;
 	}
 	
+	public String getFechaStr() {
+	       return Utilidades.dateToString(fecha);
+	    }
+	
 	public int getId() {
 		return id;
 	}
@@ -51,16 +66,12 @@ public class Reserva implements Comparable<Reserva>{
 		this.id = id;
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 	
-	public String getFormattedFecha() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return fecha.format(formatter);
-    }
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -81,20 +92,14 @@ public class Reserva implements Comparable<Reserva>{
 	}
 	
 	
-
-
-
-	@Override
-	public String toString() {
-		return "Reserva [fecha=" + getFormattedFecha() + ", hora=" + hora + ", nComensales=" + nComensales 
-				+ "]";
-	}
-
 	@Override
 	public int compareTo(Reserva o) {
 		
 		return this.getHora().compareTo(o.getHora());
 	}
+
+
+
 
 	
 	

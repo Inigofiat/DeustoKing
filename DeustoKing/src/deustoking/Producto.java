@@ -1,43 +1,47 @@
 package deustoking;
 
 public class Producto {
+	private int idP;
 	private String nombre;
-    private int cantidad;
+    private String descripcion;
     private double precio;
+    
+	public Producto(int idP, String nombre, String descripcion, double precio) {
+		super();
+		this.idP = idP;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+	}
+	public int getIdP() {
+		return idP;
+	}
+	public void setIdP(int idP) {
+		this.idP = idP;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	@Override
+	public String toString() {
+		return "Producto [idP=" + idP + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
+				+ "]";
+	}
 
-    public Producto(String nombre, int cantidad, double precio) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.precio = precio;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    @Override
-    public String toString() {
-        return "Nombre: " + nombre + ", Cantidad: " + cantidad + ", Precio: $" + precio;
-    }
 
 }
