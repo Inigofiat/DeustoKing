@@ -25,6 +25,7 @@ import deustoking.Restaurante;
 
 public class VentanaCupones extends JFrame {
 	
+	private VentanaCliente ventanaCliente;
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
 	private JButton btnC1, btnC2, btnC3, btnC4, btnVolver;
 	private JLabel lblC1, lblC2, lblC3, lblC4;
@@ -85,6 +86,13 @@ public class VentanaCupones extends JFrame {
 		btnC1.setMargin(margenBotones);
 		pProductos.add(btnC1);
 		
+		btnC1.addActionListener(e -> {
+            logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CUPÓN 1");
+            ventanaCliente.actualizarPuntosCliente(10);
+            btnC1.setEnabled(false);
+    });
+	
+		
 		btnC2 = new JButton();
 		ImageIcon cupon2 = new ImageIcon("src\\imagenes\\CUPON.png");
 		lblC2 = new JLabel("CUPÓN 2: - 50% en Bilbo.");
@@ -101,6 +109,13 @@ public class VentanaCupones extends JFrame {
 		btnC2.add(lblC2, BorderLayout.CENTER);
 		btnC2.setMargin(margenBotones);
 		pProductos.add(btnC2);
+		
+		btnC2.addActionListener(e -> {
+            logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CUPÓN 2");
+            ventanaCliente.actualizarPuntosCliente(20);
+            btnC2.setEnabled(false);
+    });
+	
 		
 		btnC3 = new JButton();
 		ImageIcon cupon3 = new ImageIcon("src\\imagenes\\CUPON.png");
@@ -119,6 +134,12 @@ public class VentanaCupones extends JFrame {
 		btnC3.setMargin(margenBotones);
 		pProductos.add(btnC3);
 		
+		btnC3.addActionListener(e -> {
+            logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CUPÓN 3");
+            ventanaCliente.actualizarPuntosCliente(30); 
+            btnC3.setEnabled(false);
+        });
+		
 		btnC4 = new JButton();
 		ImageIcon cupon4 = new ImageIcon("src\\imagenes\\CUPON.png");
 		lblC4 = new JLabel("CUPÓN 4: 15,99€ Sanwing + Porking");
@@ -135,6 +156,12 @@ public class VentanaCupones extends JFrame {
 		btnC4.add(lblC4, BorderLayout.CENTER);
 		btnC4.setMargin(margenBotones);
 		pProductos.add(btnC4);
+		
+		btnC4.addActionListener(e -> {
+            logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CUPÓN 4");
+            ventanaCliente.actualizarPuntosCliente(40);
+            btnC4.setEnabled(false);
+        });
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -184,6 +211,12 @@ public class VentanaCupones extends JFrame {
 	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
 	    
 	    setVisible(true);
+	}
+	
+	private void actualizarVentanaCliente(int puntosGanados) {
+	    if (vAnterior instanceof VentanaCliente) {
+	        ((VentanaCliente) vAnterior).actualizarPuntosCliente(puntosGanados);
+	    }
 	}
 	
 }

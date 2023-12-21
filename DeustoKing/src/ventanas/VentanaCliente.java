@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
 
 import deustoking.Cliente;
 import deustoking.Restaurante;
@@ -24,7 +25,7 @@ public class VentanaCliente extends JFrame{
 	private Cliente cliente;
 	private int puntosCliente;
 	
-	public VentanaCliente() {
+	public VentanaCliente(Cliente cliente) {
 		this.cliente = cliente;
 		this.puntosCliente = 0;
 	
@@ -59,61 +60,23 @@ public class VentanaCliente extends JFrame{
 		pCentro.add(lblCupon3);
 		pCentro.add(lblCupon4);
 		
-		lblCupon1.addMouseListener(new JLabelMouseListener("Información del Cupón 1"));
-        lblCupon2.addMouseListener(new JLabelMouseListener("Información del Cupón 2"));
-        lblCupon3.addMouseListener(new JLabelMouseListener("Información del Cupón 3"));
-        lblCupon4.addMouseListener(new JLabelMouseListener("Información del Cupón 4"));
 
         Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 	}
 	
-	private class JLabelMouseListener implements MouseListener{
-		private String info;
-		
-		public JLabelMouseListener(String informacion) {
-            this.info = info;
-            
-        }
-
-		
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			 JOptionPane.showMessageDialog(null, info, "Información del Cupón", JOptionPane.INFORMATION_MESSAGE);
-        
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			
-			
-		}
-		// Método para comprar un producto y actualizar los puntos del cliente
-	    private void comprarProducto(int puntosGanados) {
-	        puntosCliente += puntosGanados;
-	        sliderPts.setValue(puntosCliente);
-	    }
-	    
-		
-	}
-
+     public void actualizarPuntosCliente(int puntosGanados) {
+        puntosCliente += puntosGanados;
+        sliderPts.setValue(puntosCliente);
+     }
 	
+	 public static void main(String[] args) {
+	    SwingUtilities.invokeLater(() -> {
+	    	Cliente cliente = new Cliente();
+	        // Crea una instancia de VentanaCliente
+	        VentanaCliente ventanaCliente = new VentanaCliente(cliente);
+	    });
+	 }
+	 
 
 }
