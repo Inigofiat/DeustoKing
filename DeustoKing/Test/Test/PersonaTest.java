@@ -117,4 +117,17 @@ public class PersonaTest {
          String expectedToString = "Persona [nombre=John, apellidos=Doe, telefono=123456789, correo=john.doe@example.com, direccion=123 Main Street, id=1]";
          assertEquals(expectedToString, persona.toString());
     }
+    
+    @Test
+    public void testConstructorPorDefecto() {
+        Persona personaDefault = new Persona();
+        assertNull(personaDefault.getNombre());
+        assertNull(personaDefault.getApellidos());
+        assertNull(personaDefault.getTelefono());
+        assertNull(personaDefault.getCorreo());
+        assertNull(personaDefault.getDireccion());
+        assertNotEquals(1, personaDefault.getId());
+    }
+    
+
 }

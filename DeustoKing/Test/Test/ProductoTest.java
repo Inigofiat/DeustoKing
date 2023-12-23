@@ -13,7 +13,7 @@ public class ProductoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		producto = new Producto(1,"Producto", "Desc", 2.5);
+		producto = new Producto(1,"Producto", "Desc", 2.5,1,"Mod");
 	}
 
 	@After
@@ -68,11 +68,34 @@ public class ProductoTest {
 		producto.setPrecio(precio);
 		assertEquals(precio, producto.getPrecio(), 0.001);
 	}
-
-	@Test
-	public void testToString() {
-		 String expectedToString = "Producto [idP=1, nombre=Producto, descripcion=Desc, precio=2.5]";
-		 assertEquals(expectedToString, producto.toString());
-	}
+    @Test
+    public void testGetModificacion() {
+        assertEquals("Mod", producto.getModificacion());
+    }
+    
+    @Test
+    public void testGetCantidad() {
+        assertEquals(1, producto.getCantidad());
+    }
+    
+    @Test
+    public void testSetModificacion() {
+        producto.setModificacion("Nueva modificación");
+        assertEquals("Nueva modificación", producto.getModificacion());
+    }
+    
+    @Test
+    public void testToString() {
+    	producto.setIdP(1);
+        producto.setNombre("Producto");
+        producto.setDescripcion("Desc");
+        producto.setPrecio(2.5);
+        producto.setCantidad(1);
+        producto.setModificacion("Mod");
+        String expectedString = "Producto [idP=1, nombre=Producto, descripcion=Desc, precio=2.5, cantidad=1, modificacion=Mod]";
+        assertEquals(expectedString, producto.toString());
+		
+	
+    }
 
 }

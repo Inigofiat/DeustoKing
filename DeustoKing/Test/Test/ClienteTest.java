@@ -21,19 +21,24 @@ public class ClienteTest {
 	public void tearDown() throws Exception {
 		cliente = null;
 	}
-
+	
 	@Test
 	public void testToString() {
-		Cliente cliente = new Cliente();
-		cliente.setNombre("Aitor");
-		cliente.setApellidos("de la Osa");
-		cliente.setTelefono("987654321");
-		cliente.setCorreo("aitordela.osa@opendeusto.es");
-		cliente.setDireccion("321 Kalea");
-		cliente.setId(2);
-		cliente.setPuntosAcumulados(100);
-	}
+	    cliente.setNombre("Nombre");
+	    cliente.setApellidos("Apellidos");
+	    cliente.setTelefono("123456789");
+	    cliente.setCorreo("Correo");
+	    cliente.setDireccion("Dir");
+	    cliente.setId(1);
 
+	    cliente.setPuntosAcumulados(0);
+	    cliente.setNombreUsuario("nUsuario");
+	    cliente.setContrasenia("Contrasenia");
+
+	    String expectedToString = "Cliente [puntosAcumulados=0, nombreUsuario=nUsuario, contrasenia=Contrasenia, "
+	            + "nombre=Nombre, apellidos=Apellidos, telefono=123456789, correo=Correo, direccion=Dir, id=1]";
+	    assertEquals(expectedToString, cliente.toString());
+	}
 
 	@Test
 	public void testGetPuntosAcumulados() {
@@ -71,5 +76,13 @@ public class ClienteTest {
 		cliente.setContrasenia(cont);
 		assertEquals(cont, cliente.getContrasenia());
 	}
+	
+    @Test
+    public void testConstructorPorDefecto() {
+        Cliente defaultCliente = new Cliente();
+        assertEquals(0, defaultCliente.getPuntosAcumulados());
+        assertNull(defaultCliente.getNombreUsuario());
+        assertNull(defaultCliente.getContrasenia());
+    }
 
 }

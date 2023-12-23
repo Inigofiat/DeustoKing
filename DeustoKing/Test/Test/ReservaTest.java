@@ -17,8 +17,8 @@ public class ReservaTest {
 
 	@Before
 	public void setUp() throws Exception {
-		reserva = new Reserva(1,Utilidades.stringToDate("08-04-2004"),"12:30",5);
-		reservaFechaStr = new Reserva(1, "08-04-2004", "12:30", 5);
+		reserva = new Reserva("nombre","tlf","correo",Utilidades.stringToDate("08-04-2004"),"12:30",5);
+		reservaFechaStr = new Reserva(1, "nomb", "telfo", "mail", "01-04-1998", "21:30", 2);
 		Reserva.reiniciarContador();
 	}
 
@@ -96,6 +96,42 @@ public class ReservaTest {
 		reserva.setnComensales(comensales);
 		assertEquals(reserva.getnComensales(), comensales);
 	}
+	
+	@Test
+	public void testGetNombre() {
+		assertEquals("nombre", reserva.getNombre());
+	}
+
+	@Test
+	public void testSetNombre() {
+		String nombre = "yo";
+		reserva.setNombre(nombre);
+		assertEquals(reserva.getNombre(), nombre);
+	}
+	
+	@Test
+	public void testGetTelefono() {
+		assertEquals("tlf", reserva.getTelefono());
+	}
+
+	@Test
+	public void testSetTelefono() {
+		String telefono = "123456789";
+		reserva.setTelefono(telefono);
+		assertEquals(reserva.getTelefono(), telefono);
+	}
+	
+	@Test
+	public void testGetCorreo() {
+		assertEquals("correo", reserva.getCorreo());
+	}
+
+	@Test
+	public void testSetCorreo() {
+		String correo = "i@gmail.com";
+		reserva.setCorreo(correo);
+		assertEquals(reserva.getCorreo(), correo);
+	}
 
 	@Test
 	public void testCompareTo() {
@@ -108,8 +144,20 @@ public class ReservaTest {
 	
 	 @Test
 	 public void testToString() {
-		 String expectedString = "Reserva [id=1, fecha=" + Utilidades.dateToString(reserva.getFecha()) + ", hora=12:30, nComensales=5]";
+		 reserva.setNombre("nombre");
+		 reserva.setTelefono("tlf");
+		 reserva.setCorreo("correo");
+		 reserva.setFecha(Utilidades.stringToDate("08-04-2004"));
+		 reserva.setHora("12:30");
+		 reserva.setnComensales(5);
+		 Date fechaEsperada = Utilidades.stringToDate("08-04-2004");
+		 String expectedString = "Reserva [nombre=nombre, telefono=tlf, correo=correo, id=1, fecha=08-04-2004, hora=12:30, nComensales=5]";
 	     assertEquals(expectedString, reserva.toString());
+	 	
+		
+
+			
+
 	 }
 	 
 	 @Test
@@ -120,6 +168,37 @@ public class ReservaTest {
 		 assertNull(nueva.getHora());
 		 assertEquals(0, nueva.getnComensales());
 	 }
+	 
+	    @Test
+	    public void testReservaConstructorConIdyDateObject() {
+	     
+	        int id = 1;
+	        Date fecha = Utilidades.stringToDate("12-05-2024");
+	        String hora = "19:30";
+	        int nComensales = 2;
+
+	        Reserva reserva = new Reserva(id, fecha, hora, nComensales);
+
+	        assertEquals(id, reserva.getId());
+	        assertEquals(fecha, reserva.getFecha());
+	        assertEquals(hora, reserva.getHora());
+	        assertEquals(nComensales, reserva.getnComensales());
+	    }
+	    @Test
+	    public void testReservaConstructorConStringDate() {
+	        int id = 1;
+	        String fechaStr = "23-12-2020";
+	        String hora = "19:00";
+	        int nComensales = 3;
+
+	        Reserva reserva = new Reserva(id, fechaStr, hora, nComensales);
+
+	        assertEquals(id, reserva.getId());
+	        assertEquals(Utilidades.stringToDate(fechaStr), reserva.getFecha());
+	        assertEquals(hora, reserva.getHora());
+	        assertEquals(nComensales, reserva.getnComensales());
+	    }
+
 	
 	 
 
