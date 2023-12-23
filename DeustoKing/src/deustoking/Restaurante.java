@@ -9,10 +9,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -48,6 +52,8 @@ public class Restaurante {
 	private static Map<Date, List<Reserva>> mapaHorasPorFecha;
 	private static Map<String, List<Reserva>> mapaReservas;
 	private static List<Producto>productos;
+	private static Set<String> fechasReservas;
+	private static  List<String> fechasOrdenadas;
 
 	
 	static {
@@ -61,6 +67,8 @@ public class Restaurante {
 		mapaReservas= new TreeMap<>();
 		listaTrabajadores=new ArrayList<>();
 		productos= new ArrayList<>();
+		fechasReservas= new HashSet<>();
+		fechasOrdenadas = new ArrayList<>();
 
 	}
 	
@@ -314,17 +322,34 @@ public class Restaurante {
 
 	
 	public static void cargarFechasEnComboBox(List<Reserva> reservas, JComboBox<String> cbFecha) {
-	    Set<String> fechasAgregadas = new HashSet<>(); 
+		for (Reserva reserva : reservas) {
+            String fecha = reserva.getFechaStr();
 
-	    for (Reserva reserva : reservas) {
-	    	String fecha = reserva.getFechaStr();
+            if (!fechasReservas.contains(fecha)) {
+                fechasOrdenadas.add(fecha);
+                fechasReservas.add(fecha);
+            }
+        }
 
-	        
-	        if (!fechasAgregadas.contains(fecha)) {
-	            cbFecha.addItem(fecha);
-	            fechasAgregadas.add(fecha); 
-	        }
-	    }
+        Collections.sort(fechasOrdenadas, new Comparator<String>() {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); 
+
+            @Override
+            public int compare(String fecha1, String fecha2) {
+                try {
+                    return sdf.parse(fecha1).compareTo(sdf.parse(fecha2));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
+            }
+        });
+
+        cbFecha.removeAllItems();
+
+        for (String fecha : fechasOrdenadas) {
+            cbFecha.addItem(fecha);
+        }
 	}
 	
 	public static void guardarReservasEnFichero(Reserva reserva, String nombrefich) {

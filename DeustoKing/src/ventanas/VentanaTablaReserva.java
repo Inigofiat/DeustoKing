@@ -60,7 +60,7 @@ public class VentanaTablaReserva extends JFrame{
 	public VentanaTablaReserva() {
 		super();
 		
-		Restaurante.cargarReservasEnLista("reservas.csv");
+		Restaurante.cargarReservasEnLista("ficheros/reservas.csv");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
