@@ -26,6 +26,17 @@ public class Reserva implements Comparable<Reserva>{
 		this.nComensales = nComensales;
 	}
 	
+	public Reserva(int id, String nombre, String telefono, String correo, String fecha, String hora, int nComensales) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.correo = correo;
+		this.fecha = Utilidades.stringToDate(fecha);
+		this.hora = hora;
+		this.nComensales = nComensales;
+	}
+	
 	public Reserva(int id, String fecha, String hora, int nComensales) {
 		super();
 		this.id = contador;
