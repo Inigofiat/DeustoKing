@@ -50,6 +50,13 @@ public class ModeloReserva extends DefaultTableModel{
 		}
 	}
 	
+	public List<Reserva> getListaReservas() {
+		return listaReservas;
+	}
+	
+	public Reserva getReserva(int row) {
+		return listaReservas.get(row);
+	}
 
 
 	
