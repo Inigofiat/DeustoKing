@@ -56,13 +56,10 @@ public class VentanaTablaReserva extends JFrame{
 	private SpinnerModel modeloSpinner;
 	private JSpinner spComensales;
 	
-	private String fecha;
-	
-	
 	
 	public VentanaTablaReserva() {
 		super();
-		fecha= "";
+		
 		Restaurante.cargarReservasEnLista("reservas.csv");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -116,18 +113,8 @@ public class VentanaTablaReserva extends JFrame{
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 
-		        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
-		        String fechaString = (String) cbFecha.getSelectedItem();
-
-		        try {
-		          
-		            Date fecha = dateFormatter.parse(fechaString);
-		            List<Reserva> listaReservas = Restaurante.obtenerReservasPorFecha(fecha);
-		            tablaReserva.setModel(new ModeloReserva(listaReservas));
-
-		        } catch (ParseException ex) {
-		            System.err.println("Error al parsear la fecha: " + ex.getMessage());
-		        }
+		    	List<Reserva> listaReservas = obtenerReservasFecha();
+		        tablaReserva.setModel(new ModeloReserva(listaReservas));
 		    }
 		});
 		
@@ -136,30 +123,29 @@ public class VentanaTablaReserva extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				Point p = e.getPoint();
 				int fila = tablaReserva.rowAtPoint(p);
-				String fecha = tablaReserva.getModel().getValueAt(fila, 1).toString();
-				List<Cliente> lp = Restaurante.getPersonasHanCompradoElProducto(fecha);
+				Reserva r = ((ModeloReserva)tablaReserva.getModel()).getReserva(fila);
+				Cliente c = new Cliente(r.getNombre(), "",r.getTelefono(), r.getCorreo(),"", 0,0, "", "");
+				List<Cliente> lp = new ArrayList<>();
+				lp.add(c);
 				tablaCliente.setModel(new ModeloCliente(lp));
-				
 			}
 		});
 	    
-//	    spComensales.addChangeListener(new ChangeListener() {
-//			
-//			@Override
-//			public void stateChanged(ChangeEvent e) {
-//				int valor = Integer.parseInt(spComensales.getValue().toString());
-//				if(Restaurante.getMapaHorasPorFecha().containsKey(fecha)) {
-//						List<Reserva> l = Restaurante.obtenerListaReservas(fecha);
-//						List<Reserva> lFiltro = new ArrayList<>();
-//						for(Reserva r: l) {
-//							if(r.getnComensales() >= valor) {
-//								lFiltro.add(r);
-//							}
-//						}
-//						tablaReserva.setModel(new ModeloReserva(lFiltro));
-//					}
-//				}
-//		});
+	    spComensales.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				int valor = Integer.parseInt(spComensales.getValue().toString());
+				List<Reserva> listaReservas = obtenerReservasFecha();
+				List<Reserva> nueva = new ArrayList<>();
+				for(Reserva r: listaReservas) {
+					if(r.getnComensales() == valor) {
+						nueva.add(r);
+					}
+				}
+				tablaReserva.setModel(new ModeloReserva(nueva));
+			}
+		});
 	    
 	    
 	    pContenedor.add(pNorte, BorderLayout.NORTH);
@@ -170,6 +156,21 @@ public class VentanaTablaReserva extends JFrame{
 
 		setVisible(true);
 	}
+	
+	private List<Reserva> obtenerReservasFecha(){
+  	  	SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+	    String fechaString = (String) cbFecha.getSelectedItem();
+	    Date fecha;
+	    List<Reserva> listaReservas = new ArrayList<>();
+	    try {
+			fecha = dateFormatter.parse(fechaString);
+			listaReservas = Restaurante.obtenerReservasPorFecha(fecha);
+	    } catch (ParseException e) {
+			e.printStackTrace();
+		}
+         
+	    return listaReservas;
+  }
 	
 	public static void main(String[] args) {
 		VentanaTablaReserva v = new VentanaTablaReserva();
