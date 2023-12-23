@@ -1,5 +1,6 @@
 package deustoking;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,12 +27,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 import org.jdatepicker.DatePicker;
 
 import basesDeDatos.BD;
 
-//ordenar fecha
 public class Restaurante {
 	
 
@@ -44,6 +47,7 @@ public class Restaurante {
 	private static Cliente cliente;
 	private static Map<Date, List<Reserva>> mapaHorasPorFecha;
 	private static Map<String, List<Reserva>> mapaReservas;
+	private static List<Producto>productos;
 
 	
 	static {
@@ -56,6 +60,8 @@ public class Restaurante {
 		mapaHorasPorFecha = new TreeMap<>();
 		mapaReservas= new TreeMap<>();
 		listaTrabajadores=new ArrayList<>();
+		productos= new ArrayList<>();
+
 	}
 	
 	public static void miIcono(JFrame ventana, String rutaIcono) {
@@ -79,8 +85,11 @@ public class Restaurante {
                 String fecha = partes[1];
                 String hora = partes[2];
                 int comensales = Integer.parseInt(partes[3]);
+                String nombre = partes[4];
+                String telefono = partes[5];
+                String email = partes[6];
                
-                Reserva reserva = new Reserva(id,fecha, hora, comensales);
+                Reserva reserva = new Reserva(id,nombre, telefono, email, fecha, hora, comensales);
                 listaReservas.add(reserva);
 			}
 		} catch (FileNotFoundException e) {
@@ -202,7 +211,7 @@ public class Restaurante {
 			PrintWriter pw = new PrintWriter(nomfichClientes);
 			for(Cliente c: clientes) {
 				pw.println(c.getNombre()+";"+c.getApellidos()+";"+c.getTelefono()+";"+c.getDireccion()+";"+c.getCorreo()+";"+
-						c.getNombreUsuario()+";"+c.getContrasenia());
+						c.getNombreUsuario()+";"+c.getContrasenia()+";"+c.getPuntosAcumulados());
 			}
 			pw.flush();
 			pw.close();
@@ -224,28 +233,28 @@ public class Restaurante {
 
 	public static boolean verificarContrasenia(String contrasenia) {
 
-		if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
-			JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
+//		if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
+//			JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
+//			return false;
+//		}
 		return true;
 	}
 	
 	
 	public static boolean verificarNombreUsuario(String nombreUsuario) {
-		if(!nombreUsuario.matches(".*[a-zA-Z].*")&& nombreUsuario.length()<4) {
-			JOptionPane.showMessageDialog(null, "El nombre de usuario es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
+//		if(!nombreUsuario.matches(".*[a-zA-Z].*")&& nombreUsuario.length()<4) {
+//			JOptionPane.showMessageDialog(null, "El nombre de usuario es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+//			return false;
+//		}
 		return true;
 	}
 	
 
 	public static boolean verificarTelefono(String telefono) {
-		if(telefono.length()!=9 || !telefono.matches(".*[0-9].*") || telefono.matches(".*[a-zA-Z].*")) {
-			JOptionPane.showMessageDialog(null, "El numero de teléfono es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
+//		if(telefono.length()!=9 || !telefono.matches(".*[0-9].*") || telefono.matches(".*[a-zA-Z].*")) {
+//			JOptionPane.showMessageDialog(null, "El numero de teléfono es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+//			return false;
+//		}
 		return true;
 	}
 
@@ -258,10 +267,13 @@ public class Restaurante {
 	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
 		int id, int puntos, String nombreUsuario, String contrasenia) {
 
-		if(verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)) {
-			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 0 , nombreUsuario, contrasenia);
+		if(verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)&& buscarUsuario(telefono)==null && buscarUsuario(correo)==null && buscarUsuario(nombre)==null) {
+			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, puntos , nombreUsuario, contrasenia);
 			clientes.add(nuevoCliente);
 			guardarClientes(nomfichCliente);
+			Connection con = BD.initBD("deustoking.db");
+			Restaurante.volcarCSVPersonasABD(con, nomfichCliente);
+			BD.cerrarBD(con);
 			return true;
 		} 
 		return false;
@@ -282,10 +294,11 @@ public class Restaurante {
 				String dir = partes[4];
 				String nUsuario = partes[5];
 				String contrasenia = partes[6];
+				int puntos = Integer.parseInt(partes[7]);
 				
 				 String parametroBusqueda = obtenerParametroBusquedaInicioSesion(email, nombre, tlf);
 				if(buscarUsuario(parametroBusqueda)==null) {
-					Cliente cliente = new Cliente(nombre, apellidos, tlf, email, dir, Persona.getContador(), 0, nUsuario, contrasenia);
+					Cliente cliente = new Cliente(nombre, apellidos, tlf, email, dir, Persona.getContador(), puntos, nUsuario, contrasenia);
 					clientes.add(cliente);
 					
 				}
@@ -320,7 +333,7 @@ public class Restaurante {
 			PrintWriter pw = new PrintWriter(new FileWriter(nombrefich, true));
 			String fecha = reserva.getFechaStr();
           
-			pw.println(Reserva.getContador()+";"+ fecha+";"+reserva.getHora()+";"+reserva.getnComensales());
+			pw.println(Reserva.getContador()+";"+ fecha+";"+reserva.getHora()+";"+reserva.getnComensales()+";"+reserva.getNombre()+";"+reserva.getTelefono()+";"+reserva.getCorreo());
 			pw.close();
 		} catch (IOException e) {
 			
@@ -396,5 +409,44 @@ public class Restaurante {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void informacionProductos(String nombre, String ingredientes, double precio) {
+
+	    SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, 20, 1);
+	    JSpinner spinner = new JSpinner(spinnerModel);
+	    JPanel spinnerPanel = new JPanel();
+	    spinnerPanel.add(spinner);
+	    Dimension panelSize = new Dimension(200, spinnerPanel.getPreferredSize().height);
+	    spinnerPanel.setPreferredSize(panelSize);
+	    Object[] mensaje = {
+	            "Ingredientes:", ingredientes,
+	            "\n",
+	            "Precio:", precio + " €",
+	            "\n",
+	            "Cantidad a añadir:",
+	            spinnerPanel
+	    };
+
+	    Object[] opciones = {"Añadir", "Cancelar"};
+	    int resultado = JOptionPane.showOptionDialog(
+	            null, mensaje, nombre, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+	            null, opciones, opciones[0]
+	    );
+
+	    if (resultado == JOptionPane.OK_OPTION) {
+	        int cantidad = (int) spinner.getValue();
+	        JOptionPane.showMessageDialog(null, "Añadido con éxito", "INFO", JOptionPane.INFORMATION_MESSAGE);
+	        Producto p = new Producto(1, nombre, ingredientes, precio, cantidad, "");
+	        productos.add(p);
+
+	        for (Producto pr : productos) {
+	            System.out.println(pr);
+	        }
+	    }
+	}
+	
+	public static List<Producto> obtenerProductos() {
+        return productos;
+    }
 	
 }
