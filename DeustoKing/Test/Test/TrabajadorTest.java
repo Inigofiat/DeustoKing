@@ -132,12 +132,12 @@ public class TrabajadorTest {
 	
     @Test
     public void testConstructor() {
-        // Arrange
-        String nombre = "Juan";
-        String apellidos = "Perez";
-        String telefono = "123456789";
+       
+        String nombre = "Iñigo";
+        String apellidos = "Fiat";
+        String telefono = "717772600";
         PuestoTrabajo puesto = PuestoTrabajo.BARMAN;
-        String dni = "123456789A";
+        String dni = "16101227P";
 
        
         Trabajador trabajador = new Trabajador(nombre, apellidos, telefono, puesto, dni);
