@@ -240,31 +240,41 @@ public class Restaurante {
 	        return tlf;
 	    }
 	}
+	
+	public static boolean verificarCorreo(String correo) {
+
+		if(correo.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.(com|org|es))$")) {
+			return true;
+		}
+		JOptionPane.showMessageDialog(null, "El correo no es válido", "ERROR", JOptionPane.ERROR_MESSAGE);
+		return false;
+		
+	}
 
 	public static boolean verificarContrasenia(String contrasenia) {
 
-//		if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
-//			JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
-//			return false;
-//		}
+		if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
+			JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 		return true;
 	}
 	
 	
 	public static boolean verificarNombreUsuario(String nombreUsuario) {
-//		if(!nombreUsuario.matches(".*[a-zA-Z].*")&& nombreUsuario.length()<4) {
-//			JOptionPane.showMessageDialog(null, "El nombre de usuario es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
-//			return false;
-//		}
+		if(!nombreUsuario.matches(".*[a-zA-Z].*") || nombreUsuario.length()<4) {
+			JOptionPane.showMessageDialog(null, "El nombre de usuario es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 		return true;
 	}
 	
 
 	public static boolean verificarTelefono(String telefono) {
-//		if(telefono.length()!=9 || !telefono.matches(".*[0-9].*") || telefono.matches(".*[a-zA-Z].*")) {
-//			JOptionPane.showMessageDialog(null, "El numero de teléfono es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
-//			return false;
-//		}
+		if(telefono.length()!=9 || !telefono.matches(".*[0-9].*") || telefono.matches(".*[a-zA-Z].*")) {
+			JOptionPane.showMessageDialog(null, "El numero de teléfono es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 		return true;
 	}
 
@@ -277,8 +287,8 @@ public class Restaurante {
 	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
 		int id, int puntos, String nombreUsuario, String contrasenia) {
 
-		if(verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)&& buscarUsuario(telefono)==null && buscarUsuario(correo)==null && buscarUsuario(nombre)==null) {
-			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, puntos , nombreUsuario, contrasenia);
+		if(verificarCorreo(correo) && verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)&& buscarUsuario(telefono)==null && buscarUsuario(correo)==null && buscarUsuario(nombre)==null) {
+			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 7 , nombreUsuario, contrasenia);
 			clientes.add(nuevoCliente);
 			guardarClientes(nomfichCliente);
 			Connection con = BD.initBD("deustoking.db");
