@@ -32,7 +32,7 @@ public class Main {
 		}
 		Restaurante.volcarCSVPersonasABD(con, "ficheros/Clientes.csv");
 		Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
-		BD.insertarProducto(con, new Producto(0, "Hamburguesa", "Con patatas", 9.5));
+		
 		BD.cerrarBD(con);
 	}
 }

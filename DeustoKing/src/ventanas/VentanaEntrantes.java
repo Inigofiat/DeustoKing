@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,6 +80,14 @@ public class VentanaEntrantes extends JFrame {
 		lblNachos.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnNachos.add(lblNachos, BorderLayout.CENTER);
 		btnNachos.setMargin(margenBotones);
+		btnNachos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("NachoMania", "Guacamole casero, pulled pork macerado con cuatro quesos y salsa bbq,\npico de gallo, salsa cheddar, crema agria y jalapeños, acompañado de nachos caseros de maíz.", 9.90);
+				
+			}
+		});
 		pProductos.add(btnNachos);
 		
 		btnArosCebolla = new JButton();
@@ -93,6 +103,14 @@ public class VentanaEntrantes extends JFrame {
 		lblArosCebolla.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnArosCebolla.add(lblArosCebolla, BorderLayout.CENTER);
 		btnArosCebolla.setMargin(margenBotones);
+		btnArosCebolla.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("CrispyRings", "Crujientes aros de cebolla acompañados de nuestra salsa barbacos.", 8.40);
+				
+			}
+		});
 		pProductos.add(btnArosCebolla);
 		
 		btnTequeños = new JButton();
@@ -108,6 +126,14 @@ public class VentanaEntrantes extends JFrame {
 		lblTequeños.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnTequeños.add(lblTequeños, BorderLayout.CENTER);
 		btnTequeños.setMargin(margenBotones);
+		btnTequeños.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("TequeÑitos", "Palitos crujientes rellenos de queso fundido, servidos con nuestra exclusiva salsa casera (8uds).", 8.50);
+				
+			}
+		});
 		pProductos.add(btnTequeños);
 		
 		btnAlitas = new JButton();
@@ -123,6 +149,14 @@ public class VentanaEntrantes extends JFrame {
 		lblAlitas.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
 		btnAlitas.add(lblAlitas, BorderLayout.CENTER);
 		btnAlitas.setMargin(margenBotones);
+		btnAlitas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Alitas", "Alitas de pollo en salsa sweet chili con sésamo y cebollino (6uds)", 6.50);
+				
+			}
+		});
 		pProductos.add(btnAlitas);
 		
 		pVolver = new JPanel();
