@@ -136,7 +136,7 @@ public class TrabajadorTest {
         String nombre = "Iñigo";
         String apellidos = "Fiat";
         String telefono = "717772600";
-        PuestoTrabajo puesto = PuestoTrabajo.BARMAN;
+        PuestoTrabajo puesto = PuestoTrabajo.CAMARERO;
         String dni = "16101227P";
 
        
