@@ -54,6 +54,7 @@ public class Restaurante {
 	private static List<Producto>productos;
 	private static Set<String> fechasReservas;
 	private static  List<String> fechasOrdenadas;
+	private static Map<String, Cupon> mapaCupones;
 
 	
 	static {
@@ -69,6 +70,7 @@ public class Restaurante {
 		productos= new ArrayList<>();
 		fechasReservas= new HashSet<>();
 		fechasOrdenadas = new ArrayList<>();
+		mapaCupones = new TreeMap<>();
 
 	}
 	
@@ -473,5 +475,39 @@ public class Restaurante {
 	public static List<Producto> obtenerProductos() {
         return productos;
     }
+	
+	public static void cargarCupones() {
+		try {
+			Scanner sc = new Scanner(new FileReader("ficheros/cupones.csv"));
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String [] partes = linea.split(";");
+				Cupon c = new Cupon(Integer.parseInt(partes[0]), Float.parseFloat(partes[1]), partes[2], partes[3]);
+				mapaCupones.put(c.getFoto(), c);
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static Map<String, Cupon> getMapaCupones(){
+		return mapaCupones;
+	}
+	
+	public static void volcarListaClientesAlFichero() {
+		try {
+			PrintWriter pw = new PrintWriter("ficheros/Clientes.csv");
+			for(Cliente c: clientes) {
+				pw.println(c.getNombre()+";"+c.getApellidos()+";"+c.getTelefono()+";"+c.getDireccion()+";"+c.getCorreo()+";"+
+						c.getNombreUsuario()+";"+c.getContrasenia()+";"+c.getPuntosAcumulados());
+			}
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
