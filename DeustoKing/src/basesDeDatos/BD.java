@@ -34,14 +34,17 @@ public class BD {
 	}
 	
 	public static void crearTabla (Connection conn) throws SQLException{
-		String sqlCliente = "CREATE TABLE IF NOT EXISTS Cliente (Nombre String, Apellidos String, Teléfono String, Correo String, Dirección String, Id int, PuntosAcumulados int, NombreUsuario String, Contraseña String)";
-		String sqlReserva = "CREATE TABLE IF NOT EXISTS Reserva (IdentificadorReserva int,Fecha Date, Hora String, NúmeroComensales int)";
-		String sqlProducto = "CREATE TABLE IF NOT EXISTS Producto(IdentificadorProducto int, Nombre String, Descripción String, Precio double)";
+		String sqlCliente = "CREATE TABLE IF NOT EXISTS Cliente (Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, PuntosAcumulados int, NombreUsuario String, Contrasenia String)";
+		String sqlReserva = "CREATE TABLE IF NOT EXISTS Reserva (Nombre String, Telefono String, Correo String, IdentificadorReserva INTEGER PRIMARY KEY AUTOINCREMENT,Fecha String, Hora String, NumeroComensales int)";
+		String sqlProducto = "CREATE TABLE IF NOT EXISTS Producto(IdentificadorProducto INTEGER PRIMARY KEY AUTOINCREMENT, Nombre String, Descripcion String, Precio double, Cantidad int, Modificacion String)";
+		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, HorasTrabajadas float,"
+				+ "Sueldo float, NombreTrabajador String, Contrasenia String, Dni String, Puesto String)";
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(sqlCliente);
-			st.execute(sqlReserva);
-			st.execute(sqlProducto);
+			st.executeUpdate(sqlReserva);
+			st.executeUpdate(sqlProducto);
+			st.executeUpdate(sqlTrabajador);
 			st.close();
 			
 		} catch (SQLException e) {
@@ -52,8 +55,8 @@ public class BD {
 		public static void insertarCliente(Connection con, Cliente cliente){
 			
 			if(buscarCliente(con,cliente.getTelefono())==null){
-				String sql = String.format("INSERT INTO Cliente VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')", cliente.getNombre(), cliente.getApellidos(), cliente.getTelefono(),
-						cliente.getCorreo(),cliente.getDireccion(),cliente.getId(),cliente.getPuntosAcumulados(), cliente.getNombreUsuario(), cliente.getContrasenia());
+				String sql = String.format("INSERT INTO Cliente(Nombre,Apellidos,Telefono,Correo,Direccion,PuntosAcumulados,NombreUsuario,Contrasenia) VALUES('%s','%s','%s','%s','%s','%d','%s','%s')", cliente.getNombre(),
+						cliente.getApellidos(), cliente.getTelefono(),cliente.getCorreo(), cliente.getDireccion(), cliente.getPuntosAcumulados() , cliente.getNombreUsuario(),cliente.getContrasenia());
 				try {
 					Statement st = con.createStatement();
 					st.executeUpdate(sql);
@@ -65,8 +68,9 @@ public class BD {
 		}
 	
 	public static void insertarReserva(Connection con, Reserva reserva) {
-		if(buscarReserva(con, reserva.getId())==null) {
-			String sql = String.format("INSERT INTO Reserva VALUES('%s','%s','%s','%s')", reserva.getId(), reserva.getFecha(), reserva.getHora(), reserva.getnComensales());
+		if(buscarReserva(con, reserva.getTelefono())==null) {
+			String sql = String.format("INSERT INTO Reserva (Nombre, Telefono,Correo,Fecha,Hora,NumeroComensales)VALUES('%s','%s','%s','%s','%s','%d')", reserva.getNombre(),reserva.getTelefono(),reserva.getCorreo(),
+					reserva.getFechaStr(),reserva.getHora(),reserva.getnComensales());
 			try {
 				Statement st = con.createStatement();
 				st.executeUpdate(sql);
@@ -77,21 +81,9 @@ public class BD {
 		}
 	}
 	
-	public static void insertarProducto(Connection con, Producto producto) {
-		if(buscarReserva(con, producto.getIdP())==null) {
-			String sql = String.format("INSERT INTO Producto VALUES('%s','%s','%s','%s')", producto.getIdP(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio());
-			try {
-				Statement st = con.createStatement();
-				st.executeUpdate(sql);
-				st.close();
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
+
 	public static Cliente buscarCliente(Connection con, String telefono) {
-		String sql = String.format("SELECT * FROM Cliente WHERE Teléfono = '%s'", telefono);
+		String sql = String.format("SELECT * FROM Cliente WHERE Telefono = '%s'", telefono);
 		Cliente cliente= null;
 		try {
 			Statement st = con.createStatement();
@@ -99,13 +91,13 @@ public class BD {
 			if(rs.next()) {
 				String nombre = rs.getString("Nombre");
 				String apellidos = rs.getString("Apellidos");
-				String telefonoS = rs.getString("Teléfono");
+				String telefonoS = rs.getString("Telefono");
 				String correo = rs.getString("Correo");
-				String direccion = rs.getString("Dirección");
+				String direccion = rs.getString("Direccion");
 				int id = Integer.parseInt(rs.getString("Id"));
 				int puntosAcumulados = Integer.parseInt(rs.getString("PuntosAcumulados"));
 				String nombreUsuario = rs.getString("NombreUsuario");
-				String contrasenia = rs.getString("Contraseña");
+				String contrasenia = rs.getString("Contrasenia");
 				
 				cliente = new Cliente(nombre, apellidos, telefonoS, correo, direccion, id, puntosAcumulados, nombreUsuario, contrasenia);
 			}
@@ -117,18 +109,21 @@ public class BD {
 		return cliente;
 	}
 	
-	public static Reserva buscarReserva(Connection con, int id ) {
-		String sql = String.format("SELECT * FROM Reserva WHERE IdentificadorReserva = '%s'", id);
+	public static Reserva buscarReserva(Connection con, String telefono ) {
+		String sql = String.format("SELECT * FROM Reserva WHERE Telefono = '%s'", telefono);
 		Reserva reserva=null;
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql); 
 			if(rs.next()) {
-				int idS = Integer.parseInt(rs.getString("IdentificadorReserva"));
+				int id = Integer.parseInt(rs.getString("IdentificadorReserva"));
 				String fecha = rs.getString("Fecha");
 				String hora = rs.getString("Hora");
-				int nComensales =Integer.parseInt(rs.getString("NúmeroComensales"));
-				reserva = new Reserva(idS, fecha, hora, nComensales);
+				int nComensales =Integer.parseInt(rs.getString("NumeroComensales"));
+				String nombre = rs.getString("Nombre");
+				String telefonoS = rs.getString("Telefono");
+				String correo = rs.getString("Correo");
+				reserva = new Reserva(id, nombre, telefonoS, correo, fecha, hora, nComensales);
 				
 			}
 			rs.close();
@@ -148,13 +143,13 @@ public class BD {
 			while(rs.next()) {
 				String nombre = rs.getString("Nombre");
 				String apellidos = rs.getString("Apellidos");
-				String telefonoS = rs.getString("Teléfono");
+				String telefonoS = rs.getString("Telefono");
 				String correo = rs.getString("Correo");
-				String direccion = rs.getString("Dirección");
+				String direccion = rs.getString("Direccion");
 				int id = Integer.parseInt(rs.getString("Id"));
 				int puntosAcumulados = Integer.parseInt(rs.getString("PuntosAcumulados"));
 				String nombreUsuario = rs.getString("NombreUsuario");
-				String contrasenia = rs.getString("Contraseña");
+				String contrasenia = rs.getString("Contrasenia");
 				Cliente cliente = new Cliente(nombre, apellidos, telefonoS, correo, direccion, id, puntosAcumulados, nombreUsuario, contrasenia);
 				l.add(cliente);
 			}
@@ -176,9 +171,11 @@ public class BD {
 			while(rs.next()) {
 				int id = Integer.parseInt(rs.getString("IdentificadorProducto"));
 				String nombre = rs.getString("Nombre");
-				String descripcion = rs.getString("Descripción");
+				String descripcion = rs.getString("Descripcion");
 				double precio = Double.parseDouble(rs.getString("Precio"));
-				Producto producto = new Producto(id, nombre, descripcion, precio);
+				int cantidad = Integer.parseInt(rs.getString("Cantidad"));
+				String modificacion = rs.getString("Modificacion");
+				Producto producto = new Producto(id, nombre, descripcion, precio, cantidad, modificacion);
 				lp.add(producto);
 				
 			}
