@@ -35,9 +35,14 @@ public class VentanaInicioSesion extends JFrame {
 	private JPasswordField txtContraseña;
 	private JButton btnRegistro, btnAtras, btnInicioSesion;
 	private JScrollPane scroll;
-	private static final String nomfichClientes = "Clientes.csv";
+	private static final String nomfichClientes = "ficheros/Clientes.csv";
 	private JFrame vActual, vAnterior;
+	private static Cliente cli;
 	static Logger logger = Logger.getLogger(Main.class.getName());
+	
+	public static Cliente getCliente() {
+		return cli;
+	}
 	
 
 	public VentanaInicioSesion(JFrame va) {
@@ -90,10 +95,10 @@ public class VentanaInicioSesion extends JFrame {
 		    
 		pEste = new JPanel();
 		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
-		lblRegistro = new JLabel("¿No tienes cuenta? Registrate aqui");
+		lblRegistro = new JLabel("¿No tienes cuenta? Regístrate aquí");
 		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblRegistro.setFont(new Font("Tw", Font.BOLD, 14));
-		btnRegistro = new JButton("                    REGISTRATE                   ");
+		btnRegistro = new JButton("                    REGÍSTRATE                   ");
 		
 		pEste.add(lblRegistro);
 		pEste.add(btnRegistro);
@@ -110,16 +115,6 @@ public class VentanaInicioSesion extends JFrame {
 		pSur.add(btnInicioSesion);
 		pOeste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
 		pEste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
-		
-		/*pPrincipal.add(pEste, BorderLayout.EAST);
-		pPrincipal.add(pOeste, BorderLayout.WEST);
-		pPrincipal.add(pSur, BorderLayout.SOUTH);
-		
-		getContentPane().add(pPrincipal);
-		scroll = new JScrollPane();
-		
-		pPrincipal.add(panelContenedor, BorderLayout.CENTER);
-		getContentPane().add(pPrincipal);*/
 		    
 		pFoto = new JPanel();
 		pFoto.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -152,32 +147,45 @@ public class VentanaInicioSesion extends JFrame {
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
+		
+		Restaurante.cargarClientesEnLista(nomfichClientes);
 
 		btnInicioSesion.addActionListener((e)-> {
-		String nombreUsuario = txtNombreUsuario.getText();
-		String contrasenia = txtContraseña.getText();
-		Cliente cliente = Restaurante.buscarUsuario(nombreUsuario);
-		if(cliente == null) {
-			JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
-			logger.log(Level.WARNING, "NO SE HA PODIDO REGISTRAR");
-			}else {
-					if(cliente.getContrasenia().equals(contrasenia)) {
-						JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
-						vAnterior.setVisible(true);
-						vActual.dispose();
-					}else {
-						logger.log(Level.WARNING, "LA CONTRASEÑA ES INCORRECTA");
-						JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
-					}
-			}
-		});
+		String corrTlfUsu = txtNombreUsuario.getText();
+		char[] contChar = txtContraseña.getPassword();
+		String contrasenia = new String(contChar);
 		
+		if(corrTlfUsu.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}else if(contrasenia.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}else {
+			Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
+			if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
+				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(!contrasenia.equals(cliente.getContrasenia())) {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "¡BIENVENIDO! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+					cli=cliente;
+					new VentanaTablaProductos(vActual);
+					vActual.setVisible(false);
+					vActual.dispose();
+					txtNombreUsuario.setText("");
+					txtContraseña.setText("");
+				}
+			}
+		}
+		
+		
+
+	});
 		Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		
 		setVisible(true);
-
-	}
-
+	
+}
 	
 }
 	
