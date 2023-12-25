@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,6 +80,17 @@ public class VentanaHamburguesas extends JFrame {
 		btnH1.add(lblH1, BorderLayout.CENTER);
 		btnH1.setMargin(margenBotones);
 		pProductos.add(btnH1);
+		btnH1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Diablo", "Picamos cada cacho de carne directamente en la plancha y la mezclamos con"
+						+ "trozos de cebolla crunchy, bacon y queso americano, \nmontando una encima de otra hasta quedarnos tres hamburguesas entre queso chedar y bacon"
+						+ "con nuestra salsa especial 'deustosalsa' ", 11.95);
+				
+			}
+		});
+		
 		
 		btnH2 = new JButton();
 		ImageIcon imAros = new ImageIcon("src\\imagenes\\pulledpork.jpg");
@@ -93,6 +106,15 @@ public class VentanaHamburguesas extends JFrame {
 		btnH2.add(lblH2, BorderLayout.CENTER);
 		btnH2.setMargin(margenBotones);
 		pProductos.add(btnH2);
+		btnH2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Pulled Pork", "Pan brioche artesano negro con tinta de calamar, nuestro caracteristico pulled porck junto con cebolla morada triturada y cebolla pochada, \nqueso chedar,"
+						+ "panceta con sirope de arce y un toque de salsa barbacoa", 13.00);
+				
+			}
+		});
 		
 		btnH3 = new JButton();
 		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\baking.jpg");
@@ -108,6 +130,15 @@ public class VentanaHamburguesas extends JFrame {
 		btnH3.add(lblH3, BorderLayout.CENTER);
 		btnH3.setMargin(margenBotones);
 		pProductos.add(btnH3);
+		btnH3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Baking", "Pan de cristal hecho en casa, pechuga de pollo empanada con cebolla morada y caramelizada mezclada "
+						+ "\ncon unos jalapeños de la tierra y salsa de chedar untada en el pan", 11.00);
+				
+			}
+		});
 		
 		btnH4 = new JButton();
 		ImageIcon imAlitas = new ImageIcon(imagen);
@@ -123,6 +154,16 @@ public class VentanaHamburguesas extends JFrame {
 		btnH4.add(lblH4, BorderLayout.CENTER);
 		btnH4.setMargin(margenBotones);
 		pProductos.add(btnH4);
+		btnH4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombre, "Nuestro caracteristico y llamativo pan brioche con un toque secreto, 150 gr de txuleton, una rodaja de queso de cabra \ncon"
+						+ "nuestras salsa de queso de cabra acompañada de una cebolla pochada y bacon con sirope de arce y un huevo", 12.55);
+				
+			}
+		});
+		
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
