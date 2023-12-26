@@ -285,21 +285,6 @@ public class Restaurante {
 	}
 	
 
-//	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
-//		int id, int puntos, String nombreUsuario, String contrasenia) {
-//
-//		if(verificarCorreo(correo) && verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)&& buscarUsuario(telefono)==null && buscarUsuario(correo)==null && buscarUsuario(nombre)==null) {
-//			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 7 , nombreUsuario, contrasenia);
-//			clientes.add(nuevoCliente);
-//			guardarClientes(nomfichCliente);
-//			Connection con = BD.initBD("deustoking.db");
-//			Restaurante.volcarCSVPersonasABD(con, nomfichCliente);
-//			BD.cerrarBD(con);
-//			return true;
-//		} 
-//		return false;
-//	}
-	
 	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
     int id, int puntos, String nombreUsuario, String contrasenia, JFrame frame) {
 

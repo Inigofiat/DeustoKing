@@ -15,6 +15,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Ciudad;
 import deustoking.Cliente;
 import deustoking.Restaurante;
 
@@ -169,16 +171,44 @@ public class VentanaInicioSesion extends JFrame {
 				}else {
 					JOptionPane.showMessageDialog(null, "¡BIENVENIDO! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
 					cli=cliente;
-					new VentanaTablaProductos(vActual);
-					vActual.setVisible(false);
-					vActual.dispose();
 					txtNombreUsuario.setText("");
 					txtContraseña.setText("");
+					JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
+	                ciudadComboBox.setSelectedItem(null); 
+
+	                Object[] message = {
+	                        "Nombre y Apellidos:", cliente.getNombre() + " " + cliente.getApellidos(),
+	                        "Teléfono:", cliente.getTelefono(),
+	                        "Email:", cliente.getCorreo(),
+	                        "Ciudad:", ciudadComboBox
+	                };
+
+	                int option = JOptionPane.showOptionDialog(null, message, "Datos del Usuario",
+	                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+	                if (option == JOptionPane.OK_OPTION) {
+	                    Ciudad ciudadSeleccionada = (Ciudad) ciudadComboBox.getSelectedItem();
+	                    if (ciudadSeleccionada != null) {
+	                        switch (ciudadSeleccionada) {
+	                            case BILBO:
+	                                new VentanaCarta(vActual, "BILBO");
+	                                break;
+	                            case DONOSTI:
+	                            	new VentanaCarta(vActual, "DONOSTI");
+	                                break;
+	                            case GASTEIZ:
+	                            	new VentanaCarta(vActual, "GASTEIZ");
+	                            	break;
+	                           
+	                        }
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "Seleccione una ciudad válida", "ERROR", JOptionPane.ERROR_MESSAGE);
+	                    }
 				}
 			}
 		}
 		
-		
+		}
 
 	});
 		Restaurante.miIcono(this, "/imagenes/CORONA.png");
