@@ -189,6 +189,26 @@ public class VentanaRegistro extends JFrame{
 			new VentanaInicioSesion(vActual);
 		});
 	
+//		btnRegistro.addActionListener((e) -> {
+//			String nombre = txtNombre.getText();
+//			String apellido = txtApellido.getText();
+//			String telefono = txtTlf.getText();
+//			String direccion = txtDireccion.getText();
+//			String correo = txtEmail.getText();
+//			String nombreUsuario = txtNombreUsuario.getText();
+//			String contrasenia = new String(txtContrasenia.getPassword());
+//			
+//			if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 75, nombreUsuario, contrasenia)
+//					) {
+//				JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+//				logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
+//				
+//			} else {
+//				//JOptionPane.showMessageDialog(vActual, "El usuario ya está registrado", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+//
+//			}
+//		});		
+		
 		btnRegistro.addActionListener((e) -> {
 			String nombre = txtNombre.getText();
 			String apellido = txtApellido.getText();
@@ -198,15 +218,16 @@ public class VentanaRegistro extends JFrame{
 			String nombreUsuario = txtNombreUsuario.getText();
 			String contrasenia = new String(txtContrasenia.getPassword());
 			
-			if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 75, nombreUsuario, contrasenia)
+			if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 75, nombreUsuario, contrasenia,vActual)
 					) {
 				JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
 				logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
+				
 			} else {
-				JOptionPane.showMessageDialog(vActual, "El usuario ya está registrado", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog(vActual, "El usuario ya está registrado", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
 
 			}
-		});		
+		});	
 		Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		setVisible(true);
 	}
