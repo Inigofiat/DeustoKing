@@ -38,6 +38,7 @@ import javax.swing.SpinnerNumberModel;
 import org.jdatepicker.DatePicker;
 
 import basesDeDatos.BD;
+import ventanas.VentanaCarta;
 
 public class Restaurante {
 	
@@ -284,21 +285,76 @@ public class Restaurante {
 	}
 	
 
-	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
-		int id, int puntos, String nombreUsuario, String contrasenia) {
-
-		if(verificarCorreo(correo) && verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)&& buscarUsuario(telefono)==null && buscarUsuario(correo)==null && buscarUsuario(nombre)==null) {
-			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 7 , nombreUsuario, contrasenia);
-			clientes.add(nuevoCliente);
-			guardarClientes(nomfichCliente);
-			Connection con = BD.initBD("deustoking.db");
-			Restaurante.volcarCSVPersonasABD(con, nomfichCliente);
-			BD.cerrarBD(con);
-			return true;
-		} 
-		return false;
-	}
+//	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
+//		int id, int puntos, String nombreUsuario, String contrasenia) {
+//
+//		if(verificarCorreo(correo) && verificarContrasenia(contrasenia)&& verificarNombreUsuario(nombreUsuario)&&verificarTelefono(telefono)&& buscarUsuario(telefono)==null && buscarUsuario(correo)==null && buscarUsuario(nombre)==null) {
+//			Cliente nuevoCliente = new Cliente(nombre, apellido, telefono,direccion, correo, 1, 7 , nombreUsuario, contrasenia);
+//			clientes.add(nuevoCliente);
+//			guardarClientes(nomfichCliente);
+//			Connection con = BD.initBD("deustoking.db");
+//			Restaurante.volcarCSVPersonasABD(con, nomfichCliente);
+//			BD.cerrarBD(con);
+//			return true;
+//		} 
+//		return false;
+//	}
 	
+	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
+    int id, int puntos, String nombreUsuario, String contrasenia, JFrame frame) {
+
+if (verificarContrasenia(contrasenia) && verificarNombreUsuario(nombreUsuario) && verificarTelefono(telefono) &&
+        buscarUsuario(telefono) == null && buscarUsuario(correo) == null && buscarUsuario(nombre) == null) {
+
+    Cliente nuevoCliente = new Cliente(nombre, apellido, telefono, direccion, correo, 1, puntos, nombreUsuario, contrasenia);
+
+    
+    JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
+    ciudadComboBox.setSelectedItem(null); 
+
+    Object[] message = {
+            "Nombre y Apellidos:", nuevoCliente.getNombre() + " " + nuevoCliente.getApellidos(),
+            "Teléfono:", nuevoCliente.getTelefono(),
+            "Email:", nuevoCliente.getCorreo(),
+            "Ciudad:", ciudadComboBox
+    };
+
+    int option = JOptionPane.showOptionDialog(null, message, "Datos del Nuevo Cliente",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+    if (option == JOptionPane.OK_OPTION) {
+        Ciudad ciudadSeleccionada = (Ciudad) ciudadComboBox.getSelectedItem();
+            clientes.add(nuevoCliente);
+            System.out.println(nuevoCliente.getPuntosAcumulados());
+            guardarClientes(nomfichCliente);
+
+            Connection con = BD.initBD("deustoking.db");
+            Restaurante.volcarCSVPersonasABD(con, nomfichCliente);
+            BD.cerrarBD(con);
+            
+            if (ciudadSeleccionada != null) {
+                switch (ciudadSeleccionada) {
+                    case BILBO:
+                        new VentanaCarta(frame, "BILBO");
+                        break;
+                    case DONOSTI:
+                    	new VentanaCarta(frame, "DONOSTI");
+                        break;
+                    case GASTEIZ:
+                    	new VentanaCarta(frame, "GASTEIZ");
+                    	break;
+                   
+                }
+            } 
+
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una ciudad válida", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+return false;
+}
 	
 	
 	public static void cargarClientesEnLista(String nombfich) {
