@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,6 +81,14 @@ public class VentanaSmash extends JFrame {
 		btnS1.add(lblS1, BorderLayout.CENTER);
 		btnS1.setMargin(margenBotones);
 		pProductos.add(btnS1);
+		btnS1.addActionListener(new ActionListener() {
+	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Smashhhh", "Nuestra DOBLE SMASH con doble queso cheddar, bacon bits, "
+						+ "\ncebolla pochada y salsa cheddar", 11.45);
+			}
+		});
 		
 		btnS2 = new JButton();
 		ImageIcon imAros = new ImageIcon("imagenes\\smash1.jpg");
@@ -94,6 +104,14 @@ public class VentanaSmash extends JFrame {
 		btnS2.add(lblS2, BorderLayout.CENTER);
 		btnS2.setMargin(margenBotones);
 		pProductos.add(btnS2);
+		btnS2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Don King", "Nuestra DOBLE SMASH con doble queso "
+						+ "cheddar, \nbacon ahumado crujiente, pepinillo y salsa 'DeustoSalsa'", 12.50);
+			}
+		});
 		
 		btnS3 = new JButton();
 		ImageIcon imTequeños = new ImageIcon("imagenes\\s3.png");
@@ -109,10 +127,18 @@ public class VentanaSmash extends JFrame {
 		btnS3.add(lblS3, BorderLayout.CENTER);
 		btnS3.setMargin(margenBotones);
 		pProductos.add(btnS3);
+		btnS3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Cielo", "Nuestra DOBLE SMASH con doble queso cheddar,"
+						+ " \ncebolla picadita, pepinillo, ketchup y mostaza", 11.50);
+			}
+		});
 		
 		btnS4 = new JButton();
 		ImageIcon imAlitas = new ImageIcon("imagenes\\s4.jpg");
-		lblS4 = new JLabel("SANWING");
+		lblS4 = new JLabel("BACONSMASH");
 		btnS4.setIcon(imAlitas);
 		btnS4.setLayout(new BorderLayout());
 		btnS4.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
@@ -124,6 +150,14 @@ public class VentanaSmash extends JFrame {
 		btnS4.add(lblS4, BorderLayout.CENTER);
 		btnS4.setMargin(margenBotones);
 		pProductos.add(btnS4);
+		btnS4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("BaconSmash", "Nuestra DOBLE SMASH con queso cheddar entre las dos, \nmucha cebolla crujiente "
+						+ " y bacon bits ", altoP);
+			}
+		});
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));

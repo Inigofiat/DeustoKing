@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,6 +81,16 @@ public class VentanaEnsaladas extends JFrame {
 		btnCesar.add(lblCesar, BorderLayout.CENTER);
 		btnCesar.setMargin(margenBotones);
 		pProductos.add(btnCesar);
+		btnCesar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Cesar", "Una fresca pechuga de pollo junto con picatostes artesanos, lechuga y tomate de las tierras vascas, "
+						+ "\ntrocitos de queso gouda y un chorrito de limón", 8.50);
+								
+			}
+		});
+		
 		
 		btnMixta = new JButton();
 		ImageIcon imAros = new ImageIcon("imagenes\\mixta.jpeg");
@@ -94,6 +106,15 @@ public class VentanaEnsaladas extends JFrame {
 		btnMixta.add(lblMixta, BorderLayout.CENTER);
 		btnMixta.setMargin(margenBotones);
 		pProductos.add(btnMixta);
+		btnMixta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Mixta", "Ensalada variada con tomate de la tierra, un huevo cocido, espárragos, aceitunas "
+						+ "\ncebolla y bonito del norte", 9.50);				
+			}
+		});
+		
 		
 		btnPasta = new JButton();
 		ImageIcon imTequeños = new ImageIcon("imagenes\\depasta.jpg");
@@ -109,6 +130,16 @@ public class VentanaEnsaladas extends JFrame {
 		btnPasta.add(lblPasta, BorderLayout.CENTER);
 		btnPasta.setMargin(margenBotones);
 		pProductos.add(btnPasta);
+		btnPasta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Pasta", "Pasta fresca con unos tomates cherris, queso mozzarella, "
+						+ "aceitunas negras y calabacín de la tierra", 7.00);
+												
+			}
+		});
+		
 		
 		btnCaprese = new JButton();
 		ImageIcon imAlitas = new ImageIcon("imagenes\\caprese.jpg");
@@ -124,6 +155,14 @@ public class VentanaEnsaladas extends JFrame {
 		btnCaprese.add(lblCaprese, BorderLayout.CENTER);
 		btnCaprese.setMargin(margenBotones);
 		pProductos.add(btnCaprese);
+		btnCaprese.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Caprese", "Unos buenos tomates de la tierra, mozzarella de búfala italiana \n"
+						+ "y hojas de albahaca frescas", 7.00);				
+			}
+		});
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));

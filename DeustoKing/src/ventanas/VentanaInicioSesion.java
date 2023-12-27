@@ -113,7 +113,7 @@ public class VentanaInicioSesion extends JFrame {
 		btnAtras = new JButton("VOLVER");
 		pSur.add(btnAtras);
 		
-		btnInicioSesion = new JButton("INICIO DE SESION");
+		btnInicioSesion = new JButton("INICIO DE SESIÓN");
 		pSur.add(btnInicioSesion);
 		pOeste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
 		pEste.setBorder(new EmptyBorder(200, 200, 200, 200 ));

@@ -84,7 +84,8 @@ public class VentanaEntrantes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("NachoMania", "Guacamole casero, pulled pork macerado con cuatro quesos y salsa bbq,\npico de gallo, salsa cheddar, crema agria y jalapeños, acompañado de nachos caseros de maíz.", 9.90);
+				Restaurante.informacionProductos("NachoMania", "Guacamole casero, pulled pork macerado con cuatro quesos y salsa bbq,"
+						+ "\npico de gallo, salsa cheddar, crema agria y jalapeños, acompañado de nachos caseros de maíz.", 9.90);
 				
 			}
 		});

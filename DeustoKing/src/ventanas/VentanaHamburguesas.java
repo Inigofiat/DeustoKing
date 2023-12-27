@@ -110,8 +110,8 @@ public class VentanaHamburguesas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("Pulled Pork", "Pan brioche artesano negro con tinta de calamar, nuestro caracteristico pulled porck junto con cebolla morada triturada y cebolla pochada, \nqueso chedar,"
-						+ "panceta con sirope de arce y un toque de salsa barbacoa", 13.00);
+				Restaurante.informacionProductos("Pulled Pork", "Pan brioche artesano negro con tinta de calamar, nuestro característico pulled pork junto con cebolla morada triturada y cebolla pochada, \nqueso chedar,"
+						+ "panceta y un toque de salsa barbacoa", 13.00);
 				
 			}
 		});
@@ -135,7 +135,7 @@ public class VentanaHamburguesas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Restaurante.informacionProductos("Baking", "Pan de cristal hecho en casa, pechuga de pollo empanada con cebolla morada y caramelizada mezclada "
-						+ "\ncon unos jalapeños de la tierra y salsa de chedar untada en el pan", 11.00);
+						+ "\ncon unos pepinillos de la tierra y salsa de chedar untada en el pan", 11.00);
 				
 			}
 		});
@@ -158,9 +158,16 @@ public class VentanaHamburguesas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos(nombre, "Nuestro caracteristico y llamativo pan brioche con un toque secreto, 150 gr de txuleton, una rodaja de queso de cabra \ncon"
-						+ "nuestras salsa de queso de cabra acompañada de una cebolla pochada y bacon con sirope de arce y un huevo", 12.55);
-				
+				if(nombre=="BILBO BURGER") {
+					Restaurante.informacionProductos(nombre, "Nuestro característico y llamativo pan brioche con un toque secreto, 150 gr de txuleton, una rodaja de queso de cabra \ncon"
+							+ "nuestras salsa de queso, acompañada de una cebolla pochada y bacon con sirope de arce y un huevo", 12.55);
+				}else if (nombre == "DONOSTI BURGER") {
+					Restaurante.informacionProductos(nombre, "Pan brioche, 150 gr de txuleta de vaca junto con ensalada variada que contiene lechuga y tomate, "
+							+ "/npimientos de de el país vasco, queso mozzarella y cebolla crujiente ", 14.55);
+				}else if(nombre=="GASTEIZ BURGER") {
+					Restaurante.informacionProductos(nombre, "Pan brioche, 200 gr de txuleta de vaca, lechuga fresca, /nqueso gouda una combinación de bacon con panceta,"
+							+ " un huevo a la plancha y nuestra salsa secreta ", 15.60);
+				}
 			}
 		});
 		

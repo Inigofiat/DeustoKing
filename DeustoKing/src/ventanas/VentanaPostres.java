@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,7 +68,7 @@ public class VentanaPostres extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnTartaQueso = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\cheesecake.jpg");
+		ImageIcon imNachos = new ImageIcon("imagenes\\cheesecake.jpg");
 		lblTartaQueso = new JLabel("CHEESECAKE");
 		btnTartaQueso.setIcon(imNachos);
 		btnTartaQueso.setLayout(new BorderLayout());
@@ -79,9 +81,16 @@ public class VentanaPostres extends JFrame {
 		btnTartaQueso.add(lblTartaQueso, BorderLayout.CENTER);
 		btnTartaQueso.setMargin(margenBotones);
 		pProductos.add(btnTartaQueso);
+		btnTartaQueso.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Tarta de Queso", "Tarta americana de queso, crumble de galleta con toques de canela, bañado con un coulis de fresa casero.", 5.80);
+			}
+		});
 		
 		btnTartaLotus = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\lotuscake.jpg");
+		ImageIcon imAros = new ImageIcon("imagenes\\lotuscake.jpg");
 		lblTataLotus = new JLabel("LOTUSCAKE");
 		btnTartaLotus.setIcon(imAros);
 		btnTartaLotus.setLayout(new BorderLayout());
@@ -94,9 +103,17 @@ public class VentanaPostres extends JFrame {
 		btnTartaLotus.add(lblTataLotus, BorderLayout.CENTER);
 		btnTartaLotus.setMargin(margenBotones);
 		pProductos.add(btnTartaLotus);
+		btnTartaLotus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Tarta de Lotus","Cuatro capas de esponjoso bizcocho de vainilla relleno con mousse de galleta Lotus, \ncon trozos crujientes de caramelo salado. "
+						+ "Terminado con un baño de crema lotus y arena crujiente de galleta Lotus.", 6.20);
+			}
+		});
 		
 		btnHelado = new JButton();
-		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\helado.jpg");
+		ImageIcon imTequeños = new ImageIcon("imagenes\\helado.jpg");
 		lblHelado = new JLabel("FROZEN DEUSTOKING");
 		btnHelado.setIcon(imTequeños);
 		btnHelado.setLayout(new BorderLayout());
@@ -109,9 +126,16 @@ public class VentanaPostres extends JFrame {
 		btnHelado.add(lblHelado, BorderLayout.CENTER);
 		btnHelado.setMargin(margenBotones);
 		pProductos.add(btnHelado);
+		btnHelado.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Helado", "Heldao artesano de diferentes sabores: Chocolate, Fresa, Nata, Vainilla, Yogurt y Limón", altoP);
+			}
+		});
 		
 		btnBatido = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\batido.jpg");
+		ImageIcon imAlitas = new ImageIcon("imagenes\\batido.jpg");
 		lblBatido = new JLabel("DEUSHAKE");
 		btnBatido.setIcon(imAlitas);
 		btnBatido.setLayout(new BorderLayout());
@@ -124,6 +148,13 @@ public class VentanaPostres extends JFrame {
 		btnBatido.add(lblBatido, BorderLayout.CENTER);
 		btnBatido.setMargin(margenBotones);
 		pProductos.add(btnBatido);
+		btnBatido.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Batido", "Batido sweet and fresh con galleta oreo y sirope de chocolate", 5.40);
+			}
+		});
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));

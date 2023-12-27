@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,7 +69,7 @@ public class VentanaBebidas extends JFrame {
 		
 		btnCocacola = new JButton();
 		ImageIcon imNachos = new ImageIcon("imagenes\\cocacola.jpg");
-		lblCocacola = new JLabel("COCA COLA");
+		lblCocacola = new JLabel("COCA-COLA");
 		btnCocacola.setIcon(imNachos);
 		btnCocacola.setLayout(new BorderLayout());
 		btnCocacola.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
@@ -79,6 +81,15 @@ public class VentanaBebidas extends JFrame {
 		btnCocacola.add(lblCocacola, BorderLayout.CENTER);
 		btnCocacola.setMargin(margenBotones);
 		pProductos.add(btnCocacola);
+		btnCocacola.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Coca-Cola", "Una Coca-Cola bien fría nos hace disfrutar de cada instante de nuestras vidas de una forma especial."
+						+ "\nPor su sabor único y su carácter refrescante y auténtico, Coca-Cola añade magia a cada momento", 3.50 );
+				
+			}
+		});
 		
 		btnAgua = new JButton();
 		ImageIcon imAros = new ImageIcon("imagenes\\agua.jpeg");
@@ -94,6 +105,14 @@ public class VentanaBebidas extends JFrame {
 		btnAgua.add(lblAgua, BorderLayout.CENTER);
 		btnAgua.setMargin(margenBotones);
 		pProductos.add(btnAgua);
+		btnAgua.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Agua", "DeustoWater es un agua de débil mineralización y sabor suave y refrescante.\r\n"
+						+ "\nDeustoWater proviene de Elgoibar, concretamente de Alzola.", altoP);
+			}
+		});
 		
 		btnVino = new JButton();
 		ImageIcon imTequeños = new ImageIcon("imagenes\\vino.png");
@@ -109,6 +128,14 @@ public class VentanaBebidas extends JFrame {
 		btnVino.add(lblVino, BorderLayout.CENTER);
 		btnVino.setMargin(margenBotones);
 		pProductos.add(btnVino);
+		btnVino.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Vino", "Nuestro vino se elaboró con uvas seleccionadas de viñas viejas ubicadas por encima de los 900 m de altitud "
+						+ "\nen suelos arcillosos que ofrecen vinos elegantes y con estructura debido a los ciclos de maduración más largos ", 3.40);
+			}
+		});
 		
 		btnFanta = new JButton();
 		ImageIcon imAlitas = new ImageIcon("imagenes\\fanta.jpg");
@@ -124,6 +151,14 @@ public class VentanaBebidas extends JFrame {
 		btnFanta.add(lblFanta, BorderLayout.CENTER);
 		btnFanta.setMargin(margenBotones);
 		pProductos.add(btnFanta);
+		btnFanta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Fanta", "Si te aburres..... A tomar fanta y diviértete con nosotros"
+						+ "\nSu sabor afrutado y refrescante hacen que sea completamente imposible aburrirse con una Fanta en la mano.", 2.50);
+			}
+		});
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));

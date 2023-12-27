@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,6 +81,14 @@ public class VentanaOtros extends JFrame {
 		btnBocata.add(lblBocata, BorderLayout.CENTER);
 		btnBocata.setMargin(margenBotones);
 		pProductos.add(btnBocata);
+		btnBocata.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Porking", "Pan de cristal con abundante pulled pork, lechuga fresca, queso, "
+						+ "\n cebolla morada y salsa de yogurt", 9.60);
+			}
+		});
 		
 		btnBurrito = new JButton();
 		ImageIcon imAros = new ImageIcon("imagenes\\burrito.jpg");
@@ -94,6 +104,14 @@ public class VentanaOtros extends JFrame {
 		btnBurrito.add(lblBurrito, BorderLayout.CENTER);
 		btnBurrito.setMargin(margenBotones);
 		pProductos.add(btnBurrito);
+		btnBurrito.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Burriking", "Un wrap con txuleton picado, cebolla, maiz, queso "
+						+ "\n arroz, alubias y mayonesa", 10.00);
+			}
+		});
 		
 		btnCostillas = new JButton();
 		ImageIcon imTequeños = new ImageIcon("imagenes\\ribs.jpg");
@@ -109,6 +127,13 @@ public class VentanaOtros extends JFrame {
 		btnCostillas.add(lblCostillas, BorderLayout.CENTER);
 		btnCostillas.setMargin(margenBotones);
 		pProductos.add(btnCostillas);
+		btnCostillas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("DeustoRib", "Costillas de cerdo ahumadas a la parrilla con salsa barbacoa", altoP);
+			}
+		});
 		
 		btnSandwich = new JButton();
 		ImageIcon imAlitas = new ImageIcon("imagenes\\sandwich.jpg");
@@ -124,6 +149,13 @@ public class VentanaOtros extends JFrame {
 		btnSandwich.add(lblSandwich, BorderLayout.CENTER);
 		btnSandwich.setMargin(margenBotones);
 		pProductos.add(btnSandwich);
+		btnSandwich.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Sanwing", "Pan de Sandwich con pollo desmenuzado con abundante queso ", altoP);
+			}
+		});
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));

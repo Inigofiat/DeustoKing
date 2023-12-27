@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import deustoking.Restaurante;
 
 public class VentanaInfantil extends JFrame {
 	
@@ -77,6 +81,13 @@ public class VentanaInfantil extends JFrame {
 		btnCarne.add(lblCarne, BorderLayout.CENTER);
 		btnCarne.setMargin(margenBotones);
 		pProductos.add(btnCarne);
+		btnCarne.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Carne", "Pan brioche con 50 gr de carne y una loncha de queso cheddar", 1.50);
+			}
+		});
 		
 		btnPollo = new JButton();
 		ImageIcon imAros = new ImageIcon("imagenes\\pollo.jpg");
@@ -92,6 +103,13 @@ public class VentanaInfantil extends JFrame {
 		btnPollo.add(lblPollo, BorderLayout.CENTER);
 		btnPollo.setMargin(margenBotones);
 		pProductos.add(btnPollo);
+		btnPollo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos("Pollo", "Pan brioche con pollo rebozado y una loncha de queso cheddar", altoP);
+			}
+		});
 		
 		
 		pVolver = new JPanel();
