@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -27,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -46,11 +48,13 @@ public class VentanaPrincipal extends JFrame {
 	private JMenu menuDesplegable;
 	private JMenuItem itTrabajador;
 	private JFrame vActual, vAnterior;
-	private GradientPaint gr1, gr2, gr3;
 	private static final String nomfichClientes = "ficheros/Trabajadores.csv";
 	private static Trabajador trabajador;
 	private static  JComboBox<PuestoTrabajo> cargoComboBox;
 	static Logger logger = Logger.getLogger(Main.class.getName());
+	PanelGif gifPanel;
+	
+	
 	
 	
 	public VentanaPrincipal(JFrame va) {
@@ -73,16 +77,20 @@ public class VentanaPrincipal extends JFrame {
         panelContenedor.setLayout(new BorderLayout());
         
 		
-		
-		panPrincipal = new JPanel();
-		panPrincipal.setLayout(new BorderLayout());
-		
-		panBotones = new JPanel();
-		panBotones.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        panCiudades = new JPanel();
+        panBotones = new JPanel();
+        panInformación = new JPanel();
+        panPrincipal = new JPanel();
+        
+        gifPanel = new PanelGif(new ImageIcon("carga.gif").getImage());
+        gifPanel.add(panBotones, BorderLayout.NORTH);
+        gifPanel.add(panCiudades, BorderLayout.CENTER);
+        gifPanel.add(panInformación, BorderLayout.SOUTH);
 		
 		btnReservas = new JButton("RESERVAS");
-		btnReservas.setBackground(new Color(189,206,243));
-		btnReservas.setPreferredSize(new Dimension(200,50));
+		btnReservas.setBackground(Color.BLACK);
+		btnReservas.setForeground(Color.WHITE);
+		btnReservas.setPreferredSize(new Dimension(150,40));
 		btnReservas.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		btnReservas.setMargin(new Insets(10, 10, 10, 10));
 		panBotones.add(btnReservas);
@@ -98,27 +106,10 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		
-		btnCupon = new JButton("CUPONES");
-		btnCupon.setBackground(new Color(189,206,243));
-		btnCupon.setPreferredSize(new Dimension(200,50));
-		btnCupon.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		btnCupon.setMargin(new Insets(10, 10, 10, 10));
-		panBotones.add(btnCupon);
-		btnCupon.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA DE CUPONES");
-				new VentanaCupones(vActual);
-				vActual.setVisible(false);
-				vActual.dispose();
-				
-			}
-		});
-		
 		btnInicSesion = new JButton("INICIO SESIÓN");
-		btnInicSesion.setBackground(new Color(189,206,243));
-		btnInicSesion.setPreferredSize(new Dimension(200,50));
+		btnInicSesion.setBackground(Color.BLACK);
+		btnInicSesion.setForeground(Color.WHITE);
+		btnInicSesion.setPreferredSize(new Dimension(150,40));
 		btnInicSesion.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		btnInicSesion.setMargin(new Insets(10, 10, 10, 10));
 		panBotones.add(btnInicSesion);
@@ -134,8 +125,7 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		
-		panCiudades = new JPanel();
-		panCiudades.setLayout(new FlowLayout());
+		
 		
 		lbV1 = new JLabel("");
 		lbV1.setBackground(Color.WHITE);
@@ -143,113 +133,21 @@ public class VentanaPrincipal extends JFrame {
 		lbV1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		panCiudades.add(lbV1);
 		
-		btnBilbao = new JButton("BILBO");
-		
-		btnBilbao.setBounds(400, 209, 166, 182);
-		btnBilbao.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
-		btnBilbao.setPreferredSize(new Dimension(250,300));
-		btnBilbao.setBackground(new Color(249,96,96));
-		
-		  
-		
-		
-		gr1 = new GradientPaint(0, 0, Color.RED, 0, btnBilbao.getHeight(), Color.WHITE);
 
-	        // Se crea una clase para personalizar el aspecto del botón
-	        btnBilbao.setUI(new BasicButtonUI() {
-	            @Override
-	            public void paint(Graphics g, JComponent c) {
-	                Graphics2D g2d = (Graphics2D) g;
-	                g2d.setPaint(gr1);               
-	                g2d.fillRect(0, 0, c.getWidth(), c.getHeight());
-	                super.paint(g, c);
-	            }
-	        });
-	        
-		
-		btnBilbao.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CARTA");
-			new VentanaCarta(vActual, "BILBO");
-		});
-		panCiudades.add(btnBilbao);
-		
-		
-		JPanel panelCentro = new JPanel();
-		
-		panelCentro.add(panCiudades);
-		
-	
-		btnDonostia = new JButton("DONOSTIA");
-		btnDonostia.setBackground(new Color(171,249,236));
-		btnDonostia.setBounds(400, 209, 166, 182);
-		btnDonostia.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
-		btnDonostia.setPreferredSize(new Dimension(250,300));
-		btnDonostia.setBackground(new Color(82,164,79));
-		
-		gr2 = new GradientPaint(0, 0, Color.BLUE, 0, btnDonostia.getHeight(), Color.WHITE);
-
-	      
-	        btnDonostia.setUI(new BasicButtonUI() {
-	            @Override
-	            public void paint(Graphics g, JComponent c) {
-	                Graphics2D g2d = (Graphics2D) g;
-	                g2d.setPaint(gr2);
-	                g2d.fillRect(0, 0, c.getWidth(), c.getHeight());
-	                super.paint(g, c);
-	            }
-	        });
-		
-		panCiudades.add(btnDonostia);
-		btnDonostia.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA CARTA DE DONSOTIA");
-			new VentanaCarta(vActual, "DONOSTI");
-		});
-		
-		btnGasteiz = new JButton("GASTEIZ");
-		btnGasteiz.setBackground(Color.LIGHT_GRAY);
-		btnGasteiz.setBounds(400, 209, 166, 182);
-		btnGasteiz.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
-		btnGasteiz.setPreferredSize(new Dimension(250,300));
-		
-		 gr3= new GradientPaint(0, 0, Color.GREEN, 0, btnGasteiz.getHeight(), Color.WHITE);
-
-	        // SE crea una clase para personalizar el aspecto del botón
-	        btnGasteiz.setUI(new BasicButtonUI() {
-	            @Override
-	            public void paint(Graphics g, JComponent c) {
-	                Graphics2D g2d = (Graphics2D) g;
-	                g2d.setPaint(gr3);
-	                g2d.fillRect(0, 0, c.getWidth(), c.getHeight());
-	                super.paint(g, c);
-	            }
-	        });
-		panCiudades.add(btnGasteiz);
-		btnGasteiz.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA CARTA DE GASTEIZ");
-			new VentanaCarta(vActual, "GASTEIZ");
-		});
-		
-		lbV1 = new JLabel("");
-		lbV1.setBackground(Color.WHITE);
-		lbV1.setBounds(400, 209, 166, 182);
-		lbV1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
-		panCiudades.add(lbV1);
-		
-		panInformación = new JPanel();
-		panInformación.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 
-		lbCup = new JLabel("¡CON LA PRIMERA COMPRA REGISTRÁNDOTE CONSEGUIRÁS 75 PUNTOS!");
+		lbCup = new JLabel("     ¡REGISTRÁNDOTE CONSEGUIRÁS 75 PUNTOS!   ");
 		lbCup.setBackground(Color.WHITE);
 		lbCup.setBounds(400, 209, 166, 182);
-		lbCup.setFont(new Font("Tw", Font.PLAIN, 25));
+		lbCup.setFont(new Font("Tw", Font.BOLD, 25));
 		panInformación.add(lbCup);
+		movimientoLabelPuntos(lbCup);
 		
-		int espacioEntrePaneles1 = 200; 
+		int espacioEntrePaneles1 = 75; 
 	    panCiudades.setBorder(new EmptyBorder(espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1));
 	    int espacioEntrePaneles2 = 10; 
 	    panBotones.setBorder(new EmptyBorder(espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2));
-	    int espacioEntrePaneles3 = 100;
+	    int espacioEntrePaneles3 = 75;
 	    panInformación.setBorder(new EmptyBorder(espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3 ));
 	     
 	    FlowLayout ciudadesLayout = new FlowLayout();
@@ -333,21 +231,35 @@ public class VentanaPrincipal extends JFrame {
 	    
 	    menu.add(menuDesplegable);
 	    
+	    panCiudades.setOpaque(false);
+	    panBotones.setOpaque(false);
+	    panInformación.setOpaque(false);
 	    
 	    setJMenuBar(menu);
 	 
-	     
-	    panelContenedor.add(panCiudades, BorderLayout.CENTER);
-	    panelContenedor.add(panBotones, BorderLayout.NORTH);
-	    panelContenedor.add(panInformación, BorderLayout.SOUTH);
-	 
 		
-		panPrincipal.add(panelContenedor, BorderLayout.CENTER);
-		getContentPane().add(panPrincipal);
+		setContentPane(gifPanel);
 		
 		Restaurante.miIcono(this, "/imagenes/CORONA.png");
 		
 		setVisible(true);
 		
+	}
+	
+	private void movimientoLabelPuntos(JLabel label) {
+	    Timer timer = new Timer(100, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                String inicial = label.getText();
+	                String movimiento = inicial.charAt(inicial.length() - 1) + inicial.substring(0, inicial.length() - 1);
+	                label.setText(movimiento);
+	            } catch (Exception ex) {
+	                ex.printStackTrace(); 
+	            }
+	        }
+	    });
+
+	    timer.start();
 	}
 }
