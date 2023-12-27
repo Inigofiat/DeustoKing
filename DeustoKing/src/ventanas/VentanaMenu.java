@@ -87,7 +87,7 @@ public class VentanaMenu extends JFrame {
 		pProductos.add(btnM1);
 		
 		btnM2 = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\patatas.jpg");
+		ImageIcon imAros = new ImageIcon("imagenes\\patatas.jpg");
 		lblM2 = new JLabel("PATATAS");
 		btnM2.setIcon(imAros);
 		btnM2.setLayout(new BorderLayout());
@@ -102,7 +102,7 @@ public class VentanaMenu extends JFrame {
 		pProductos.add(btnM2);
 		
 		btnM3 = new JButton();
-		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\agua.jpeg");
+		ImageIcon imTequeños = new ImageIcon("imagenes\\agua.jpeg");
 		lblM3 = new JLabel("BEBIDA A ELEGIR");
 		btnM3.setIcon(imTequeños);
 		btnM3.setLayout(new BorderLayout());
@@ -123,7 +123,7 @@ public class VentanaMenu extends JFrame {
 		pProductos.add(btnM3);
 		
 		btnM4 = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\helado.jpg");
+		ImageIcon imAlitas = new ImageIcon("imagenes\\helado.jpg");
 		lblM4 = new JLabel("POSTRE A ELEGIR");
 		btnM4.setIcon(imAlitas);
 		btnM4.setLayout(new BorderLayout());
@@ -179,7 +179,7 @@ public class VentanaMenu extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
-	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    setVisible(true);
 	}
 	

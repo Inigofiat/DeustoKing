@@ -82,7 +82,7 @@ public class VentanaPrincipal extends JFrame {
         panInformación = new JPanel();
         panPrincipal = new JPanel();
         
-        gifPanel = new PanelGif(new ImageIcon("carga.gif").getImage());
+        gifPanel = new PanelGif(new ImageIcon("imagenes/carga.gif").getImage());
         gifPanel.add(panBotones, BorderLayout.NORTH);
         gifPanel.add(panCiudades, BorderLayout.CENTER);
         gifPanel.add(panInformación, BorderLayout.SOUTH);
@@ -240,7 +240,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		setContentPane(gifPanel);
 		
-		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		Restaurante.miIcono(this, "imagenes/CORONA.png");
 		
 		setVisible(true);
 		

@@ -120,7 +120,7 @@ public class VentanaInicioSesion extends JFrame {
 		    
 		pFoto = new JPanel();
 		pFoto.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imagenIcon = new ImageIcon("src\\imagenes\\logo.png");
+		ImageIcon imagenIcon = new ImageIcon("imagenes\\logo.png");
 		Image imagen = imagenIcon.getImage();
 		Image imagenRedimensionada = imagen.getScaledInstance(200, 200, Image.SCALE_SMOOTH); 
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
@@ -211,7 +211,7 @@ public class VentanaInicioSesion extends JFrame {
 		}
 
 	});
-		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		Restaurante.miIcono(this, "imagenes/CORONA.png");
 		
 		setVisible(true);
 	

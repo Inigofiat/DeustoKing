@@ -66,7 +66,7 @@ public class VentanaSmash extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnS1 = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\s1.jpg");
+		ImageIcon imNachos = new ImageIcon("imagenes\\s1.jpg");
 		lblS1 = new JLabel("SMASHHHH");
 		btnS1.setIcon(imNachos);
 		btnS1.setLayout(new BorderLayout());
@@ -81,7 +81,7 @@ public class VentanaSmash extends JFrame {
 		pProductos.add(btnS1);
 		
 		btnS2 = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\smash1.jpg");
+		ImageIcon imAros = new ImageIcon("imagenes\\smash1.jpg");
 		lblS2 = new JLabel("DON KING");
 		btnS2.setIcon(imAros);
 		btnS2.setLayout(new BorderLayout());
@@ -96,7 +96,7 @@ public class VentanaSmash extends JFrame {
 		pProductos.add(btnS2);
 		
 		btnS3 = new JButton();
-		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\s3.png");
+		ImageIcon imTequeños = new ImageIcon("imagenes\\s3.png");
 		lblS3 = new JLabel("CIELO");
 		btnS3.setIcon(imTequeños);
 		btnS3.setLayout(new BorderLayout());
@@ -111,7 +111,7 @@ public class VentanaSmash extends JFrame {
 		pProductos.add(btnS3);
 		
 		btnS4 = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\s4.jpg");
+		ImageIcon imAlitas = new ImageIcon("imagenes\\s4.jpg");
 		lblS4 = new JLabel("SANWING");
 		btnS4.setIcon(imAlitas);
 		btnS4.setLayout(new BorderLayout());
@@ -167,7 +167,7 @@ public class VentanaSmash extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
-	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    setVisible(true);
 	}
 	

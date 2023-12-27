@@ -64,7 +64,7 @@ public class VentanaInfantil extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnCarne = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\carne.jpg");
+		ImageIcon imNachos = new ImageIcon("imagenes\\carne.jpg");
 		lblCarne = new JLabel("KIDS CARNE");
 		btnCarne.setIcon(imNachos);
 		btnCarne.setLayout(new BorderLayout());
@@ -79,7 +79,7 @@ public class VentanaInfantil extends JFrame {
 		pProductos.add(btnCarne);
 		
 		btnPollo = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\pollo.jpg");
+		ImageIcon imAros = new ImageIcon("imagenes\\pollo.jpg");
 		lblPollo = new JLabel("KIDS POLLO");
 		btnPollo.setIcon(imAros);
 		btnPollo.setLayout(new BorderLayout());

@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,15 +76,17 @@ public class Restaurante {
 
 	}
 	
+	
 	public static void miIcono(JFrame ventana, String rutaIcono) {
 		try {
-			Image icon = new ImageIcon(Restaurante.class.getResource(rutaIcono)).getImage();
+			Image icon = new ImageIcon(rutaIcono).getImage();
 			ventana.setIconImage(icon);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+
 	public static  void cargarReservasEnLista (String nombfich) {
        
         

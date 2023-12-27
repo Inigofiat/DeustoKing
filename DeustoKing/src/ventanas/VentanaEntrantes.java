@@ -68,7 +68,7 @@ public class VentanaEntrantes extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnNachos = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\nachos.jpeg");
+		ImageIcon imNachos = new ImageIcon("imagenes\\nachos.jpeg");
 		lblNachos = new JLabel("NACHOS");
 		btnNachos.setIcon(imNachos);
 		btnNachos.setLayout(new BorderLayout());
@@ -91,7 +91,7 @@ public class VentanaEntrantes extends JFrame {
 		pProductos.add(btnNachos);
 		
 		btnArosCebolla = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\aros.jpg");
+		ImageIcon imAros = new ImageIcon("imagenes\\aros.jpg");
 		lblArosCebolla = new JLabel("AROS DE CEBOLLA");
 		btnArosCebolla.setIcon(imAros);
 		btnArosCebolla.setLayout(new BorderLayout());
@@ -114,7 +114,7 @@ public class VentanaEntrantes extends JFrame {
 		pProductos.add(btnArosCebolla);
 		
 		btnTequeños = new JButton();
-		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\tequeños.jpg");
+		ImageIcon imTequeños = new ImageIcon("imagenes\\tequeños.jpg");
 		lblTequeños = new JLabel("TEQUEÑOS");
 		btnTequeños.setIcon(imTequeños);
 		btnTequeños.setLayout(new BorderLayout());
@@ -137,7 +137,7 @@ public class VentanaEntrantes extends JFrame {
 		pProductos.add(btnTequeños);
 		
 		btnAlitas = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\alitas.jpg");
+		ImageIcon imAlitas = new ImageIcon("imagenes\\alitas.jpg");
 		lblAlitas = new JLabel("ALITAS");
 		btnAlitas.setIcon(imAlitas);
 		btnAlitas.setLayout(new BorderLayout());
@@ -202,7 +202,7 @@ public class VentanaEntrantes extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
-	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    
 	    setVisible(true);
 	}

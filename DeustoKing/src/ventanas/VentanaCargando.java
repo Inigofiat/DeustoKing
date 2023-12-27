@@ -37,7 +37,7 @@ public class VentanaCargando extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		
-		lbImgPri = new JLabel(new ImageIcon("src\\imagenes\\DEUSTOKING.png"));
+		lbImgPri = new JLabel(new ImageIcon("imagenes\\DEUSTOKING.png"));
 		lbImgPri.setLayout(new BorderLayout());
 		
 		bProgreso = new JProgressBar(0,100);
@@ -83,7 +83,7 @@ public class VentanaCargando extends JFrame {
 			}
 		});hilo.start();
 		
-		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		Restaurante.miIcono(this, "imagenes/CORONA.png");
 		setVisible(true);
 	}
 }

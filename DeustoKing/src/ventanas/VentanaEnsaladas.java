@@ -66,7 +66,7 @@ public class VentanaEnsaladas extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnCesar = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\cesar.jpg");
+		ImageIcon imNachos = new ImageIcon("imagenes\\cesar.jpg");
 		lblCesar = new JLabel("CÉSAR");
 		btnCesar.setIcon(imNachos);
 		btnCesar.setLayout(new BorderLayout());
@@ -81,7 +81,7 @@ public class VentanaEnsaladas extends JFrame {
 		pProductos.add(btnCesar);
 		
 		btnMixta = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\mixta.jpeg");
+		ImageIcon imAros = new ImageIcon("imagenes\\mixta.jpeg");
 		lblMixta = new JLabel("MIXTA");
 		btnMixta.setIcon(imAros);
 		btnMixta.setLayout(new BorderLayout());
@@ -96,7 +96,7 @@ public class VentanaEnsaladas extends JFrame {
 		pProductos.add(btnMixta);
 		
 		btnPasta = new JButton();
-		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\depasta.jpg");
+		ImageIcon imTequeños = new ImageIcon("imagenes\\depasta.jpg");
 		lblPasta = new JLabel("DE PASTA");
 		btnPasta.setIcon(imTequeños);
 		btnPasta.setLayout(new BorderLayout());
@@ -111,7 +111,7 @@ public class VentanaEnsaladas extends JFrame {
 		pProductos.add(btnPasta);
 		
 		btnCaprese = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\caprese.jpg");
+		ImageIcon imAlitas = new ImageIcon("imagenes\\caprese.jpg");
 		lblCaprese = new JLabel("CAPRESE");
 		btnCaprese.setIcon(imAlitas);
 		btnCaprese.setLayout(new BorderLayout());
@@ -169,7 +169,7 @@ public class VentanaEnsaladas extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
-	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    
 	    setVisible(true);
 	}

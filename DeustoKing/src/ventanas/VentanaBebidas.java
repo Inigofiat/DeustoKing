@@ -66,7 +66,7 @@ public class VentanaBebidas extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnCocacola = new JButton();
-		ImageIcon imNachos = new ImageIcon("src\\imagenes\\cocacola.jpg");
+		ImageIcon imNachos = new ImageIcon("imagenes\\cocacola.jpg");
 		lblCocacola = new JLabel("COCA COLA");
 		btnCocacola.setIcon(imNachos);
 		btnCocacola.setLayout(new BorderLayout());
@@ -81,7 +81,7 @@ public class VentanaBebidas extends JFrame {
 		pProductos.add(btnCocacola);
 		
 		btnAgua = new JButton();
-		ImageIcon imAros = new ImageIcon("src\\imagenes\\agua.jpeg");
+		ImageIcon imAros = new ImageIcon("imagenes\\agua.jpeg");
 		lblAgua = new JLabel("AGUA");
 		btnAgua.setIcon(imAros);
 		btnAgua.setLayout(new BorderLayout());
@@ -96,7 +96,7 @@ public class VentanaBebidas extends JFrame {
 		pProductos.add(btnAgua);
 		
 		btnVino = new JButton();
-		ImageIcon imTequeños = new ImageIcon("src\\imagenes\\vino.png");
+		ImageIcon imTequeños = new ImageIcon("imagenes\\vino.png");
 		lblVino = new JLabel("VINO");
 		btnVino.setIcon(imTequeños);
 		btnVino.setLayout(new BorderLayout());
@@ -111,7 +111,7 @@ public class VentanaBebidas extends JFrame {
 		pProductos.add(btnVino);
 		
 		btnFanta = new JButton();
-		ImageIcon imAlitas = new ImageIcon("src\\imagenes\\fanta.jpg");
+		ImageIcon imAlitas = new ImageIcon("imagenes\\fanta.jpg");
 		lblFanta = new JLabel("FANTA");
 		btnFanta.setIcon(imAlitas);
 		btnFanta.setLayout(new BorderLayout());
@@ -167,7 +167,7 @@ public class VentanaBebidas extends JFrame {
 	    barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    getContentPane().add(barra);
 	    
-	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
+	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    setVisible(true);
 	}
 	
