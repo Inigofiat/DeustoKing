@@ -288,17 +288,17 @@ public class VentanaCarta extends JFrame {
 		btnHamburguesasCentro.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS BILBAO");
-				new VentanaHamburguesas(vActual, "BILBO BURGER", "src\\imagenes\\bilboburger.jpg");
+				new VentanaHamburguesas(vActual, "BILBO BURGER", "imagenes\\bilboburger.jpg");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS DONOSTI");
-				new VentanaHamburguesas(vActual, "DONOSTI BURGER", "src\\imagenes\\donosti.jpg");
+				new VentanaHamburguesas(vActual, "DONOSTI BURGER", "imagenes\\donosti.jpg");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS GASTEIZ");
-				new VentanaHamburguesas(vActual, "GASTEIZ BURGER", "src\\imagenes\\gasteiz.png");
+				new VentanaHamburguesas(vActual, "GASTEIZ BURGER", "imagenes\\gasteiz.png");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}

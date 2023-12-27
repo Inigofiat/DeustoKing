@@ -228,7 +228,7 @@ public class VentanaRegistro extends JFrame{
 
 			}
 		});	
-		Restaurante.miIcono(this, "/imagenes/CORONA.png");
+		Restaurante.miIcono(this, "imagenes/CORONA.png");
 		setVisible(true);
 	}
 }
