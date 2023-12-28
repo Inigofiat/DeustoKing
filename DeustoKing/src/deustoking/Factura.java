@@ -1,58 +1,85 @@
 package deustoking;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import javax.swing.JList;
 
 public class Factura {
 	private Cliente cliente;
-	private Trabajador personal;
-    private List<Producto> productos;
-    private double precio;
-
-    public Factura(Cliente cliente) {
-        this.cliente = cliente;
-        this.personal = personal;
-        this.productos = new ArrayList<>();
-        this.precio = 0.0;
-    }
-
-
-	public void agregarProducto(Producto producto) {
-        productos.add(producto);
-        precio += producto.getPrecio();
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public Trabajador getPersonal() {
-		return personal;
+	private LocalDate fecha;
+	private String hora;
+	private JList<Producto> productos;
+	private float precioTotal;
+	
+	public Factura() {
+		super();
 	}
 
-    public List<Producto> getProductos() {
-        return productos;
+	public Factura(Cliente cliente, LocalDate fecha, String hora, JList<Producto> productos, float precioTotal) {
+		super();
+		this.cliente = cliente;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.productos = productos;
+		this.precioTotal = precioTotal;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+	
+	
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	
+	public void setFechaStr(String fecha) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.fecha = LocalDate.parse(fecha, formatter);
     }
 
-    public double getPrecio() {
-        return precio;
-    }
+	public JList<Producto> getProductos() {
+		return productos;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Atendido por: ");
-        sb.append(personal.getNombre()).append(" ").append(personal.getApellidos()).append("\n");
-        sb.append("Factura para: ");
-        sb.append(cliente.getNombre()).append("\n");
-        sb.append("Dirección: ").append(cliente.getDireccion()).append("\n");
-        sb.append("Teléfono: ").append(cliente.getTelefono()).append("\n");
-        sb.append("Productos:\n");
-        for (Producto producto : productos) {
-            sb.append(" - ").append(producto.getNombre()).append(":").append(producto.getPrecio()).append("\n");
-        }
-        sb.append("Precio Total:").append(precio);
-        return sb.toString();
-    }
+	public void setProductos(JList<Producto> productos) {
+		this.productos = productos;
+	}
+
+	public float getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(float precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
+	@Override
+	public String toString() {
+		return "Factura [cliente=" + cliente + ", fecha=" + fecha + ", hora=" + hora + ", productos=" + productos
+				+ ", precioTotal=" + precioTotal + "]";
+	}
+	
 
 }
