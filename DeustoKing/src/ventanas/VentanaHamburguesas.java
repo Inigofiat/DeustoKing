@@ -92,6 +92,7 @@ public class VentanaHamburguesas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA DIABLO");
 				Restaurante.informacionProductos("Diablo", "Picamos cada cacho de carne directamente en la plancha y la mezclamos con"
 						+ "trozos de cebolla crunchy, bacon y queso americano, \nmontando una encima de otra hasta quedarnos tres hamburguesas entre queso chedar y bacon"
 						+ "con nuestra salsa especial 'deustosalsa' ", 11.95);
@@ -118,6 +119,7 @@ public class VentanaHamburguesas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA PULLED PORK");
 				Restaurante.informacionProductos("Pulled Pork", "Pan brioche artesano negro con tinta de calamar, nuestro característico pulled pork junto con cebolla morada triturada y cebolla pochada, \nqueso chedar,"
 						+ "panceta y un toque de salsa barbacoa", 13.00);
 				
@@ -142,6 +144,7 @@ public class VentanaHamburguesas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA BAKING");
 				Restaurante.informacionProductos("Baking", "Pan de cristal hecho en casa, pechuga de pollo empanada con cebolla morada y caramelizada mezclada "
 						+ "\ncon unos pepinillos de la tierra y salsa de chedar untada en el pan", 11.00);
 				
@@ -167,12 +170,15 @@ public class VentanaHamburguesas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(nombre=="BILBO BURGER") {
+					logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA BILBO BURGER");
 					Restaurante.informacionProductos(nombre, "Nuestro característico y llamativo pan brioche con un toque secreto, 150 gr de txuleton, una rodaja de queso de cabra \ncon"
 							+ "nuestras salsa de queso, acompañada de una cebolla pochada y bacon con sirope de arce y un huevo", 12.55);
 				}else if (nombre == "DONOSTI BURGER") {
+					logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA DONOSTI BURGER");
 					Restaurante.informacionProductos(nombre, "Pan brioche, 150 gr de txuleta de vaca junto con ensalada variada que contiene lechuga y tomate, "
 							+ "/npimientos de de el país vasco, queso mozzarella y cebolla crujiente ", 14.55);
 				}else if(nombre=="GASTEIZ BURGER") {
+					logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA GASTEIZ BURGER");
 					Restaurante.informacionProductos(nombre, "Pan brioche, 200 gr de txuleta de vaca, lechuga fresca, /nqueso gouda una combinación de bacon con panceta,"
 							+ " un huevo a la plancha y nuestra salsa secreta ", 15.60);
 				}
@@ -190,7 +196,7 @@ public class VentanaHamburguesas extends JFrame {
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
 		btnVolver.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
@@ -223,6 +229,7 @@ public class VentanaHamburguesas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

@@ -91,6 +91,7 @@ public class VentanaEntrantes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON NACHOMANIA");
 				Restaurante.informacionProductos("NachoMania", "Guacamole casero, pulled pork macerado con cuatro quesos y salsa bbq,"
 						+ "\npico de gallo, salsa cheddar, crema agria y jalapeños, acompañado de nachos caseros de maíz.", 9.90);
 				
@@ -115,6 +116,7 @@ public class VentanaEntrantes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTONS AROS DE CEBOLLA");
 				Restaurante.informacionProductos("CrispyRings", "Crujientes aros de cebolla acompañados de nuestra salsa barbacos.", 8.40);
 				
 			}
@@ -138,6 +140,7 @@ public class VentanaEntrantes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON TEQUEÑOS");
 				Restaurante.informacionProductos("TequeÑitos", "Palitos crujientes rellenos de queso fundido, servidos con nuestra exclusiva salsa casera (8uds).", 8.50);
 				
 			}
@@ -161,6 +164,7 @@ public class VentanaEntrantes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ALITAS");
 				Restaurante.informacionProductos("Alitas", "Alitas de pollo en salsa sweet chili con sésamo y cebollino (6uds)", 6.50);
 				
 			}
@@ -177,7 +181,7 @@ public class VentanaEntrantes extends JFrame {
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
 		btnVolver.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
@@ -212,6 +216,7 @@ public class VentanaEntrantes extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

@@ -92,7 +92,8 @@ public class VentanaInfantil extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("Carne", "Pan brioche con 50 gr de carne y una loncha de queso cheddar", 1.50);
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA KIDS CARNE");
+				Restaurante.informacionProductos("Kids Carne", "Pan brioche con 50 gr de carne y una loncha de queso cheddar", 1.50);
 			}
 		});
 		
@@ -114,7 +115,8 @@ public class VentanaInfantil extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("Pollo", "Pan brioche con pollo rebozado y una loncha de queso cheddar", 1.50);
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA POLLO KIDS");
+				Restaurante.informacionProductos("Kids Pollo", "Pan brioche con pollo rebozado y una loncha de queso cheddar", 1.50);
 			}
 		});
 		
@@ -130,7 +132,7 @@ public class VentanaInfantil extends JFrame {
 		btnVolver.setBorderPainted(true);
 		pVolver.add(btnVolver);
 		btnVolver.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
@@ -163,6 +165,7 @@ public class VentanaInfantil extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

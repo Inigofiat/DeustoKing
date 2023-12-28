@@ -92,6 +92,7 @@ public class VentanaPostres extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CHEESECAKE");
 				Restaurante.informacionProductos("Tarta de Queso", "Tarta americana de queso, crumble de galleta con toques de canela, bañado con un coulis de fresa casero.", 5.80);
 			}
 		});
@@ -114,6 +115,7 @@ public class VentanaPostres extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON LOTUSCAKE");
 				Restaurante.informacionProductos("Tarta de Lotus","Cuatro capas de esponjoso bizcocho de vainilla relleno con mousse de galleta Lotus, \ncon trozos crujientes de caramelo salado. "
 						+ "Terminado con un baño de crema lotus y arena crujiente de galleta Lotus.", 6.20);
 			}
@@ -137,6 +139,7 @@ public class VentanaPostres extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON FROZEN DEUSTOKING");
 				Restaurante.informacionProductos("Helado", "Heldao artesano de diferentes sabores:"
 						+ " Chocolate, Fresa, Nata, Vainilla, Yogurt y Limón", 2.60);
 			}
@@ -160,6 +163,7 @@ public class VentanaPostres extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DEUSTOSHAKE");
 				Restaurante.informacionProductos("Batido", "Batido sweet and fresh con galleta oreo y sirope de chocolate", 5.40);
 			}
 		});
@@ -207,6 +211,7 @@ public class VentanaPostres extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

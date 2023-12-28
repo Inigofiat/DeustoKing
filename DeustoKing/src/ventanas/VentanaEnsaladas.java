@@ -92,6 +92,7 @@ public class VentanaEnsaladas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA CESAR");
 				Restaurante.informacionProductos("Cesar", "Una fresca pechuga de pollo junto con picatostes artesanos, lechuga y tomate de las tierras vascas, "
 						+ "\ntrocitos de queso gouda y un chorrito de limón", 8.50);
 								
@@ -117,6 +118,7 @@ public class VentanaEnsaladas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA MIXTA");
 				Restaurante.informacionProductos("Mixta", "Ensalada variada con tomate de la tierra, un huevo cocido, espárragos, aceitunas "
 						+ "\ncebolla y bonito del norte", 9.50);				
 			}
@@ -141,6 +143,7 @@ public class VentanaEnsaladas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA DE PASTA");
 				Restaurante.informacionProductos("Pasta", "Pasta fresca con unos tomates cherris, queso mozzarella, "
 						+ "aceitunas negras y calabacín de la tierra", 7.00);
 												
@@ -166,6 +169,7 @@ public class VentanaEnsaladas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA CAPRESSE");
 				Restaurante.informacionProductos("Caprese", "Unos buenos tomates de la tierra, mozzarella de búfala italiana \n"
 						+ "y hojas de albahaca frescas", 7.00);				
 			}
@@ -182,7 +186,7 @@ public class VentanaEnsaladas extends JFrame {
 		btnVolver.setBorderPainted(true);
 		
 		btnVolver.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
@@ -216,6 +220,7 @@ public class VentanaEnsaladas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

@@ -124,7 +124,7 @@ public class VentanaMenu extends JFrame {
 		btnM3.add(lblM3, BorderLayout.CENTER);
 		btnM3.setMargin(margenBotones);
 		btnM3.addActionListener((e)->{
-			logger.log(Level.INFO, "ABREINDO LA VENTANA DE BEBIDAS");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BEBIDAS");
 			new VentanaBebidas(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -189,6 +189,7 @@ public class VentanaMenu extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN LA CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

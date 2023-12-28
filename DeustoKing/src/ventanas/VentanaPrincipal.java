@@ -99,7 +99,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA DE INICIO DE SESION");
+				logger.log(Level.INFO, "SE HA ABIERTO LA VENTANA INICIO DE SESION");
 				new VentanaInicioSesion(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
@@ -143,9 +143,11 @@ public class VentanaPrincipal extends JFrame {
 	    itTrabajador= new JMenuItem("Trabajador");
 	    itTrabajador.setFont(new Font("Tw", Font.PLAIN, 12));
 	    itTrabajador.addActionListener(new ActionListener() {
+	    	
 			
 	    	 @Override
 			    public void actionPerformed(ActionEvent e) {
+	    		 logger.log(Level.INFO, "SE HA HECHO CLICK EN EL ITEM TRABAJDOR");
 
 			        String dni = "";
 			        Trabajador t = null;
@@ -223,6 +225,12 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(true);
 		
 	}
+	
+	/***
+	 *Este método crea una animación que hace que el texto que recibe por parámetro se mueva hacia la derecha cada 100 milisegundos
+	 * 
+	 * @param label el label con la frase puntos
+	 */
 	
 	private void movimientoLabelPuntos(JLabel label) {
 	    Timer timer = new Timer(100, new ActionListener() {

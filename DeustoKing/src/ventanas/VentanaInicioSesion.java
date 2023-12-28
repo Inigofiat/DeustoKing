@@ -144,7 +144,7 @@ public class VentanaInicioSesion extends JFrame {
 		});
 
 		btnRegistro.addActionListener((e) -> {
-			logger.log(Level.INFO, "SE ESTA ABRIENDO LA VENTANA DE REGISTRO");
+			logger.log(Level.INFO, "SE ESTA ABRIENDO LA VENTANA REGISTRO");
 			new VentanaRegistro(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -153,69 +153,72 @@ public class VentanaInicioSesion extends JFrame {
 		Restaurante.cargarClientesEnLista(nomfichClientes);
 
 		btnInicioSesion.addActionListener((e)-> {
-		String corrTlfUsu = txtNombreUsuario.getText();
-		char[] contChar = txtContraseña.getPassword();
-		String contrasenia = new String(contChar);
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON INCIO DE SESIÓN");
+			
+			String corrTlfUsu = txtNombreUsuario.getText();
+			char[] contChar = txtContraseña.getPassword();
+			String contrasenia = new String(contChar);
 		
-		if(corrTlfUsu.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}else if(contrasenia.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}else {
-			Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
-			if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
-				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
+			if(corrTlfUsu.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}else if(contrasenia.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}else {
-				if(!contrasenia.equals(cliente.getContrasenia())) {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
+				if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
+					JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}else {
-					JOptionPane.showMessageDialog(null, "¡BIENVENIDO! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
-					cli=cliente;
-					txtNombreUsuario.setText("");
-					txtContraseña.setText("");
-					JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
-	                ciudadComboBox.setSelectedItem(null); 
-
-	                Object[] message = {
-	                        "Nombre y Apellidos:", cliente.getNombre() + " " + cliente.getApellidos(),
-	                        "Teléfono:", cliente.getTelefono(),
-	                        "Email:", cliente.getCorreo(),
-	                        "Ciudad:", ciudadComboBox
-	                };
-
-	                int option = JOptionPane.showOptionDialog(null, message, "Datos del Usuario",
-	                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-
-	                if (option == JOptionPane.OK_OPTION) {
-	                    Ciudad ciudadSeleccionada = (Ciudad) ciudadComboBox.getSelectedItem();
-	                    if (ciudadSeleccionada != null) {
-	                        switch (ciudadSeleccionada) {
-	                            case BILBO:
-	                                new VentanaCarta(vActual, "BILBO");
-	                                break;
-	                            case DONOSTI:
-	                            	new VentanaCarta(vActual, "DONOSTI");
-	                                break;
-	                            case GASTEIZ:
-	                            	new VentanaCarta(vActual, "GASTEIZ");
-	                            	break;
-	                           
-	                        }
-	                    } else {
-	                        JOptionPane.showMessageDialog(null, "Seleccione una ciudad válida", "ERROR", JOptionPane.ERROR_MESSAGE);
-	                    }
+					if(!contrasenia.equals(cliente.getContrasenia())) {
+						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "¡BIENVENIDO! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+						cli=cliente;
+						txtNombreUsuario.setText("");
+						txtContraseña.setText("");
+						JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
+		                ciudadComboBox.setSelectedItem(null); 
+	
+		                Object[] message = {
+		                        "Nombre y Apellidos:", cliente.getNombre() + " " + cliente.getApellidos(),
+		                        "Teléfono:", cliente.getTelefono(),
+		                        "Email:", cliente.getCorreo(),
+		                        "Ciudad:", ciudadComboBox
+		                };
+	
+		                int option = JOptionPane.showOptionDialog(null, message, "Datos del Usuario",
+		                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+	
+		                if (option == JOptionPane.OK_OPTION) {
+		                    Ciudad ciudadSeleccionada = (Ciudad) ciudadComboBox.getSelectedItem();
+		                    if (ciudadSeleccionada != null) {
+		                        switch (ciudadSeleccionada) {
+		                            case BILBO:
+		                                new VentanaCarta(vActual, "BILBO");
+		                                break;
+		                            case DONOSTI:
+		                            	new VentanaCarta(vActual, "DONOSTI");
+		                                break;
+		                            case GASTEIZ:
+		                            	new VentanaCarta(vActual, "GASTEIZ");
+		                            	break;
+		                           
+		                        }
+		                    } else {
+		                        JOptionPane.showMessageDialog(null, "Seleccione una ciudad válida", "ERROR", JOptionPane.ERROR_MESSAGE);
+		                    }
+					}
 				}
-			}
 		}
 		
 		}
 
 	});
+		
 		Restaurante.miIcono(this, "imagenes/CORONA.png");
 		
 		setVisible(true);
 	
-}
+	}
 	
 }
 	

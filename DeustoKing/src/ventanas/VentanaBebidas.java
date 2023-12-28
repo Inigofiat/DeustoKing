@@ -92,6 +92,7 @@ public class VentanaBebidas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE COCA-COLA");
 				Restaurante.informacionProductos("Coca-Cola", "Una Coca-Cola bien fría nos hace disfrutar de cada instante de nuestras vidas de una forma especial."
 						+ "\nPor su sabor único y su carácter refrescante y auténtico, Coca-Cola añade magia a cada momento", 3.50 );
 				
@@ -116,6 +117,7 @@ public class VentanaBebidas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE AGUA");
 				Restaurante.informacionProductos("Agua", "DeustoWater es un agua de débil mineralización y sabor suave y refrescante.\r\n"
 						+ "\nDeustoWater proviene de Elgoibar, concretamente de Alzola.", 2.20);
 			}
@@ -139,6 +141,7 @@ public class VentanaBebidas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE VINO");
 				Restaurante.informacionProductos("Vino", "Nuestro vino se elaboró con uvas seleccionadas de viñas viejas ubicadas por encima de los 900 m de altitud "
 						+ "\nen suelos arcillosos que ofrecen vinos elegantes y con estructura debido a los ciclos de maduración más largos ", 3.40);
 			}
@@ -162,6 +165,7 @@ public class VentanaBebidas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE FANTA");
 				Restaurante.informacionProductos("Fanta", "Si te aburres..... A tomar fanta y diviértete con nosotros"
 						+ "\nSu sabor afrutado y refrescante hacen que sea completamente imposible aburrirse con una Fanta en la mano.", 2.50);
 			}
@@ -178,7 +182,7 @@ public class VentanaBebidas extends JFrame {
 		btnVolver.setBorderPainted(true);
 		pVolver.add(btnVolver);
 		btnVolver.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
@@ -210,6 +214,7 @@ public class VentanaBebidas extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE LA CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

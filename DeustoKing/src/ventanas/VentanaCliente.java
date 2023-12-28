@@ -9,6 +9,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,6 +31,7 @@ public class VentanaCliente extends JFrame{
 	private Cliente cliente;
 	private JFrame vActual, vAnterior;
 	private ArrayList<Cupon> cupones;
+	static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaCliente(JFrame va) {
 		vActual = this;
@@ -69,10 +72,9 @@ public class VentanaCliente extends JFrame{
 		
 		pCentro.addMouseListener(new MouseAdapter() {
 			
-
-			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				//logger.log(Level.INFO, "SE HA CLIKCADO EN EL PANEL CENTRO");
 				Point p = e.getPoint();
 				JLabel l = (JLabel) pCentro.getComponentAt(p);
 				ImageIcon im = (ImageIcon) l.getIcon();
@@ -124,9 +126,7 @@ public class VentanaCliente extends JFrame{
 			}
 		}
 	}
-	
-	
-	
-
 
 }
+
+

@@ -125,6 +125,7 @@ public class VentanaReserva extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+            	
                 GregorianCalendar calendar = (GregorianCalendar) datePicker.getModel().getValue();
                 ZonedDateTime zonedDateTime = calendar.toZonedDateTime();
                 LocalDate fechaLocal = zonedDateTime.toLocalDate();
@@ -136,6 +137,7 @@ public class VentanaReserva extends JFrame{
 
             @Override
             public boolean isValidSelection(DateModel<?> arg0) {
+            	logger.log(Level.INFO, "SE HA SELECCIONADO UNA FECHA");
                 GregorianCalendar calendar = (GregorianCalendar) arg0.getValue();
 
                 if (calendar != null) {
@@ -155,7 +157,8 @@ public class VentanaReserva extends JFrame{
         btnReservar.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {		
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON RESERVA");
 				Restaurante.reservar(datePicker, horas, nComensales, nomfichReservas, vActual, vAnterior);
 				
 			}

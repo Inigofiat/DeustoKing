@@ -92,6 +92,7 @@ public class VentanaSmash extends JFrame {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON SMASHHH");
 				Restaurante.informacionProductos("Smashhhh", "Nuestra DOBLE SMASH con doble queso cheddar, bacon bits, "
 						+ "\ncebolla pochada y salsa cheddar", 11.45);
 			}
@@ -115,6 +116,7 @@ public class VentanaSmash extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DON KING");
 				Restaurante.informacionProductos("Don King", "Nuestra DOBLE SMASH con doble queso "
 						+ "cheddar, \nbacon ahumado crujiente, pepinillo y salsa 'DeustoSalsa'", 12.50);
 			}
@@ -138,6 +140,7 @@ public class VentanaSmash extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CIELO");
 				Restaurante.informacionProductos("Cielo", "Nuestra DOBLE SMASH con doble queso cheddar,"
 						+ " \ncebolla picadita, pepinillo, ketchup y mostaza", 11.50);
 			}
@@ -161,6 +164,7 @@ public class VentanaSmash extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BACONSMASH");
 				Restaurante.informacionProductos("BaconSmash", "Nuestra DOBLE SMASH con queso cheddar entre las dos, \nmucha cebolla crujiente "
 						+ " y bacon bits ", 11.50);
 			}
@@ -209,6 +213,7 @@ public class VentanaSmash extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				

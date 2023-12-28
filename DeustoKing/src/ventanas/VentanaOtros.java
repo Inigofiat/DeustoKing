@@ -92,6 +92,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BOCATA PORKING");
 				Restaurante.informacionProductos("Porking", "Pan de cristal con abundante pulled pork, lechuga fresca, queso, "
 						+ "\n cebolla morada y salsa de yogurt", 9.60);
 			}
@@ -115,6 +116,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BURRIKING");
 				Restaurante.informacionProductos("Burriking", "Un wrap con txuleton picado, cebolla, maiz, queso "
 						+ "\n arroz, alubias y mayonesa", 10.00);
 			}
@@ -138,6 +140,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON COSTILLAS DEUSTORIB");
 				Restaurante.informacionProductos("DeustoRib", "Costillas de cerdo ahumadas a la parrilla con salsa barbacoa", 9.50);
 			}
 		});
@@ -160,6 +163,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON SANWING");
 				Restaurante.informacionProductos("Sanwing", "Pan de Sandwich con pollo desmenuzado con abundante queso ", 8.60);
 			}
 		});
@@ -174,7 +178,7 @@ public class VentanaOtros extends JFrame {
 		btnVolver.setMargin(new Insets(10, 10, 10, 10));
 		btnVolver.setBorderPainted(true);
 		pVolver.add(btnVolver);btnVolver.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON VOLVER");
+			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON VOLVER");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
@@ -206,6 +210,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CESTA");
 				new VentanaTablaProductos(vActual);
 				vActual.dispose();
 				
