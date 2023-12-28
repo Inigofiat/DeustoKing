@@ -26,8 +26,8 @@ import deustoking.Restaurante;
 public class VentanaCupones extends JFrame {
 	
 	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
-	private JButton btnC1, btnC2, btnC3, btnC4, btnVolver;
-	private JLabel lblC1, lblC2, lblC3, lblC4;
+	private JButton btnC1, btnC2, btnC3, btnC4, btnC5, btnC6, btnC7, btnC8, btnVolver;
+	private JLabel lblC1, lblC2, lblC3, lblC4, lblC5, lblC6, lblC7, lblC8;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;
@@ -46,7 +46,6 @@ public class VentanaCupones extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
 		
 		pContenedor = new JPanel();
 		pContenedor.setLayout(new BorderLayout());
@@ -69,8 +68,8 @@ public class VentanaCupones extends JFrame {
 		Insets margenBotones = new Insets(50, 50, 50, 50);
 		
 		btnC1 = new JButton();
-		ImageIcon cupon1 = new ImageIcon("src\\imagenes\\CUPON.png");
-		lblC1 = new JLabel("CUPÓN 1: 2 x 1 en menú DeustoKing");
+		ImageIcon cupon1 = new ImageIcon("imagenes\\10.gif");
+		lblC1 = new JLabel("CUPÓN DEL 10%");
 		btnC1.setIcon(cupon1);
 		btnC1.setLayout(new BorderLayout());
 		btnC1.setPreferredSize(new Dimension(cupon1.getIconWidth(), cupon1.getIconHeight()));	
@@ -86,8 +85,8 @@ public class VentanaCupones extends JFrame {
 		pProductos.add(btnC1);
 		
 		btnC2 = new JButton();
-		ImageIcon cupon2 = new ImageIcon("src\\imagenes\\CUPON.png");
-		lblC2 = new JLabel("CUPÓN 2: - 50% en Bilbo.");
+		ImageIcon cupon2 = new ImageIcon("imagenes\\15.gif");
+		lblC2 = new JLabel("CUPÓN DEL 15%");
 		btnC2.setIcon(cupon2);
 		btnC2.setLayout(new BorderLayout());
 		btnC2.setPreferredSize(new Dimension(cupon2.getIconWidth(), cupon2.getIconHeight()));	
@@ -103,8 +102,8 @@ public class VentanaCupones extends JFrame {
 		pProductos.add(btnC2);
 		
 		btnC3 = new JButton();
-		ImageIcon cupon3 = new ImageIcon("src\\imagenes\\CUPON.png");
-		lblC3 = new JLabel("CUPÓN 3: 1,99€ Deushake");
+		ImageIcon cupon3 = new ImageIcon("imagenes\\20.gif");
+		lblC3 = new JLabel("CUPÓN DEL 20%");
 		btnC3.setIcon(cupon3);
 		btnC3.setLayout(new BorderLayout());
 		btnC3.setPreferredSize(new Dimension(cupon3.getIconWidth(), cupon3.getIconHeight()));	
@@ -120,9 +119,9 @@ public class VentanaCupones extends JFrame {
 		pProductos.add(btnC3);
 		
 		btnC4 = new JButton();
-		ImageIcon cupon4 = new ImageIcon("src\\imagenes\\CUPON.png");
-		lblC4 = new JLabel("CUPÓN 4: 15,99€ Sanwing + Porking");
-		btnC4.setIcon(cupon1);
+		ImageIcon cupon4 = new ImageIcon("imagenes\\30.gif");
+		lblC4 = new JLabel("CUPÓN DEL 30%");
+		btnC4.setIcon(cupon4);
 		btnC4.setLayout(new BorderLayout());
 		btnC4.setPreferredSize(new Dimension(cupon4.getIconWidth(), cupon4.getIconHeight()));	
 		btnC4.setPreferredSize(new Dimension(150,350));
@@ -135,6 +134,74 @@ public class VentanaCupones extends JFrame {
 		btnC4.add(lblC4, BorderLayout.CENTER);
 		btnC4.setMargin(margenBotones);
 		pProductos.add(btnC4);
+		
+		btnC5 = new JButton();
+		ImageIcon cupon5 = new ImageIcon("imagenes\\35.gif");
+		lblC5 = new JLabel("CUPÓN DEL 35%");
+		btnC5.setIcon(cupon5);
+		btnC5.setLayout(new BorderLayout());
+		btnC5.setPreferredSize(new Dimension(cupon1.getIconWidth(), cupon1.getIconHeight()));	
+		btnC5.setPreferredSize(new Dimension(150,350));
+		lblC5.setHorizontalAlignment(SwingConstants.LEFT);
+		lblC5.setVerticalAlignment(SwingConstants.TOP);
+		btnC5.setBackground(buttonBackgroundColor);
+		btnC5.setBorderPainted(false);
+		lblC5.setForeground(Color.WHITE); 
+		lblC5.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+		btnC5.add(lblC5, BorderLayout.CENTER);
+		btnC5.setMargin(margenBotones);
+		pProductos.add(btnC5);
+		
+		btnC6 = new JButton();
+		ImageIcon cupon6 = new ImageIcon("imagenes\\40.gif");
+		lblC6 = new JLabel("CUPÓN DEL 40%");
+		btnC6.setIcon(cupon6);
+		btnC6.setLayout(new BorderLayout());
+		btnC6.setPreferredSize(new Dimension(cupon1.getIconWidth(), cupon1.getIconHeight()));	
+		btnC6.setPreferredSize(new Dimension(150,350));
+		lblC6.setHorizontalAlignment(SwingConstants.LEFT);
+		lblC6.setVerticalAlignment(SwingConstants.TOP);
+		btnC6.setBackground(buttonBackgroundColor);
+		btnC6.setBorderPainted(false);
+		lblC6.setForeground(Color.WHITE); 
+		lblC6.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+		btnC6.add(lblC6, BorderLayout.CENTER);
+		btnC6.setMargin(margenBotones);
+		pProductos.add(btnC6);
+		
+		btnC7 = new JButton();
+		ImageIcon cupon7 = new ImageIcon("imagenes\\50.gif");
+		lblC7 = new JLabel("CUPÓN DEL 50%");
+		btnC7.setIcon(cupon7);
+		btnC7.setLayout(new BorderLayout());
+		btnC7.setPreferredSize(new Dimension(cupon1.getIconWidth(), cupon1.getIconHeight()));	
+		btnC7.setPreferredSize(new Dimension(150,350));
+		lblC7.setHorizontalAlignment(SwingConstants.LEFT);
+		lblC7.setVerticalAlignment(SwingConstants.TOP);
+		btnC7.setBackground(buttonBackgroundColor);
+		btnC7.setBorderPainted(false);
+		lblC7.setForeground(Color.WHITE); 
+		lblC7.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+		btnC7.add(lblC7, BorderLayout.CENTER);
+		btnC7.setMargin(margenBotones);
+		pProductos.add(btnC7);
+		
+		btnC8 = new JButton();
+		ImageIcon cupon8 = new ImageIcon("imagenes\\70.gif");
+		lblC8 = new JLabel("CUPÓN DEL 70%");
+		btnC8.setIcon(cupon8);
+		btnC8.setLayout(new BorderLayout());
+		btnC8.setPreferredSize(new Dimension(cupon1.getIconWidth(), cupon1.getIconHeight()));	
+		btnC8.setPreferredSize(new Dimension(150,350));
+		lblC8.setHorizontalAlignment(SwingConstants.LEFT);
+		lblC8.setVerticalAlignment(SwingConstants.TOP);
+		btnC8.setBackground(buttonBackgroundColor);
+		btnC8.setBorderPainted(false);
+		lblC8.setForeground(Color.WHITE); 
+		lblC8.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+		btnC8.add(lblC8, BorderLayout.CENTER);
+		btnC8.setMargin(margenBotones);
+		pProductos.add(btnC8);
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -185,5 +252,6 @@ public class VentanaCupones extends JFrame {
 	    
 	    setVisible(true);
 	}
+
 	
 }
