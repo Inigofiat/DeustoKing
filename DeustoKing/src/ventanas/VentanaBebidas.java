@@ -117,7 +117,7 @@ public class VentanaBebidas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Restaurante.informacionProductos("Agua", "DeustoWater es un agua de débil mineralización y sabor suave y refrescante.\r\n"
-						+ "\nDeustoWater proviene de Elgoibar, concretamente de Alzola.", altoP);
+						+ "\nDeustoWater proviene de Elgoibar, concretamente de Alzola.", 2.20);
 			}
 		});
 		

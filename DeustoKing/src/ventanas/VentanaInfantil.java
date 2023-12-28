@@ -114,7 +114,7 @@ public class VentanaInfantil extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("Pollo", "Pan brioche con pollo rebozado y una loncha de queso cheddar", altoP);
+				Restaurante.informacionProductos("Pollo", "Pan brioche con pollo rebozado y una loncha de queso cheddar", 1.50);
 			}
 		});
 		

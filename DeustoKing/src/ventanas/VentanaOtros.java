@@ -138,7 +138,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("DeustoRib", "Costillas de cerdo ahumadas a la parrilla con salsa barbacoa", altoP);
+				Restaurante.informacionProductos("DeustoRib", "Costillas de cerdo ahumadas a la parrilla con salsa barbacoa", 9.50);
 			}
 		});
 		
@@ -160,7 +160,7 @@ public class VentanaOtros extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("Sanwing", "Pan de Sandwich con pollo desmenuzado con abundante queso ", altoP);
+				Restaurante.informacionProductos("Sanwing", "Pan de Sandwich con pollo desmenuzado con abundante queso ", 8.60);
 			}
 		});
 		

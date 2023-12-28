@@ -162,7 +162,7 @@ public class VentanaSmash extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Restaurante.informacionProductos("BaconSmash", "Nuestra DOBLE SMASH con queso cheddar entre las dos, \nmucha cebolla crujiente "
-						+ " y bacon bits ", altoP);
+						+ " y bacon bits ", 11.50);
 			}
 		});
 		

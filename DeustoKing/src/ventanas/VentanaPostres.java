@@ -137,7 +137,8 @@ public class VentanaPostres extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Restaurante.informacionProductos("Helado", "Heldao artesano de diferentes sabores: Chocolate, Fresa, Nata, Vainilla, Yogurt y Limón", altoP);
+				Restaurante.informacionProductos("Helado", "Heldao artesano de diferentes sabores:"
+						+ " Chocolate, Fresa, Nata, Vainilla, Yogurt y Limón", 2.60);
 			}
 		});
 		
