@@ -87,25 +87,6 @@ public class VentanaPrincipal extends JFrame {
         gifPanel.add(panCiudades, BorderLayout.CENTER);
         gifPanel.add(panInformación, BorderLayout.SOUTH);
 		
-		btnReservas = new JButton("RESERVAS");
-		btnReservas.setBackground(Color.BLACK);
-		btnReservas.setForeground(Color.WHITE);
-		btnReservas.setPreferredSize(new Dimension(150,40));
-		btnReservas.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		btnReservas.setMargin(new Insets(10, 10, 10, 10));
-		panBotones.add(btnReservas);
-		btnReservas.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE ESTA ABRIENDO LA VENTANA DE RESERVAS");
-				new VentanaReserva(vActual);
-				vActual.setVisible(false);
-				vActual.dispose();
-				
-			}
-		});
-		
 		btnInicSesion = new JButton("INICIO SESIÓN");
 		btnInicSesion.setBackground(Color.BLACK);
 		btnInicSesion.setForeground(Color.WHITE);
@@ -113,6 +94,7 @@ public class VentanaPrincipal extends JFrame {
 		btnInicSesion.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		btnInicSesion.setMargin(new Insets(10, 10, 10, 10));
 		panBotones.add(btnInicSesion);
+
 		btnInicSesion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -121,7 +103,6 @@ public class VentanaPrincipal extends JFrame {
 				new VentanaInicioSesion(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
-				
 			}
 		});
 		
@@ -132,9 +113,6 @@ public class VentanaPrincipal extends JFrame {
 		lbV1.setBounds(400, 209, 166, 182);
 		lbV1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		panCiudades.add(lbV1);
-		
-
-		
 
 		lbCup = new JLabel("     ¡REGISTRÁNDOTE CONSEGUIRÁS 75 PUNTOS!   ");
 		lbCup.setBackground(Color.WHITE);
@@ -262,4 +240,6 @@ public class VentanaPrincipal extends JFrame {
 
 	    timer.start();
 	}
+	
+	
 }

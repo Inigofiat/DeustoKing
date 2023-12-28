@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -34,6 +38,9 @@ public class VentanaOtros extends JFrame {
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;
 	static Logger logger = Logger.getLogger(Main.class.getName());
+	private JMenuBar menu;
+	private JMenu menuDesplegable;
+	private JMenuItem itCompra;
 	
 	public VentanaOtros(JFrame va) {
 		super();
@@ -185,6 +192,31 @@ public class VentanaOtros extends JFrame {
 	    
 	    int espacioEntrePaneles1 = 130; 
 	    pProductos.setBorder(new EmptyBorder(espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1, espacioEntrePaneles1 ));
+	    menu = new JMenuBar();
+	    menuDesplegable = new JMenu("");
+	    ImageIcon icono = new ImageIcon("imagenes/carro.png");
+	    Image imagenEscalada = icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+	    icono = new ImageIcon(imagenEscalada);
+	    menuDesplegable.setIcon(icono);
+	    menuDesplegable.setFont(new Font("Tw", Font.BOLD, 12));
+	    menuDesplegable.setForeground(new Color(0,0,0));
+	    itCompra = new JMenuItem("Cesta");
+	    itCompra.setFont(new Font("Tw", Font.PLAIN, 12));
+	    itCompra.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaTablaProductos(vActual);
+				vActual.dispose();
+				
+			}
+		});
+
+	    menuDesplegable.add(itCompra);
+
+	    menu.add(menuDesplegable);
+
+	    setJMenuBar(menu);
         
         pContenedor.add(lblTitulo, BorderLayout.NORTH);
 	    pContenedor.add(pProductos, BorderLayout.CENTER);

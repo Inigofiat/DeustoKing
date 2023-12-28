@@ -2,9 +2,11 @@ package ventanas;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -34,5 +36,18 @@ public class Main {
 		Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
 		
 		BD.cerrarBD(con);
+		
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileReader("config.properties"));
+			String nombreBD = properties.getProperty("nombreBD");
+			String nombreAplicacion = properties.getProperty("nombreAplicacion");
+			String fechaCreacion = properties.getProperty("fechaCreacion");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO EL ARCHIVO");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
