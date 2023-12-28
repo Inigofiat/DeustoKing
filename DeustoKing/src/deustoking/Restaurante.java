@@ -76,6 +76,14 @@ public class Restaurante {
 
 	}
 	
+	/***
+	 * Este método sustituye el icono por defecto por la ruta que se recibe por parametro
+	 * 	 
+	 * @param ventana donde se va a implementar el metodo
+	 * @param rutaIcono la ruta de la imagen
+	 * 
+	 */
+	
 	
 	public static void miIcono(JFrame ventana, String rutaIcono) {
 		try {
@@ -86,6 +94,12 @@ public class Restaurante {
 		}
 	}
 	
+
+	/***
+	 * Este método lee las reservas que están en el fichero que recibe por parámetro y las carga en la lista de resevas
+	 * 
+	 * @param nombfich fichero reservas.csv
+	 */
 
 	public static  void cargarReservasEnLista (String nombfich) {
        
@@ -112,6 +126,13 @@ public class Restaurante {
         			
 	}
 	
+	/***
+	 * Este método lee los trabajadores que están en el fichero que recibe por parámetro y los carga en la lista de trabajadores
+	 * 
+	 * @param nombfich fichero Trabajadores.csv
+	 */
+	
+	
 	public static void cargarTrabajadoresEnLista(String nombfich) {
 		try {
 			Scanner sc = new Scanner(new File(nombfich));
@@ -130,14 +151,34 @@ public class Restaurante {
 			e.printStackTrace();
 		}
 	}
+	
+	/***
+	 * Este método devuelve la lista de reservas
+	 * 
+	 * @return devuelve la lista de reservas
+	 */
+	
 	public static List<Reserva> getListaReservas(){
 		return listaReservas;
 		
 	}
 	
+	/***
+	 * Este método devuelve el mapa de las fechas
+	 * 
+	 * @return devuelve el mapa que tiene como clave la fecha en la que se ha hecho la reserva y como valor la lista de las reservas
+	 */
+	
 	public static Map<Date, List<Reserva>> getMapaHorasPorFecha() {
 		return mapaHorasPorFecha;
 	}
+	
+	/***
+	 * Este método obtiene todas las reservas que se hacen en una fehca y se guardan en una lista
+	 * 
+	 * @param fecha las reservas que se han hecho en esa fehca
+	 * @return devuelve las reservas que se han hecho en una fecha
+	 */
 	
 	public static List<Reserva> obtenerReservasPorFecha(Date fecha) {
 	    List<Reserva> reservasPorFecha = new ArrayList<>();
@@ -152,6 +193,14 @@ public class Restaurante {
 	    return reservasPorFecha;
 	  
 	}
+	
+	/***
+	 * Este método obtiene las personas que han comprado un producto en una hora que es la que se le pasa por parametro 
+	 * y se cargan en la lista de clientes
+	 * 
+	 * @param hora a la hora que han comprado el producto
+	 * @return devuelve la lista de clientes que han comprado 
+	 */
 	
 	
 	public static List<Cliente> getPersonasHanCompradoElProducto(String hora){
@@ -176,6 +225,13 @@ public class Restaurante {
 		return lp;
 	}
 	
+	/***
+	 * Este método busca los parametros que se han metido por inicio y busca el usuario que coincide con esos parametros 
+	 * 
+	 * @param inicio los parametros que mete el usuario la iniciar sesion
+	 * @return devuelve null en caso de no encontrarse el usuario
+	 */
+
 
 	public static Cliente buscarUsuario(String inicio) {
 	    boolean enc = false;
@@ -200,6 +256,13 @@ public class Restaurante {
 	    }
 	}
 	
+	/***
+	 * Este método busca los trabajadores que hay 
+	 * 
+	 * @param inicio el parametro que introduce el trabajador al inciar sesion 
+	 * @return devuelve un null en caso de no encontrar el trabajador
+	 */
+	
 	public static Trabajador buscarTrabajador (String inicio) {
 		boolean enc = false;
 		int pos = 0;
@@ -219,6 +282,12 @@ public class Restaurante {
 			return null;
 		}
 	}
+	
+	/***
+	 * Este método guarda los clientes en el fichero clientes.csv
+	 * 
+	 * @param nomfichClientes fichero de clientes.csv donde se guardan los clientes registrados
+	 */
 
 	public static void guardarClientes(String nomfichClientes) {
 		try {
@@ -233,6 +302,16 @@ public class Restaurante {
 			e.printStackTrace();
 		}
 	}
+	
+	/***
+	 * Este método solo acepta al iniciar sesión los unicos tres parametros que le pasamos, el email, el nombre y el teléfono
+	 * 
+	 * @param email parametro con el que el usuario puede iniciar sesion
+	 * @param nombre parametro con el que el usuario puede iniciar sesion
+	 * @param tlf parametro con el que el usuario puede iniciar sesion
+	 * @return telefono
+	 */
+
 
 	public static String obtenerParametroBusquedaInicioSesion(String email, String nombre, String tlf) {
 	    
@@ -245,6 +324,13 @@ public class Restaurante {
 	    }
 	}
 	
+	/***
+	 * Este método verifica el correo que se mete por parametro al registrarse, saltando un error en caso de que no se cumplan las condiciones necesarias
+	 * 
+	 * @param correo que mete el usuario al registrarse 
+	 * @return true en caso que el usuario haya metido correctamente los carácteres necesarios
+	 */
+	
 	public static boolean verificarCorreo(String correo) {
 
 		if(correo.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.(com|org|es))$")) {
@@ -254,6 +340,14 @@ public class Restaurante {
 		return false;
 		
 	}
+	
+	/***
+	 * Este método verifica la contraseña que se mete por parametro al registrarse, salta un error en caso de que no se cumplan las condiciones necesarias
+	 * 
+	 * @param contrasenia contraseña que mete el usuario al registrarse 
+	 * @return  true en caso que el usuario haya metido correctamente los carácteres de la contraseña
+	 */
+
 
 	public static boolean verificarContrasenia(String contrasenia) {
 
@@ -264,6 +358,12 @@ public class Restaurante {
 		return true;
 	}
 	
+	/***
+	 * Este método verifica el nombre del usuario que el usuario elige al registrarse, en caso de no contener los carácteres minimos saltara un error
+	 * 
+	 * @param nombreUsuario nombre que mete el usuario al registrarse 
+	 * @return true en caso de que haya metido un nombre de usuario que contenga las condiciones necesarias
+	 */	
 	
 	public static boolean verificarNombreUsuario(String nombreUsuario) {
 		if(!nombreUsuario.matches(".*[a-zA-Z].*") || nombreUsuario.length()<4) {
@@ -273,6 +373,13 @@ public class Restaurante {
 		return true;
 	}
 	
+	/***
+	 * Este método verifica el telefono que el usuario mete al registrarse, en caso de no contener 9 números o contener alguna letras o caracter
+	 * saltara un error.
+	 * 
+	 * @param telefono telefono que mete el usuario al registrarse
+	 * @return devuelve true cuando el telefono introducido contiene todas las condiciones puestas
+	 */
 
 	public static boolean verificarTelefono(String telefono) {
 		if(telefono.length()!=9 || !telefono.matches(".*[0-9].*") || telefono.matches(".*[a-zA-Z].*")) {
@@ -282,25 +389,47 @@ public class Restaurante {
 		return true;
 	}
 
+	/***
+	 * Este método lo que hace es añadir el cliente a la lista
+	 * 
+	 * @param c los clientes registrados
+	 */
+	
 	
 	public static void aniadirCliente(Cliente c) {
 		clientes.add(c);
 	}
 	
+	/***
+	 * Este método tras haber verificado y comprobado que los datos metidos por el usuario son correctos se registraran (guardan en el fichero)
+	 * 
+	 * @param nomfichCliente fichero clientes.csv
+	 * @param nombre nombre metido en el programa por el usuario
+	 * @param apellido apellido metido en el programa por el usuario
+	 * @param telefono telefono metido en el programa por el usuario
+	 * @param direccion direccion metido en el programa por el usuario
+	 * @param correo correo metido en el programa por el usuario
+	 * @param id id del usuario
+	 * @param puntos puntos que tiene el usuario
+	 * @param nombreUsuario nombre inventado por el
+	 * @param contrasenia contraseña metido en el programa por el usuario
+	 * @return en caso de que se verifique la contraseña, el nombre del usuario este correctamente y el telefono este bien devolvera true
+	 * en caso contrario devolvera false
+	 */
 
 	public static boolean registroCliente(String nomfichCliente, String nombre, String apellido, String telefono, String direccion, String correo,
     int id, int puntos, String nombreUsuario, String contrasenia, JFrame frame) {
 
-if (verificarContrasenia(contrasenia) && verificarNombreUsuario(nombreUsuario) && verificarTelefono(telefono) &&
+	if (verificarContrasenia(contrasenia) && verificarNombreUsuario(nombreUsuario) && verificarTelefono(telefono) &&
         buscarUsuario(telefono) == null && buscarUsuario(correo) == null && buscarUsuario(nombre) == null) {
 
-    Cliente nuevoCliente = new Cliente(nombre, apellido, telefono, direccion, correo, 1, puntos, nombreUsuario, contrasenia);
+		Cliente nuevoCliente = new Cliente(nombre, apellido, telefono, direccion, correo, 1, puntos, nombreUsuario, contrasenia);
 
     
-    JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
-    ciudadComboBox.setSelectedItem(null); 
+		JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
+		ciudadComboBox.setSelectedItem(null); 
 
-    Object[] message = {
+		Object[] message = {
             "Nombre y Apellidos:", nuevoCliente.getNombre() + " " + nuevoCliente.getApellidos(),
             "Teléfono:", nuevoCliente.getTelefono(),
             "Email:", nuevoCliente.getCorreo(),
@@ -341,9 +470,14 @@ if (verificarContrasenia(contrasenia) && verificarNombreUsuario(nombreUsuario) &
         }
     }
 
-return false;
-}
+	return false;
+	}	
 	
+	/***
+	 * Este método carga en la lista clientes los usuarios que esten en el fichero clientes.csv
+	 * 
+	 * @param nombfich fichero clientes.csv
+	 */
 	
 	public static void cargarClientesEnLista(String nombfich) {
 		try {
@@ -375,7 +509,12 @@ return false;
 		}
 	}
 
-
+	/***
+	 * Este método va cargando en el combo las fechas en las que se hacen las reservas
+	 * 
+	 * @param reservas una lista con todas las reservas realizadas
+	 * @param cbFecha combo con todas las fechas
+	 */
 	
 	public static void cargarFechasEnComboBox(List<Reserva> reservas, JComboBox<String> cbFecha) {
 		for (Reserva reserva : reservas) {
@@ -408,6 +547,13 @@ return false;
         }
 	}
 	
+	/***
+	 * Este método guarda las reservas que se van haciendo en el fichero reservas.csv
+	 * 
+	 * @param reserva las reservas que se van haciendo
+	 * @param nombrefich fichero reservas.csv
+	 */
+	
 	public static void guardarReservasEnFichero(Reserva reserva, String nombrefich) {
 		
 		try {
@@ -422,6 +568,17 @@ return false;
 		}
 	
 	}
+	
+	/***
+	 * Este método recibe una hora y una fecha con numero de comensales y guarda la reserva con dichos parametros en el fichero reservas.csv
+	 * 
+	 * @param datePicker calendario para escoger el dia
+	 * @param horas comboBox con las horas para hacer la reserva
+	 * @param nComensales comboBox con el numero de perosnas que iran a dicha reserva
+	 * @param nomfichReservas fichero reservas.csv
+	 * @param vActual ventana Reserva
+	 * @param vAnterior 
+	 */
 	
 	public static void reservar(DatePicker datePicker, JComboBox<String> horas, JComboBox<Integer> nComensales, String nomfichReservas, JFrame vActual, JFrame vAnterior) {
 		GregorianCalendar calendar = (GregorianCalendar) datePicker.getModel().getValue();
@@ -444,6 +601,13 @@ return false;
 	        }
 	    }
     }
+	
+	/***
+	 * Este método vuelca todo el contenido del fichero  a la base de datos
+	 * 
+	 * @param con conexión para la base de datos
+	 * @param nomfich fichero clientes.csv
+	 */
 	
 	public static void volcarCSVPersonasABD(Connection con, String nomfich) {
 		try {
@@ -469,6 +633,13 @@ return false;
 		}
 	}
 	
+	/***
+	 * Este método vuelca todas las reservas del fichero a la base de datos
+	 * 
+	 * @param con conexión para la base de datos
+	 * @param nomfich fichero reservas.csv
+	 */
+	
 	public static void volcarCSVReservasABD(Connection con, String nomfich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
@@ -490,6 +661,14 @@ return false;
 			e.printStackTrace();
 		}
 	}
+	
+	/***
+	 * Este método hace que al seleccionar un producto te salgan sus ingredientes y si lo quieres añadir o no
+	 * 
+	 * @param nombre  del producto
+	 * @param ingredientes que ingredientes tiene el producto seleccionado
+	 * @param precio el precio de dicho producto
+	 */
 	
 	public static void informacionProductos(String nombre, String ingredientes, double precio) {
 
@@ -526,9 +705,19 @@ return false;
 	    }
 	}
 	
+	/***
+	 * Este método obtiene una lista de productod 
+	 * 
+	 * @return devuelve los productos
+	 */
+	
 	public static List<Producto> obtenerProductos() {
         return productos;
     }
+	
+	/***
+	 * Este método carga los cupones en el fichero cupones.csv
+	 */
 	
 	public static void cargarCupones() {
 		try {
@@ -546,9 +735,19 @@ return false;
 		
 	}
 	
+	/***
+	 * Este método obtiene en mapa de los cupones
+	 * 
+	 * @return devuelve el mapa de los cupones
+	 */
+	
 	public static Map<String, Cupon> getMapaCupones(){
 		return mapaCupones;
 	}
+	
+	/***
+	 * Este método vuelva la lista de clientes al fichero clientes.csv
+	 */
 	
 	public static void volcarListaClientesAlFichero() {
 		try {
