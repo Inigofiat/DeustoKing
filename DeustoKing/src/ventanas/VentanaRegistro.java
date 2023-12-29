@@ -72,7 +72,7 @@ public class VentanaRegistro extends JFrame{
 		pOeste.add(txtNombre);
 		pOeste.add(Box.createVerticalStrut(30));
 
-		lblApellido = new JLabel("APELLIDO:");
+		lblApellido = new JLabel("APELLIDOS:");
 		lblApellido.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblApellido.setFont(new Font("Tw", Font.BOLD, 14));
 		txtApellido = new JTextField(20);
