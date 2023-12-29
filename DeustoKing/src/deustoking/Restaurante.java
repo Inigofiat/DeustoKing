@@ -762,4 +762,30 @@ public class Restaurante {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
+	/***
+	 * Este método hace que al seleccionar un cupon te salga su descuento
+	 * 
+	 * @param cupon que cupon se ha seleccionado
+	 * @param descripcion la descripcion del cupon
+	 */
+	
+	public static void informacionCupones(String cupon, String descripcion) {
+	    JPanel spinnerPanel = new JPanel();
+	    Dimension panelSize = new Dimension(200, spinnerPanel.getPreferredSize().height);
+	    Object[] mensaje = {
+	            cupon,
+	            "\n",
+	            "Descripción:", descripcion,
+	            spinnerPanel
+	    };
+	    
+	    Object[] opciones = {"VOLVER"};
+	    int resultado = JOptionPane.showOptionDialog(
+	            null, mensaje, cupon, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+	            null, opciones, opciones[0]
+	    );
+		
+	}
+	
+	
 }

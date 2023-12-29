@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,6 +85,15 @@ public class VentanaCupones extends JFrame {
 		btnC1.add(lblC1, BorderLayout.CENTER);
 		btnC1.setMargin(margenBotones);
 		pProductos.add(btnC1);
+		btnC1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 10%");
+				Restaurante.informacionCupones("Cupón del 10%", "Este cupón aplica un 10% al precio total. "
+						+ "\nSe requiere un mínimo de 90 puntos para canjearlo");
+			}
+		});
 		
 		btnC2 = new JButton();
 		ImageIcon cupon2 = new ImageIcon("imagenes\\15.gif");
@@ -100,6 +111,15 @@ public class VentanaCupones extends JFrame {
 		btnC2.add(lblC2, BorderLayout.CENTER);
 		btnC2.setMargin(margenBotones);
 		pProductos.add(btnC2);
+		btnC2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 15%");
+				Restaurante.informacionCupones("Cupón del 15%","Este cupón aplica un 15% al precio total. "
+						+ "\nSe requiere un mínimo de 150 puntos para canjearlo" );
+			}
+		});
 		
 		btnC3 = new JButton();
 		ImageIcon cupon3 = new ImageIcon("imagenes\\20.gif");
@@ -117,6 +137,15 @@ public class VentanaCupones extends JFrame {
 		btnC3.add(lblC3, BorderLayout.CENTER);
 		btnC3.setMargin(margenBotones);
 		pProductos.add(btnC3);
+		btnC3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 20%");
+				Restaurante.informacionCupones("Cupón del 20%","Este cupón aplica un 20% al precio total. "
+						+ "\nSe requiere un mínimo de 190 puntos para canjearlo" );
+			}
+		});
 		
 		btnC4 = new JButton();
 		ImageIcon cupon4 = new ImageIcon("imagenes\\30.gif");
@@ -134,6 +163,15 @@ public class VentanaCupones extends JFrame {
 		btnC4.add(lblC4, BorderLayout.CENTER);
 		btnC4.setMargin(margenBotones);
 		pProductos.add(btnC4);
+		btnC4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 30%");
+				Restaurante.informacionCupones("Cupón del 30%","Este cupón aplica un 30% al precio total. "
+						+ "\nSe requiere un mínimo de 350 puntos para canjearlo" );
+			}
+		});
 		
 		btnC5 = new JButton();
 		ImageIcon cupon5 = new ImageIcon("imagenes\\35.gif");
@@ -151,6 +189,15 @@ public class VentanaCupones extends JFrame {
 		btnC5.add(lblC5, BorderLayout.CENTER);
 		btnC5.setMargin(margenBotones);
 		pProductos.add(btnC5);
+		btnC5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 35%");
+				Restaurante.informacionCupones("Cupón del 35%","Este cupón aplica un 35% al precio total. "
+						+ "\nSe requiere un mínimo de 550 puntos para canjearlo" );
+			}
+		});
 		
 		btnC6 = new JButton();
 		ImageIcon cupon6 = new ImageIcon("imagenes\\40.gif");
@@ -168,6 +215,15 @@ public class VentanaCupones extends JFrame {
 		btnC6.add(lblC6, BorderLayout.CENTER);
 		btnC6.setMargin(margenBotones);
 		pProductos.add(btnC6);
+		btnC6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 40%");
+				Restaurante.informacionCupones("Cupón del 40%","Este cupón aplica un 40% al precio total. "
+						+ "\nSe requiere un mínimo de 690 puntos para canjearlo" );
+			}
+		});
 		
 		btnC7 = new JButton();
 		ImageIcon cupon7 = new ImageIcon("imagenes\\50.gif");
@@ -185,6 +241,15 @@ public class VentanaCupones extends JFrame {
 		btnC7.add(lblC7, BorderLayout.CENTER);
 		btnC7.setMargin(margenBotones);
 		pProductos.add(btnC7);
+		btnC7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 50%");
+				Restaurante.informacionCupones("Cupón del 50%","Este cupón aplica un 50% al precio total. "
+						+ "\nSe requiere un mínimo de 800 puntos para canjearlo" );
+			}
+		});
 		
 		btnC8 = new JButton();
 		ImageIcon cupon8 = new ImageIcon("imagenes\\70.gif");
@@ -202,6 +267,15 @@ public class VentanaCupones extends JFrame {
 		btnC8.add(lblC8, BorderLayout.CENTER);
 		btnC8.setMargin(margenBotones);
 		pProductos.add(btnC8);
+		btnC8.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CUPÓN DEL 70%");
+				Restaurante.informacionCupones("Cupón del 70%","Este cupón aplica un 70% al precio total. "
+						+ "\nSe requiere un mínimo de 1000 puntos para canjearlo" );
+			}
+		});
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
