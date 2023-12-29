@@ -39,7 +39,7 @@ public class Main {
 		
 		Properties properties = new Properties();
 		try {
-			properties.load(new FileReader("config.properties"));
+			properties.load(new FileReader("conf/config.properties"));
 			String nombreBD = properties.getProperty("nombreBD");
 			String nombreAplicacion = properties.getProperty("nombreAplicacion");
 			String fechaCreacion = properties.getProperty("fechaCreacion");
