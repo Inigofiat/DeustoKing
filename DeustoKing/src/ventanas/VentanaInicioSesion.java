@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -151,67 +153,21 @@ public class VentanaInicioSesion extends JFrame {
 		});
 		
 		Restaurante.cargarClientesEnLista(nomfichClientes);
+		
+		txtContraseña.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyPressed(KeyEvent e) {
+		    	logger.log(Level.INFO, "SE HA HECHO PRESIONADO LA TECLA ENTER");
+		        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+		            iniciarSesion(); 
+		        }
+		    }
+		});
+
 
 		btnInicioSesion.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON INCIO DE SESIÓN");
-			
-			String corrTlfUsu = txtNombreUsuario.getText();
-			char[] contChar = txtContraseña.getPassword();
-			String contrasenia = new String(contChar);
-		
-			if(corrTlfUsu.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-			}else if(contrasenia.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
-			}else {
-				Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
-				if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
-					JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
-				}else {
-					if(!contrasenia.equals(cliente.getContrasenia())) {
-						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
-					}else {
-						JOptionPane.showMessageDialog(null, "¡BIENVENIDO! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
-						cli=cliente;
-						txtNombreUsuario.setText("");
-						txtContraseña.setText("");
-						JComboBox<Ciudad> ciudadComboBox = new JComboBox<>(Ciudad.values());
-		                ciudadComboBox.setSelectedItem(null); 
-	
-		                Object[] message = {
-		                        "Nombre y Apellidos:", cliente.getNombre() + " " + cliente.getApellidos(),
-		                        "Teléfono:", cliente.getTelefono(),
-		                        "Email:", cliente.getCorreo(),
-		                        "Ciudad:", ciudadComboBox
-		                };
-	
-		                int option = JOptionPane.showOptionDialog(null, message, "Datos del Usuario",
-		                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-	
-		                if (option == JOptionPane.OK_OPTION) {
-		                    Ciudad ciudadSeleccionada = (Ciudad) ciudadComboBox.getSelectedItem();
-		                    if (ciudadSeleccionada != null) {
-		                        switch (ciudadSeleccionada) {
-		                            case BILBO:
-		                                new VentanaCarta(vActual, "BILBO");
-		                                break;
-		                            case DONOSTI:
-		                            	new VentanaCarta(vActual, "DONOSTI");
-		                                break;
-		                            case GASTEIZ:
-		                            	new VentanaCarta(vActual, "GASTEIZ");
-		                            	break;
-		                           
-		                        }
-		                    } else {
-		                        JOptionPane.showMessageDialog(null, "Seleccione una ciudad válida", "ERROR", JOptionPane.ERROR_MESSAGE);
-		                    }
-					}
-				}
-		}
-		
-		}
-
+			iniciarSesion();
 	});
 		
 		Restaurante.miIcono(this, "imagenes/CORONA.png");
@@ -219,6 +175,41 @@ public class VentanaInicioSesion extends JFrame {
 		setVisible(true);
 	
 	}
+	
+	/***
+	 * Este método comprueba que el inicio de sesión se haga bien, esto es, que el nombre de usuario o el correo o el telefono coincidan
+	 * con alguien que ya esta registrado, si esta registrado y al contraseña esta correcta se iniciara sesión, en caso contrario, saltara un error.
+	 * 
+	 */
+	
+	private void iniciarSesion() {
+		String corrTlfUsu = txtNombreUsuario.getText();
+		char[] contChar = txtContraseña.getPassword();
+		String contrasenia = new String(contChar);
+		
+		if(corrTlfUsu.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}else if(contrasenia.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}else {
+			Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
+			if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
+				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(!contrasenia.equals(cliente.getContrasenia())) {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+					cli=cliente;
+					txtNombreUsuario.setText("");
+					txtContraseña.setText("");
+					new VentanaCliente(vActual);
+			}
+		}
+		
+		}
+	}
+
 	
 }
 	
