@@ -241,6 +241,7 @@ public class VentanaPrincipal extends JFrame {
 	                String movimiento = inicial.charAt(inicial.length() - 1) + inicial.substring(0, inicial.length() - 1);
 	                label.setText(movimiento);
 	            } catch (Exception ex) {
+	    			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR EL LABEL");	
 	                ex.printStackTrace(); 
 	            }
 	        }

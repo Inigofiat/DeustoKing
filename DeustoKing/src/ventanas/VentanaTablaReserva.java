@@ -21,6 +21,8 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -55,6 +57,7 @@ public class VentanaTablaReserva extends JFrame{
 	private JTable tablaCliente;
 	private SpinnerModel modeloSpinner;
 	private JSpinner spComensales;
+	static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	
 	public VentanaTablaReserva() {
@@ -68,8 +71,6 @@ public class VentanaTablaReserva extends JFrame{
         setSize(anchoP, altoP);
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
-        
-        
      
         pContenedor = new JPanel();
         pContenedor.setLayout(new BorderLayout()); 
@@ -81,7 +82,6 @@ public class VentanaTablaReserva extends JFrame{
         FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 100, 15);
         pNorte.setLayout(flowLayout);
         
-        
         cbFecha = new JComboBox<>();    
         cbFecha.setPreferredSize(new Dimension(300, cbFecha.getPreferredSize().height));
         pNorte.add(cbFecha);
@@ -89,11 +89,8 @@ public class VentanaTablaReserva extends JFrame{
         modeloSpinner = new SpinnerNumberModel(2, 2, 10, 1);
         spComensales = new JSpinner(modeloSpinner);
         spComensales.setPreferredSize(new Dimension(150, 35));
-        pNorte.add(spComensales);
-    
-        
+        pNorte.add(spComensales);    
        
-	  
 	    Restaurante.cargarFechasEnComboBox(Restaurante.getListaReservas(), cbFecha);
         modeloTablaReservas = new ModeloReserva(null);
         tablaReserva = new JTable(modeloTablaReservas);
@@ -105,8 +102,6 @@ public class VentanaTablaReserva extends JFrame{
 		tablaCliente = new JTable(modeloTablaReservasClientes);
 		scrollTablaCliente = new JScrollPane(tablaCliente);
 		pCentro.add(scrollTablaCliente, BorderLayout.SOUTH);   
-		
-
 		
 		cbFecha.addActionListener(new ActionListener() {
 
@@ -166,7 +161,7 @@ public class VentanaTablaReserva extends JFrame{
 			fecha = dateFormatter.parse(fechaString);
 			listaReservas = Restaurante.obtenerReservasPorFecha(fecha);
 	    } catch (ParseException e) {
-			e.printStackTrace();
+	    	logger.log(Level.WARNING, "NO SE HA PODIDO MODIFICAR EL FORMATO DE LA FECHA");	
 		}
          
 	    return listaReservas;

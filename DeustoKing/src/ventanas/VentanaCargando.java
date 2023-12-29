@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Paint;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -22,7 +24,8 @@ public class VentanaCargando extends JFrame {
 	private JProgressBar bProgreso;
 	private JLabel lbImgPri;
 	private JFrame vActual;
-
+	
+	public static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaCargando() {
 		super();
@@ -75,6 +78,7 @@ public class VentanaCargando extends JFrame {
 		                });
 					}
 				}catch(InterruptedException ie) {
+					logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA CARGA ");
 					JOptionPane.showMessageDialog(null, "Error al cargar la ventana", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();

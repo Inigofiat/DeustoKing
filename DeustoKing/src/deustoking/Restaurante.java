@@ -27,6 +27,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -39,6 +41,7 @@ import javax.swing.SpinnerNumberModel;
 import org.jdatepicker.DatePicker;
 
 import basesDeDatos.BD;
+import ventanas.Main;
 import ventanas.VentanaCarta;
 
 public class Restaurante {
@@ -57,6 +60,8 @@ public class Restaurante {
 	private static Set<String> fechasReservas;
 	private static  List<String> fechasOrdenadas;
 	private static Map<String, Cupon> mapaCupones;
+	static Logger logger = Logger.getLogger(Main.class.getName());
+
 
 	
 	static {
@@ -90,7 +95,7 @@ public class Restaurante {
 			Image icon = new ImageIcon(rutaIcono).getImage();
 			ventana.setIconImage(icon);
 		}catch(Exception e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DE LA IMAGEN");
 		}
 	}
 	
@@ -121,7 +126,7 @@ public class Restaurante {
                 listaReservas.add(reserva);
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
 		}       
         			
 	}
@@ -148,8 +153,8 @@ public class Restaurante {
 				listaTrabajadores.add(t);
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		
+			}
 	}
 	
 	/***
@@ -299,7 +304,7 @@ public class Restaurante {
 			pw.flush();
 			pw.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");	
 		}
 	}
 	
@@ -504,8 +509,7 @@ public class Restaurante {
 			
 			sc.close();
 		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");			
 		}
 	}
 
@@ -534,7 +538,7 @@ public class Restaurante {
                 try {
                     return sdf.parse(fecha1).compareTo(sdf.parse(fecha2));
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                	logger.log(Level.WARNING, "NO SE HA PODIDO MODIFICAR EL FORMATO DE LA FECHA");	
                     return 0;
                 }
             }
@@ -563,8 +567,7 @@ public class Restaurante {
 			pw.println(Reserva.getContador()+";"+ fecha+";"+reserva.getHora()+";"+reserva.getnComensales()+";"+reserva.getNombre()+";"+reserva.getTelefono()+";"+reserva.getCorreo());
 			pw.close();
 		} catch (IOException e) {
-			
-			e.printStackTrace();
+			logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA OPERACIÓN ESCRITURA EN EL FICHERO");	
 		}
 	
 	}
@@ -629,8 +632,7 @@ public class Restaurante {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
 	/***
@@ -658,8 +660,7 @@ public class Restaurante {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
 	/***
@@ -730,8 +731,7 @@ public class Restaurante {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 		
 	}
 	
@@ -759,8 +759,7 @@ public class Restaurante {
 			pw.flush();
 			pw.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
 }

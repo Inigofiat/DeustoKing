@@ -22,8 +22,7 @@ public class Main {
 		try {
 			logger.log(Level.INFO, "SE INICIA EL PROGRAMA DEUSTOKING");
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR LA VENTANA CARGANDO");	
 		}
 		
 		Connection con = BD.initBD("deustoking.db");
@@ -44,10 +43,10 @@ public class Main {
 			String nombreAplicacion = properties.getProperty("nombreAplicacion");
 			String fechaCreacion = properties.getProperty("fechaCreacion");
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			logger.log(Level.WARNING, "NO SE HA ENCONTRADO EL ARCHIVO");
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA OPERACIÓN DE CARGA DEL FICHERO PROPERTIES");	
+			
 		}
 	}
 }
