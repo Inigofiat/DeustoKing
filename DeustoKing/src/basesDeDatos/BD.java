@@ -160,7 +160,8 @@ public class BD {
 			ResultSet rs = st.executeQuery(sql);
 			if(rs.next()) {
 				int minPuntos = Integer.parseInt(rs.getString("MinPuntos"));
-				double descuento = Double.parseDouble(rs.getString("Descuento"));
+				String descuentoString = rs.getString("Descuento").replace(",", ".");
+	            double descuento = Double.parseDouble(descuentoString);
 				String fotoS = rs.getString("Foto");
 				String nombre = rs.getString("Nombre");
 				cupon = new Cupon(minPuntos, descuento, fotoS, nombre);
