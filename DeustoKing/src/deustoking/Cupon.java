@@ -2,7 +2,7 @@ package deustoking;
 
 public class Cupon {
 	private int minPuntos;
-	private float descuento;
+	private double descuento;
 	private String foto;
 	private String descripción;
 	
@@ -10,7 +10,7 @@ public class Cupon {
 		super();
 	}
 	
-	public Cupon(int minPuntos, float descuento, String foto, String descripción) {
+	public Cupon(int minPuntos, double descuento, String foto, String descripción) {
 		super();
 		this.minPuntos = minPuntos;
 		this.descuento = descuento;
@@ -24,10 +24,10 @@ public class Cupon {
 	public void setMinPuntos(int minPuntos) {
 		this.minPuntos = minPuntos;
 	}
-	public float getDescuento() {
+	public double getDescuento() {
 		return descuento;
 	}
-	public void setDescuento(float descuento) {
+	public void setDescuento(double descuento) {
 		this.descuento = descuento;
 	}
 	public String getFoto() {
