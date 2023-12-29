@@ -199,15 +199,22 @@ public class VentanaRegistro extends JFrame{
 			String correo = txtEmail.getText();
 			String nombreUsuario = txtNombreUsuario.getText();
 			String contrasenia = new String(txtContrasenia.getPassword());
+			String contRep = new String(txtRepetirContrasenia.getPassword());
 			
-			if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 75, nombreUsuario, contrasenia,vActual)
-					) {
-				JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
-				logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
-				
-			} else {
-				//JOptionPane.showMessageDialog(vActual, "El usuario ya está registrado", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
-
+			if(contrasenia.equals(contRep)) {
+			
+				if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 75, nombreUsuario, contrasenia,vActual)
+						) {
+					JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+					new VentanaInicioSesion(vActual);
+					vActual.dispose();
+					logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
+					
+				} else {
+					
+				}
+			}else {
+				JOptionPane.showMessageDialog(vActual, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 		});	
 		Restaurante.miIcono(this, "imagenes/CORONA.png");
