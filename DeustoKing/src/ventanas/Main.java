@@ -33,6 +33,7 @@ public class Main {
 		}
 		Restaurante.volcarCSVPersonasABD(con, "ficheros/Clientes.csv");
 		Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
+		Restaurante.volcarCSVCuponesABD(con, "ficheros/Cupones.csv");
 		
 		BD.cerrarBD(con);
 		

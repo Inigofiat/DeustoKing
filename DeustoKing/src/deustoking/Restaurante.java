@@ -664,6 +664,35 @@ public class Restaurante {
 	}
 	
 	/***
+	 * Este método vuelca todos los cupones del fichero a la base de datos
+	 * 
+	 * @param con conexión para la base de datos
+	 * @param nomfich fichero Cupones.csv
+	 */
+	
+	public static void volcarCSVCuponesABD(Connection con, String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String[]partes = linea.split(";");
+				int minPuntos = Integer.parseInt(partes[0]);
+				double descuento = Double.parseDouble(partes[1]);
+				String foto = partes[2];
+				String nombre = partes[3];
+				
+				Cupon c = new Cupon(minPuntos, descuento, foto, nombre);
+				BD.insertarCupon(con, c);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
+		}
+		
+	}
+	
+	/***
 	 * Este método hace que al seleccionar un producto te salgan sus ingredientes y si lo quieres añadir o no
 	 * 
 	 * @param nombre  del producto

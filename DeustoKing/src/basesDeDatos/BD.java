@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import deustoking.Cliente;
+import deustoking.Cupon;
 import deustoking.Producto;
 import deustoking.Reserva;
 
@@ -39,12 +40,14 @@ public class BD {
 		String sqlProducto = "CREATE TABLE IF NOT EXISTS Producto(IdentificadorProducto INTEGER PRIMARY KEY AUTOINCREMENT, Nombre String, Descripcion String, Precio double, Cantidad int, Modificacion String)";
 		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, HorasTrabajadas float,"
 				+ "Sueldo float, NombreTrabajador String, Contrasenia String, Dni String, Puesto String)";
+		String sqlCupon = "CREATE TABLE IF NOT EXISTS Cupon(MinPuntos Int, Descuento double, Foto String, Nombre String)";
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(sqlCliente);
 			st.executeUpdate(sqlReserva);
 			st.executeUpdate(sqlProducto);
 			st.executeUpdate(sqlTrabajador);
+			st.execute(sqlCupon);
 			st.close();
 			
 		} catch (SQLException e) {
@@ -78,6 +81,21 @@ public class BD {
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public static void insertarCupon(Connection con, Cupon cupon) {
+		if(buscarCupon(con, cupon.getFoto())==null) {
+			String sql = String.format("INSERT INTO Cupon(MinPuntos,Descuento,Foto,Nombre)VALUES('%d','%f', '%s','%s')", cupon.getMinPuntos(),cupon.getDescuento(),cupon.getFoto(),cupon.getDescripción());
+			
+			try {
+				Statement st = con.createStatement();
+				st.executeUpdate(sql);
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	
@@ -132,6 +150,28 @@ public class BD {
 			e.printStackTrace();
 		}
 		return reserva;
+	}
+	
+	public static Cupon buscarCupon(Connection con, String foto) {
+		String sql = String.format("SELECT * FROM Cupon WHERE Foto ='%s'", foto);
+		Cupon cupon = null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int minPuntos = Integer.parseInt(rs.getString("MinPuntos"));
+				double descuento = Double.parseDouble(rs.getString("Descuento"));
+				String fotoS = rs.getString("Foto");
+				String nombre = rs.getString("Nombre");
+				cupon = new Cupon(minPuntos, descuento, fotoS, nombre);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cupon;
+		
 	}
 	
 	public static List<Cliente> obtenerListaClientes(Connection con){
