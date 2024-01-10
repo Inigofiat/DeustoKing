@@ -52,7 +52,7 @@ public class VentanaPrincipal extends JFrame {
 	private static Trabajador trabajador;
 	private static  JComboBox<PuestoTrabajo> cargoComboBox;
 	static Logger logger = Logger.getLogger(Main.class.getName());
-	PanelGif gifPanel;
+	PanelImagen gifPanel;
 	
 	
 	
@@ -82,7 +82,7 @@ public class VentanaPrincipal extends JFrame {
         panInformación = new JPanel();
         panPrincipal = new JPanel();
         
-        gifPanel = new PanelGif(new ImageIcon("imagenes/carga.gif").getImage());
+        gifPanel = new PanelImagen(new ImageIcon("imagenes/carga.gif").getImage());
         gifPanel.add(panBotones, BorderLayout.NORTH);
         gifPanel.add(panCiudades, BorderLayout.CENTER);
         gifPanel.add(panInformación, BorderLayout.SOUTH);

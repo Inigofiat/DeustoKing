@@ -58,6 +58,8 @@ public class Restaurante {
 	private static Map<Date, List<Reserva>> mapaHorasPorFecha;
 	private static Map<String, List<Reserva>> mapaReservas;
 	private static List<Producto>productos;
+	private static List<Producto> listaProductosFichero;
+	private static List<Producto> lP;
 	private static Set<String> fechasReservas;
 	private static  List<String> fechasOrdenadas;
 	private static Map<String, Cupon> mapaCupones;
@@ -79,6 +81,8 @@ public class Restaurante {
 		fechasReservas= new HashSet<>();
 		fechasOrdenadas = new ArrayList<>();
 		mapaCupones = new TreeMap<>();
+		listaProductosFichero = new ArrayList<>();
+		lP = new ArrayList<>();
 
 	}
 	
@@ -696,7 +700,7 @@ public class Restaurante {
 	    if (resultado == JOptionPane.OK_OPTION) {
 	        int cantidad = (int) spinner.getValue();
 	        JOptionPane.showMessageDialog(null, "Añadido con éxito", "INFO", JOptionPane.INFORMATION_MESSAGE);
-	        Producto p = new Producto(1, nombre, ingredientes, precio, cantidad, "");
+	        Producto p = new Producto(1, nombre, ingredientes, Float.parseFloat(String.valueOf(precio)), cantidad, "","",new ArrayList<>());
 	        productos.add(p);
 
 	        for (Producto pr : productos) {
@@ -716,16 +720,16 @@ public class Restaurante {
     }
 	
 	/***
-	 * Este método carga los cupones en el fichero cupones.csv
+	 * Este método carga los cupones del fichero Cupones.csv
 	 */
 	
 	public static void cargarCupones() {
 		try {
-			Scanner sc = new Scanner(new FileReader("ficheros/cupones.csv"));
+			Scanner sc = new Scanner(new FileReader("ficheros/Cupones.csv"));
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
 				String [] partes = linea.split(";");
-				Cupon c = new Cupon(Integer.parseInt(partes[0]), Float.parseFloat(partes[1]), partes[2], partes[3]);
+				Cupon c = new Cupon(Integer.parseInt(partes[0]), Float.parseFloat(partes[1]), "imagenes/"+partes[2], partes[3]);
 				mapaCupones.put(c.getFoto(), c);
 			}
 			sc.close();
@@ -770,7 +774,6 @@ public class Restaurante {
 	
 	public static void informacionCupones(String cupon, String descripcion) {
 	    JPanel spinnerPanel = new JPanel();
-	    Dimension panelSize = new Dimension(200, spinnerPanel.getPreferredSize().height);
 	    Object[] mensaje = {
 	            cupon,
 	            "\n",
@@ -785,6 +788,80 @@ public class Restaurante {
 	    );
 		
 	}
+	
+	public static List<Reserva>  obtenerReservasCliente(String telefono) {
+		List<Reserva> reservas = mapaReservas.get(telefono);
+		if(reservas!=null) {
+			Collections.sort(reservas, (reserva1,reserva2) -> reserva1.getFecha().compareTo(reserva2.getFecha()));
+		}
+		
+		return reservas;
+	}
+	
+	public static void cargarProductosEnLista(String nomfich) {
+		try {
+			Scanner sc = new Scanner(new File(nomfich));
+			while(sc.hasNextLine()) {
+				String linea = sc.nextLine();
+				String[] partes=linea.split(";");
+				
+				int idP = Integer.parseInt(partes[0]);
+				String nombre = partes[1];
+				String descripcion = partes[2];
+				float precio=0;
+				if(!partes[3].isEmpty()) {
+					precio = Float.parseFloat(partes[3]);
+				}
+				
+				int cantidad =0;
+				if(!partes[4].isEmpty()) {
+					cantidad = Integer.parseInt(partes[4]);
+				}
+				
+				String modificacion = partes[5];
+				TipoProducto tipoProducto = TipoProducto.valueOf(partes[6]);
+				String imagen = partes[7];
+				
+				if(partes.length==9) {
+					String[]productos = partes[8].split(":");
+					for (String idProducto : productos) {
+						int id = Integer.parseInt(idProducto);
+						Producto productoEncontrado = buscarProductoPorId(idP, listaProductosFichero);
+						if(productoEncontrado!=null) {
+							lP.add(productoEncontrado);
+						}
+					}
+				}
+				
+				if(partes.length==9) {
+					MenuDeusto menu = new MenuDeusto(idP, nombre, descripcion, precio, cantidad, modificacion, tipoProducto, imagen, lP);
+					listaProductosFichero.add(menu);
+				}else {
+					Producto producto = new Producto(idP, nombre, descripcion, precio, cantidad, modificacion, tipoProducto, imagen, null);
+					listaProductosFichero.add(producto);
+				}
+			}
+			sc.close();
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Producto buscarProductoPorId(int id, List<Producto> listaProductos) {
+		for (Producto producto : listaProductos) {
+			if(producto.getIdP()==id) {
+				return producto;
+			}
+		}
+		
+		return null;
+	}
+
+
+	public static List<Producto> getListaProductosFichero() {
+		return listaProductosFichero;
+	}
+	
 	
 	
 }
