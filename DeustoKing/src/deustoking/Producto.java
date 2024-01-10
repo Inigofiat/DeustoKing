@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Producto {
 	private int idP;
-	private String nombre;
+	protected String nombre;
     private String descripcion;
     private float precio;
     private int cantidad;

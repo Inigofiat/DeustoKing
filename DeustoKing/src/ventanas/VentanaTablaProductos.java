@@ -30,6 +30,7 @@ public class VentanaTablaProductos extends JFrame{
 	private JScrollPane scrollTablaProductos;
 	private JPanel pContenedor, pPrincipal, pSur, pCentro, pNorte;
 	private JFrame vActual, vAnterior;
+	private JButton btnFactura, btnVolver;
 	
 	private Producto producto;
 	
@@ -54,7 +55,7 @@ public class VentanaTablaProductos extends JFrame{
         pCentro = new JPanel();
         pCentro.setLayout(new BorderLayout());
         pSur = new JPanel();
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 100, 15);
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 15, 15);
         pSur.setLayout(flowLayout);
         
         pNorte=new JPanel();
@@ -62,8 +63,31 @@ public class VentanaTablaProductos extends JFrame{
         pNorte.setLayout(flowLayout2);
         
         
+        btnFactura = new JButton("Finalizar compra");
+        btnFactura.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaFactura(vActual);
+				vActual.dispose();
+				
+			}
+		});
         
+        btnVolver = new JButton("Añadir otro producto");
+        btnVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vActual.dispose();
+				vAnterior.setVisible(true);
+				
+			}
+		});
         
+        pSur.add(btnVolver);
+        pSur.add(btnFactura);
+       
 
         
         modeloProducto = new ModeloProducto(Restaurante.obtenerProductos());
@@ -129,5 +153,7 @@ public class VentanaTablaProductos extends JFrame{
 	    setVisible(true);
 	}
 	
-
+public static void main(String[] args) {
+	new VentanaTablaProductos(null);
+}
 }
