@@ -26,6 +26,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import deustoking.Ciudad;
 import deustoking.Cliente;
@@ -35,14 +37,14 @@ import deustoking.Restaurante;
 public class VentanaCliente extends JFrame{
 	private JPanel pNorte, pCentro;
 	private JSlider sliderPts;
-	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4;
+	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4, lbPuntos;
 	private Cliente cliente;
 	private JFrame vActual, vAnterior;
 	private ArrayList<Cupon> cupones;
 	static Logger logger = Logger.getLogger(Main.class.getName());
 	private JMenuBar menu;
 	private JMenu menuReserva, menuCarta, menuPerfil, menuCupon;
-	private JMenuItem itCarta, itMisCupones, itCupones, itReserva, itMiperfil;
+	private JMenuItem itCarta, itMisCupones, itCupones, itReserva, itMiperfil, itMisReservas;
 	
 	public VentanaCliente(JFrame va) {
 		vActual = this;
@@ -74,12 +76,19 @@ public class VentanaCliente extends JFrame{
 		sliderPts.setMajorTickSpacing(200);
 		sliderPts.setPaintLabels(true);
 		sliderPts.setPaintTicks(true);
-
-		cargarPanelCupones();
-		pCentro.updateUI();
+		sliderPts.setEnabled(false);
+		lbPuntos = new JLabel("Tienes " + sliderPts.getValue() + " puntos");
+		sliderPts.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                lbPuntos.setText("Tienes " + sliderPts.getValue() + " puntos");
+            }
+        });
 		
+				
 		pNorte.add(lblSaludo);
 		pNorte.add(sliderPts);
+		pNorte.add(lbPuntos);
 		
 		pCentro.addMouseListener(new MouseAdapter() {
 			
@@ -95,7 +104,7 @@ public class VentanaCliente extends JFrame{
 				System.out.println("Has seleccionado el cupón: "+c.getFoto());
 				System.out.println("Te quedan "+cliente.getPuntosAcumulados()+ " puntos");
 				Restaurante.volcarListaClientesAlFichero();
-				actualizarPanelCupones();
+				//actualizarPanelCupones();
 				pCentro.updateUI();
 			}
 				
@@ -164,6 +173,15 @@ public class VentanaCliente extends JFrame{
 				
 			}
 		});
+		itMisCupones = new JMenuItem("Mis cupones");
+		itMisCupones.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaMisCupones(vActual);
+				
+			}
+		});
 		menuCupon.add(itMisCupones);
 		menuCupon.add(itCupones);
 		
@@ -219,36 +237,6 @@ public class VentanaCliente extends JFrame{
 		setVisible(true);
 	}
 	
-	private void cargarPanelCupones() {
-		System.out.println("Cargando los cupones...");
-		for(String foto: Restaurante.getMapaCupones().keySet()) {
-			Cupon c = Restaurante.getMapaCupones().get(foto);
-			System.out.println(c.getMinPuntos()+" "+cliente.getPuntosAcumulados());
-			if(c.getMinPuntos() <= cliente.getPuntosAcumulados()) {
-				cupones.add(c);
-				System.out.println("Cargamos el cupón "+c.getFoto());
-				ImageIcon im = new ImageIcon("imagenes//CUPON.png" + c.getFoto());
-				im.setDescription(c.getFoto());
-				JLabel l = new JLabel(im);
-				pCentro.add(l);
-			}
-		}
-		
-		
-	}
-	
-	private void actualizarPanelCupones() {
-		int i=0;
-		while(i<cupones.size()) {
-			Cupon c = cupones.get(i);
-			if(c.getMinPuntos() > cliente.getPuntosAcumulados()) {
-				cupones.remove(i);
-				pCentro.remove(i);
-			}else{
-				i++;
-			}
-		}
-	}
 
 }
 
