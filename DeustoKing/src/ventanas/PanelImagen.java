@@ -1,7 +1,4 @@
 package ventanas;
-
-
-
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,12 +7,12 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-public class PanelGif extends JPanel{
+public class PanelImagen extends JPanel{
 	Image imagen;
 	
-	public PanelGif(Image i) {
+	public PanelImagen(Image i) {
 		imagen = i;
-		setLayout(new GridLayout(0, 2,30,10));
+		setLayout(new BorderLayout());
 	}
 
 	@Override
