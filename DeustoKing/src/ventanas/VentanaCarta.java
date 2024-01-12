@@ -97,17 +97,17 @@ public class VentanaCarta extends JFrame {
 		btnHamburguesasNorte.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS BILBAO");
-				new VentanaHamburguesas(vActual, "BilboBurger", "imagenes\\bilboburger.jpg");
+				new VentanaHamburguesas(vActual, "Bilbo");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS DONOSTI");
-				new VentanaHamburguesas(vActual, "DonostiBurger", "imagenes\\donosti.jpg");
+				new VentanaHamburguesas(vActual, "Donosti");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS GASTEIZ");
-				new VentanaHamburguesas(vActual, "GasteizBurger", "imagenes\\gasteiz.png");
+				new VentanaHamburguesas(vActual, "Gasteiz");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}
@@ -288,17 +288,17 @@ public class VentanaCarta extends JFrame {
 		btnHamburguesasCentro.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS BILBAO");
-				new VentanaHamburguesas(vActual, "BILBO BURGER", "imagenes\\bilboburger.jpg");
+				new VentanaHamburguesas(vActual, "Bilbo");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS DONOSTI");
-				new VentanaHamburguesas(vActual, "DONOSTI BURGER", "imagenes\\donosti.jpg");
+				new VentanaHamburguesas(vActual, "Donosti");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA HAMBURGUESAS GASTEIZ");
-				new VentanaHamburguesas(vActual, "GASTEIZ BURGER", "imagenes\\gasteiz.png");
+				new VentanaHamburguesas(vActual, "Gasteiz");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}

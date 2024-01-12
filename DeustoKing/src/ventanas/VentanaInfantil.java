@@ -27,11 +27,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaInfantil extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnCarne, btnPollo, btnVolver;
 	private JLabel lblCarne, lblPollo;
 	private JScrollPane barra; 
@@ -71,54 +77,7 @@ public class VentanaInfantil extends JFrame {
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
         
         pProductos = new JPanel();
-		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		btnCarne = new JButton();
-		ImageIcon imNachos = new ImageIcon("imagenes\\carne.jpg");
-		lblCarne = new JLabel("KIDS CARNE");
-		btnCarne.setIcon(imNachos);
-		btnCarne.setLayout(new BorderLayout());
-		btnCarne.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnCarne.setPreferredSize(new Dimension(200,200));
-		lblCarne.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCarne.setVerticalAlignment(SwingConstants.TOP);
-		lblCarne.setForeground(Color.WHITE); 
-		lblCarne.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnCarne.add(lblCarne, BorderLayout.CENTER);
-		btnCarne.setMargin(margenBotones);
-		pProductos.add(btnCarne);
-		btnCarne.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA KIDS CARNE");
-				Restaurante.informacionProductos("Kids Carne", "Pan brioche con 50 gr de carne y una loncha de queso cheddar", 1.50);
-			}
-		});
-		
-		btnPollo = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\pollo.jpg");
-		lblPollo = new JLabel("KIDS POLLO");
-		btnPollo.setIcon(imAros);
-		btnPollo.setLayout(new BorderLayout());
-		btnPollo.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnPollo.setPreferredSize(new Dimension(200,200));
-		lblPollo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPollo.setVerticalAlignment(SwingConstants.TOP);
-		lblPollo.setForeground(Color.WHITE); 
-		lblPollo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnPollo.add(lblPollo, BorderLayout.CENTER);
-		btnPollo.setMargin(margenBotones);
-		pProductos.add(btnPollo);
-		btnPollo.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON HAMBURGUESA POLLO KIDS");
-				Restaurante.informacionProductos("Kids Pollo", "Pan brioche con pollo rebozado y una loncha de queso cheddar", 1.50);
-			}
-		});
+		obtenerInfantil();
 		
 		
 		pVolver = new JPanel();
@@ -191,5 +150,69 @@ public class VentanaInfantil extends JFrame {
 	    getContentPane().add(barra);
 	    
 	    setVisible(true);
+	}
+	
+	
+	private static void obtenerInfantil() {
+		pProductos.removeAll();
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			
+			if( p.getTipoProducto().equals(TipoProducto.INFANTIL)) {
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
 	}
 }

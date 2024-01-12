@@ -27,11 +27,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaOtros extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnCostillas, btnBurrito, btnSandwich, btnBocata, btnVolver;
 	private JLabel lblCostillas, lblBurrito, lblSandwich, lblBocata;
 	private JScrollPane barra; 
@@ -72,101 +78,7 @@ public class VentanaOtros extends JFrame {
         
         pProductos = new JPanel();
 		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		btnBocata = new JButton();
-		ImageIcon imNachos = new ImageIcon("imagenes\\bocata.jpg");
-		lblBocata = new JLabel("PORKING");
-		btnBocata.setIcon(imNachos);
-		btnBocata.setLayout(new BorderLayout());
-		btnBocata.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnBocata.setPreferredSize(new Dimension(150,350));
-		lblBocata.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBocata.setVerticalAlignment(SwingConstants.TOP);
-		lblBocata.setForeground(Color.WHITE); 
-		lblBocata.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnBocata.add(lblBocata, BorderLayout.CENTER);
-		btnBocata.setMargin(margenBotones);
-		pProductos.add(btnBocata);
-		btnBocata.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BOCATA PORKING");
-				Restaurante.informacionProductos("Porking", "Pan de cristal con abundante pulled pork, lechuga fresca, queso, "
-						+ "\n cebolla morada y salsa de yogurt", 9.60);
-			}
-		});
-		
-		btnBurrito = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\burrito.jpg");
-		lblBurrito = new JLabel("BURRIKING");
-		btnBurrito.setIcon(imAros);
-		btnBurrito.setLayout(new BorderLayout());
-		btnBurrito.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnBurrito.setPreferredSize(new Dimension(150,350));
-		lblBurrito.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBurrito.setVerticalAlignment(SwingConstants.TOP);
-		lblBurrito.setForeground(Color.WHITE); 
-		lblBurrito.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnBurrito.add(lblBurrito, BorderLayout.CENTER);
-		btnBurrito.setMargin(margenBotones);
-		pProductos.add(btnBurrito);
-		btnBurrito.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BURRIKING");
-				Restaurante.informacionProductos("Burriking", "Un wrap con txuleton picado, cebolla, maiz, queso "
-						+ "\n arroz, alubias y mayonesa", 10.00);
-			}
-		});
-		
-		btnCostillas = new JButton();
-		ImageIcon imTequeños = new ImageIcon("imagenes\\ribs.jpg");
-		lblCostillas = new JLabel("DEUSTORIB");
-		btnCostillas.setIcon(imTequeños);
-		btnCostillas.setLayout(new BorderLayout());
-		btnCostillas.setPreferredSize(new Dimension(imTequeños.getIconWidth(), imTequeños.getIconHeight()));	
-		btnCostillas.setPreferredSize(new Dimension(150,350));
-		lblCostillas.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCostillas.setVerticalAlignment(SwingConstants.TOP);
-		lblCostillas.setForeground(Color.WHITE); 
-		lblCostillas.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnCostillas.add(lblCostillas, BorderLayout.CENTER);
-		btnCostillas.setMargin(margenBotones);
-		pProductos.add(btnCostillas);
-		btnCostillas.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON COSTILLAS DEUSTORIB");
-				Restaurante.informacionProductos("DeustoRib", "Costillas de cerdo ahumadas a la parrilla con salsa barbacoa", 9.50);
-			}
-		});
-		
-		btnSandwich = new JButton();
-		ImageIcon imAlitas = new ImageIcon("imagenes\\sandwich.jpg");
-		lblSandwich = new JLabel("SANWING");
-		btnSandwich.setIcon(imAlitas);
-		btnSandwich.setLayout(new BorderLayout());
-		btnSandwich.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
-		btnSandwich.setPreferredSize(new Dimension(150,350));
-		lblSandwich.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSandwich.setVerticalAlignment(SwingConstants.TOP);
-		lblSandwich.setForeground(Color.WHITE); 
-		lblSandwich.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnSandwich.add(lblSandwich, BorderLayout.CENTER);
-		btnSandwich.setMargin(margenBotones);
-		pProductos.add(btnSandwich);
-		btnSandwich.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON SANWING");
-				Restaurante.informacionProductos("Sanwing", "Pan de Sandwich con pollo desmenuzado con abundante queso ", 8.60);
-			}
-		});
+		obtenerOtros();
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -238,6 +150,70 @@ public class VentanaOtros extends JFrame {
 	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    
 	    setVisible(true);
+	}
+	
+	
+	private static void obtenerOtros() {
+		pProductos.removeAll();
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			
+			if( p.getTipoProducto().equals(TipoProducto.OTRO)) {
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
 	}
 	
 }

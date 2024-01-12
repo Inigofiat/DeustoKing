@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -17,15 +19,31 @@ import deustoking.Restaurante;
 
 public class Main {
 	public static Logger logger = Logger.getLogger(Main.class.getName());
-	public static String nombreBD, nombreAplicacion, fechaCreacion;
+	public static String nombreBD,nombreAplicacion,fechaCreacion;
 	public static void main(String[] args) {
+		
 		VentanaCargando vc= new VentanaCargando();
+		
 		Properties properties = new Properties();
+		try {
+			properties.load(new FileReader("conf/config.properties"));
+			nombreBD = properties.getProperty("nombreBD");
+			nombreAplicacion = properties.getProperty("nombreAplicacion");
+			fechaCreacion = properties.getProperty("fechaCreacion");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO EL ARCHIVO");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		try {
 			logger.log(Level.INFO, "SE INICIA EL PROGRAMA DEUSTOKING");
 		} catch (Exception e) {
-			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR LA VENTANA CARGANDO");	
+
+			e.printStackTrace();
 		}
+		
 		
 		Connection con = BD.initBD(nombreBD);
 		try {
@@ -35,22 +53,15 @@ public class Main {
 		}
 		Restaurante.volcarCSVPersonasABD(con, "ficheros/Clientes.csv");
 		Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
-		Restaurante.volcarCSVCuponesABD(con, "ficheros/Cupones.csv");
 		Restaurante.cargarCupones();
 		
 		BD.cerrarBD(con);
-		
-		
-		try {
-			properties.load(new FileReader("conf/config.properties"));
-			nombreBD = properties.getProperty("nombreBD");
-			nombreAplicacion = properties.getProperty("nombreAplicacion");
-			fechaCreacion = properties.getProperty("fechaCreacion");
-		} catch (FileNotFoundException e) {
-			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
-		} catch (IOException e) {
-			logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA OPERACIÓN DE CARGA DEL FICHERO PROPERTIES");	
-			
+		Restaurante.cargarProductosEnLista("ficheros/productos.csv");
+		for (Producto string : Restaurante.getListaProductosFichero()) {
+			System.out.println("PRODUCTO-----------------"+string.getTipoProducto());
 		}
+		
+		System.out.println("MAIN: "+Restaurante.getListaProductosFichero().size());
+		
 	}
 }

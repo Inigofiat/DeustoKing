@@ -27,11 +27,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaBebidas extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnCocacola, btnAgua, btnVino, btnFanta, btnVolver;
 	private JLabel lblCocacola, lblAgua, lblVino, lblFanta;
 	private JScrollPane barra; 
@@ -71,105 +77,7 @@ public class VentanaBebidas extends JFrame {
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
         
         pProductos = new JPanel();
-		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		btnCocacola = new JButton();
-		ImageIcon imNachos = new ImageIcon("imagenes\\cocacola.jpg");
-		lblCocacola = new JLabel("COCA-COLA");
-		btnCocacola.setIcon(imNachos);
-		btnCocacola.setLayout(new BorderLayout());
-		btnCocacola.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnCocacola.setPreferredSize(new Dimension(150,350));
-		lblCocacola.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCocacola.setVerticalAlignment(SwingConstants.TOP);
-		lblCocacola.setForeground(Color.WHITE); 
-		lblCocacola.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnCocacola.add(lblCocacola, BorderLayout.CENTER);
-		btnCocacola.setMargin(margenBotones);
-		pProductos.add(btnCocacola);
-		btnCocacola.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE COCA-COLA");
-				Restaurante.informacionProductos("Coca-Cola", "Una Coca-Cola bien fría nos hace disfrutar de cada instante de nuestras vidas de una forma especial."
-						+ "\nPor su sabor único y su carácter refrescante y auténtico, Coca-Cola añade magia a cada momento", 3.50 );
-				
-			}
-		});
-		
-		btnAgua = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\agua.jpeg");
-		lblAgua = new JLabel("AGUA");
-		btnAgua.setIcon(imAros);
-		btnAgua.setLayout(new BorderLayout());
-		btnAgua.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnAgua.setPreferredSize(new Dimension(150,350));
-		lblAgua.setHorizontalAlignment(SwingConstants.LEFT);
-		lblAgua.setVerticalAlignment(SwingConstants.TOP);
-		lblAgua.setForeground(Color.WHITE); 
-		lblAgua.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnAgua.add(lblAgua, BorderLayout.CENTER);
-		btnAgua.setMargin(margenBotones);
-		pProductos.add(btnAgua);
-		btnAgua.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE AGUA");
-				Restaurante.informacionProductos("Agua", "DeustoWater es un agua de débil mineralización y sabor suave y refrescante.\r\n"
-						+ "\nDeustoWater proviene de Elgoibar, concretamente de Alzola.", 2.20);
-			}
-		});
-		
-		btnVino = new JButton();
-		ImageIcon imTequeños = new ImageIcon("imagenes\\vino.png");
-		lblVino = new JLabel("VINO");
-		btnVino.setIcon(imTequeños);
-		btnVino.setLayout(new BorderLayout());
-		btnVino.setPreferredSize(new Dimension(imTequeños.getIconWidth(), imTequeños.getIconHeight()));	
-		btnVino.setPreferredSize(new Dimension(150,350));
-		lblVino.setHorizontalAlignment(SwingConstants.LEFT);
-		lblVino.setVerticalAlignment(SwingConstants.TOP);
-		lblVino.setForeground(Color.WHITE); 
-		lblVino.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnVino.add(lblVino, BorderLayout.CENTER);
-		btnVino.setMargin(margenBotones);
-		pProductos.add(btnVino);
-		btnVino.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE VINO");
-				Restaurante.informacionProductos("Vino", "Nuestro vino se elaboró con uvas seleccionadas de viñas viejas ubicadas por encima de los 900 m de altitud "
-						+ "\nen suelos arcillosos que ofrecen vinos elegantes y con estructura debido a los ciclos de maduración más largos ", 3.40);
-			}
-		});
-		
-		btnFanta = new JButton();
-		ImageIcon imAlitas = new ImageIcon("imagenes\\fanta.jpg");
-		lblFanta = new JLabel("FANTA");
-		btnFanta.setIcon(imAlitas);
-		btnFanta.setLayout(new BorderLayout());
-		btnFanta.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
-		btnFanta.setPreferredSize(new Dimension(150,350));
-		lblFanta.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFanta.setVerticalAlignment(SwingConstants.TOP);
-		lblFanta.setForeground(Color.WHITE); 
-		lblFanta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnFanta.add(lblFanta, BorderLayout.CENTER);
-		btnFanta.setMargin(margenBotones);
-		pProductos.add(btnFanta);
-		btnFanta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DE FANTA");
-				Restaurante.informacionProductos("Fanta", "Si te aburres..... A tomar fanta y diviértete con nosotros"
-						+ "\nSu sabor afrutado y refrescante hacen que sea completamente imposible aburrirse con una Fanta en la mano.", 2.50);
-			}
-		});
+		obtenerBebidas();
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -241,6 +149,70 @@ public class VentanaBebidas extends JFrame {
 	    
 	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    setVisible(true);
+	}
+	
+	
+	private static void obtenerBebidas() {
+		pProductos.removeAll();
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			
+			if( p.getTipoProducto().equals(TipoProducto.BEBIDA)) {
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
 	}
 	
 }

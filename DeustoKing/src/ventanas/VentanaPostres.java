@@ -27,11 +27,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaPostres extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnTartaQueso, btnTartaLotus, btnHelado, btnBatido, btnVolver;
 	private JLabel lblTartaQueso, lblTataLotus, lblHelado, lblBatido;
 	private JScrollPane barra; 
@@ -72,101 +78,7 @@ public class VentanaPostres extends JFrame {
         
         pProductos = new JPanel();
 		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		btnTartaQueso = new JButton();
-		ImageIcon imNachos = new ImageIcon("imagenes\\cheesecake.jpg");
-		lblTartaQueso = new JLabel("CHEESECAKE");
-		btnTartaQueso.setIcon(imNachos);
-		btnTartaQueso.setLayout(new BorderLayout());
-		btnTartaQueso.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnTartaQueso.setPreferredSize(new Dimension(150,350));
-		lblTartaQueso.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTartaQueso.setVerticalAlignment(SwingConstants.TOP);
-		lblTartaQueso.setForeground(Color.WHITE); 
-		lblTartaQueso.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnTartaQueso.add(lblTartaQueso, BorderLayout.CENTER);
-		btnTartaQueso.setMargin(margenBotones);
-		pProductos.add(btnTartaQueso);
-		btnTartaQueso.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CHEESECAKE");
-				Restaurante.informacionProductos("Tarta de Queso", "Tarta americana de queso, crumble de galleta con toques de canela, bañado con un coulis de fresa casero.", 5.80);
-			}
-		});
-		
-		btnTartaLotus = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\lotuscake.jpg");
-		lblTataLotus = new JLabel("LOTUSCAKE");
-		btnTartaLotus.setIcon(imAros);
-		btnTartaLotus.setLayout(new BorderLayout());
-		btnTartaLotus.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnTartaLotus.setPreferredSize(new Dimension(150,350));
-		lblTataLotus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTataLotus.setVerticalAlignment(SwingConstants.TOP);
-		lblTataLotus.setForeground(Color.WHITE); 
-		lblTataLotus.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnTartaLotus.add(lblTataLotus, BorderLayout.CENTER);
-		btnTartaLotus.setMargin(margenBotones);
-		pProductos.add(btnTartaLotus);
-		btnTartaLotus.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON LOTUSCAKE");
-				Restaurante.informacionProductos("Tarta de Lotus","Cuatro capas de esponjoso bizcocho de vainilla relleno con mousse de galleta Lotus, \ncon trozos crujientes de caramelo salado. "
-						+ "Terminado con un baño de crema lotus y arena crujiente de galleta Lotus.", 6.20);
-			}
-		});
-		
-		btnHelado = new JButton();
-		ImageIcon imTequeños = new ImageIcon("imagenes\\helado.jpg");
-		lblHelado = new JLabel("FROZEN DEUSTOKING");
-		btnHelado.setIcon(imTequeños);
-		btnHelado.setLayout(new BorderLayout());
-		btnHelado.setPreferredSize(new Dimension(imTequeños.getIconWidth(), imTequeños.getIconHeight()));	
-		btnHelado.setPreferredSize(new Dimension(150,350));
-		lblHelado.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHelado.setVerticalAlignment(SwingConstants.TOP);
-		lblHelado.setForeground(Color.WHITE); 
-		lblHelado.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnHelado.add(lblHelado, BorderLayout.CENTER);
-		btnHelado.setMargin(margenBotones);
-		pProductos.add(btnHelado);
-		btnHelado.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON FROZEN DEUSTOKING");
-				Restaurante.informacionProductos("Helado", "Heldao artesano de diferentes sabores:"
-						+ " Chocolate, Fresa, Nata, Vainilla, Yogurt y Limón", 2.60);
-			}
-		});
-		
-		btnBatido = new JButton();
-		ImageIcon imAlitas = new ImageIcon("imagenes\\batido.jpg");
-		lblBatido = new JLabel("DEUSHAKE");
-		btnBatido.setIcon(imAlitas);
-		btnBatido.setLayout(new BorderLayout());
-		btnBatido.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
-		btnBatido.setPreferredSize(new Dimension(150,350));
-		lblBatido.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBatido.setVerticalAlignment(SwingConstants.TOP);
-		lblBatido.setForeground(Color.WHITE); 
-		lblBatido.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnBatido.add(lblBatido, BorderLayout.CENTER);
-		btnBatido.setMargin(margenBotones);
-		pProductos.add(btnBatido);
-		btnBatido.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DEUSTOSHAKE");
-				Restaurante.informacionProductos("Batido", "Batido sweet and fresh con galleta oreo y sirope de chocolate", 5.40);
-			}
-		});
+		obtenerPostres();
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -239,5 +151,69 @@ public class VentanaPostres extends JFrame {
 	    Restaurante.miIcono(this, "/imagenes/CORONA.png");
 	    
 	    setVisible(true);
+	}
+	
+	
+	private static void obtenerPostres() {
+		pProductos.removeAll();
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			
+			if( p.getTipoProducto().equals(TipoProducto.POSTRE)) {
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
 	}
 }

@@ -28,11 +28,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaMenu extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnM1, btnM2, btnM3, btnM4, btnVolver;
 	private JLabel lblM1, lblM2, lblM3, lblM4;
 	private JScrollPane barra; 
@@ -42,10 +48,12 @@ public class VentanaMenu extends JFrame {
 	private JMenuBar menu;
 	private JMenu menuDesplegable;
 	private JMenuItem itCompra;
+	private static String ciudad;
 
 	
 	public VentanaMenu(JFrame va, String lbNombre, String imagen, String nombre) {
 		super();
+		ciudad=nombre;
 		vActual=this;
 		vAnterior=va;
 		setTitle("MENÚ");
@@ -75,76 +83,8 @@ public class VentanaMenu extends JFrame {
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
         
         pProductos = new JPanel();
-		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		
-		btnM1 = new JButton();
-		ImageIcon imNachos = new ImageIcon(imagen);
-		lblM1 = new JLabel(nombre);
-		btnM1.setIcon(imNachos);
-		btnM1.setLayout(new BorderLayout());
-		btnM1.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnM1.setPreferredSize(new Dimension(150,350));
-		lblM1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblM1.setVerticalAlignment(SwingConstants.TOP);
-		lblM1.setForeground(Color.WHITE); 
-		lblM1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnM1.add(lblM1, BorderLayout.CENTER);
-		btnM1.setMargin(margenBotones);
-		
-		pProductos.add(btnM1);
-		
-		btnM2 = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\patatas.jpg");
-		lblM2 = new JLabel("PATATAS");
-		btnM2.setIcon(imAros);
-		btnM2.setLayout(new BorderLayout());
-		btnM2.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnM2.setPreferredSize(new Dimension(150,350));
-		lblM2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblM2.setVerticalAlignment(SwingConstants.TOP);
-		lblM2.setForeground(Color.WHITE); 
-		lblM2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnM2.add(lblM2, BorderLayout.CENTER);
-		btnM2.setMargin(margenBotones);
-		pProductos.add(btnM2);
-		
-		btnM3 = new JButton();
-		ImageIcon imTequeños = new ImageIcon("imagenes\\agua.jpeg");
-		lblM3 = new JLabel("BEBIDA A ELEGIR");
-		btnM3.setIcon(imTequeños);
-		btnM3.setLayout(new BorderLayout());
-		btnM3.setPreferredSize(new Dimension(imTequeños.getIconWidth(), imTequeños.getIconHeight()));	
-		btnM3.setPreferredSize(new Dimension(150,350));
-		lblM3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblM3.setVerticalAlignment(SwingConstants.TOP);
-		lblM3.setForeground(Color.WHITE); 
-		lblM3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnM3.add(lblM3, BorderLayout.CENTER);
-		btnM3.setMargin(margenBotones);
-		btnM3.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BEBIDAS");
-			new VentanaBebidas(vActual);
-			vActual.setVisible(false);
-			vActual.dispose();
-		});
-		pProductos.add(btnM3);
-		
-		btnM4 = new JButton();
-		ImageIcon imAlitas = new ImageIcon("imagenes\\helado.jpg");
-		lblM4 = new JLabel("POSTRE A ELEGIR");
-		btnM4.setIcon(imAlitas);
-		btnM4.setLayout(new BorderLayout());
-		btnM4.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
-		btnM4.setPreferredSize(new Dimension(150,350));
-		lblM4.setHorizontalAlignment(SwingConstants.LEFT);
-		lblM4.setVerticalAlignment(SwingConstants.TOP);
-		lblM4.setForeground(Color.WHITE); 
-		lblM4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnM4.add(lblM4, BorderLayout.CENTER);
-		btnM4.setMargin(margenBotones);
-		pProductos.add(btnM4);
+        obtenerMenu();
+        
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -216,6 +156,76 @@ public class VentanaMenu extends JFrame {
 	    
 	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    setVisible(true);
+	}
+	
+	private static void obtenerMenu() {
+		System.out.println("CARGANDO LOS ENTRANTES");
+		pProductos.removeAll();
+		//Restaurante.cargarProductosEnLista("ficheros/productos.csv");
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			if( p.getTipoProducto().equals(TipoProducto.MENU) && p.getNombre().toLowerCase().contains(ciudad.toLowerCase())) {
+				System.out.println(p.getNombre().toLowerCase() + "   ----     "+ciudad.toLowerCase());
+				
+				for(Producto pr: p.getListaProductos()) {
+					System.out.println(pr);
+					crearBoton("imagenes/"+pr.getImagen(), pr.getNombre(),dividirDescripcionPorPalabras(pr.getDescripcion()), pr.getPrecio());
+				}
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
 	}
 	
 }

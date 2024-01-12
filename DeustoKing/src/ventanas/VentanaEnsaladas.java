@@ -27,11 +27,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaEnsaladas extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnCesar, btnMixta, btnPasta, btnCaprese, btnVolver;
 	private JLabel lblCesar, lblMixta, lblPasta, lblCaprese;
 	private JScrollPane barra; 
@@ -71,109 +77,7 @@ public class VentanaEnsaladas extends JFrame {
         lblTitulo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
         
         pProductos = new JPanel();
-		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		btnCesar = new JButton();
-		ImageIcon imNachos = new ImageIcon("imagenes\\cesar.jpg");
-		lblCesar = new JLabel("CÉSAR");
-		btnCesar.setIcon(imNachos);
-		btnCesar.setLayout(new BorderLayout());
-		btnCesar.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnCesar.setPreferredSize(new Dimension(150,350));
-		lblCesar.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCesar.setVerticalAlignment(SwingConstants.TOP);
-		lblCesar.setForeground(Color.WHITE); 
-		lblCesar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnCesar.add(lblCesar, BorderLayout.CENTER);
-		btnCesar.setMargin(margenBotones);
-		pProductos.add(btnCesar);
-		btnCesar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA CESAR");
-				Restaurante.informacionProductos("Cesar", "Una fresca pechuga de pollo junto con picatostes artesanos, lechuga y tomate de las tierras vascas, "
-						+ "\ntrocitos de queso gouda y un chorrito de limón", 8.50);
-								
-			}
-		});
-		
-		
-		btnMixta = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\mixta.jpeg");
-		lblMixta = new JLabel("MIXTA");
-		btnMixta.setIcon(imAros);
-		btnMixta.setLayout(new BorderLayout());
-		btnMixta.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnMixta.setPreferredSize(new Dimension(150,350));
-		lblMixta.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMixta.setVerticalAlignment(SwingConstants.TOP);
-		lblMixta.setForeground(Color.WHITE); 
-		lblMixta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnMixta.add(lblMixta, BorderLayout.CENTER);
-		btnMixta.setMargin(margenBotones);
-		pProductos.add(btnMixta);
-		btnMixta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA MIXTA");
-				Restaurante.informacionProductos("Mixta", "Ensalada variada con tomate de la tierra, un huevo cocido, espárragos, aceitunas "
-						+ "\ncebolla y bonito del norte", 9.50);				
-			}
-		});
-		
-		
-		btnPasta = new JButton();
-		ImageIcon imTequeños = new ImageIcon("imagenes\\depasta.jpg");
-		lblPasta = new JLabel("DE PASTA");
-		btnPasta.setIcon(imTequeños);
-		btnPasta.setLayout(new BorderLayout());
-		btnPasta.setPreferredSize(new Dimension(imTequeños.getIconWidth(), imTequeños.getIconHeight()));	
-		btnPasta.setPreferredSize(new Dimension(150,350));
-		lblPasta.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPasta.setVerticalAlignment(SwingConstants.TOP);
-		lblPasta.setForeground(Color.WHITE); 
-		lblPasta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnPasta.add(lblPasta, BorderLayout.CENTER);
-		btnPasta.setMargin(margenBotones);
-		pProductos.add(btnPasta);
-		btnPasta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA DE PASTA");
-				Restaurante.informacionProductos("Pasta", "Pasta fresca con unos tomates cherris, queso mozzarella, "
-						+ "aceitunas negras y calabacín de la tierra", 7.00);
-												
-			}
-		});
-		
-		
-		btnCaprese = new JButton();
-		ImageIcon imAlitas = new ImageIcon("imagenes\\caprese.jpg");
-		lblCaprese = new JLabel("CAPRESE");
-		btnCaprese.setIcon(imAlitas);
-		btnCaprese.setLayout(new BorderLayout());
-		btnCaprese.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
-		btnCaprese.setPreferredSize(new Dimension(150,350));
-		lblCaprese.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCaprese.setVerticalAlignment(SwingConstants.TOP);
-		lblCaprese.setForeground(Color.WHITE); 
-		lblCaprese.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnCaprese.add(lblCaprese, BorderLayout.CENTER);
-		btnCaprese.setMargin(margenBotones);
-		pProductos.add(btnCaprese);
-		btnCaprese.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN BOTON ENSALADA CAPRESSE");
-				Restaurante.informacionProductos("Caprese", "Unos buenos tomates de la tierra, mozzarella de búfala italiana \n"
-						+ "y hojas de albahaca frescas", 7.00);				
-			}
-		});
+		obtenerEnsaladas();
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -249,5 +153,71 @@ public class VentanaEnsaladas extends JFrame {
 	    
 	    setVisible(true);
 	}
+	
+	private static void obtenerEnsaladas() {
+		pProductos.removeAll();		
+		Restaurante.cargarProductosEnLista("ficheros/productos.csv");
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			
+			if(p.getTipoProducto().equals(TipoProducto.ENSALADA)) {
+				System.out.println("TIPO-----------"+p);
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
+	}
+	
 }
 

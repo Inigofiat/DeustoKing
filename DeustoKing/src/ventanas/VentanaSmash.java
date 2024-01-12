@@ -27,11 +27,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaSmash extends JFrame {
 	
-	private JPanel pTitulo, pProductos, pPrincipal, pVolver, pContenedor;
+	private JPanel pTitulo;
+	private static JPanel pProductos;
+	private JPanel pPrincipal;
+	private JPanel pVolver;
+	private JPanel pContenedor;
 	private JButton btnS1, btnS2, btnS3, btnS4, btnVolver;
 	private JLabel lblS1, lblS2, lblS3, lblS4;
 	private JScrollPane barra; 
@@ -72,103 +78,7 @@ public class VentanaSmash extends JFrame {
         
         pProductos = new JPanel();
 		pProductos.setLayout(new GridLayout(0, 2, 0 ,10));
-		Insets margenBotones = new Insets(50, 50, 50, 50);
-		
-		btnS1 = new JButton();
-		ImageIcon imNachos = new ImageIcon("imagenes\\s1.jpg");
-		lblS1 = new JLabel("SMASHHHH");
-		btnS1.setIcon(imNachos);
-		btnS1.setLayout(new BorderLayout());
-		btnS1.setPreferredSize(new Dimension(imNachos.getIconWidth(), imNachos.getIconHeight()));	
-		btnS1.setPreferredSize(new Dimension(150,350));
-		lblS1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblS1.setVerticalAlignment(SwingConstants.TOP);
-		lblS1.setForeground(Color.WHITE); 
-		lblS1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnS1.add(lblS1, BorderLayout.CENTER);
-		btnS1.setMargin(margenBotones);
-		pProductos.add(btnS1);
-		btnS1.addActionListener(new ActionListener() {
-	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON SMASHHH");
-				Restaurante.informacionProductos("Smashhhh", "Nuestra DOBLE SMASH con doble queso cheddar, bacon bits, "
-						+ "\ncebolla pochada y salsa cheddar", 11.45);
-			}
-		});
-		
-		btnS2 = new JButton();
-		ImageIcon imAros = new ImageIcon("imagenes\\smash1.jpg");
-		lblS2 = new JLabel("DON KING");
-		btnS2.setIcon(imAros);
-		btnS2.setLayout(new BorderLayout());
-		btnS2.setPreferredSize(new Dimension(imAros.getIconWidth(), imAros.getIconHeight()));	
-		btnS2.setPreferredSize(new Dimension(150,350));
-		lblS2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblS2.setVerticalAlignment(SwingConstants.TOP);
-		lblS2.setForeground(Color.WHITE); 
-		lblS2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnS2.add(lblS2, BorderLayout.CENTER);
-		btnS2.setMargin(margenBotones);
-		pProductos.add(btnS2);
-		btnS2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON DON KING");
-				Restaurante.informacionProductos("Don King", "Nuestra DOBLE SMASH con doble queso "
-						+ "cheddar, \nbacon ahumado crujiente, pepinillo y salsa 'DeustoSalsa'", 12.50);
-			}
-		});
-		
-		btnS3 = new JButton();
-		ImageIcon imTequeños = new ImageIcon("imagenes\\s3.png");
-		lblS3 = new JLabel("CIELO");
-		btnS3.setIcon(imTequeños);
-		btnS3.setLayout(new BorderLayout());
-		btnS3.setPreferredSize(new Dimension(imTequeños.getIconWidth(), imTequeños.getIconHeight()));	
-		btnS3.setPreferredSize(new Dimension(150,350));
-		lblS3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblS3.setVerticalAlignment(SwingConstants.TOP);
-		lblS3.setForeground(Color.WHITE); 
-		lblS3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnS3.add(lblS3, BorderLayout.CENTER);
-		btnS3.setMargin(margenBotones);
-		pProductos.add(btnS3);
-		btnS3.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON CIELO");
-				Restaurante.informacionProductos("Cielo", "Nuestra DOBLE SMASH con doble queso cheddar,"
-						+ " \ncebolla picadita, pepinillo, ketchup y mostaza", 11.50);
-			}
-		});
-		
-		btnS4 = new JButton();
-		ImageIcon imAlitas = new ImageIcon("imagenes\\s4.jpg");
-		lblS4 = new JLabel("BACONSMASH");
-		btnS4.setIcon(imAlitas);
-		btnS4.setLayout(new BorderLayout());
-		btnS4.setPreferredSize(new Dimension(imAlitas.getIconWidth(), imAlitas.getIconHeight()));	
-		btnS4.setPreferredSize(new Dimension(150,350));
-		lblS4.setHorizontalAlignment(SwingConstants.LEFT);
-		lblS4.setVerticalAlignment(SwingConstants.TOP);
-		lblS4.setForeground(Color.WHITE); 
-		lblS4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
-		btnS4.add(lblS4, BorderLayout.CENTER);
-		btnS4.setMargin(margenBotones);
-		pProductos.add(btnS4);
-		btnS4.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON BACONSMASH");
-				Restaurante.informacionProductos("BaconSmash", "Nuestra DOBLE SMASH con queso cheddar entre las dos, \nmucha cebolla crujiente "
-						+ " y bacon bits ", 11.50);
-			}
-		});
+		obtenerSmash();
 		
 		pVolver = new JPanel();
 		pVolver.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -240,6 +150,70 @@ public class VentanaSmash extends JFrame {
 	    
 	    Restaurante.miIcono(this, "imagenes/CORONA.png");
 	    setVisible(true);
+	}
+	
+	
+	private static void obtenerSmash() {
+		pProductos.removeAll();
+		for(Producto p: Restaurante.getListaProductosFichero()) {
+			
+			if( p.getTipoProducto().equals(TipoProducto.SMASH)) {
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+	}
+	
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+				
+			}
+		});
+	    
+	    try {
+			pProductos.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+
+	}
+	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
 	}
 	
 }
