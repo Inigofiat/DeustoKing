@@ -44,9 +44,8 @@ public class ModeloCliente extends DefaultTableModel{
 		Cliente c = listaClientes.get(row);
 		switch(column) {
 		case 0:return c.getNombre();
-		case 1:return c.getApellidos();
+		case 1:return c.getTelefono();
 		case 2:return c.getCorreo();
-		case 3:return c.getTelefono();
 		default: return null;
 		}
 	}

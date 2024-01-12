@@ -22,6 +22,8 @@ public class Producto {
 		this.precio = precio;
 		this.cantidad=cantidad;
 		this.modificacion=modificacion;
+		this.tipoProducto=producto;
+		this.imagen=imagen;
 	}
 	
 	public Producto(int idP2, String nombre2, String ingredientes, float precio2, int cantidad2, String modificacion2,
@@ -35,89 +37,102 @@ public class Producto {
 		this.imagen=imagen2;
 		this.listaProductos=productos2;
 	}
+	
 	public int getIdP() {
 		return idP;
 	}
+
 	public void setIdP(int idP) {
 		this.idP = idP;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
 	public float getPrecio() {
 		return precio;
 	}
+
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
-	
+
 	public int getCantidad() {
 		return cantidad;
 	}
+
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+
 	public String getModificacion() {
 		return modificacion;
 	}
+
 	public void setModificacion(String modificacion) {
 		this.modificacion = modificacion;
 	}
-	public TipoProducto getProducto() {
+
+	public TipoProducto getTipoProducto() {
 		return tipoProducto;
 	}
-	public void setProducto(TipoProducto producto) {
-		this.tipoProducto = producto;
+
+	public void setTipoProducto(TipoProducto tipoProducto) {
+		this.tipoProducto = tipoProducto;
 	}
-	
+
 	public String getImagen() {
 		return imagen;
 	}
+
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	
-	public List<Producto> getProductos() {
+
+	public List<Producto> getListaProductos() {
 		return listaProductos;
 	}
-	public void setProductos(List<Producto> productos) {
-		this.listaProductos = productos;
+
+	public void setListaProductos(List<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
 	}
+
+
 //	@Override
 //	public String toString() {
-//		return "Producto [idP=" + idP + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-//				+ ", cantidad=" + cantidad + ", modificacion=" + modificacion + "]";
+//	//	String texto =  nombre + ": " + descripcion + "(" + cantidad +")" + modificacion;
+//		
+//		String texto = String.format("NOMBRE: %90s\nDESCRIPCIÓN: %90s\nCANTIDAD: %90d\nMODIFICACIÓN: %90s\nLISTA: %90s\nTIPO: %90s\\n", nombre,descripcion,cantidad,modificacion, listaProductos, tipoProducto);
+//		
+//		
+//		
+//		/*String textoConFormato = "";
+//		for(int i=0;i<texto.length();i++) {
+//			textoConFormato = textoConFormato + texto.charAt(i);
+//			if(i%30==0) {
+//				textoConFormato = textoConFormato + "\n";
+//			}
+//		}
+//		
+//		
+//		return textoConFormato;*/
+//		return texto;
 //	}
 	
-	@Override
-	public String toString() {
-	//	String texto =  nombre + ": " + descripcion + "(" + cantidad +")" + modificacion;
-		
-		String texto = String.format("NOMBRE: %90s\nDESCRIPCIÓN: %90s\nCANTIDAD: %90d\nMODIFICACIÓN: %90s\nLISTA: %90s\n", nombre,descripcion,cantidad,modificacion, listaProductos);
-		
-		
-		
-		/*String textoConFormato = "";
-		for(int i=0;i<texto.length();i++) {
-			textoConFormato = textoConFormato + texto.charAt(i);
-			if(i%30==0) {
-				textoConFormato = textoConFormato + "\n";
-			}
-		}
-		
-		
-		return textoConFormato;*/
-		return texto;
-	}
+	
 	
 
 

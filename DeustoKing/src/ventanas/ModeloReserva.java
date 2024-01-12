@@ -1,7 +1,10 @@
 package ventanas;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +40,21 @@ public class ModeloReserva extends DefaultTableModel{
 	@Override
 	public boolean isCellEditable(int row, int column) {
 		return false;
+	}
+	
+	@Override
+	public void setValueAt(Object aValue, int row, int column) {
+		Reserva r = listaReservas.get(row);
+		switch(column) {
+		case 0:
+			LocalDate ld = (LocalDate)aValue;
+			Date d = Date.from(ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+			r.setFecha(d);break;
+		case 1:r.setHora(aValue.toString());break;
+		case 2: r.setnComensales(Integer.parseInt(aValue.toString()));
+		
+		}
+
 	}
 
 	@Override

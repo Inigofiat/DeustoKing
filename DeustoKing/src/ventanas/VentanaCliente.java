@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -11,10 +12,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,7 +31,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -35,16 +44,18 @@ import deustoking.Cupon;
 import deustoking.Restaurante;
 
 public class VentanaCliente extends JFrame{
-	private JPanel pNorte, pCentro;
+	private JPanel pNorte, pCentro, pDerecha, pPrincipal, pContenedor;
 	private JSlider sliderPts;
-	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4, lbPuntos;
+	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4, lbPuntos, lbTiempo;
 	private Cliente cliente;
 	private JFrame vActual, vAnterior;
 	private ArrayList<Cupon> cupones;
 	static Logger logger = Logger.getLogger(Main.class.getName());
 	private JMenuBar menu;
-	private JMenu menuReserva, menuCarta, menuPerfil, menuCupon;
+	private JScrollPane barra;
+	private JMenu menuReserva, menuCarta, menuPerfil, menuCupon, menuHora;
 	private JMenuItem itCarta, itMisCupones, itCupones, itReserva, itMiperfil, itMisReservas;
+	PanelImagen imagenPanel;
 	
 	public VentanaCliente(JFrame va) {
 		vActual = this;
@@ -64,10 +75,26 @@ public class VentanaCliente extends JFrame{
 		
 		pNorte = new JPanel();
 		pCentro = new JPanel();
+		pDerecha=new JPanel();
 		pCentro.setLayout(new GridLayout(2,2));
 		
-		getContentPane().add(pCentro, BorderLayout.CENTER);
-		getContentPane().add(pNorte, BorderLayout.NORTH);
+		lbTiempo = new JLabel();
+        lbTiempo.setFont(new Font("Arial", Font.PLAIN, 24));
+        lbTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+        pDerecha.add(lbTiempo);
+     
+          // Obtener la hora actual
+         
+	        Timer timer = new Timer();
+	        timer.scheduleAtFixedRate(new TimerTask() {
+	            @Override
+	            public void run() {
+	                mostrarTiempo();
+	            }
+	        }, 0, 1000);
+	
+		
+        pCentro.setLayout(new GridLayout(0, 2, 10, 30));
 		
 
 		lblSaludo = new JLabel("Hola, "+cliente.getNombreUsuario());
@@ -90,27 +117,7 @@ public class VentanaCliente extends JFrame{
 		pNorte.add(sliderPts);
 		pNorte.add(lbPuntos);
 		
-		pCentro.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//logger.log(Level.INFO, "SE HA CLIKCADO EN EL PANEL CENTRO");
-				Point p = e.getPoint();
-				JLabel l = (JLabel) pCentro.getComponentAt(p);
-				ImageIcon im = (ImageIcon) l.getIcon();
-				String foto = im.getDescription();
-				Cupon c = Restaurante.getMapaCupones().get(foto);
-				cliente.setPuntosAcumulados(cliente.getPuntosAcumulados()-c.getMinPuntos());
-				System.out.println("Has seleccionado el cupón: "+c.getFoto());
-				System.out.println("Te quedan "+cliente.getPuntosAcumulados()+ " puntos");
-				Restaurante.volcarListaClientesAlFichero();
-				//actualizarPanelCupones();
-				pCentro.updateUI();
-			}
-				
 
-		});
-		
 		menu = new JMenuBar();
 		menuCarta = new JMenu();
 		ImageIcon iconoC = new ImageIcon("imagenes/carta.png");
@@ -202,7 +209,18 @@ public class VentanaCliente extends JFrame{
 				
 			}
 		});
+		itMisReservas = new JMenuItem("Mis reservas");
+		itMisReservas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaMisReservas(vActual);
+				vActual.dispose();
+				
+			}
+		});
 		menuReserva.add(itReserva);
+		menuReserva.add(itMisReservas);
 		
 		menuPerfil = new JMenu();
 		ImageIcon iconoP = new ImageIcon("imagenes/perfil.png");
@@ -221,6 +239,10 @@ public class VentanaCliente extends JFrame{
 			}
 		});
 		menuPerfil.add(itMiperfil);
+		
+		menuHora=new JMenu();
+		menuHora.setText(obtenerHoraActual());
+		menuHora.setFont(new Font("Arial", Font.PLAIN, 18));
 	
 		
 		menu.add(menuPerfil);
@@ -230,12 +252,33 @@ public class VentanaCliente extends JFrame{
 	    menu.add(menuCarta);
 	    menu.add(new JMenu("|")).setEnabled(false);
 	    menu.add(menuCupon);
+	    menu.add(Box.createHorizontalGlue());
+	    menu.add(menuHora);
 	    setJMenuBar(menu);
 		
-		
+		pCentro.setOpaque(false);
+		pNorte.setOpaque(false);
         Restaurante.miIcono(this, "imagenes/CORONA.png");
+        setContentPane(pCentro);
 		setVisible(true);
+		
+		barra = new JScrollPane(pPrincipal);
+        barra.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        getContentPane().add(barra, BorderLayout.CENTER);
 	}
+	
+	private void mostrarTiempo() {
+        SwingUtilities.invokeLater(() -> {
+            menuHora.setText(obtenerHoraActual());
+        });
+    }
+
+    private String obtenerHoraActual() {
+        LocalTime horaActual = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return horaActual.format(formatter);
+    }
 	
 
 }

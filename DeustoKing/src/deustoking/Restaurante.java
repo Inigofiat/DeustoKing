@@ -59,7 +59,6 @@ public class Restaurante {
 	private static Map<String, List<Reserva>> mapaReservas;
 	private static List<Producto>productos;
 	private static List<Producto> listaProductosFichero;
-	private static List<Producto> lP;
 	private static Set<String> fechasReservas;
 	private static  List<String> fechasOrdenadas;
 	private static Map<String, Cupon> mapaCupones;
@@ -82,7 +81,6 @@ public class Restaurante {
 		fechasOrdenadas = new ArrayList<>();
 		mapaCupones = new TreeMap<>();
 		listaProductosFichero = new ArrayList<>();
-		lP = new ArrayList<>();
 
 	}
 	
@@ -129,6 +127,12 @@ public class Restaurante {
                
                 Reserva reserva = new Reserva(id,nombre, telefono, email, fecha, hora, comensales);
                 listaReservas.add(reserva);
+                if(!mapaReservas.containsKey(telefono)) {
+                	mapaReservas.put(telefono, new ArrayList<>());
+                }
+                mapaReservas.get(telefono).add(reserva);
+        
+                
 			}
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
@@ -557,13 +561,14 @@ public class Restaurante {
 	 * @param vAnterior 
 	 */
 	
-	public static void reservar(DatePicker datePicker, JComboBox<String> horas, JComboBox<Integer> nComensales, String nomfichReservas, JFrame vActual, JFrame vAnterior) {
+	public static void reservar(DatePicker datePicker, JComboBox<String> horas, JComboBox<Integer> nComensales, String nomfichReservas, JFrame vActual, JFrame vAnterior,
+			String nombre, String telefono, String correo) {
 		GregorianCalendar calendar = (GregorianCalendar) datePicker.getModel().getValue();
 	    ZonedDateTime fechaLocal = calendar.toZonedDateTime();
 	    Date fechaDate = Date.from(fechaLocal.toInstant());
 	    String hora = (String) horas.getSelectedItem();
 	    int comensales = (int) nComensales.getSelectedItem();
-	    Reserva reserva = new Reserva(Reserva.getContador(), fechaDate, hora, comensales);
+		Reserva reserva = new Reserva(Reserva.getContador(), nombre, telefono, correo, Utilidades.dateToString(fechaDate), hora, comensales);
 	    int opcion = JOptionPane.showConfirmDialog(null, "¿Desea guardar la reserva?", "Confirmar reserva", JOptionPane.YES_NO_OPTION);
 	    if (opcion == JOptionPane.YES_OPTION) {
 	        Restaurante.guardarReservasEnFichero(reserva, nomfichReservas);
@@ -674,7 +679,7 @@ public class Restaurante {
 	 * @param precio el precio de dicho producto
 	 */
 	
-	public static void informacionProductos(String nombre, String ingredientes, double precio) {
+	public static void informacionProductos(String nombre, String ingredientes, float precio) {
 
 	    SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, 20, 1);
 	    JSpinner spinner = new JSpinner(spinnerModel);
@@ -700,7 +705,7 @@ public class Restaurante {
 	    if (resultado == JOptionPane.OK_OPTION) {
 	        int cantidad = (int) spinner.getValue();
 	        JOptionPane.showMessageDialog(null, "Añadido con éxito", "INFO", JOptionPane.INFORMATION_MESSAGE);
-	        Producto p = new Producto(1, nombre, ingredientes, Float.parseFloat(String.valueOf(precio)), cantidad, "","",new ArrayList<>());
+	        Producto p = new Producto(1, nombre, ingredientes,precio, cantidad, "","",new ArrayList<>());
 	        productos.add(p);
 
 	        for (Producto pr : productos) {
@@ -799,6 +804,7 @@ public class Restaurante {
 	}
 	
 	public static void cargarProductosEnLista(String nomfich) {
+		listaProductosFichero.clear();
 		try {
 			Scanner sc = new Scanner(new File(nomfich));
 			while(sc.hasNextLine()) {
@@ -821,12 +827,12 @@ public class Restaurante {
 				String modificacion = partes[5];
 				TipoProducto tipoProducto = TipoProducto.valueOf(partes[6]);
 				String imagen = partes[7];
-				
+				ArrayList<Producto> lP = new ArrayList<>();
 				if(partes.length==9) {
 					String[]productos = partes[8].split(":");
 					for (String idProducto : productos) {
 						int id = Integer.parseInt(idProducto);
-						Producto productoEncontrado = buscarProductoPorId(idP, listaProductosFichero);
+						Producto productoEncontrado = buscarProductoPorId(id, listaProductosFichero);
 						if(productoEncontrado!=null) {
 							lP.add(productoEncontrado);
 						}

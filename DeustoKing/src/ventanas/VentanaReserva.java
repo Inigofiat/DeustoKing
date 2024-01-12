@@ -59,8 +59,7 @@ public class VentanaReserva extends JFrame{
         vActual=this;
 		vAnterior=va;
        
-        cliente = new Cliente();
-        
+        cliente = VentanaInicioSesion.getCliente();
         pContenedor = new JPanel();
         pContenedor.setLayout(new BorderLayout());
         pPrincipal = new JPanel();
@@ -159,7 +158,7 @@ public class VentanaReserva extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "SE HA HECHO CLICK EN EL BOTON RESERVA");
-				Restaurante.reservar(datePicker, horas, nComensales, nomfichReservas, vActual, vAnterior);
+				Restaurante.reservar(datePicker, horas, nComensales, nomfichReservas, vActual, vAnterior, cliente.getNombre(), cliente.getTelefono(),cliente.getCorreo());
 				
 			}
 		});
