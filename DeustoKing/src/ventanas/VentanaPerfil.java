@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,12 +19,13 @@ import deustoking.Cliente;
 
 public class VentanaPerfil extends JFrame {
 
-    private JPanel pCentro, pPrincipal, pContenedor;
+    private JPanel pCentro, pPrincipal, pContenedor, pSur;
     private JLabel lbNombre, nombre, lbApellidos, apellidos, lbTelefono, telefono, lbCorreo, correo, lbDireccion,
             direccion, lbNombreUsuario, nombreUsuario, lbContrasenia;
     private JPasswordField contrasenia;
     private JCheckBox mostrarContrasenia;
     private JFrame vActual, vAnterior;
+    private JButton btnVolver;
     private Cliente cliente;
 
     public VentanaPerfil(JFrame va) {
@@ -46,6 +48,19 @@ public class VentanaPerfil extends JFrame {
 
         pContenedor = new JPanel();
         pContenedor.setLayout(new BorderLayout());
+        
+        pSur = new JPanel();
+        btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vActual.dispose();
+				vAnterior.setVisible(true);
+				
+			}
+		});
+        pSur.add(btnVolver);
 
         lbNombre = new JLabel("Nombre:");
         lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
@@ -54,37 +69,44 @@ public class VentanaPerfil extends JFrame {
         nombre.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbApellidos = new JLabel("Apellidos:");
-        lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
+        lbApellidos.setFont(new Font("Tw", Font.BOLD, 14));
         apellidos = new JLabel();
         apellidos.setText(cliente.getApellidos());
+        apellidos.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbTelefono = new JLabel("Teléfono:");
-        lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
+        lbTelefono.setFont(new Font("Tw", Font.BOLD, 14));
         telefono = new JLabel();
         telefono.setText(cliente.getTelefono());
+        telefono.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbCorreo = new JLabel("Email:");
-        lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
+        lbCorreo.setFont(new Font("Tw", Font.BOLD, 14));
         correo = new JLabel();
         correo.setText(cliente.getCorreo());
+        correo.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbDireccion = new JLabel("Dirección:");
-        lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
+        lbDireccion.setFont(new Font("Tw", Font.BOLD, 14));
         direccion = new JLabel();
         direccion.setText(cliente.getDireccion());
+        direccion.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbNombreUsuario = new JLabel("Nombre de usuario:");
-        lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
+        lbNombreUsuario.setFont(new Font("Tw", Font.BOLD, 14));
         nombreUsuario = new JLabel();
         nombreUsuario.setText(cliente.getNombreUsuario());
+        nombreUsuario.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbContrasenia = new JLabel("Contraseña:");
-        lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
+        lbContrasenia.setFont(new Font("Tw", Font.BOLD, 14));
         contrasenia = new JPasswordField();
         contrasenia.setText(cliente.getContrasenia());
         contrasenia.setEditable(false); 
+        contrasenia.setFont(new Font("Tw", Font.PLAIN, 14));
 
         mostrarContrasenia = new JCheckBox("Mostrar contraseña");
+        mostrarContrasenia.setFont(new Font("Tw", Font.PLAIN, 14));
         mostrarContrasenia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,6 +135,7 @@ public class VentanaPerfil extends JFrame {
         pCentro.add(mostrarContrasenia);
 
         pContenedor.add(pCentro, BorderLayout.CENTER);
+        pContenedor.add(pSur, BorderLayout.SOUTH);
 
         pPrincipal.add(pContenedor, BorderLayout.CENTER);
 

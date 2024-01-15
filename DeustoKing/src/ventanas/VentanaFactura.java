@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,18 +40,36 @@ public class VentanaFactura extends JFrame {
     private List<Producto> listaProductos;
     private JTextArea area;
     private JScrollPane scrollArea;
-    private JButton btnPagar, btnVolver;
+    private JButton btnPagar, btnVolver, btnMisCupones;
     private JLabel lbFactura, lbFechaYHora, lbTotal, lbFH, lbProductos, lbP;
     private DefaultListModel<String> modeloListaFinales;
     private JList<String> jListFinales;
     private JScrollPane scrollListaFinales;
     private JFrame vActual, vAnterior;
-    private Factura factura;
+    private static Factura factura;
     private JPanel pIzquierda, pDerecha, pArriba, pAbajo, pContenedor, pPrincipal;
     private Cliente cliente;
+    private static double totalPrecio;   
+    
+    
+    public static double getTotalPrecio() {
+		return totalPrecio;
+	}
 
 
-    public VentanaFactura(JFrame va) {
+	public static void setTotalPrecio(double t) {
+		totalPrecio = t;
+	}
+
+
+
+	public static Factura getFactura() {
+    	return factura;
+    }
+    
+    
+
+	public VentanaFactura(JFrame va) {
         super();
         vActual=this;
         vAnterior=va;
@@ -98,13 +117,15 @@ public class VentanaFactura extends JFrame {
         lbFH.setText(fechaActual + " a las " + horaActual);
 
         modeloListaFinales = new DefaultListModel<>();
-        double totalPrecio = 0.0;
+        totalPrecio = 0.0;
 
         for (Producto producto : listaProductos) {
             String formatoProducto = producto.getNombre() + " (x" + producto.getCantidad() + "): "+producto.getPrecio()+"(x "+producto.getPrecio()*producto.getCantidad()+")";
             modeloListaFinales.addElement(formatoProducto);
             totalPrecio += producto.getPrecio() * producto.getCantidad();
         }
+        
+        
 
         lbProductos = new JLabel("Productos Finales:");
         lbProductos.setFont(new Font("Tw", Font.BOLD, 14));
@@ -131,11 +152,13 @@ public class VentanaFactura extends JFrame {
         });
 
         btnVolver = new JButton("Volver");
+
         
         pAbajo=  new JPanel();
         pAbajo.setBorder(new EmptyBorder(100,50,20,50));
         pAbajo.add(btnPagar);
         pAbajo.add(btnVolver);
+        pAbajo.add(btnMisCupones);
 
         pDerecha.add(lbFechaYHora);
         pDerecha.add(lbFH);
@@ -146,6 +169,7 @@ public class VentanaFactura extends JFrame {
         pDerecha.setBorder(new EmptyBorder(70,70,70,70));
 
         lbTotal.setText(String.valueOf(totalPrecio));
+        //lbTotal.setText(String.valueOf(factura.getPrecioTotal()));
         lbTotal.setFont(new Font("Tw", Font.PLAIN, 14));
 
         // Agregar componentes al panel contenedor

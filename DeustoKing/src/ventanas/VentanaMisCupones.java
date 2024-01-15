@@ -105,10 +105,11 @@ public class VentanaMisCupones extends JFrame{
 						if( Restaurante.getMapaCupones().get(foto) != null) {
 							Cupon c = Restaurante.getMapaCupones().get(foto);
 							cliente.setPuntosAcumulados(cliente.getPuntosAcumulados()-c.getMinPuntos());
-							System.out.println("Has seleccionado el cupón: "+c.getFoto());
-							System.out.println("Te quedan "+cliente.getPuntosAcumulados()+ " puntos");
 							Restaurante.volcarListaClientesAlFichero();
 							borrarPanelCupones();
+							if(c.getDescuento()==10) {
+								VentanaFactura.setTotalPrecio(VentanaFactura.getTotalPrecio()-(VentanaFactura.getTotalPrecio()*0.10));
+							}
 						}
 					}
 				}

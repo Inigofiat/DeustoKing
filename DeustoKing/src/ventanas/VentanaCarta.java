@@ -196,17 +196,17 @@ public class VentanaCarta extends JFrame {
 		btnMenuNorte.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU BILBAO");
-				new VentanaMenu(vActual, "MENU BILBO",  "imagenes\\bilboburger.jpg", "BILBO BURGER");
+				new VentanaMenu(vActual, "MENU BILBO",  "imagenes\\bilboburger.jpg", "BILBO");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU DONOSTI");
-				new VentanaMenu(vActual, "MENU DONOSTI", "imagenes\\donosti.jpg", "DONOSTI BURGER");
+				new VentanaMenu(vActual, "MENU DONOSTI", "imagenes\\donosti.jpg", "DONOSTI");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU GASTEIZ");
-				new VentanaMenu(vActual, "MENU GASTEIZ", "imagenes\\gasteiz.png", "GASTEIZ BURGER");
+				new VentanaMenu(vActual, "MENU GASTEIZ", "imagenes\\gasteiz.png", "GASTEIZ");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}
@@ -431,17 +431,17 @@ public class VentanaCarta extends JFrame {
 		btnMenuCentro.addActionListener((e)->{
 			if(nombre.equals("BILBO")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU BILBAO");
-				new VentanaMenu(vActual, "MENU BILBO",  "imagenes\\bilboburger.jpg", "BILBO BURGER");
+				new VentanaMenu(vActual, "MENU BILBO",  "imagenes\\bilboburger.jpg", "BILBO");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else if(nombre.equals("DONOSTI")) {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU DONSOTI");
-				new VentanaMenu(vActual, "MENU DONOSTI", "imagenes\\donosti.jpg", "DONOSTI BURGER");
+				new VentanaMenu(vActual, "MENU DONOSTI", "imagenes\\donosti.jpg", "DONOSTI");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}else {
 				logger.log(Level.INFO, "ABRIENDO LA VENTANA MENU GASTEIZ");
-				new VentanaMenu(vActual, "MENU GASTEIZ", "imagenes\\gasteiz.png", "GASTEIZ BURGER");
+				new VentanaMenu(vActual, "MENU GASTEIZ", "imagenes\\gasteiz.png", "GASTEIZ");
 				vActual.setVisible(false);
 				vActual.dispose();
 			}

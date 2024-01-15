@@ -8,6 +8,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,15 +29,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import basesDeDatos.BD;
 import deustoking.Ciudad;
 import deustoking.Cliente;
 import deustoking.Restaurante;
 
 public class VentanaInicioSesion extends JFrame {
 	private JPanel pSur, pEste, pOeste, pFoto, pPrincipal;
-	private JLabel lblNombreUsuario, lblContraseña, lblRegistro, lblFoto;
+	private JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblFoto;
 	private JTextField txtNombreUsuario;
-	private JPasswordField txtContraseña;
+	private JPasswordField txtContrasenia;
 	private JButton btnRegistro, btnAtras, btnInicioSesion;
 	private JScrollPane scroll;
 	private static final String nomfichClientes = "ficheros/Clientes.csv";
@@ -82,27 +84,27 @@ public class VentanaInicioSesion extends JFrame {
 		pOeste.add(Box.createVerticalStrut(30));
 		
 		
-		lblContraseña = new JLabel("  CONTRASEÑA: ");
-		lblContraseña.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblContraseña.setFont(new Font("Tw", Font.BOLD, 14));
-		txtContraseña = new JPasswordField(20);
+		lblContrasenia = new JLabel("  CONTRASEÑA: ");
+		lblContrasenia.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblContrasenia.setFont(new Font("Tw", Font.BOLD, 14));
+		txtContrasenia = new JPasswordField(20);
 		
-		pOeste.add(lblContraseña);
-		pOeste.add(txtContraseña);
+		pOeste.add(lblContrasenia);
+		pOeste.add(txtContrasenia);
 		pOeste.add(Box.createVerticalStrut(30));
 		
 		txtNombreUsuario.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		txtContraseña.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		txtContrasenia.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		
 		txtNombreUsuario.setColumns(40);
-		txtContraseña.setColumns(40);
+		txtContrasenia.setColumns(40);
 		    
 		pEste = new JPanel();
 		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
 		lblRegistro = new JLabel("¿No tienes cuenta? Regístrate aquí");
 		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblRegistro.setFont(new Font("Tw", Font.BOLD, 14));
-		btnRegistro = new JButton("                    REGÍSTRATE                   ");
+		btnRegistro = new JButton("                    REGISTRATE                   ");
 		
 		pEste.add(lblRegistro);
 		pEste.add(btnRegistro);
@@ -154,7 +156,7 @@ public class VentanaInicioSesion extends JFrame {
 		
 		Restaurante.cargarClientesEnLista(nomfichClientes);
 		
-		txtContraseña.addKeyListener(new KeyAdapter() {
+		txtContrasenia.addKeyListener(new KeyAdapter() {
 		    @Override
 		    public void keyPressed(KeyEvent e) {
 		    	logger.log(Level.INFO, "SE HA HECHO PRESIONADO LA TECLA ENTER");
@@ -184,7 +186,7 @@ public class VentanaInicioSesion extends JFrame {
 	
 	private void iniciarSesion() {
 		String corrTlfUsu = txtNombreUsuario.getText();
-		char[] contChar = txtContraseña.getPassword();
+		char[] contChar = txtContrasenia.getPassword();
 		String contrasenia = new String(contChar);
 		
 		if(corrTlfUsu.isEmpty()) {
@@ -193,6 +195,8 @@ public class VentanaInicioSesion extends JFrame {
 			JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}else {
 			Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
+//			Connection con = BD.initBD(Main.nombreBD);
+//			Cliente cliente = BD.buscarCliente(con, corrTlfUsu, corrTlfUsu, corrTlfUsu);
 			if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
 				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}else {
@@ -202,7 +206,7 @@ public class VentanaInicioSesion extends JFrame {
 					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
 					cli=cliente;
 					txtNombreUsuario.setText("");
-					txtContraseña.setText("");
+					txtContrasenia.setText("");
 					new VentanaCliente(vActual);
 			}
 		}

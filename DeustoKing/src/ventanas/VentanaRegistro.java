@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import basesDeDatos.BD;
 import deustoking.Cliente;
 import deustoking.Persona;
 import deustoking.Restaurante;
@@ -209,9 +211,16 @@ public class VentanaRegistro extends JFrame{
 					new VentanaInicioSesion(vActual);
 					vActual.dispose();
 					logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
-					
+//				Connection con = BD.initBD(Main.nombreBD);
+//				boolean cliente = BD.insertarCliente(con, new Cliente(nombre, apellido, telefono, correo, direccion, Persona.getContador(), 75, nombreUsuario, contrasenia));
+//				if(cliente) {
+//					JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+//					new VentanaInicioSesion(vActual);
+//					vActual.dispose();
+//					logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
 				} else {
-					
+					JOptionPane.showMessageDialog(vActual, "Registro NO realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+
 				}
 			}else {
 				JOptionPane.showMessageDialog(vActual, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);

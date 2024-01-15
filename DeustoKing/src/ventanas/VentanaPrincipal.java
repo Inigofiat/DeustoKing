@@ -43,7 +43,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	private JButton btnBilbao, btnDonostia, btnGasteiz, btnInicSesion, btnCupon, btnReservas;
 	private JLabel lbV1, lbCup;
-	private JPanel panCiudades, panBotones, panPrincipal, panInformación;
+	private JPanel panCiudades, panBotones, panPrincipal, panInformacion;
 	private JMenuBar menu;
 	private JMenu menuDesplegable;
 	private JMenuItem itTrabajador;
@@ -79,13 +79,13 @@ public class VentanaPrincipal extends JFrame {
 		
         panCiudades = new JPanel();
         panBotones = new JPanel();
-        panInformación = new JPanel();
+        panInformacion = new JPanel();
         panPrincipal = new JPanel();
         
         gifPanel = new PanelImagen(new ImageIcon("imagenes/carga.gif").getImage());
         gifPanel.add(panBotones, BorderLayout.NORTH);
         gifPanel.add(panCiudades, BorderLayout.CENTER);
-        gifPanel.add(panInformación, BorderLayout.SOUTH);
+        gifPanel.add(panInformacion, BorderLayout.SOUTH);
 		
 		btnInicSesion = new JButton("INICIO SESIÓN");
 		btnInicSesion.setBackground(Color.BLACK);
@@ -114,11 +114,11 @@ public class VentanaPrincipal extends JFrame {
 		lbV1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		panCiudades.add(lbV1);
 
-		lbCup = new JLabel("     ¡REGISTRÁNDOTE CONSEGUIRÁS 75 PUNTOS!   ");
+		lbCup = new JLabel("     ¡CONSEGUIRÁS 75 PUNTOS REGISTRÁNDOTE!   ");
 		lbCup.setBackground(Color.WHITE);
 		lbCup.setBounds(400, 209, 166, 182);
 		lbCup.setFont(new Font("Tw", Font.BOLD, 25));
-		panInformación.add(lbCup);
+		panInformacion.add(lbCup);
 		movimientoLabelPuntos(lbCup);
 		
 		int espacioEntrePaneles1 = 75; 
@@ -126,7 +126,7 @@ public class VentanaPrincipal extends JFrame {
 	    int espacioEntrePaneles2 = 10; 
 	    panBotones.setBorder(new EmptyBorder(espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2, espacioEntrePaneles2));
 	    int espacioEntrePaneles3 = 75;
-	    panInformación.setBorder(new EmptyBorder(espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3 ));
+	    panInformacion.setBorder(new EmptyBorder(espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3, espacioEntrePaneles3 ));
 	     
 	    FlowLayout ciudadesLayout = new FlowLayout();
 	    ciudadesLayout.setHgap(50); 
@@ -213,7 +213,7 @@ public class VentanaPrincipal extends JFrame {
 	    
 	    panCiudades.setOpaque(false);
 	    panBotones.setOpaque(false);
-	    panInformación.setOpaque(false);
+	    panInformacion.setOpaque(false);
 	    
 	    setJMenuBar(menu);
 	 
@@ -238,7 +238,8 @@ public class VentanaPrincipal extends JFrame {
 	        public void actionPerformed(ActionEvent e) {
 	            try {
 	                String inicial = label.getText();
-	                String movimiento = inicial.charAt(inicial.length() - 1) + inicial.substring(0, inicial.length() - 1);
+	                String movimiento = inicial.substring(1) + inicial.charAt(0);
+
 	                label.setText(movimiento);
 	            } catch (Exception ex) {
 	    			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR EL LABEL");	

@@ -40,9 +40,10 @@ public class VentanaMisReservas extends JFrame{
 	private static ModeloReserva modeloTablaReservas;
 	private static JTable tablaReserva;
 	private JScrollPane scrollTablaReserva;
-	private JPanel pContenedor, pPrincipal, pCentro, pNorte;
+	private JPanel pContenedor, pPrincipal, pCentro, pNorte, pSur;
 	private JFrame vActual, vAnterior;
 	private JLabel lbInfo;
+	private JButton btnVolver;
 	Cliente cliente;
 	
 	public VentanaMisReservas(JFrame va) {
@@ -64,12 +65,26 @@ public class VentanaMisReservas extends JFrame{
 		
 		pNorte= new JPanel();
 		pCentro= new JPanel();
+		pSur = new JPanel();
 		
 		pPrincipal = new JPanel();
 		pPrincipal.setLayout(new BorderLayout());
 		
 		pContenedor = new JPanel();
 		pContenedor.setLayout(new BorderLayout());
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vAnterior.setVisible(true);
+				vActual.dispose();
+				
+			}
+		});
+		
+		pSur.add(btnVolver);
 		
 		lbInfo = new JLabel("Para modificar/borrar una reserva debe hacer doble click sobre la reserva que desea modificar");
 		
@@ -123,6 +138,7 @@ public class VentanaMisReservas extends JFrame{
 		
 		pContenedor.add(pNorte, BorderLayout.NORTH);
 		pContenedor.add(pCentro, BorderLayout.CENTER);
+		pContenedor.add(pSur, BorderLayout.SOUTH);
 		
 		pPrincipal.add(pContenedor);
 		
@@ -190,6 +206,7 @@ public class VentanaMisReservas extends JFrame{
 
         if (option == JOptionPane.OK_OPTION) {
             tablaReserva.setValueAt(spinner.getValue(), row, 2);
+            Restaurante.volcarListaReservasAlFichero();
         }
     }
     	 

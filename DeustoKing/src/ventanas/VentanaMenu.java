@@ -159,15 +159,11 @@ public class VentanaMenu extends JFrame {
 	}
 	
 	private static void obtenerMenu() {
-		System.out.println("CARGANDO LOS ENTRANTES");
+		System.out.println("CARGANDO LOS MENUS");
 		pProductos.removeAll();
-		//Restaurante.cargarProductosEnLista("ficheros/productos.csv");
 		for(Producto p: Restaurante.getListaProductosFichero()) {
-			if( p.getTipoProducto().equals(TipoProducto.MENU) && p.getNombre().toLowerCase().contains(ciudad.toLowerCase())) {
-				System.out.println(p.getNombre().toLowerCase() + "   ----     "+ciudad.toLowerCase());
-				
+			if( p.getTipoProducto().equals(TipoProducto.MENU) && p.getNombre().toLowerCase().contains(ciudad.toLowerCase())) {				
 				for(Producto pr: p.getListaProductos()) {
-					System.out.println(pr);
 					crearBoton("imagenes/"+pr.getImagen(), pr.getNombre(),dividirDescripcionPorPalabras(pr.getDescripcion()), pr.getPrecio());
 				}
 			}
