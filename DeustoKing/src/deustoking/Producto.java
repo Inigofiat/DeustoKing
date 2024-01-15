@@ -24,6 +24,7 @@ public class Producto {
 		this.modificacion=modificacion;
 		this.tipoProducto=producto;
 		this.imagen=imagen;
+		this.listaProductos=productos;
 	}
 	
 	public Producto(int idP2, String nombre2, String ingredientes, float precio2, int cantidad2, String modificacion2,
@@ -111,26 +112,11 @@ public class Producto {
 	}
 
 
-//	@Override
-//	public String toString() {
-//	//	String texto =  nombre + ": " + descripcion + "(" + cantidad +")" + modificacion;
-//		
-//		String texto = String.format("NOMBRE: %90s\nDESCRIPCIÓN: %90s\nCANTIDAD: %90d\nMODIFICACIÓN: %90s\nLISTA: %90s\nTIPO: %90s\\n", nombre,descripcion,cantidad,modificacion, listaProductos, tipoProducto);
-//		
-//		
-//		
-//		/*String textoConFormato = "";
-//		for(int i=0;i<texto.length();i++) {
-//			textoConFormato = textoConFormato + texto.charAt(i);
-//			if(i%30==0) {
-//				textoConFormato = textoConFormato + "\n";
-//			}
-//		}
-//		
-//		
-//		return textoConFormato;*/
-//		return texto;
-//	}
+	@Override
+	public String toString() {
+		String texto = String.format("NOMBRE: %90s\nDESCRIPCIÓN: %90s\nCANTIDAD: %90d\nMODIFICACIÓN: %90s\nLISTA: %90s\nTIPO: %90s\\n", nombre,descripcion,cantidad,modificacion, listaProductos, tipoProducto);
+		return texto;
+	}
 	
 	
 	

@@ -1,27 +1,25 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Point;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,16 +33,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import deustoking.Ciudad;
 import deustoking.Cliente;
 import deustoking.Cupon;
+import deustoking.Producto;
 import deustoking.Restaurante;
+import deustoking.TipoProducto;
 
 public class VentanaCliente extends JFrame{
-	private JPanel pNorte, pCentro, pDerecha, pPrincipal, pContenedor;
+	private JPanel pNorte;
+	private static JPanel pCentro;
+	private JPanel pDerecha;
+	private JPanel pPrincipal;
+	private JPanel pContenedor, pSur;
 	private JSlider sliderPts;
 	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4, lbPuntos, lbTiempo;
 	private Cliente cliente;
@@ -53,9 +58,10 @@ public class VentanaCliente extends JFrame{
 	static Logger logger = Logger.getLogger(Main.class.getName());
 	private JMenuBar menu;
 	private JScrollPane barra;
-	private JMenu menuReserva, menuCarta, menuPerfil, menuCupon, menuHora;
-	private JMenuItem itCarta, itMisCupones, itCupones, itReserva, itMiperfil, itMisReservas;
+	private JMenu menuReserva, menuCarta, menuPerfil, menuCupon, menuHora, menuCarro;
+	private JMenuItem itCarta, itMisCupones, itCupones, itReserva, itMiperfil, itMisReservas, itCarro;
 	PanelImagen imagenPanel;
+	private JButton btnCerrarSesion;
 	
 	public VentanaCliente(JFrame va) {
 		vActual = this;
@@ -72,11 +78,26 @@ public class VentanaCliente extends JFrame{
         setSize(anchoP, altoP);
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
+        
+        btnCerrarSesion = new JButton("Cerrar Sesión");
+        btnCerrarSesion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vActual.dispose();
+				
+			}
+		});
 		
 		pNorte = new JPanel();
 		pCentro = new JPanel();
 		pDerecha=new JPanel();
-		pCentro.setLayout(new GridLayout(2,2));
+		pContenedor = new JPanel();
+		pContenedor.setLayout(new BorderLayout());
+		pPrincipal = new JPanel();
+		pPrincipal.setLayout(new BorderLayout());
+		pSur=new JPanel();
+		pSur.add(btnCerrarSesion);
 		
 		lbTiempo = new JLabel();
         lbTiempo.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -94,7 +115,8 @@ public class VentanaCliente extends JFrame{
 	        }, 0, 1000);
 	
 		
-        pCentro.setLayout(new GridLayout(0, 2, 10, 30));
+        pCentro.setLayout(new GridLayout(0, 3));
+        obtenerExtra();
 		
 
 		lblSaludo = new JLabel("Hola, "+cliente.getNombreUsuario());
@@ -243,7 +265,25 @@ public class VentanaCliente extends JFrame{
 		menuHora=new JMenu();
 		menuHora.setText(obtenerHoraActual());
 		menuHora.setFont(new Font("Arial", Font.PLAIN, 18));
-	
+	    menuCarro = new JMenu();
+	    ImageIcon icono = new ImageIcon("imagenes/carro.png");
+	    Image imagenEscalada = icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+	    icono = new ImageIcon(imagenEscalada);
+	    menuCarro.setIcon(icono);
+	    menuCarro.setFont(new Font("Tw", Font.BOLD, 12));
+	    menuCarro.setForeground(new Color(0,0,0));
+	    itCarro = new JMenuItem("Cesta");
+	    itCarro.setFont(new Font("Tw", Font.PLAIN, 12));
+	    itCarro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaTablaProductos(vActual);
+				vActual.dispose();
+				
+			}
+		});
+	    menuCarro.add(itCarro);
 		
 		menu.add(menuPerfil);
 		menu.add(new JMenu("|")).setEnabled(false);
@@ -252,20 +292,23 @@ public class VentanaCliente extends JFrame{
 	    menu.add(menuCarta);
 	    menu.add(new JMenu("|")).setEnabled(false);
 	    menu.add(menuCupon);
+	    menu.add(new JMenu("|")).setEnabled(false);
+	    menu.add(menuCarro);
 	    menu.add(Box.createHorizontalGlue());
 	    menu.add(menuHora);
 	    setJMenuBar(menu);
 		
+	    pCentro.setBorder(new EmptyBorder(50, 50, 50, 50));
 		pCentro.setOpaque(false);
 		pNorte.setOpaque(false);
         Restaurante.miIcono(this, "imagenes/CORONA.png");
-        setContentPane(pCentro);
+        pContenedor.add(pNorte, BorderLayout.NORTH);
+        pContenedor.add(pCentro, BorderLayout.CENTER);
+        pContenedor.add(pSur, BorderLayout.SOUTH);
+        pPrincipal.add(pContenedor, BorderLayout.CENTER);
+        setContentPane(pPrincipal);
 		setVisible(true);
 		
-		barra = new JScrollPane(pPrincipal);
-        barra.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        barra.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        getContentPane().add(barra, BorderLayout.CENTER);
 	}
 	
 	private void mostrarTiempo() {
@@ -279,7 +322,67 @@ public class VentanaCliente extends JFrame{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         return horaActual.format(formatter);
     }
+    
+    private static void obtenerExtra() {
+    	pCentro.removeAll();
+    	for(Producto p: Restaurante.getListaProductosFichero()) {
+    		System.out.println(p);
+			if( p.getTipoProducto().equals(TipoProducto.EXTRA)) {
+				System.out.println(p);
+				crearBoton("imagenes/"+p.getImagen(), p.getNombre(), dividirDescripcionPorPalabras(p.getDescripcion()), p.getPrecio());
+			}
+		}
+    }
+    
+	private static JButton crearBoton(String foto, String nombreProducto, String descripcion, float precio) {
+		JButton boton = new JButton();
+		ImageIcon imagen = new ImageIcon(foto);
+		JLabel etiqueta = new JLabel(nombreProducto);
+		Insets margenBotones = new Insets(10, 10, 10, 10);
+		boton.setIcon(imagen);
+	    boton.setLayout(new BorderLayout());
+	    boton.setPreferredSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+	    boton.setPreferredSize(new Dimension(150, 350));
+	    etiqueta.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiqueta.setVerticalAlignment(SwingConstants.TOP);
+	    etiqueta.setForeground(Color.WHITE);
+	    etiqueta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 35));
+
+	    boton.add(etiqueta, BorderLayout.CENTER);
+	    boton.setMargin(margenBotones);
+	    boton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Restaurante.informacionProductos(nombreProducto, descripcion, precio);
+			}
+		});
+	    try {
+			pCentro.add(boton);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return boton;
+	}
 	
+	private static String dividirDescripcionPorPalabras(String descripcion) {
+	    StringBuilder descripcionFormateada = new StringBuilder();
+	    int palabrasPorLinea = 18;
+	    int contadorPalabras = 0;
+
+	    String[] palabras = descripcion.split("\\s+");
+
+	    for (String palabra : palabras) {
+	        descripcionFormateada.append(palabra).append(" ");
+	        contadorPalabras++;
+
+	        if (contadorPalabras % palabrasPorLinea == 0) {
+	            descripcionFormateada.append("\n");
+	        }
+	    }
+
+	    return descripcionFormateada.toString().trim(); 
+	}
 
 }
 
