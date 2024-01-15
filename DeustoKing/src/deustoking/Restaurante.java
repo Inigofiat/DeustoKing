@@ -605,7 +605,8 @@ public class Restaurante {
 				String direccion = partes[4];
 				String nombreUsuario = partes[5];
 				String contrasenia = partes[6];
-				Cliente c = new Cliente(nombre, apellidos, telefono, correo, direccion, Persona.getContador(), 0, nombreUsuario, contrasenia);
+				int puntosAcumulado = Integer.parseInt(partes[7]);
+				Cliente c = new Cliente(nombre, apellidos, telefono, correo, direccion, Persona.getContador(),puntosAcumulado , nombreUsuario, contrasenia);
 				BD.insertarCliente(con, c);
 			
 			}
@@ -754,7 +755,7 @@ public class Restaurante {
 	}
 	
 	/***
-	 * Este método vuelva la lista de clientes al fichero clientes.csv
+	 * Este método vuelca la lista de clientes al fichero clientes.csv
 	 */
 	
 	public static void volcarListaClientesAlFichero() {
@@ -866,6 +867,19 @@ public class Restaurante {
 
 	public static List<Producto> getListaProductosFichero() {
 		return listaProductosFichero;
+	}
+	
+	public static void volcarListaReservasAlFichero() {
+		try {
+			PrintWriter pw = new PrintWriter("ficheros/reservas.csv");
+			for(Reserva r: listaReservas) {
+				pw.println(r.getNombre()+";"+r.getTelefono()+";"+r.getCorreo()+";"+r.getFecha()+";"+r.getHora()+";"+
+						r.getnComensales());
+			}
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
 	

@@ -4,18 +4,18 @@ public class Cupon {
 	private int minPuntos;
 	private double descuento;
 	private String foto;
-	private String descripción;
+	private String descripcion;
 	
 	public Cupon() {
 		super();
 	}
 	
-	public Cupon(int minPuntos, double descuento, String foto, String descripción) {
+	public Cupon(int minPuntos, double descuento, String foto, String descripcion) {
 		super();
 		this.minPuntos = minPuntos;
 		this.descuento = descuento;
 		this.foto = foto;
-		this.descripción = descripción;
+		this.descripcion = descripcion;
 	}
 	
 	public int getMinPuntos() {
@@ -36,17 +36,17 @@ public class Cupon {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public String getDescripción() {
-		return descripción;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setDescripción(String descripción) {
-		this.descripción = descripción;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	@Override
 	public String toString() {
 		return "Cupon [minPuntos=" + minPuntos + ", descuento=" + descuento + ", foto=" + foto + ", descripción="
-				+ descripción + "]";
+				+ descripcion + "]";
 	}
 	
 }
