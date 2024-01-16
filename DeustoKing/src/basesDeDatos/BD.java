@@ -5,6 +5,7 @@ package basesDeDatos;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import deustoking.Cliente;
 import deustoking.Cupon;
+import deustoking.MenuDeusto;
 import deustoking.Producto;
 import deustoking.Reserva;
 import deustoking.TipoProducto;
@@ -119,6 +121,34 @@ public class BD {
 		}
 	}
 	
+	public static void insertarProducto(Connection con, Producto p) {
+		if(buscarProducto(con, p.getIdP())==null) {
+			String lista = "";
+			if(p.getListaProductos()!=null) {
+				for(Producto pr: p.getListaProductos()) {
+					lista = lista + pr.getIdP() + ":";
+				}
+			}
+			try {
+				PreparedStatement pst = con.prepareStatement("INSERT INTO Producto VALUES(?,?,?,?,?,?,?,?,?)");
+				pst.setInt(1, p.getIdP());
+				pst.setString(2, p.getNombre());
+				pst.setString(3, p.getDescripcion());
+				pst.setFloat(4, p.getPrecio());
+				pst.setInt(5, p.getCantidad());
+				pst.setString(6,p.getModificacion());
+				pst.setString(7,p.getTipoProducto().toString());
+				pst.setString(8,p.getImagen());
+				pst.setString(9,lista);
+				pst.executeUpdate();
+				pst.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 	public static Cliente buscarCliente(Connection con, String telefono) {
 		String sql = String.format("SELECT * FROM Cliente WHERE Telefono = '%s'", telefono);
@@ -148,17 +178,17 @@ public class BD {
 	}
 	
 	public static Producto buscarProducto(Connection con, int id) {
-		String sql = String.format("SELECT * FROM Producto WHERE IdentificadorProducto = '%d'",id);
+		String sql = String.format("SELECT * FROM Producto WHERE IdentificadorProducto = %d",id);
 		Producto producto= null;
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql); 
 			if(rs.next()) {
-				int idP= rs.getInt(rs.getString("IdentificadorProducto"));
+				int idP= rs.getInt("IdentificadorProducto");
 				String nombre = rs.getString("Nombre");
 				String descripcion = rs.getString("Descripcion");
-				float precio = rs.getFloat(rs.getString("Precio"));
-				int cantidad = rs.getInt(rs.getString("Cantidad"));
+				float precio = rs.getFloat("Precio");
+				int cantidad = rs.getInt("Cantidad");
 				TipoProducto tipo = TipoProducto.valueOf(rs.getString("TipoProducto"));
 				String imagen = rs.getString("Imagen");
 				List<Producto> productos = new ArrayList<>();

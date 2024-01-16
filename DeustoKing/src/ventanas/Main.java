@@ -19,7 +19,7 @@ import deustoking.Restaurante;
 
 public class Main {
 	public static Logger logger = Logger.getLogger(Main.class.getName());
-	public static String nombreBD,nombreAplicacion,fechaCreacion;
+	public static String nombreBD,nombreAplicacion,fechaCreacion, nombreFicheroClientes, nombreFicheroReservas, nombreFicheroTrabajadores, nombreFicheroProductos, nombreFicheroCupones;
 	public static void main(String[] args) {
 		
 		VentanaCargando vc= new VentanaCargando();
@@ -30,6 +30,11 @@ public class Main {
 			nombreBD = properties.getProperty("nombreBD");
 			nombreAplicacion = properties.getProperty("nombreAplicacion");
 			fechaCreacion = properties.getProperty("fechaCreacion");
+			nombreFicheroClientes = properties.getProperty("nombreFicheroClientes");
+			nombreFicheroProductos =  properties.getProperty("nombreFicheroProductos");
+			nombreFicheroCupones =  properties.getProperty("nombreFicheroCupones");
+			nombreFicheroTrabajadores =  properties.getProperty("nombreFicheroTrabajadores");
+			nombreFicheroReservas =  properties.getProperty("nombreFicheroReservas");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO EL ARCHIVO");
@@ -51,12 +56,17 @@ public class Main {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		Restaurante.volcarCSVPersonasABD(con, "ficheros/Clientes.csv");
-		Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
+		//Restaurante.volcarCSVPersonasABD(con, "ficheros/Clientes.csv");
+		//Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
+		Restaurante.volcarCSVPersonasABD(con, nombreFicheroClientes);
+		Restaurante.volcarCSVReservasABD(con, nombreFicheroReservas);
 		Restaurante.cargarCupones();
-		
+		//Restaurante.volcarCSVProductosABD(con, "ficheros/productos.csv");
+		Restaurante.volcarCSVProductosABD(con, nombreFicheroProductos);
+	
 		BD.cerrarBD(con);
-		Restaurante.cargarProductosEnLista("ficheros/productos.csv");
+		//Restaurante.cargarProductosEnLista("ficheros/productos.csv");
+		Restaurante.cargarProductosEnLista(nombreFicheroProductos);
 		for (Producto string : Restaurante.getListaProductosFichero()) {
 			System.out.println("PRODUCTO-----------------"+string.getTipoProducto());
 		}

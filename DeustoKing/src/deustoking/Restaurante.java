@@ -307,7 +307,7 @@ public class Restaurante {
 		try {
 			PrintWriter pw = new PrintWriter(nomfichClientes);
 			for(Cliente c: clientes) {
-				pw.println(c.getNombre()+";"+c.getApellidos()+";"+c.getTelefono()+";"+c.getDireccion()+";"+c.getCorreo()+";"+
+				pw.println(c.getNombre()+";"+c.getApellidos()+";"+c.getTelefono()+";"+c.getCorreo()+";"+c.getDireccion()+";"+
 						c.getNombreUsuario()+";"+c.getContrasenia()+";"+c.getPuntosAcumulados());
 			}
 			pw.flush();
@@ -437,7 +437,7 @@ public class Restaurante {
 	if (verificarContrasenia(contrasenia) && verificarNombreUsuario(nombreUsuario) && verificarTelefono(telefono) &&
         buscarUsuario(telefono) == null && buscarUsuario(correo) == null && buscarUsuario(nombre) == null) {
 
-		Cliente nuevoCliente = new Cliente(nombre, apellido, telefono, direccion, correo, 1, puntos, nombreUsuario, contrasenia);
+		Cliente nuevoCliente = new Cliente(nombre, apellido, telefono, correo, direccion, 1, puntos, nombreUsuario, contrasenia);
             clientes.add(nuevoCliente);
             System.out.println(nuevoCliente.getPuntosAcumulados());
             guardarClientes(nomfichCliente);

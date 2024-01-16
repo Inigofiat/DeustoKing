@@ -211,13 +211,7 @@ public class VentanaRegistro extends JFrame{
 					new VentanaInicioSesion(vActual);
 					vActual.dispose();
 					logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
-//				Connection con = BD.initBD(Main.nombreBD);
-//				boolean cliente = BD.insertarCliente(con, new Cliente(nombre, apellido, telefono, correo, direccion, Persona.getContador(), 75, nombreUsuario, contrasenia));
-//				if(cliente) {
-//					JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
-//					new VentanaInicioSesion(vActual);
-//					vActual.dispose();
-//					logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
+
 				} else {
 					JOptionPane.showMessageDialog(vActual, "Registro NO realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
 
