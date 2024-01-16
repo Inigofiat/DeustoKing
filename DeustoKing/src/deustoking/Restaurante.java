@@ -179,6 +179,123 @@ public class Restaurante {
 	}
 	
 	/***
+	 * Este método devuelve un mapa con la clave de un string que es el teléfono y el valor es una lista de reservas 
+	 * @return devuelve el mapa de todas las reservas hechas por el usuario con ese teléfono
+	 */
+	
+	
+	public static Map<String, List<Reserva>> getMapaReservas() {
+		return mapaReservas;
+	}
+	
+	/***
+	 * Este método devuelve la lista de los clientes
+	 * @return devuelve los clientes
+	 */
+
+
+	public static List<Cliente> getClientes() {
+		return clientes;
+	}
+	
+	
+	/***
+	 * Este método devuelve un mapa con la clave de un string de hora y como valor una lista de todas las reservas hechas en esa hora
+	 * @return devuelve el mapa con todas las reservas hechas en una hora concreta
+	 */
+
+
+	public static Map<String, List<Reserva>> getReservasPorCliente() {
+		return reservasPorCliente;
+	}
+	
+	/***
+	 * Este método devuelve la lista de trabajadores
+	 * @return devuelve la lista de todos los trabajadores
+	 */
+
+
+	public static List<Trabajador> getListaTrabajadores() {
+		return listaTrabajadores;
+	}
+	
+	/***
+	 * Este método devuelve un mapa con clave String que es el correo y como valor tiene un cliente
+	 * @return devuelve un mapa con una persona asociada a su correo
+	 */
+
+
+	public static Map<String, Cliente> getMapaPersonaPorCorreo() {
+		return mapaPersonaPorCorreo;
+	}
+	
+	/***
+	 * Este método devuelve devuelve un cliente 
+	 * @return devuelve un cliente
+	 */
+
+	public static Cliente getCliente() {
+		return cliente;
+	}
+	
+	/***
+	 * Este método devuelve una lista con los productos
+	 * @return devuelve una lista con todos los productos
+	 */
+
+	public static List<Producto> getProductos() {
+		return productos;
+	}
+
+	
+	/***
+	 * Este método devuelve un conjunto de todas las fechas 
+	 * @return devuelve un conjunto de fechas sin repetición
+	 */
+	
+	public static Set<String> getFechasReservas() {
+		return fechasReservas;
+	}
+	
+	/***
+	 * Este método devuelve una lista con las fechas ordenadas
+	 * @return devuelve la lista con todas las fechas ordenadas
+	 */
+
+	public static List<String> getFechasOrdenadas() {
+		return fechasOrdenadas;
+	}
+	
+	/***
+	 * Este método asigna un cliente
+	 * @param cliente el cliente que se ha registrado/iniciado sesión
+	 */
+
+	public static void setCliente(Cliente cliente) {
+		Restaurante.cliente = cliente;
+	}
+	
+	/***
+	 * Este método asigna un cliente a cada reserva
+	 * @param reservasPorCliente mapa con clave telefono y valor una lista con todas las reservas
+	 */
+
+	public static void setReservasPorCliente(Map<String, List<Reserva>> reservasPorCliente) {
+		Restaurante.reservasPorCliente = reservasPorCliente;
+	}
+	
+	/***
+	 * Este método asigna el correo a cada cliente
+	 * @param mapaPersonaPorCorreo mapa con la clave String que es el correo y valor el cliente que se ha registrado/iniciado sesión
+	 */
+
+	public static void setMapaPersonaPorCorreo(Map<String, Cliente> mapaPersonaPorCorreo) {
+		Restaurante.mapaPersonaPorCorreo = mapaPersonaPorCorreo;
+	}
+	
+	/***
+	
+	/***
 	 * Este método devuelve el mapa de las fechas
 	 * 
 	 * @return devuelve el mapa que tiene como clave la fecha en la que se ha hecho la reserva y como valor la lista de las reservas
@@ -800,6 +917,12 @@ public class Restaurante {
 		
 	}
 	
+	/***
+	 * Este método devuelve las reservas que ha hecho cada cliente
+	 * @param telefono el parametro que recibe para buscar al cliente
+	 * @return devuelve la lista de las reservas de ese cliente
+	 */
+	
 	public static List<Reserva>  obtenerReservasCliente(String telefono) {
 		List<Reserva> reservas = mapaReservas.get(telefono);
 		if(reservas!=null) {
@@ -808,6 +931,11 @@ public class Restaurante {
 		
 		return reservas;
 	}
+	
+	/***
+	 * Este método carga los productos en la lista
+	 * @param nomfich fichero productos.csv
+	 */
 	
 	public static void cargarProductosEnLista(String nomfich) {
 		listaProductosFichero.clear();
@@ -859,6 +987,13 @@ public class Restaurante {
 		}
 	}
 	
+	/***
+	 * Este método busca los productos por id
+	 * @param id el id del cliente
+	 * @param listaProductos la lista de todos los productos
+	 * @return devuelve un null en caso de no encontrarse nada en la lista y sino devuelve el producto
+	 */
+	
 	public static Producto buscarProductoPorId(int id, List<Producto> listaProductos) {
 		for (Producto producto : listaProductos) {
 			if(producto.getIdP()==id) {
@@ -869,10 +1004,19 @@ public class Restaurante {
 		return null;
 	}
 
+	
+	/***
+	 * Este método devuelve la lista de todos los productos que hay en el fichero
+	 * @return la lista de productos 
+	 */
 
 	public static List<Producto> getListaProductosFichero() {
 		return listaProductosFichero;
 	}
+	
+	/*** 
+	 * Este método vuelca la lista de reservas al fichero reservas.csv
+	 */
 	
 	public static void volcarListaReservasAlFichero() {
 		try {
@@ -886,6 +1030,12 @@ public class Restaurante {
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
+	
+	/***
+	 * Este método vuelca los productos del fichero a la base de datos
+	 * @param con conexion de la base de datos
+	 * @param nomfich fichero productos.csv
+	 */
 	
 	
 	
@@ -943,6 +1093,12 @@ public class Restaurante {
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
+	
+	/***
+	 * Este método vuelca los trabajadores del fichero a la base de datos
+	 * @param con conexión de la base de datos
+	 * @param nomfich fichero trabajadores.csv
+	 */
 	
 	public static void volcarCSVCTrabajadorABD(Connection con, String nomfich) {
 		try {

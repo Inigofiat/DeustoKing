@@ -22,6 +22,12 @@ import deustoking.Trabajador;
 
 public class BD {
 	
+	/*** 
+	 * Método que inicia la conexión 
+	 * @param nombreBD deustoking.db
+	 * @return devuelve la conexión
+	 */
+	
 	public static Connection initBD(String nombreBD) {
 		Connection conn = null;
 		try {
@@ -36,6 +42,11 @@ public class BD {
 		
 	}
 	
+	/***
+	 * Método que borra las tablas creadas
+	 * @param con conexión de la base de datos
+	 * @throws SQLException lanza una excepción en caso de que no se encuentre base de datos
+	 */
 	public static void borrarTabla(Connection con) throws SQLException{
 		String sqlCliente = "DROP TABLE IF EXISTS Cliente";
 		String sqlReserva= "DROP TABLE IF EXISTS Reserva";
@@ -54,6 +65,12 @@ public class BD {
 			throw e;
 		}
 	}
+	
+	/***
+	 * Método que crea las tablas de la base de datos
+	 * @param conn la conexión de la base de datos
+	 * @throws SQLException lanza una excepción en caso de no se encuentre la base de datos
+	 */
 	
 	public static void crearTabla (Connection conn) throws SQLException{
 		String sqlCliente = "CREATE TABLE IF NOT EXISTS Cliente (Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, PuntosAcumulados int, NombreUsuario String, Contrasenia String)";
@@ -76,6 +93,12 @@ public class BD {
 		}
 	}
 	
+	/***
+	 * Método que inserta los clientes a la base de datos
+	 * @param con la conexión de la base de datos
+	 * @param cliente que se inserta en la base de datos
+	 */
+	
 		public static void insertarCliente(Connection con, Cliente cliente){
 			
 			if(buscarCliente(con,cliente.getTelefono())==null){
@@ -91,6 +114,12 @@ public class BD {
 			}
 		}
 		
+		/***
+		 * Método que inserta los trabajadores en la base de datos
+		 * @param con conexión de la base de datos
+		 * @param t trabajador que se inserta a la base de datos
+		 */
+		
 		public static void insertarTrabajador(Connection con, Trabajador t){
 			
 			if(buscarCliente(con,t.getDni())==null){
@@ -105,6 +134,12 @@ public class BD {
 				}
 			}
 		}
+		
+	/***
+	 * Método que inserta las reservas a la base de datos
+	 * @param con la conexión de la base de datos
+	 * @param reserva que se inserta a la base de datos
+	 */
 	
 	public static void insertarReserva(Connection con, Reserva reserva) {
 		if(buscarReserva(con, reserva.getTelefono())==null) {
@@ -120,6 +155,12 @@ public class BD {
 		}
 	}
 	
+	/***
+	 * Método que inserta los cupones a la base de datos
+	 * @param con conexión de la base de datos
+	 * @param cupon que se inserta a la base de datos
+	 */
+	
 	public static void insertarCupon(Connection con, Cupon cupon) {
 		if(buscarCupon(con, cupon.getFoto())==null) {
 			String sql = String.format("INSERT INTO Cupon(MinPuntos,Descuento,Foto,Nombre)VALUES('%d','%f', '%s','%s')", cupon.getMinPuntos(),cupon.getDescuento(),cupon.getFoto(),cupon.getDescripcion());
@@ -134,6 +175,10 @@ public class BD {
 			
 		}
 	}
+	
+	/***
+	 * Método que inserta los productos a la base de datos
+	 */
 	
 	public static void insertarProducto(Connection con, Producto p) {
 		if(buscarProducto(con, p.getIdP())==null) {
@@ -162,6 +207,9 @@ public class BD {
 		}
 	}
 	
+	/***
+	 * Método que busca los clientes
+	 */
 
 	public static Cliente buscarCliente(Connection con, String telefono) {
 		String sql = String.format("SELECT * FROM Cliente WHERE Telefono = '%s'", telefono);
@@ -190,6 +238,13 @@ public class BD {
 		return cliente;
 	}
 	
+	/***
+	 * Método que busca el trabajador en la base de datos por DNI
+	 * @param con la conexion de la base de datos
+	 * @param dni parametro que se le pasa para buscar un trabajador
+	 * @return devuelve el trabajador
+	 */
+	
 	public static Trabajador buscarTrabajador(Connection con, String dni) {
 		String sql = String.format("SELECT * FROM Cliente WHERE Dni = '%s'", dni);
 		Trabajador trabajador= null;
@@ -217,6 +272,13 @@ public class BD {
 		}
 		return trabajador;
 	}
+	
+	/***
+	 * Método que busca los productos por id en la base de datos
+	 * @param con conexión de la base de datos
+	 * @param id parametro con el que se van a buscar los productos
+	 * @return devuelve el producto
+	 */
 	
 	public static Producto buscarProducto(Connection con, int id) {
 		String sql = String.format("SELECT * FROM Producto WHERE IdentificadorProducto = %d",id);
@@ -252,6 +314,13 @@ public class BD {
 		return producto;
 	}
 	
+	/***
+	 * Método que busca la reserva en la base de datos por teléfono 
+	 * @param con conexión de la base de datos
+	 * @param telefono parametro con el que se va a buscar la reserva
+	 * @return
+	 */
+	
 	public static Reserva buscarReserva(Connection con, String telefono ) {
 		String sql = String.format("SELECT * FROM Reserva WHERE Telefono = '%s'", telefono);
 		Reserva reserva=null;
@@ -277,6 +346,13 @@ public class BD {
 		return reserva;
 	}
 	
+	
+	/***
+	 * Método que busca los cupones en la base de datos
+	 * @param con conexión de la base de datos
+	 * @param foto para buscar el cupón con dicha foto
+	 * @return devuelve el cupón
+	 */
 	public static Cupon buscarCupon(Connection con, String foto) {
 		String sql = String.format("SELECT * FROM Cupon WHERE Foto ='%s'", foto);
 		Cupon cupon = null;
@@ -299,6 +375,12 @@ public class BD {
 		return cupon;
 		
 	}
+	
+	/***
+	 * Método que obtiene la lista de clientes de la base de datos
+	 * @param con conexión de la base de datos
+	 * @return devuelve la lista de clientes
+	 */
 	
 	public static List<Cliente> obtenerListaClientes(Connection con){
 		String sql = "SELECT * FROM Cliente";
@@ -328,6 +410,12 @@ public class BD {
 		return l;
 	}
 	
+	/***
+	 * Método que obtiene la lista de los productos de la base de datos
+	 * @param con conexión de la base de datos
+	 * @return devuelve la lista de los productos
+	 */
+	
 	public static List<Producto> obtenerListaProductos(Connection con){
 		String sql = "SELECT * FROM Producto";
 		List<Producto> lp = new ArrayList<>();
@@ -354,6 +442,11 @@ public class BD {
 		return lp;
 		
 	}
+	
+	/***
+	 * Método que cierra la base de datos
+	 * @param con conexión de la base de datos
+	 */
 	public static void cerrarBD(Connection con) {
 		if(con != null) {
 			try {
