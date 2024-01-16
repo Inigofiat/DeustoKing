@@ -16,6 +16,7 @@ import deustoking.Cliente;
 import deustoking.Cupon;
 import deustoking.Producto;
 import deustoking.Reserva;
+import deustoking.TipoProducto;
 
 
 public class BD {
@@ -34,10 +35,29 @@ public class BD {
 		
 	}
 	
+	public static void borrarTabla(Connection con) throws SQLException{
+		String sqlCliente = "DROP TABLE IF EXISTS Cliente";
+		String sqlReserva= "DROP TABLE IF EXISTS Reserva";
+		String sqlProducto= "DROP TABLE IF EXISTS Producto";
+		String sqlTrabajador= "DROP TABLE IF EXISTS Trabajador";
+		String sqlCupon= "DROP TABLE IF EXISTS Cupon";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sqlCliente);
+			st.executeUpdate(sqlReserva);
+			st.executeUpdate(sqlProducto);
+			st.executeUpdate(sqlTrabajador);
+			st.executeUpdate(sqlCupon);
+			
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
+	
 	public static void crearTabla (Connection conn) throws SQLException{
 		String sqlCliente = "CREATE TABLE IF NOT EXISTS Cliente (Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, PuntosAcumulados int, NombreUsuario String, Contrasenia String)";
 		String sqlReserva = "CREATE TABLE IF NOT EXISTS Reserva (Nombre String, Telefono String, Correo String, IdentificadorReserva INTEGER PRIMARY KEY AUTOINCREMENT,Fecha String, Hora String, NumeroComensales int)";
-		String sqlProducto = "CREATE TABLE IF NOT EXISTS Producto(IdentificadorProducto INTEGER PRIMARY KEY AUTOINCREMENT, Nombre String, Descripcion String, Precio double, Cantidad int, Modificacion String)";
+		String sqlProducto = "CREATE TABLE IF NOT EXISTS Producto(IdentificadorProducto int, Nombre String, Descripcion String, Precio float, Cantidad int, Modificacion String, TipoProducto String, Imagen String, ListaProductos String)";
 		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, HorasTrabajadas float,"
 				+ "Sueldo float, NombreTrabajador String, Contrasenia String, Dni String, Puesto String)";
 		String sqlCupon = "CREATE TABLE IF NOT EXISTS Cupon(MinPuntos Int, Descuento double, Foto String, Nombre String)";
@@ -86,7 +106,7 @@ public class BD {
 	
 	public static void insertarCupon(Connection con, Cupon cupon) {
 		if(buscarCupon(con, cupon.getFoto())==null) {
-			String sql = String.format("INSERT INTO Cupon(MinPuntos,Descuento,Foto,Nombre)VALUES('%d','%f', '%s','%s')", cupon.getMinPuntos(),cupon.getDescuento(),cupon.getFoto(),cupon.getDescripción());
+			String sql = String.format("INSERT INTO Cupon(MinPuntos,Descuento,Foto,Nombre)VALUES('%d','%f', '%s','%s')", cupon.getMinPuntos(),cupon.getDescuento(),cupon.getFoto(),cupon.getDescripcion());
 			
 			try {
 				Statement st = con.createStatement();
@@ -125,6 +145,40 @@ public class BD {
 			e.printStackTrace();
 		}
 		return cliente;
+	}
+	
+	public static Producto buscarProducto(Connection con, int id) {
+		String sql = String.format("SELECT * FROM Producto WHERE IdentificadorProducto = '%d'",id);
+		Producto producto= null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql); 
+			if(rs.next()) {
+				int idP= rs.getInt(rs.getString("IdentificadorProducto"));
+				String nombre = rs.getString("Nombre");
+				String descripcion = rs.getString("Descripcion");
+				float precio = rs.getFloat(rs.getString("Precio"));
+				int cantidad = rs.getInt(rs.getString("Cantidad"));
+				TipoProducto tipo = TipoProducto.valueOf(rs.getString("TipoProducto"));
+				String imagen = rs.getString("Imagen");
+				List<Producto> productos = new ArrayList<>();
+				for (Producto p : productos) {
+					int idPr = rs.getInt("IdentificadorProducto");
+					if(p.getIdP()==idPr) {
+						productos.add(p);
+					}
+					
+				}
+			
+				
+				producto = new Producto(idP, nombre, descripcion, precio, cantidad, descripcion, tipo, imagen, productos);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return producto;
 	}
 	
 	public static Reserva buscarReserva(Connection con, String telefono ) {
@@ -213,12 +267,13 @@ public class BD {
 				int id = Integer.parseInt(rs.getString("IdentificadorProducto"));
 				String nombre = rs.getString("Nombre");
 				String descripcion = rs.getString("Descripcion");
-				double precio = Double.parseDouble(rs.getString("Precio"));
+				float precio = Float.parseFloat(rs.getString("Precio"));
 				int cantidad = Integer.parseInt(rs.getString("Cantidad"));
 				String modificacion = rs.getString("Modificacion");
-				Producto producto = new Producto(id, nombre, descripcion, precio, cantidad, modificacion);
-				lp.add(producto);
-				
+				TipoProducto tipo = TipoProducto.valueOf(rs.getString("TipoProducto"));
+				String imagen = rs.getString("Imagen");
+				Producto p = new Producto(id, nombre, descripcion, precio, cantidad, modificacion, tipo, imagen, null);
+				lp.add(p);
 			}
 			rs.close();
 			st.close();

@@ -6,10 +6,6 @@ public class Cupon {
 	private String foto;
 	private String descripcion;
 	
-	public Cupon() {
-		super();
-	}
-	
 	public Cupon(int minPuntos, double descuento, String foto, String descripcion) {
 		super();
 		this.minPuntos = minPuntos;

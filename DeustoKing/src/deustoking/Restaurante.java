@@ -882,6 +882,73 @@ public class Restaurante {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
+	public static void volcarCSVProductosABD(Connection con, String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			while(sc.hasNext()) {
+//				linea = sc.nextLine();
+//				String []partes = linea.split(";");
+//				String nombre = partes[0];
+//				String apellidos = partes[1];
+//				String telefono = partes[2];
+//				String correo = partes[3];
+//				String direccion = partes[4];
+//				String nombreUsuario = partes[5];
+//				String contrasenia = partes[6];
+//				int puntosAcumulado = Integer.parseInt(partes[7]);
+//				Cliente c = new Cliente(nombre, apellidos, telefono, correo, direccion, Persona.getContador(),puntosAcumulado , nombreUsuario, contrasenia);
+//				BD.insertarCliente(con, c);
+				
+				String linea = sc.nextLine();
+
+				String[] partes=linea.split(";");
+				
+				int idP = Integer.parseInt(partes[0]);
+				String nombre = partes[1];
+				String descripcion = partes[2];
+				float precio=0;
+				if(!partes[3].isEmpty()) {
+					precio = Float.parseFloat(partes[3]);
+				}
+				
+				int cantidad =0;
+				if(!partes[4].isEmpty()) {
+					cantidad = Integer.parseInt(partes[4]);
+				}
+				
+				String modificacion = partes[5];
+				TipoProducto tipoProducto = TipoProducto.valueOf(partes[6]);
+				String imagen = partes[7];
+				ArrayList<Producto> lP = new ArrayList<>();
+				if(partes.length==9) {
+					String[]productos = partes[8].split(":");
+					for (String idProducto : productos) {
+						int id = Integer.parseInt(idProducto);
+						Producto productoEncontrado = buscarProductoPorId(id, listaProductosFichero);
+						if(productoEncontrado!=null) {
+							lP.add(productoEncontrado);
+						}
+					}
+				}
+				
+				if(partes.length==9) {
+					MenuDeusto menu = new MenuDeusto(idP, nombre, descripcion, precio, cantidad, modificacion, tipoProducto, imagen, lP);
+					listaProductosFichero.add(menu);
+					//BD.insertarProducto(con, menu);
+				}else {
+					Producto producto = new Producto(idP, nombre, descripcion, precio, cantidad, modificacion, tipoProducto, imagen, null);
+					listaProductosFichero.add(producto);
+					//BD.insertarProducto(con, producto);
+				}
+			}
+			sc.close();
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
+	}
+	
 	
 	
 }
