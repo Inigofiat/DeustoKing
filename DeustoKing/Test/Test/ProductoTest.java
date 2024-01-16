@@ -2,20 +2,29 @@ package Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import deustoking.Producto;
+import deustoking.PuestoTrabajo;
+import deustoking.TipoProducto;
+import deustoking.Trabajador;
 
 public class ProductoTest {
 	private Producto producto;
+	
 
 	@Before
 	public void setUp() throws Exception {
-		producto = new Producto(1,"Producto", "Desc", 2.5,1,"Mod");
+		producto = new Producto(1, "Carne", "Desc", 10, 2, "Mod", TipoProducto.ENTRANTE, "imagen", null);
 	}
-
+		
 	@After
 	public void tearDown() throws Exception {
 		producto=null;
@@ -35,7 +44,7 @@ public class ProductoTest {
 
 	@Test
 	public void testGetNombre() {
-		assertEquals("Producto", producto.getNombre());
+		assertEquals("Carne", producto.getNombre());
 	}
 
 	@Test
@@ -59,12 +68,12 @@ public class ProductoTest {
 
 	@Test
 	public void testGetPrecio() {
-		assertEquals(2.5, producto.getPrecio(), 0.001);
+		assertEquals(10, producto.getPrecio(), 0.001);
 	}
 
 	@Test
 	public void testSetPrecio() {
-		double precio = 5.5;
+		float precio = (float) 5.5;
 		producto.setPrecio(precio);
 		assertEquals(precio, producto.getPrecio(), 0.001);
 	}
@@ -73,10 +82,6 @@ public class ProductoTest {
         assertEquals("Mod", producto.getModificacion());
     }
     
-    @Test
-    public void testGetCantidad() {
-        assertEquals(1, producto.getCantidad());
-    }
     
     @Test
     public void testSetModificacion() {
@@ -84,18 +89,97 @@ public class ProductoTest {
         assertEquals("Nueva modificación", producto.getModificacion());
     }
     
+    
+    @Test
+    public void testGetTipoProducto() {
+        assertEquals(TipoProducto.ENTRANTE, producto.getTipoProducto());
+    }
+   
+    
+    @Test
+    public void testSetTipoProducto() {
+    	producto.setTipoProducto(TipoProducto.BEBIDA);
+    	
+    	assertEquals(TipoProducto.BEBIDA, producto.getTipoProducto());
+       
+    }
+    
+    @Test
+    public void testGetImagen() {
+       assertEquals("imagen", producto.getImagen());
+    }
+    
+    @Test
+    public void testSetImagen() {
+    	producto.setImagen("Imagen nueva");
+    	assertEquals("Imagen nueva", producto.getImagen());
+       
+    }
+    
+    @Test
+    public void testGetListaProductos() {
+    	assertNull(producto.getListaProductos());
+    }
+    
+    @Test
+    public void testSetListaProductos() {
+    	List<Producto> productos = new ArrayList<>();
+    	producto.setListaProductos(productos);
+       
+    	assertNotNull(productos.isEmpty());
+    	
+    	
+    }
+    
+
+    @Test
+    public void testGetCantidad() {
+        assertEquals(2, producto.getCantidad());
+    }
+    
+    @Test
+    public void testSetCantidad() {
+        producto.setCantidad(6);
+        
+        assertEquals(6, producto.getCantidad());
+    }
+  
+    
     @Test
     public void testToString() {
-    	producto.setIdP(1);
-        producto.setNombre("Producto");
-        producto.setDescripcion("Desc");
-        producto.setPrecio(2.5);
-        producto.setCantidad(1);
-        producto.setModificacion("Mod");
-        String expectedString = "Producto [idP=1, nombre=Producto, descripcion=Desc, precio=2.5, cantidad=1, modificacion=Mod]";
-        assertEquals(expectedString, producto.toString());
-		
-	
+        String expected = "NOMBRE: Carne\nDESCRIPCIÓN: Desc\nCANTIDAD: 10\nMODIFICACIÓN: Mod\nLISTA: null\nTIPO: ENTRANTE\n";
+
+        String result = producto.toString();
+
+        assertEquals(expected, result);
     }
+    
+    @Test
+    public void testConstructor() {
+    	
+    	int id =1;
+    	String nombre = "Nombre";
+    	String desc = "Desc";
+    	float precio = 1;
+    	int cantidad =2;
+    	String mod = "Mod";
+    	String imagen ="Img";
+    	ArrayList<Producto> l = new ArrayList<>();
+
+       
+    	Producto producto = new Producto(id, nombre, desc, precio, cantidad, mod, imagen, l);
+     
+        assertEquals(id, producto.getIdP());
+        assertEquals(nombre, producto.getNombre());
+        assertEquals(desc,producto.getDescripcion());
+        assertEquals(precio, producto.getPrecio(), 0.00001f);
+        assertEquals(cantidad, producto.getCantidad());
+        assertEquals(mod, producto.getModificacion());
+        assertEquals(imagen, producto.getImagen());
+        assertEquals(l, producto.getListaProductos());
+
+    }
+		
+    
 
 }

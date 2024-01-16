@@ -14,8 +14,8 @@ public class TrabajadorTest {
 	private Trabajador trabajador;
 	@Before
 	public void setUp() throws Exception {
-		trabajador = new Trabajador("Naroa", "Azcona Acero", "606522009", "naroa.azcona@opendeusto.es", "Bilbo", Persona.getContador(), 0.0, 1000, 0, "NaroaAzcona", 
-				"Azcona_2004", "79230672L", PuestoTrabajo.JEFE);
+		trabajador = new Trabajador("Naroa", "Azcona Acero", "606522009", "naroa.azcona@opendeusto.es", "Bilbo", Persona.getContador(), 0.0, "NaroaAzcona", 
+				 "79230672L", PuestoTrabajo.JEFE);
 	}
 
 	@After
@@ -32,35 +32,18 @@ public class TrabajadorTest {
 		trabajador.setCorreo("naroa.azcona@opendeusto.es");
 		trabajador.setDireccion("Bilbo");
 		trabajador.setId(0);
-		trabajador.setHorasTrabajadas(0.0);
 		trabajador.setSueldo(1000);
-		trabajador.setMesasAtendidas(0);
 		trabajador.setNombreTrabajador("NaroaAzcona");
-		trabajador.setContraseniaTrabajador("Azcona_2004");
 		trabajador.setDni("79230672L");
 		trabajador.setPuesto(PuestoTrabajo.JEFE);
-        String expectedString = "Trabajador [horasTrabajadas=0.0, sueldo=1000.0, mesasAtendidas=0, nombreTrabajador=NaroaAzcona, contraseniaTrabajador=Azcona_2004, dni=79230672L, puesto=JEFE, nombre=Naroa, apellidos=Azcona Acero, telefono=606522009, correo=naroa.azcona@opendeusto.es, direccion=Bilbo, id=0]";
+        String expectedString = "Trabajador [sueldo=1000.0, nombreTrabajador=NaroaAzcona, dni=79230672L, puesto=JEFE, nombre=Naroa, apellidos=Azcona Acero, telefono=606522009, correo=naroa.azcona@opendeusto.es, direccion=Bilbo, id=0]";
       
         assertEquals(expectedString, trabajador.toString());
 	}
 
-
-	@Test
-	public void testGetHorasTrabajadas() {
-		assertEquals(0.0, trabajador.getHorasTrabajadas(),0.001);
-		
-	}
-
-	@Test
-	public void testSetHorasTrabajadas() {
-		double horas = 24.0;
-		trabajador.setHorasTrabajadas(horas);
-		assertEquals(horas, trabajador.getHorasTrabajadas(),0.001);
-	}
-
 	@Test
 	public void testGetSueldo() {
-		assertEquals(1000, trabajador.getSueldo(),0.001);
+		assertEquals(0.0, trabajador.getSueldo(),0.001);
 	}
 
 	@Test
@@ -68,18 +51,6 @@ public class TrabajadorTest {
 		double sueldo = 2500;
 		trabajador.setSueldo(sueldo);
 		assertEquals(sueldo, trabajador.getSueldo(),0.001);
-	}
-
-	@Test
-	public void testGetMesasAtendidas() {
-		assertEquals(0, trabajador.getMesasAtendidas());
-	}
-
-	@Test
-	public void testSetMesasAtendidas() {
-		int mesaT = 1;
-		trabajador.setMesasAtendidas(mesaT);
-		assertEquals(mesaT, trabajador.getMesasAtendidas());
 	}
 
 	@Test
@@ -92,18 +63,6 @@ public class TrabajadorTest {
 		String nombTrabT = "Yo";
 		trabajador.setNombreTrabajador(nombTrabT);
 		assertEquals(nombTrabT, trabajador.getNombreTrabajador());
-	}
-
-	@Test
-	public void testGetContraseniaTrabajador() {
-		assertEquals("Azcona_2004", trabajador.getContraseniaTrabajador());
-	}
-
-	@Test
-	public void testSetContraseniaTrabajador() {
-		String contTrabT = "Cont";
-		trabajador.setContraseniaTrabajador(contTrabT);;
-		assertEquals(contTrabT, trabajador.getContraseniaTrabajador());
 	}
 
 	@Test
