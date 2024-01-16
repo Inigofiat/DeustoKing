@@ -1,74 +1,94 @@
 package Test;
-
+	
 import static org.junit.Assert.*;
-
+	
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+	
+import deustoking.Cupon;
+	
 public class CuponTest {
-
+	private Cupon cupon;
+	
 	@Before
 	public void setUp() throws Exception {
+		cupon = new Cupon(0, 0, "imagen", "desc");
 	}
-
+	
 	@After
 	public void tearDown() throws Exception {
+		cupon = null;
 	}
-
-	@Test
-	public void testCupon() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void testCuponIntFloatStringString() {
-		fail("Not yet implemented");
+		
+		int min = 0;
+		double descuento = 0;
+		String foto = "imagen";
+		String desc = "desc";
+		assertEquals(min, cupon.getMinPuntos());
+		assertEquals(descuento, cupon.getDescuento(), 0.00001f);
+		assertEquals(foto, cupon.getFoto());
+		assertEquals(desc, cupon.getDescripcion());
+		
 	}
-
+	
 	@Test
 	public void testGetMinPuntos() {
-		fail("Not yet implemented");
+		assertEquals(0, cupon.getMinPuntos());
 	}
-
+	
 	@Test
 	public void testSetMinPuntos() {
-		fail("Not yet implemented");
+		cupon.setMinPuntos(3);
+		assertEquals(3, cupon.getMinPuntos());
 	}
-
+	
 	@Test
 	public void testGetDescuento() {
-		fail("Not yet implemented");
+		assertEquals(0, cupon.getDescuento(), 0.00001f);
 	}
-
+	
 	@Test
 	public void testSetDescuento() {
-		fail("Not yet implemented");
+		cupon.setDescuento(0.20f);
+		assertEquals(0.20f, cupon.getDescuento(), 0.00001f);
 	}
-
+	
 	@Test
 	public void testGetFoto() {
-		fail("Not yet implemented");
+		assertEquals("imagen", cupon.getFoto());
 	}
-
+	
 	@Test
 	public void testSetFoto() {
-		fail("Not yet implemented");
+		cupon.setFoto("nueva imagen");
+		assertEquals("nueva imagen", cupon.getFoto());
 	}
-
+	
 	@Test
-	public void testGetDescripción() {
-		fail("Not yet implemented");
+	public void testGetDescripcion() {
+		assertEquals("desc", cupon.getDescripcion());
 	}
-
+	
 	@Test
-	public void testSetDescripción() {
-		fail("Not yet implemented");
+	public void testSetDescripcion() {
+		cupon.setDescripcion("descripcion");
+		assertEquals("descripcion", cupon.getDescripcion());
 	}
-
+	
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		cupon.setMinPuntos(0);
+		cupon.setDescuento(0);
+		cupon.setFoto("imagen");
+		cupon.setDescripcion("desc");
+		
+		String expectedToString = "Cupon [minPuntos= 0, descuento= 0, foto= imagen, descripción= desc]";
+		
+		assertEquals(expectedToString, cupon.toString());
 	}
-
-}
+	
+	}
