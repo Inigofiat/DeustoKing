@@ -51,11 +51,14 @@ public class VentanaTablaReserva extends JFrame{
 	private SpinnerModel modeloSpinner;
 	private JSpinner spComensales;
 	static Logger logger = Logger.getLogger(Main.class.getName());
+	@SuppressWarnings("unused")
+	private JFrame vActual, vAnterior;
 	
 	
-	public VentanaTablaReserva() {
+	public VentanaTablaReserva(JFrame va) {
 		super();
-		
+		vActual = this;
+		vAnterior=va;
 		Restaurante.cargarReservasEnLista("ficheros/reservas.csv");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();

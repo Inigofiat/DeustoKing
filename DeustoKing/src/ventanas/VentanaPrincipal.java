@@ -104,7 +104,7 @@ public class VentanaPrincipal extends JFrame {
 		lbV1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		panCiudades.add(lbV1);
 
-		lbCup = new JLabel("     ¡CONSEGUIRÁS 75 PUNTOS REGISTRÁNDOTE!   ");
+		lbCup = new JLabel("      ¡CONSEGUIRAS 75 PUNTOS REGISTRANDOTE!     ");
 		lbCup.setBackground(Color.WHITE);
 		lbCup.setBounds(400, 209, 166, 182);
 		lbCup.setFont(new Font("Tw", Font.BOLD, 25));
@@ -183,7 +183,7 @@ public class VentanaPrincipal extends JFrame {
 			                        selectedCargo = null;
 			                    } else {
 			                        JOptionPane.showMessageDialog(null, "¡Bienvenido!", "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
-			                        new VentanaReserva(vActual);
+			                        new VentanaTablaReserva(vActual);
 			                        vActual.setVisible(false);
 			                    }
 			                } else {
@@ -216,7 +216,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/***
-	 *Este método crea una animación que hace que el texto que recibe por parámetro se mueva hacia la derecha cada 100 milisegundos
+	 *Este método crea una animación que hace que el texto que recibe por parámetro se mueva hacia la izquierda cada 100 milisegundos
 	 * 
 	 * @param label el label con la frase puntos
 	 */
