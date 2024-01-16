@@ -14,7 +14,7 @@ public class TrabajadorTest {
 	private Trabajador trabajador;
 	@Before
 	public void setUp() throws Exception {
-		trabajador = new Trabajador("Naroa", "Azcona Acero", "606522009", "naroa.azcona@opendeusto.es", "Bilbo", Persona.getContador(), 0.0, "NaroaAzcona", 
+		trabajador = new Trabajador("Naroa", "Azcona Acero", "606522009", "naroa.azcona@opendeusto.es", "Bilbo", Persona.getContador(), 0, "NaroaAzcona", 
 				 "79230672L", PuestoTrabajo.JEFE);
 	}
 
@@ -48,7 +48,7 @@ public class TrabajadorTest {
 
 	@Test
 	public void testSetSueldo() {
-		double sueldo = 2500;
+		float sueldo = 2500;
 		trabajador.setSueldo(sueldo);
 		assertEquals(sueldo, trabajador.getSueldo(),0.001);
 	}

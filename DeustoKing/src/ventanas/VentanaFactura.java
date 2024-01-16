@@ -36,11 +36,10 @@ import deustoking.Restaurante;
 
 public class VentanaFactura extends JFrame {
 
-    private DefaultListModel<Producto> modeloLista;
     private List<Producto> listaProductos;
     private JTextArea area;
     private JScrollPane scrollArea;
-    private JButton btnPagar, btnVolver, btnMisCupones;
+    private JButton btnPagar, btnVolver;
     private JLabel lbFactura, lbFechaYHora, lbTotal, lbFH, lbProductos, lbP;
     private DefaultListModel<String> modeloListaFinales;
     private JList<String> jListFinales;
@@ -156,13 +155,20 @@ public class VentanaFactura extends JFrame {
         });
 
         btnVolver = new JButton("Volver");
-        btnMisCupones = new JButton("Mis Cupones");
-        
+        btnVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vAnterior.setVisible(true);
+				vActual.dispose();
+				
+			}
+		});
+     
         pAbajo=  new JPanel();
         pAbajo.setBorder(new EmptyBorder(100,50,20,50));
         pAbajo.add(btnPagar);
         pAbajo.add(btnVolver);
-        pAbajo.add(btnMisCupones);
 
         pDerecha.add(lbFechaYHora);
         pDerecha.add(lbFH);
@@ -173,16 +179,13 @@ public class VentanaFactura extends JFrame {
         pDerecha.setBorder(new EmptyBorder(70,70,70,70));
 
         lbTotal.setText(String.valueOf(totalPrecio));
-        //lbTotal.setText(String.valueOf(factura.getPrecioTotal()));
         lbTotal.setFont(new Font("Tw", Font.PLAIN, 14));
 
-        // Agregar componentes al panel contenedor
         pContenedor.add(pDerecha, BorderLayout.EAST);
         pContenedor.add(pArriba, BorderLayout.NORTH);
         pContenedor.add(pIzquierda, BorderLayout.WEST);
         pContenedor.add(pAbajo, BorderLayout.SOUTH);
 
-        // Panel principal
         pPrincipal = new JPanel();
         pPrincipal.setLayout(new BorderLayout());
         area = new JTextArea();

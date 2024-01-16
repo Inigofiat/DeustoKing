@@ -2,13 +2,13 @@ package deustoking;
 
 	public class Trabajador extends Persona{
 		
-		private double sueldo;
+		private float sueldo;
 		private String nombreTrabajador;
 		private String dni;
 		private PuestoTrabajo puesto;
 		
 		public Trabajador(String nombre, String apellidos, String telefono, String correo, String direccion, int id,
-				double sueldo, String nombreTrabajador, String dni, PuestoTrabajo puesto) {
+				float sueldo, String nombreTrabajador, String dni, PuestoTrabajo puesto) {
 			super(nombre, apellidos, telefono, correo, direccion, id);
 			this.sueldo = sueldo;
 			this.nombreTrabajador = nombreTrabajador;
@@ -33,11 +33,11 @@ package deustoking;
 		}
 	
 
-	public double getSueldo() {
+	public float getSueldo() {
 		return sueldo;
 	}
 
-	public void setSueldo(double sueldo) {
+	public void setSueldo(float sueldo) {
 		this.sueldo = sueldo;
 	}
 	

@@ -17,8 +17,10 @@ import deustoking.Cliente;
 import deustoking.Cupon;
 import deustoking.MenuDeusto;
 import deustoking.Producto;
+import deustoking.PuestoTrabajo;
 import deustoking.Reserva;
 import deustoking.TipoProducto;
+import deustoking.Trabajador;
 
 
 public class BD {
@@ -60,8 +62,8 @@ public class BD {
 		String sqlCliente = "CREATE TABLE IF NOT EXISTS Cliente (Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, PuntosAcumulados int, NombreUsuario String, Contrasenia String)";
 		String sqlReserva = "CREATE TABLE IF NOT EXISTS Reserva (Nombre String, Telefono String, Correo String, IdentificadorReserva INTEGER PRIMARY KEY AUTOINCREMENT,Fecha String, Hora String, NumeroComensales int)";
 		String sqlProducto = "CREATE TABLE IF NOT EXISTS Producto(IdentificadorProducto int, Nombre String, Descripcion String, Precio float, Cantidad int, Modificacion String, TipoProducto String, Imagen String, ListaProductos String)";
-		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT, HorasTrabajadas float,"
-				+ "Sueldo float, NombreTrabajador String, Contrasenia String, Dni String, Puesto String)";
+		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(Nombre String, Apellidos String, Telefono String, Correo String, Direccion String, Id INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "Sueldo float, NombreTrabajador String, Dni String, Puesto String)";
 		String sqlCupon = "CREATE TABLE IF NOT EXISTS Cupon(MinPuntos Int, Descuento double, Foto String, Nombre String)";
 		try {
 			Statement st = conn.createStatement();
@@ -82,6 +84,21 @@ public class BD {
 			if(buscarCliente(con,cliente.getTelefono())==null){
 				String sql = String.format("INSERT INTO Cliente(Nombre,Apellidos,Telefono,Correo,Direccion,PuntosAcumulados,NombreUsuario,Contrasenia) VALUES('%s','%s','%s','%s','%s','%d','%s','%s')", cliente.getNombre(),
 						cliente.getApellidos(), cliente.getTelefono(),cliente.getCorreo(), cliente.getDireccion(), cliente.getPuntosAcumulados() , cliente.getNombreUsuario(),cliente.getContrasenia());
+				try {
+					Statement st = con.createStatement();
+					st.executeUpdate(sql);
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		public static void insertarTrabajador(Connection con, Trabajador t){
+			
+			if(buscarCliente(con,t.getDni())==null){
+				String sql = String.format("INSERT INTO Trabajador(Nombre, Apellidos, Telefono, Correo, Direccion,Sueldo, NombreTrabajador, Dni, Puesto) VALUES('%s','%s','%s','%s','%s','%f','%s', '%s', '%s')", 
+						t.getNombre(), t.getApellidos(),t.getTelefono(),t.getCorreo(),t.getDireccion(),t.getSueldo(),t.getNombreTrabajador(),t.getDni(),t.getPuesto());
 				try {
 					Statement st = con.createStatement();
 					st.executeUpdate(sql);
@@ -143,7 +160,6 @@ public class BD {
 				pst.executeUpdate();
 				pst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -175,6 +191,34 @@ public class BD {
 			e.printStackTrace();
 		}
 		return cliente;
+	}
+	
+	public static Trabajador buscarTrabajador(Connection con, String dni) {
+		String sql = String.format("SELECT * FROM Cliente WHERE Dni = '%s'", dni);
+		Trabajador trabajador= null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql); 
+			if(rs.next()) {
+				String nombre = rs.getString("Nombre");
+				String apellidos = rs.getString("Apellidos");
+				String telefono = rs.getString("Telefono");
+				String correo = rs.getString("Correo");
+				String direccion = rs.getString("Direccion");
+				int id = Integer.parseInt(rs.getString("Id"));
+				float sueldo = rs.getFloat("Sueldo");
+				String nombreTrabajador= rs.getString("NombreUsuario");
+				String dniS = rs.getString("Dni");
+				PuestoTrabajo puesto = PuestoTrabajo.valueOf(rs.getString("Puesto"));
+				trabajador = new Trabajador(nombre, apellidos, telefono, correo, direccion, id, sueldo, nombreTrabajador, dniS, puesto);
+				
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return trabajador;
 	}
 	
 	public static Producto buscarProducto(Connection con, int id) {

@@ -48,30 +48,22 @@ public class Main {
 
 			e.printStackTrace();
 		}
-		
-		
 		Connection con = BD.initBD(nombreBD);
 		try {
+			BD.borrarTabla(con);
 			BD.crearTabla(con);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		//Restaurante.volcarCSVPersonasABD(con, "ficheros/Clientes.csv");
-		//Restaurante.volcarCSVReservasABD(con, "ficheros/reservas.csv");
 		Restaurante.volcarCSVPersonasABD(con, nombreFicheroClientes);
 		Restaurante.volcarCSVReservasABD(con, nombreFicheroReservas);
 		Restaurante.cargarCupones();
-		//Restaurante.volcarCSVProductosABD(con, "ficheros/productos.csv");
 		Restaurante.volcarCSVProductosABD(con, nombreFicheroProductos);
+		Restaurante.volcarCSVCuponesABD(con, nombreFicheroCupones);
+		Restaurante.volcarCSVCTrabajadorABD(con, nombreFicheroTrabajadores);
+		
 	
 		BD.cerrarBD(con);
-		//Restaurante.cargarProductosEnLista("ficheros/productos.csv");
-		Restaurante.cargarProductosEnLista(nombreFicheroProductos);
-		for (Producto string : Restaurante.getListaProductosFichero()) {
-			System.out.println("PRODUCTO-----------------"+string.getTipoProducto());
-		}
-		
-		System.out.println("MAIN: "+Restaurante.getListaProductosFichero().size());
-		
+		Restaurante.cargarProductosEnLista(nombreFicheroProductos);		
 	}
 }

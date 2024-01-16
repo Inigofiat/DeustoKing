@@ -156,9 +156,13 @@ public class Restaurante {
 				String nombre = partes[0];
 				String apellidos = partes[1];
 				String telefono = partes[2];
-				PuestoTrabajo puesto = PuestoTrabajo.valueOf(partes[3]);
-				String dni = partes[4];
-				Trabajador t = new Trabajador(nombre, apellidos, telefono, puesto, dni);
+				String direccion = partes[3];
+				String correo = partes[4];
+				float sueldo = Float.parseFloat(partes[5]);
+				String nombreUsuario = partes[6];
+				String dni = partes[7];
+				PuestoTrabajo puesto = PuestoTrabajo.valueOf(partes[8]);
+				Trabajador t = new Trabajador(nombre, apellidos, telefono, correo, direccion, 0, sueldo, nombreUsuario, dni, puesto);
 				listaTrabajadores.add(t);
 			}
 		} catch (FileNotFoundException e) {
@@ -633,7 +637,10 @@ public class Restaurante {
 				String fecha = partes[1];
 				String hora = partes[2];
 				int nComensales = Integer.parseInt(partes[3]);
-				Reserva r = new Reserva(id, fecha, hora, nComensales);
+				String nombre = partes[4];
+				String telefono = partes[5];
+				String email = partes[6];
+				Reserva r = new Reserva(id, nombre, telefono, email, fecha, hora, nComensales);
 				
 				BD.insertarReserva(con, r);
 			
@@ -882,22 +889,12 @@ public class Restaurante {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
 	
+	
+	
 	public static void volcarCSVProductosABD(Connection con, String nomfich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
 			while(sc.hasNext()) {
-//				linea = sc.nextLine();
-//				String []partes = linea.split(";");
-//				String nombre = partes[0];
-//				String apellidos = partes[1];
-//				String telefono = partes[2];
-//				String correo = partes[3];
-//				String direccion = partes[4];
-//				String nombreUsuario = partes[5];
-//				String contrasenia = partes[6];
-//				int puntosAcumulado = Integer.parseInt(partes[7]);
-//				Cliente c = new Cliente(nombre, apellidos, telefono, correo, direccion, Persona.getContador(),puntosAcumulado , nombreUsuario, contrasenia);
-//				BD.insertarCliente(con, c);
 				
 				String linea = sc.nextLine();
 
@@ -934,11 +931,11 @@ public class Restaurante {
 				if(partes.length==9) {
 					MenuDeusto menu = new MenuDeusto(idP, nombre, descripcion, precio, cantidad, modificacion, tipoProducto, imagen, lP);
 					listaProductosFichero.add(menu);
-					//BD.insertarProducto(con, menu);
+					BD.insertarProducto(con, menu);
 				}else {
 					Producto producto = new Producto(idP, nombre, descripcion, precio, cantidad, modificacion, tipoProducto, imagen, null);
 					listaProductosFichero.add(producto);
-					//BD.insertarProducto(con, producto);
+					BD.insertarProducto(con, producto);
 				}
 			}
 			sc.close();
@@ -948,6 +945,35 @@ public class Restaurante {
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
 	}
+	
+	public static void volcarCSVCTrabajadorABD(Connection con, String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String []partes = linea.split(";");
+				String nombre = partes[0];
+				String apellidos = partes[1];
+				String telefono = partes[2];
+				String direccion = partes[3];
+				String correo = partes[4];
+				float sueldo = Float.parseFloat(partes[5]);
+				String nombreUsuario = partes[6];
+				
+				String dni = partes[7];
+				PuestoTrabajo puesto = PuestoTrabajo.valueOf(partes[8]);
+				Trabajador t = new Trabajador(nombre, apellidos, telefono, correo, direccion, 0, sueldo, nombreUsuario, dni, puesto);
+				BD.insertarTrabajador(con, t);
+			
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO ");		}
+		
+	}
+	
+	
 	
 	
 	
