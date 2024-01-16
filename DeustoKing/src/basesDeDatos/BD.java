@@ -177,7 +177,9 @@ public class BD {
 	}
 	
 	/***
-	 * Método que inserta los productos a la base de datos
+	 * Método que añade un producto a la base de datos.
+	 * @param con Conexión de la base de datos
+	 * @param p producto que se añade a la base de datos
 	 */
 	
 	public static void insertarProducto(Connection con, Producto p) {
@@ -208,7 +210,10 @@ public class BD {
 	}
 	
 	/***
-	 * Método que busca los clientes
+	 * Método que busca el cliente en la base de datos
+	 * @param con Conexión de la base de datos
+	 * @param telefono parametro que se le pasa para buscar un cliente
+	 * @return devuelve el cliente 
 	 */
 
 	public static Cliente buscarCliente(Connection con, String telefono) {
@@ -318,7 +323,7 @@ public class BD {
 	 * Método que busca la reserva en la base de datos por teléfono 
 	 * @param con conexión de la base de datos
 	 * @param telefono parametro con el que se va a buscar la reserva
-	 * @return
+	 * @return devuelve la reserva
 	 */
 	
 	public static Reserva buscarReserva(Connection con, String telefono ) {
