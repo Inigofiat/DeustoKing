@@ -1,20 +1,15 @@
 package ventanas;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import basesDeDatos.BD;
-import deustoking.Producto;
 import deustoking.Restaurante;
 
 public class Main {
@@ -22,6 +17,7 @@ public class Main {
 	public static String nombreBD,nombreAplicacion,fechaCreacion, nombreFicheroClientes, nombreFicheroReservas, nombreFicheroTrabajadores, nombreFicheroProductos, nombreFicheroCupones;
 	public static void main(String[] args) {
 		
+		@SuppressWarnings("unused")
 		VentanaCargando vc= new VentanaCargando();
 		
 		Properties properties = new Properties();

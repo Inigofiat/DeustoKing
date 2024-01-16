@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import deustoking.Reserva;
 
+@SuppressWarnings({ "serial", "unused" })
 public class ModeloReserva extends DefaultTableModel{
 	private List<Reserva> listaReservas;
 	private List<String> titulos = Arrays.asList("FECHA","HORA","NÚMERO DE COMENSALES");

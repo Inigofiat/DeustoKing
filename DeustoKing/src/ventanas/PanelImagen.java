@@ -2,11 +2,11 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class PanelImagen extends JPanel{
 	Image imagen;
 	

@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
-import deustoking.Reserva;
-
 public class RendererReserva implements TableCellRenderer{
 
 	@Override

@@ -3,49 +3,42 @@ package ventanas;
 import java.awt.BorderLayout;import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.border.EmptyBorder;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.table.DefaultTableCellRenderer;
 
 
 import deustoking.Cliente;
-import deustoking.Persona;
 import deustoking.Reserva;
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaTablaReserva extends JFrame{
 	private ModeloReserva modeloTablaReservas;
 	private JTable tablaReserva;
@@ -166,8 +159,4 @@ public class VentanaTablaReserva extends JFrame{
          
 	    return listaReservas;
   }
-	
-	public static void main(String[] args) {
-		VentanaTablaReserva v = new VentanaTablaReserva();
-	}
 }

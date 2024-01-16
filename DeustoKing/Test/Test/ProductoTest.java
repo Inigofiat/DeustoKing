@@ -5,16 +5,13 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import deustoking.Producto;
-import deustoking.PuestoTrabajo;
 import deustoking.TipoProducto;
-import deustoking.Trabajador;
 
 public class ProductoTest {
 	private Producto producto;

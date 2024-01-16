@@ -6,8 +6,8 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import deustoking.Cliente;
-import deustoking.Reserva;
 
+@SuppressWarnings("serial")
 public class ModeloCliente extends DefaultTableModel{
 	private List<Cliente> listaClientes;
 	private List<String> titulos = Arrays.asList("NOMBRE","TÉLEFONO", "CORREO");

@@ -150,7 +150,6 @@ public class ReservaTest {
 		 reserva.setFecha(Utilidades.stringToDate("08-04-2004"));
 		 reserva.setHora("12:30");
 		 reserva.setnComensales(5);
-		 Date fechaEsperada = Utilidades.stringToDate("08-04-2004");
 		 String expectedString = "Reserva [nombre=nombre, telefono=tlf, correo=correo, id=1, fecha=08-04-2004, hora=12:30, nComensales=5]";
 	     assertEquals(expectedString, reserva.toString());
 	 	

@@ -1,29 +1,28 @@
 package ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+
 import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.Renderer;import org.w3c.dom.xpath.XPathNSResolver;
+
 
 import deustoking.Producto;
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaTablaProductos extends JFrame{
 	private ModeloProducto modeloProducto;
 	private JTable tablaProductos;
@@ -31,8 +30,6 @@ public class VentanaTablaProductos extends JFrame{
 	private JPanel pContenedor, pPrincipal, pSur, pCentro, pNorte;
 	private JFrame vActual, vAnterior;
 	private JButton btnFactura, btnVolver;
-	
-	private Producto producto;
 	
 	public VentanaTablaProductos(JFrame va) {
 		super();
@@ -45,8 +42,6 @@ public class VentanaTablaProductos extends JFrame{
         setSize(anchoP, altoP);
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
-        
-        producto = null;
         
         pContenedor = new JPanel();
         pContenedor.setLayout(new BorderLayout()); 

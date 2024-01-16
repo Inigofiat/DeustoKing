@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import deustoking.Cliente;
 
+@SuppressWarnings("serial")
 public class VentanaPerfil extends JFrame {
 
     private JPanel pCentro, pPrincipal, pContenedor, pSur;

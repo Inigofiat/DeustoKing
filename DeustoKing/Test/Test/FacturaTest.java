@@ -2,13 +2,9 @@ package Test;
 
 import static org.junit.Assert.*;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -20,9 +16,7 @@ import org.junit.Test;
 import deustoking.Cliente;
 import deustoking.Factura;
 import deustoking.Producto;
-import deustoking.Restaurante;
 import deustoking.TipoProducto;
-import deustoking.Utilidades;
 
 public class FacturaTest {
 	private Factura factura;

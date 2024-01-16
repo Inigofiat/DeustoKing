@@ -5,12 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
-import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -19,7 +15,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -27,29 +22,26 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicButtonUI;
-
 import deustoking.PuestoTrabajo;
 import deustoking.Restaurante;
 import deustoking.Trabajador;
 
 
 
+@SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
 
 	
-	private JButton btnBilbao, btnDonostia, btnGasteiz, btnInicSesion, btnCupon, btnReservas;
+	private JButton btnInicSesion;
 	private JLabel lbV1, lbCup;
-	private JPanel panCiudades, panBotones, panPrincipal, panInformacion;
+	private JPanel panCiudades, panBotones, panInformacion;
 	private JMenuBar menu;
 	private JMenu menuDesplegable;
 	private JMenuItem itTrabajador;
-	private JFrame vActual, vAnterior;
+	private JFrame vActual;
 	private static final String nomfichClientes = "ficheros/Trabajadores.csv";
-	private static Trabajador trabajador;
 	private static  JComboBox<PuestoTrabajo> cargoComboBox;
 	static Logger logger = Logger.getLogger(Main.class.getName());
 	PanelImagen gifPanel;
@@ -60,8 +52,6 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal(JFrame va) {
 		super();
 		vActual=this;
-		vAnterior=va;
-		
 		setTitle("DeustoKing");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -80,7 +70,7 @@ public class VentanaPrincipal extends JFrame {
         panCiudades = new JPanel();
         panBotones = new JPanel();
         panInformacion = new JPanel();
-        panPrincipal = new JPanel();
+        new JPanel();
         
         gifPanel = new PanelImagen(new ImageIcon("imagenes/carga.gif").getImage());
         gifPanel.add(panBotones, BorderLayout.NORTH);
@@ -193,7 +183,6 @@ public class VentanaPrincipal extends JFrame {
 			                        selectedCargo = null;
 			                    } else {
 			                        JOptionPane.showMessageDialog(null, "¡Bienvenido!", "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
-			                        trabajador = t;
 			                        new VentanaReserva(vActual);
 			                        vActual.setVisible(false);
 			                    }

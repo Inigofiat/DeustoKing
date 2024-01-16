@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import deustoking.Cliente;
-import deustoking.Persona;
 
 public class ClienteTest {
 	private Cliente cliente;

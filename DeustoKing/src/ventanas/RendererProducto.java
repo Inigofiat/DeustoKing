@@ -3,7 +3,6 @@ package ventanas;
 import java.awt.Component;
 
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.TableCellRenderer;

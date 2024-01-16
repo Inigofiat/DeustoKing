@@ -4,12 +4,12 @@ package ventanas;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import deustoking.Producto;
 
 
+@SuppressWarnings("serial")
 public class ModeloProducto extends DefaultTableModel{
 	private List<Producto> listaProductos;
 	private List<String> titulos = Arrays.asList("NOMBRE","CANTIDAD","DESCRIPCIÓN","PRECIO", "MODIFICACIÓN");

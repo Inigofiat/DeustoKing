@@ -5,7 +5,6 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
-import java.awt.Paint;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +18,7 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaCargando extends JFrame {
 	
 	private JProgressBar bProgreso;

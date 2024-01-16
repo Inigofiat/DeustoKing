@@ -8,13 +8,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,18 +39,18 @@ import org.jdatepicker.DatePicker;
 
 import basesDeDatos.BD;
 import ventanas.Main;
-import ventanas.VentanaCarta;
-import ventanas.VentanaCliente;
 
 public class Restaurante {
 	
 
 	private  static Map<String, List<Reserva>> reservasPorCliente;
+	@SuppressWarnings("unused")
 	private  static Set<Reserva> setReservas;
 	private  static  List<Reserva> listaReservas;
 	private static  List<Trabajador> listaTrabajadores;
 	private  static Map<String, Cliente> mapaPersonaPorCorreo;
 	private static List<Cliente> clientes;
+	@SuppressWarnings("unused")
 	private static Cliente cliente;
 	private static Map<Date, List<Reserva>> mapaHorasPorFecha;
 	private static Map<String, List<Reserva>> mapaReservas;
@@ -795,7 +792,8 @@ public class Restaurante {
 	    };
 	    
 	    Object[] opciones = {"VOLVER"};
-	    int resultado = JOptionPane.showOptionDialog(
+	    @SuppressWarnings("unused")
+		int resultado = JOptionPane.showOptionDialog(
 	            null, mensaje, cupon, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
 	            null, opciones, opciones[0]
 	    );

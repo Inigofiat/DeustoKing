@@ -28,8 +28,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -39,11 +37,11 @@ import javax.swing.event.ChangeListener;
 
 import deustoking.Ciudad;
 import deustoking.Cliente;
-import deustoking.Cupon;
 import deustoking.Producto;
 import deustoking.Restaurante;
 import deustoking.TipoProducto;
 
+@SuppressWarnings("serial")
 public class VentanaCliente extends JFrame{
 	private JPanel pNorte;
 	private static JPanel pCentro;
@@ -51,13 +49,11 @@ public class VentanaCliente extends JFrame{
 	private JPanel pPrincipal;
 	private JPanel pContenedor, pSur;
 	private JSlider sliderPts;
-	private JLabel lblSaludo, lblCupon1, lblCupon2, lblCupon3, lblCupon4, lbPuntos, lbTiempo;
+	private JLabel lblSaludo, lbPuntos, lbTiempo;
 	private Cliente cliente;
-	private JFrame vActual, vAnterior;
-	private ArrayList<Cupon> cupones;
+	private JFrame vActual;
 	static Logger logger = Logger.getLogger(Main.class.getName());
 	private JMenuBar menu;
-	private JScrollPane barra;
 	private JMenu menuReserva, menuCarta, menuPerfil, menuCupon, menuHora, menuCarro;
 	private JMenuItem itCarta, itMisCupones, itCupones, itReserva, itMiperfil, itMisReservas, itCarro;
 	PanelImagen imagenPanel;
@@ -65,10 +61,9 @@ public class VentanaCliente extends JFrame{
 	
 	public VentanaCliente(JFrame va) {
 		vActual = this;
-		vAnterior = va;
 		this.cliente = VentanaInicioSesion.getCliente();
 		System.out.println("Tienes "+cliente.getPuntosAcumulados()+" puntos");
-		cupones = new ArrayList<>();
+		new ArrayList<>();
 	
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()

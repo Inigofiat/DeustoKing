@@ -8,9 +8,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,29 +15,24 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import basesDeDatos.BD;
-import deustoking.Ciudad;
 import deustoking.Cliente;
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaInicioSesion extends JFrame {
 	private JPanel pSur, pEste, pOeste, pFoto, pPrincipal;
 	private JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblFoto;
 	private JTextField txtNombreUsuario;
 	private JPasswordField txtContrasenia;
 	private JButton btnRegistro, btnAtras, btnInicioSesion;
-	private JScrollPane scroll;
 	private static final String nomfichClientes = "ficheros/Clientes.csv";
 	private JFrame vActual, vAnterior;
 	private static Cliente cli;

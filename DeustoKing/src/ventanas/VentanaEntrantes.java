@@ -11,8 +11,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,14 +24,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import deustoking.Cliente;
 import deustoking.Producto;
 import deustoking.Restaurante;
 import deustoking.TipoProducto;
 
+@SuppressWarnings("serial")
 public class VentanaEntrantes extends JFrame {
 	
 	private JPanel pTitulo;
@@ -42,7 +39,6 @@ public class VentanaEntrantes extends JFrame {
 	private JPanel pVolver;
 	private JPanel pContenedor;
 	private JButton btnVolver;
-	private JLabel lblNachos, lblArosCebolla, lblTequenios, lblAlitas;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;

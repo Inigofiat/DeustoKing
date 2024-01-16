@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.Paint;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaCarta extends JFrame {
 	
 	private JPanel pBotones, pProductos, pPrincipal, pVolver, pContenedor;

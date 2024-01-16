@@ -1,23 +1,17 @@
 package ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridLayout;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,14 +22,13 @@ import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
-import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
-import org.jdatepicker.constraints.DateSelectionConstraint;
 
 import deustoking.Cliente;
 import deustoking.Reserva;
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaMisReservas extends JFrame{
 	private static ModeloReserva modeloTablaReservas;
 	private static JTable tablaReserva;

@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -25,13 +24,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import deustoking.Producto;
 import deustoking.Restaurante;
 import deustoking.TipoProducto;
 
+@SuppressWarnings("serial")
 public class VentanaMenu extends JFrame {
 	
 	private JPanel pTitulo;
@@ -39,8 +38,7 @@ public class VentanaMenu extends JFrame {
 	private JPanel pPrincipal;
 	private JPanel pVolver;
 	private JPanel pContenedor;
-	private JButton btnM1, btnM2, btnM3, btnM4, btnVolver;
-	private JLabel lblM1, lblM2, lblM3, lblM4;
+	private JButton btnVolver;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;

@@ -25,13 +25,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import deustoking.Producto;
 import deustoking.Restaurante;
 import deustoking.TipoProducto;
 
+@SuppressWarnings("serial")
 public class VentanaHamburguesas extends JFrame {
 	
 	private JPanel pTitulo;
@@ -39,8 +39,7 @@ public class VentanaHamburguesas extends JFrame {
 	private JPanel pPrincipal;
 	private JPanel pVolver;
 	private JPanel pContenedor;
-	private JButton btnH1, btnH2, btnH3, btnH4, btnVolver;
-	private JLabel lblH1, lblH2, lblH3, lblH4;
+	private JButton btnVolver;
 	private JScrollPane barra; 
 	private JLabel lblTitulo;
 	private JFrame vActual, vAnterior;

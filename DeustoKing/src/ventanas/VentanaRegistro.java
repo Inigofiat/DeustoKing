@@ -4,11 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,25 +17,21 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-
-import basesDeDatos.BD;
-import deustoking.Cliente;
 import deustoking.Persona;
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaRegistro extends JFrame{
 	
 
 	private JPanel pSur, pPrincipal, pEste, pOeste;
-	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContrasenia, lblRepetirContrasenia, lblRegistro, lblInicioSesion;
+	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContrasenia, lblRepetirContrasenia, lblInicioSesion;
 	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario;
 	private JPasswordField txtContrasenia, txtRepetirContrasenia;
 	private JButton btnRegistro, btnAtras, btnInicioSesion;
-	private JScrollPane scroll;
 	private static final String nomfichClientes = "ficheros/Clientes.csv";
-	private JFrame vActual, vAnterior;
+	private JFrame vActual;
 	static Logger logger = Logger.getLogger(Main.class.getName());
 
 	
@@ -49,8 +40,7 @@ public class VentanaRegistro extends JFrame{
 		super();
 	
 		vActual = this;
-		vAnterior = va;
-        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getHeight();
@@ -176,7 +166,7 @@ public class VentanaRegistro extends JFrame{
 		pPrincipal.add(pSur, BorderLayout.SOUTH);
 		
 		getContentPane().add(pPrincipal);
-		scroll = new JScrollPane();
+		new JScrollPane();
  	
 		btnAtras.addActionListener((e) -> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");

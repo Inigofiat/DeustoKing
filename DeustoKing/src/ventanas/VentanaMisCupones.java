@@ -24,9 +24,10 @@ import deustoking.Cliente;
 import deustoking.Cupon;
 import deustoking.Restaurante;
 
+@SuppressWarnings("serial")
 public class VentanaMisCupones extends JFrame{
 	
-	private JPanel pCentro, pDerecha, pIzquierda, pContenedor, pPrincipal, pNorte, pSur;
+	private JPanel pCentro, pDerecha, pIzquierda, pContenedor, pPrincipal, pSur;
 	private JButton btVolver;
 	private JScrollPane scroll;
 	private Cliente cliente;
@@ -145,6 +146,7 @@ public class VentanaMisCupones extends JFrame{
 	}
 	
 
+	@SuppressWarnings("unused")
 	private void actualizarPanelCupones() {
 		int i=0;
 		while(i<cupones.size()) {
