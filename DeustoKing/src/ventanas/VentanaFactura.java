@@ -124,7 +124,7 @@ public class VentanaFactura extends JFrame {
             modeloListaFinales.addElement(formatoProducto);
             totalPrecio += producto.getPrecio() * producto.getCantidad();
         }
-        
+        totalPrecio -= totalPrecio*VentanaMisCupones.descuento/100;
         
 
         lbProductos = new JLabel("Productos Finales:");
@@ -145,6 +145,10 @@ public class VentanaFactura extends JFrame {
                for (Producto producto : listaProductos) {
 				total +=producto.getPrecio()*producto.getCantidad();
                }
+               System.out.println("***************************************+");
+               System.out.println("TOTAL:   "+total);
+               total = total - total*VentanaMisCupones.descuento/100;
+               System.out.println(total);
                sumarPuntos(total, 0);
                vActual.dispose();
             }
@@ -152,7 +156,7 @@ public class VentanaFactura extends JFrame {
         });
 
         btnVolver = new JButton("Volver");
-
+        btnMisCupones = new JButton("Mis Cupones");
         
         pAbajo=  new JPanel();
         pAbajo.setBorder(new EmptyBorder(100,50,20,50));

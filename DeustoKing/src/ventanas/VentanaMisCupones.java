@@ -32,9 +32,10 @@ public class VentanaMisCupones extends JFrame{
 	private Cliente cliente;
 	private ArrayList<Cupon> cupones;
 	private JFrame vActual, vAnterior;
-	
+	public static double descuento;
 	
 	public VentanaMisCupones(JFrame va) {
+		descuento = 0;
 		vActual=this;
 		vAnterior=va;
 		cupones = new ArrayList<>();
@@ -107,9 +108,11 @@ public class VentanaMisCupones extends JFrame{
 							cliente.setPuntosAcumulados(cliente.getPuntosAcumulados()-c.getMinPuntos());
 							Restaurante.volcarListaClientesAlFichero();
 							borrarPanelCupones();
-							if(c.getDescuento()==10) {
-								VentanaFactura.setTotalPrecio(VentanaFactura.getTotalPrecio()-(VentanaFactura.getTotalPrecio()*0.10));
-							}
+							//if(c.getDescuento()==10) {
+								//VentanaFactura.setTotalPrecio(VentanaFactura.getTotalPrecio()-(VentanaFactura.getTotalPrecio()*0.10));
+								descuento = descuento + c.getDescuento();
+								System.out.println("DESCUENTO DEL CUPÓN: "+c.getDescuento());
+							//}
 						}
 					}
 				}
